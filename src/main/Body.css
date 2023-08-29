@@ -1,0 +1,204 @@
+.mainBody{
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+a{
+    list-style: none;
+}
+#container{
+    background-color: white;
+}
+.info{
+    height: 322px;
+    background: url(../../public/img/computer-7466757_640.png) no-repeat white;
+    background-position: 92% 93%;
+    background-size: 445px 293px;
+}
+
+
+
+.info .wrapInfo{
+    transition: 0.4s ease-out;
+    display: inline-block;
+    height: 35px;
+    line-height: 33px;
+    padding: 0 20px;
+    margin: 10px 0 0 0px;
+    border: 1px solid #e3e3e3;
+    border-radius: 17px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 10px;
+    width: 100px;
+    background-color: #96CCDD;
+    color: white;
+}
+.info2{
+    height: 800px;
+    background-color: #C4E6F1;
+}
+.wrapInfo:hover{
+    transition: 0.4s ease-out;
+    color:khaki
+}
+
+@keyframes fadeInUpTop {
+    0% {
+        opacity: 0;
+        transform: translate3d(30, 50%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 50%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
+.promotion {
+    padding-top: 80px;
+    text-align: center;
+    position: relative;
+    animation: fadeInUp 1.5s;
+
+}
+
+.promotionMain{
+    font-size: 50px;
+    margin-bottom: 70px;
+    color: #F3A9A9;
+}
+.promotionCon{
+    font-size: 20px;
+}
+
+.info .mainL{
+    padding:78px 0 0 103px;
+    animation: fadeInUpTop 1s;
+}
+
+.promotionIcon{
+    margin-top: 75px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    grid-row-gap: 10px;
+    text-align: center;
+    /* grid-template-columns: 150px 150px 150px; */
+}
+
+.promotionIcon .proIcon1::before{
+    background: #fff url(../../public/img/computerServer.png) no-repeat;
+    background-size: 129px 131px;
+    background-position: 50% 50%;
+    border-radius: 50%;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: block;
+    content: '';
+    
+}
+.promotionIcon .proIcon2::before{
+    background: #fff url(../../public/img/pngegg.png) no-repeat;
+    background-size: 175px 177px;
+    border-radius: 50%;
+    background-position:38% 56%;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: block;
+    content: '';
+    
+    
+}
+.promotionIcon .proIcon3::before{
+    background: #fff url(../../public/img/transparent.png) no-repeat;
+    background-size: 118px 109px;
+    background-position:50% 50%;
+    border-radius: 50%;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: block;
+    content: '';
+    
+    
+}
+.promotionIcon a{
+    transition: 0.4s ease-out;
+    opacity: 0.5;
+}
+.promotionIcon a:hover{
+    transition: 0.4s ease-out;
+    opacity : 1;
+}
+
+.info3{
+    height: 1700px;
+}
+
+.promotionIcon a p{
+    padding-top: 20px;
+}
+
+
+.info3 .info3_1{
+    height: 500px;
+    overflow: hidden;
+    margin-top: 100px;
+}
+.info3_1 .info3Left{
+    float: left;
+    width: 50%;
+    text-align: center;
+    line-height: 100px;
+}
+.info3 .info3Right{
+    float: left;
+    width: 50%;
+}
+
+
+
+
+.ylzFj {
+    display: block;
+    position: fixed;
+    right: 58px;
+    bottom: 53px;
+    z-index: 1030;
+}
+.ylzFj button {
+    width: 80px;
+}
+
+.ylzFj button > img {
+    width: 100%;
+}
+* button {
+    background: transparent;
+    border: none;
+}
+
+
+.infoHead{
+    width: 980px; 
+    margin: 0 auto;
+}
+
+.infoP{
+    font-size: 10px; margin: 10px 0 0 0px;
+}
+
+.info2Con, .info3Con{
+    width: 980px; margin: 0 auto;
+}
