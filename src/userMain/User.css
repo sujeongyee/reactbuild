@@ -299,7 +299,9 @@ html body .font-weight-medium {
 }
 
 .inq-answer-input{
-  width: 60%;
+
+  border: 1px solid red;
+
 }
 
 .inq-answer-btn{
