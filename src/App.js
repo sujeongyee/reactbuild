@@ -6,12 +6,15 @@ import User from "./userMain/User";
 import User1 from "./userMain/User1";
 import Admin from "./adminMAin/Admin";
 import HeaderFooterEn from "./component/HeaderFooterEn";
+import MainUser from "./userMain/MainUser";
 import Main from "./main/Main";
 import MainInfo from "./main/MainInfo";
 import UserList from "./userMain/UserAnnoList";
 import UserApply from "./userMain/UserApply";
 import UserInQurylist from "./userMain/UserInQurylist";
 import UserAnnoList from "./userMain/UserAnnoList";
+
+import EnCalendar from "./enMain/EnCalendar";
 
 import MainUser from "./userMain/MainUser";
 import "./userMain/client-main-pro.css";
@@ -38,6 +41,8 @@ function App() {
             <Route element={<HeaderFooterEn />}>{/* 엔지니어 페이지 */}
 
                 <Route path='/engineer' element={<EnMain />} />
+                <Route path='/engineer/calendar' element={<EnCalendar/>} />
+                <Route path='/engineer/test' element={<TestCalendar/>} />
             </Route>
 
             <Route element={<HeaderFooterAd />}>{/* 관리자 페이지; */}
@@ -46,12 +51,11 @@ function App() {
                 <Route path='/admin/noticeWrite' element={<NoticeWrite />} />
             </Route>
 
+
             <Route element={<HeaderFooterUs />}>
               
                 <Route path='/user1' element={<MainUser/>} />
                 <Route path='/user' element={<User/>} />
-
-            
                 <Route path='/user/list' element={< UserList/>} />
                 <Route path='/user/apply' element={< UserApply/>} />
                 <Route path='/user/inQurylist'element={< UserInQurylist/>} />

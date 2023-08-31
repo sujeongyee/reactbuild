@@ -73,6 +73,7 @@
   border-spacing: 5px;
   margin: 0 auto;
   font-size: 10px;
+  padding-top: 40px;
 }
 
 .projectInfo th{
@@ -117,6 +118,7 @@ th,td {
 }
 
 
+
 /* th,tr,td {
   font-size: 12px;
 }
@@ -127,3 +129,4 @@ th {
 #projectInfo {
   padding: 10px;
 } */
+
