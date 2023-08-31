@@ -2,8 +2,14 @@ import { useEffect, useState } from 'react';
 import './Login_join.css'
 
 function Login_join() {
-
-
+    useEffect(()=>{
+        setTimeout(()=>{
+            const container = document.getElementById('container');
+            container.classList.toggle('sign-in');
+            
+        },1000)
+    },[])
+    
   const toggle = () => {
     const container = document.getElementById('container');
     container.classList.toggle('sign-in');
@@ -14,7 +20,7 @@ function Login_join() {
   return (
     <>
 
-      <div id="container" className="container sign-in">
+      <div id="container" className="container1">
 
         <div className="row logjoin">
 
