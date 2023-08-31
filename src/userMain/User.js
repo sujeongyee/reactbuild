@@ -203,7 +203,6 @@ function User() {
                                 </div>
                             </div>
 
-
                         </div>
                         <div class="col-sm-6 col-lg-3">
                             <div class="card border-end">
@@ -261,42 +260,49 @@ function User() {
 
 
                 <div class="row" style={{ float: 'none', margin: '0 auto' }}>
-                    <div class="col-10" style={{ float: 'none', margin: '0 auto' }}>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-4">
-                                    <h4 class="card-title">신규요청리스트</h4>
-
-                                    <div class="ms-auto">
-                                        <div class="dropdown sub-dropdown">
-                                            <button class="btn btn-link text-muted dropdown-toggle" type="button" id="dd1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <MoreVerticalIcon/>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="table-responsive">
-                                        <table class="table no-wrap v-middle mb-0">
-                                        <thead>
-                                                <tr class="border-0">
-                                                    <th class="border-0 font-14 font-weight-medium text-muted">클라이언트
-                                                    </th>
-                                                    <th class="border-0 font-14 font-weight-medium text-muted px-2">프로젝트명
-                                                    </th>
-                                                    
-                                                    <th class="border-0 font-14 font-weight-medium text-muted text-center">
-                                                        계약시작일
-                                                    </th>
-                                                    <th class="border-0 font-14 font-weight-medium text-muted">엔지니어 배정</th>
-                                                </tr>
-
-                                            </thead>
-                                            <tbody>
+                    <div class="col-8" style={{ float: 'none', margin: '0 auto' }}>
+                    <div class="card">
+                          <div class="card-body">
+                              <div class="d-flex align-items-center mb-4">
+                                  <h4 class="card-title">신규요청리스트</h4>
+                                  <div class="ms-auto">
+                                      <div class="dropdown sub-dropdown">
+                                          <button class="btn btn-link text-muted dropdown-toggle" type="button"
+                                              id="dd1" data-bs-toggle="dropdown" aria-haspopup="true"
+                                              aria-expanded="false">
+                                              <i data-feather="more-vertical"></i>
+                                          </button>
+                                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
+                                              <a class="dropdown-item" href="#">Insert</a>
+                                              <a class="dropdown-item" href="#">Update</a>
+                                              <a class="dropdown-item" href="#">Delete</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="table-responsive">
+                                  <table class="table no-wrap v-middle mb-0">
+                                      <thead>
+                                          <tr class="border-0">
+                                              <th class="border-0 font-14 font-weight-medium text-muted">클라이언트
+                                              </th>
+                                              <th class="border-0 font-14 font-weight-medium text-muted px-2">프로젝트명
+                                              </th>
+                                              
+                                              <th class="border-0 font-14 font-weight-medium text-muted text-center">
+                                                  계약시작일
+                                              </th>
+                                              
+                                          </tr>
+                                      </thead>
+                                      <tbody>
                                           <tr>
                                               <td class="border-top-0 px-2 py-4">
                                                   <div class="d-flex no-block align-items-center">
-                                                      <div class="me-3"><img src="../assets/images/users/widget-table-pic1.jpg" alt="user" class="rounded-circle" width="45" height="45"/></div>
+                                                      <div class="me-3"><img
+                                                              src="../assets/images/users/widget-table-pic1.jpg"
+                                                              alt="user" class="rounded-circle" width="45"
+                                                              height="45" /></div>
                                                       <div class="">
                                                           <h5 class="text-dark mb-0 font-16 font-weight-medium">Hanna
                                                               Gover</h5>
@@ -306,21 +312,20 @@ function User() {
                                               </td>
                                               <td class="border-top-0 text-muted px-2 py-4 font-14">Elite Admin</td>
 
-                                             
-                                              <td class="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
+                                              
+                                              <td
+                                                  class="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
                                                   23/09/27
                                               </td>
-                                              <td class="border-top-0 px-2 py-4">
-                                                <div class="popover-icon" style={{textAlign:'center'}}>
-
-                                                    <a class="btn btn-info1" href="javascript:void(0)"style={{textAlign:'center'}}>+</a>
-                                                </div>
-                                            </td>
+                                              
                                           </tr>
                                           <tr>
                                               <td class="px-2 py-4">
                                                   <div class="d-flex no-block align-items-center">
-                                                      <div class="me-3"><img src="../assets/images/users/widget-table-pic2.jpg" alt="user" class="rounded-circle" width="45" height="45"/></div>
+                                                      <div class="me-3"><img
+                                                              src="../assets/images/users/widget-table-pic2.jpg"
+                                                              alt="user" class="rounded-circle" width="45"
+                                                              height="45" /></div>
                                                       <div class="">
                                                           <h5 class="text-dark mb-0 font-16 font-weight-medium">Daniel
                                                               Kristeen
@@ -331,19 +336,17 @@ function User() {
                                               </td>
                                               <td class="text-muted px-2 py-4 font-14">Real Homes WP Theme</td>
                                               
-                                             
+                                              
                                               <td class="text-center text-muted font-weight-medium px-2 py-4">23/09/23</td>
-                                              <td class="border-top-0 px-2 py-4">
-                                                <div class="popover-icon" style={{textAlign:'center'}}>
-
-                                                    <a class="btn btn-info1 " href="javascript:void(0)">+</a>
-                                                </div>
-                                            </td>
+                                              
                                           </tr>
                                           <tr>
                                               <td class="px-2 py-4">
                                                   <div class="d-flex no-block align-items-center">
-                                                      <div class="me-3"><img src="../assets/images/users/widget-table-pic3.jpg" alt="user" class="rounded-circle" width="45" height="45"/></div>
+                                                      <div class="me-3"><img
+                                                              src="../assets/images/users/widget-table-pic3.jpg"
+                                                              alt="user" class="rounded-circle" width="45"
+                                                              height="45" /></div>
                                                       <div class="">
                                                           <h5 class="text-dark mb-0 font-16 font-weight-medium">Julian
                                                               Josephs
@@ -354,19 +357,17 @@ function User() {
                                               </td>
                                               <td class="text-muted px-2 py-4 font-14">MedicalPro WP Theme</td>
                                               
-                                             
+                                              
                                               <td class="text-center text-muted font-weight-medium px-2 py-4">23/09/12</td>
-                                              <td class="border-top-0 px-2 py-4">
-                                                <div class="popover-icon" style={{textAlign:'center'}}>
-
-                                                    <a class="btn btn-info1" href="javascript:void(0)">+</a>
-                                                </div>
-                                            </td>
+                                              
                                           </tr>
                                           <tr>
                                               <td class="border-bottom-0 px-2 py-4">
                                                   <div class="d-flex no-block align-items-center">
-                                                      <div class="me-3"><img src="../assets/images/users/widget-table-pic4.jpg" alt="user" class="rounded-circle" width="45" height="45"/></div>
+                                                      <div class="me-3"><img
+                                                              src="../assets/images/users/widget-table-pic4.jpg"
+                                                              alt="user" class="rounded-circle" width="45"
+                                                              height="45" /></div>
                                                       <div class="">
                                                           <h5 class="text-dark mb-0 font-16 font-weight-medium">Jan
                                                               Petrovic
@@ -379,26 +380,26 @@ function User() {
                                                   HTML</td>
                                               
                                              
-                                              <td class="border-bottom-0 text-center text-muted font-weight-medium px-2 py-4">
+                                              <td
+                                                  class="border-bottom-0 text-center text-muted font-weight-medium px-2 py-4">
                                                   23/09/19</td>
-                                                  <td class="border-top-0 px-2 py-4">
-                                                    <div class="popover-icon" style={{textAlign:'center'}}>
-
-                                                        <a class="btn btn-info1" href="javascript:void(0)">+</a>
-                                                    </div>
-                                                </td>
+                                                  
                                           </tr>
                                       </tbody>
-                                        </table>
-                                    </div>
-                            </div>
-                        </div>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+                            
+                   
 
 
-                    </div>
+                
 
 
-                </div>
+               
                 </div>
 
 
