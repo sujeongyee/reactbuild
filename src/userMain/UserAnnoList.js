@@ -91,6 +91,19 @@ function UserList() {
                                             </li>
                                         </ul>
 
+
+                                        <div className="col-sm-12 col-md-6">
+
+                                          <div id="zero_config_filter" className="dataTa Namebles_filter" >
+
+                                            <label style={{display: 'flex;'}}>
+                                              <span style={{transform: 'translateY(5px)', paddingRight:'10px'}}>Search:</span><input type="search" className="form-control form-control-sm" placeholder aria-controls="zero_config" style={{width: '200px'}} />
+
+                                            </label>
+                                          </div>
+
+                                        </div>
+
                                         
                                     </div>
                                 </div>

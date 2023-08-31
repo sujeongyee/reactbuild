@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react"
-import { Outlet } from "react-router-dom"
+import { Outlet , NavLink} from "react-router-dom"
 import $ from 'jquery';
 import './HeaderFooter.css'
 import BellIcon from "../img/BellIcon";
@@ -12,10 +12,20 @@ import BoxIcon from "../img/BoxIcon";
 
 function HeaderFooterAd() {
 
-    const handleClick = (e) => {
-        $(e.currentTarget).toggleClass("active")
-        $(e.currentTarget).next().toggleClass("in")
-    }
+  
+    const ms={
+      textDecoration: 'none', 
+      background: 'linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8)',
+      borderRadius:' 0 60px 60px 0',
+      
+  }
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const handleClick = (e) => {
+      $(e.currentTarget).toggleClass("active")
+      $(e.currentTarget).next().toggleClass("in")
+  }
     return (
 
 
@@ -98,20 +108,28 @@ function HeaderFooterAd() {
 
                             </li>
                             <li className="sidebar-item">
-                            <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
-                                    <BarChartIcon/>
-                                    <span className="hide-menu hide-list" >공지사항</span>
-                                </a>
-                                <ul aria-expanded="false" className="collapse first-level base-level-line">
+                                    <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
+                                        <BarChartIcon />
+                                        <span className="hide-menu hide-list" >공지사항</span>
+                                    </a>
+                                    <ul aria-expanded="false" className="collapse first-level base-level-line">
+                                        <li class="sidebar-item">
+                                        <NavLink className='sidebar-link ' to='/user/annoList'  style={({isActive})=>isActive?ms:undefined} >
+                                                <span class="hide-menu hide-list"> 공지사항 보기 </span>
+                                        </NavLink>
+
+                                        </li>
                                     <li class="sidebar-item">
-                                        <a href="form-inputs.html" class="sidebar-link">
-                                            <span class="hide-menu hide-list"> 공지사항 보기 </span>
-                                        </a>
+                                       <NavLink className='sidebar-link ' to='/admin/NoticeWrite'  style={({isActive})=>isActive?ms:undefined} >
+                                                <span class="hide-menu hide-list"> 공지사항 등록 </span>
+                                        </NavLink>
 
                                     </li>
-                                 </ul>   
+                                    </ul>
 
-                            </li>
+                                </li> 
+
+                           
                             <li className="sidebar-item">
                             <a className= 'sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
                                     <BoxIcon/>

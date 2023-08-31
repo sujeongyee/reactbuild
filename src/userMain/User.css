@@ -234,6 +234,7 @@ html body .font-weight-medium {
 }
 
 .text-primary {
+
   --bs-text-opacity: 1;
   color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
 }
@@ -318,3 +319,174 @@ html body .font-weight-medium {
   border-collapse: separate;
   border-spacing: 0px;
 }
+
+
+/* *********************지인************************ */
+.title-name {
+  padding-bottom: 30px;
+  padding-left: 200px;
+}
+
+
+.input-title{
+  padding-left: 200px;
+}
+
+.btn-writer {
+  background: #5f78f3;
+  padding: 19px 64px;
+  color:#f1f1f1;
+  border-radius: 3px;
+  margin-top: 40px;
+  float: right;
+  margin-right: 250px;
+
+}
+
+.btn-writer:hover {
+  background: #4662ec;
+}
+
+
+.file-upload{
+ 
+  width:100%;
+  border:1px solid #e9ecef;
+  padding-left:6px
+}
+
+
+.inq-back {
+  font-weight: 800;
+  color:#4662ec
+}
+
+
+.list-flex{
+  display: block;
+  display: flex;
+}
+
+.inq-view {
+  float: right;
+}
+
+
+
+
+
+
+.inq-title{
+  padding-top: 10px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.inq-writer{
+  background-color: rgba(78, 89, 104, 0.16); 
+  color: rgb(78, 89, 104);
+  padding: 3px 6px;
+  font-weight: 600;
+  border-radius: 2px;
+  font-size: 12px;
+}
+
+.inq-writer2{
+  font-weight: 500;
+  color: rgb(56, 56, 56);
+  font-weight: 600;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+
+.inq-content{
+
+  margin-top: 80px;
+  color:#7c8798;
+  font-weight: bold;
+  
+}
+
+.inq-content p {
+  line-height: 1.5;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.inq-q {
+border-top: 1px solid #e7e8ed;
+  width: 100%;
+  height: 300px;
+  padding-top: 50px;
+  margin-top: 32px;
+  display: none;
+}
+
+.inq-answer{
+  flex-wrap: nowrap;
+}
+
+.inq-answer-input{
+  width: 60;
+}
+
+
+.inq-answer .comment{
+  width: 70%;
+  padding: 0;
+ 
+}
+
+.inq-answer .comment .border-0{
+  border: none;
+  font-size: 16px;
+  font-weight: 900;
+  color :#4f5467;
+}
+
+.inq-answer .commentBtn{
+  width: 30%;
+
+}
+
+.inq-answer .commentBtn .btn{
+  width: 200px;
+  height: 50px;
+  background-color: #5f76e8;
+  font-size: 13px;
+  color: white;
+  font-weight: 900;
+}
+.inq-answer .commentBtn .btn:hover{
+  transition: all  0.7s;
+  background-color: #495bb4;
+  
+}
+
+
+.reply .replyId{
+  width: 80%;
+}
+
+.reply .row div{
+  width: 20%;
+}
+.replyComment{
+  border-top: 1px solid #e7e8ed;
+}
+.reply .row div .replySet{ 
+  width: 50%;
+}
+.reply .row div .replySet:hover{ 
+  transition: all  0.4s;
+  color: #4662ec;
+}
+.reply .row div .replyDelete{ 
+  width: 50%;
+}
+.reply .row div .replyDelete:hover{ 
+  transition: all  0.4s;
+  color: #4662ec;
+}
+
