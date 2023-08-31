@@ -3,6 +3,7 @@ import EnMain from './enMain/EnMain';
 import HeaderFooterAd from "./component/HeaderFooterAd";
 import HeaderFooterUs from "./component/HeaderFooterUs";
 import User from "./userMain/User";
+import User1 from "./userMain/User1";
 import Admin from "./adminMAin/Admin";
 import HeaderFooterEn from "./component/HeaderFooterEn";
 import MainUser from "./userMain/MainUser";
@@ -11,10 +12,14 @@ import MainInfo from "./main/MainInfo";
 import UserList from "./userMain/UserAnnoList";
 import UserApply from "./userMain/UserApply";
 import UserInQurylist from "./userMain/UserInQurylist";
-import UserInQuryWrite from "./userMain/UserInQuryWrite";
 import UserAnnoList from "./userMain/UserAnnoList";
+
 import EnCalendar from "./enMain/EnCalendar";
 import TestCalendar from "./enMain/testCalendar";
+
+import NoticeWrite from "./adminMAin/NoticeWrite";
+import UserInQuryWrite from "./userMain/UserInQuryWrite";
+import UserInQuryDetail from "./userMain/UserInQuryDetail";
 
 const menu = [
     { title : 'Home', link : '/' },
@@ -31,18 +36,19 @@ function App() {
             <Route path="/" element={<MainInfo/>}/>
             </Route>
             
-            <Route element={<HeaderFooterEn />}>
+            <Route element={<HeaderFooterEn />}>{/* 엔지니어 페이지 */}
 
                 <Route path='/engineer' element={<EnMain />} />
                 <Route path='/engineer/calendar' element={<EnCalendar/>} />
                 <Route path='/engineer/test' element={<TestCalendar/>} />
             </Route>
 
-            <Route element={<HeaderFooterAd />}>
+            <Route element={<HeaderFooterAd />}>{/* 관리자 페이지; */}
 
                 <Route path='/admin' element={<Admin/>} />
+                <Route path='/admin/noticeWrite' element={<NoticeWrite />} />
             </Route>
-            <Route element={<HeaderFooterUs />}>
+            <Route element={<HeaderFooterUs />}> {/* 유저페이지 */}
 
                 <Route path='/user' element={<User />} />
                 <Route path="/user1" element={<MainUser/>}/>
@@ -50,6 +56,7 @@ function App() {
                 <Route path='/user/apply' element={< UserApply/>} />
                 <Route path='/user/inQurylist'element={< UserInQurylist/>} />
                 <Route path='/user/inQurywrite'element={< UserInQuryWrite/>} />
+                <Route path='/user/inQuryDetail'element={< UserInQuryDetail/>} />
                 <Route path='/user/annoList'element={< UserAnnoList/>} />
 
                 </Route>
