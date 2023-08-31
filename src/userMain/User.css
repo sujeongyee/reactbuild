@@ -206,3 +206,83 @@ html body .font-weight-medium {
     --bs-text-opacity: 1;
     color: rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important;
 }
+
+@font-face {
+  font-family: 'LINESeedKR-Bd';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.detail_modal_container {
+width: 700px;
+height: 100%;
+font-family: 'LINESeedKR-Bd';
+font-size: 15px; 
+margin-left:10px;
+padding: 20px;
+position: relative;
+border: 1px solid #7c8798;
+background-color: #f9f9fd;
+}
+
+.detail_modal_container h2 {
+text-align: center;
+}
+
+.detail_modal_table th,
+.detail_modal_table_content th {
+  padding-right: 35px;
+  text-align: left;
+  table-layout: fixed;
+  width: 130px;
+  height: 35px;
+  color: #7c8798;
+  padding-left: 60px;
+}
+
+
+.detail_modal_button input{
+  width: 130px;
+  line-height: 40px;
+  border-radius: .2rem;
+  background-color: #7f72ea;
+  color: white;
+  font-weight: 900;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+.detail_modal_button{
+  text-align: center;
+  padding-top: 20px;
+  /* padding-left: 20px; */
+}
+
+.detail_modal_table input {
+  border-radius: .2rem;
+  border: 1px solid #d3cccc;
+  padding-left: 20px;
+  height: 32px;
+  width: 400px;
+}
+
+#modal_textarea {
+  border-radius: .2rem;
+  border: 1px solid #d3cccc;
+  padding: 10px;
+  padding-left: 20px;
+  height: 300px;
+  width: 390px;
+  resize: none;
+
+}
+
+.detail_modal_button_print {
+  margin-right: 20px;
+}
+
+.detail_modal_table {
+  border-collapse: separate;
+  border-spacing: 0 7px;
+}

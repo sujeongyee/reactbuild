@@ -12,6 +12,8 @@ import UserApply from "./userMain/UserApply";
 import UserInQurylist from "./userMain/UserInQurylist";
 import UserInQuryWrite from "./userMain/UserInQuryWrite";
 import UserAnnoList from "./userMain/UserAnnoList";
+import Detail from "./userMain/Detail";
+import Login_join from "./main/Login_join";
 
 const menu = [
     { title : 'Home', link : '/' },
@@ -26,6 +28,8 @@ function App() {
         <Routes>
             <Route element={<Main/>}>
             <Route path="/" element={<MainInfo/>}/>
+            <Route path='/login_join' element={<Login_join/>}/> 
+            
             </Route>
             
             <Route element={<HeaderFooterEn />}>
@@ -38,13 +42,14 @@ function App() {
                 <Route path='/admin' element={<Admin/>} />
             </Route>
             <Route element={<HeaderFooterUs />}>
-
-                <Route path='/user' element={<User />} />
+                <Route path='/user' element={<User/>} />
                 <Route path='/user/list' element={< UserList/>} />
                 <Route path='/user/apply' element={< UserApply/>} />
                 <Route path='/user/inQurylist'element={< UserInQurylist/>} />
                 <Route path='/user/inQurywrite'element={< UserInQuryWrite/>} />
                 <Route path='/user/annoList'element={< UserAnnoList/>} />
+                <Route path='/user/detail'element={<Detail/>} />
+                
 
                 </Route>
 
