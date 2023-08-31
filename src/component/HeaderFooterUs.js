@@ -9,6 +9,7 @@ import FileTextIcon from "../img/FileTextIcon";
 import BarChartIcon from "../img/BarCartIcon";
 import BoxIcon from "../img/BoxIcon";
 import Modal from 'react-modal';
+
 import SettingsIcon from "../img/SettingsIcon";
 import LogOutIcon from "../img/LogOutIcon";
 import CalendarIcon from "../img/CalendarIcon";
@@ -16,15 +17,18 @@ import AirplayIcon from "../img/AirplayIcon";
 import MessageSquareIcon from "../img/MessageSquareIcon";
 import ProfileIcon from "../img/ProfileIcon";
 
+
 function HeaderFooterUs() {
-    const [modalIsOpen, setModalIsOpen] = useState(true);
-    const [bellModal, setbellModalIsOpen] = useState(false);
+
+  const [bellModal, setbellModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
     const ms = {
         textDecoration: 'none',
         background: 'linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8)',
         borderRadius: ' 0 60px 60px 0',
 
     }
+
 
     const handleClick = (e) => {
         $(e.currentTarget).toggleClass("active")
@@ -102,14 +106,17 @@ function HeaderFooterUs() {
                                     </Modal>
                                 </li>
                                 <li className="nav-item dropdown">
+
                                     <button className="nav-link dropdown-toggle" onClick={() => setModalIsOpen(true)} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <img src="../img/baek.jpg" alt="user" className="rounded-circle" width="50" height="50" />
+
                                         <span className="ms-2 d-none d-lg-inline-block">
                                             <span></span>
                                             <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>(주)승용</span>
                                             <Down />
                                         </span>
                                     </button>
+
                                     <Modal className="modal-content" overlayClassName="modal-overlay" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                                         <Link to="#" className="contentIcon">
                                         <div><ProfileIcon/></div> 
@@ -125,6 +132,7 @@ function HeaderFooterUs() {
                                         </Link>
                                         
                                     </Modal>
+
                                 </li>
                             </ul>
 
@@ -225,4 +233,4 @@ function HeaderFooterUs() {
 
 export default HeaderFooterUs
 
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');

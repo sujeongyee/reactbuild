@@ -206,3 +206,104 @@ html body .font-weight-medium {
     --bs-text-opacity: 1;
     color: rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important;
 }
+
+
+/* *********************지인************************ */
+.title-name {
+  padding-bottom: 30px;
+  padding-left: 200px;
+}
+
+
+.input-title{
+  padding-left: 200px;
+}
+
+.btn-writer {
+  background: #5f78f3;
+  padding: 19px 64px;
+  color:#f1f1f1;
+  border-radius: 3px;
+  margin-top: 40px;
+  float: right;
+  margin-right: 250px;
+
+}
+
+.btn-writer:hover {
+  background: #4662ec;
+}
+
+
+.file-upload{
+ 
+  width:100%;
+  border:1px solid #e9ecef;
+  padding-left:6px
+}
+
+.file-upload-button {
+  border: 1px solid red;
+}
+
+
+.breadcrumb-item {
+  border:1px solid red;
+}
+
+.inq-back {
+  font-weight: 800;
+  color:#4662ec
+}
+
+.inq-title{
+  padding-top: 10px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.inq-writer{
+  background-color: rgba(78, 89, 104, 0.16); 
+  color: rgb(78, 89, 104);
+  padding: 3px 6px;
+  font-weight: 600;
+  border-radius: 2px;
+  font-size: 12px;
+}
+
+.inq-writer2{
+  font-weight: 500;
+  color: rgb(56, 56, 56);
+  font-weight: 600;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+
+.inq-content{
+
+  margin-top: 80px;
+  color:#7c8798;
+  font-weight: bold;
+  
+}
+
+.inq-content p {
+
+  line-height: 1.5;
+}
+
+.inq-answer{
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.inq-answer-input{
+
+  border: 1px solid red;
+
+}
+
+.inq-answer-btn{
+  width: 20%;
+}

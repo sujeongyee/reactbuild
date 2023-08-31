@@ -347,6 +347,7 @@ img {
     padding: 12px 15px;
 }
 
+
 /* 모달창========================= */
 .modal-overlay {
     /* 스크린을 어둡게 덮는 오버레이 스타일링 */
@@ -500,4 +501,5 @@ border-bottom: 0.1px solid #e1edff;
     font-weight: 500;
     margin-top: 4px;
     font-size: 12px;
+
 }
