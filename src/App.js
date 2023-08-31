@@ -6,7 +6,7 @@ import User from "./userMain/User";
 import User1 from "./userMain/User1";
 import Admin from "./adminMAin/Admin";
 import HeaderFooterEn from "./component/HeaderFooterEn";
-import MainUser from "./userMain/MainUser";
+
 import Main from "./main/Main";
 import MainInfo from "./main/MainInfo";
 import UserList from "./userMain/UserAnnoList";
@@ -42,7 +42,6 @@ function App() {
 
                 <Route path='/engineer' element={<EnMain />} />
                 <Route path='/engineer/calendar' element={<EnCalendar/>} />
-                <Route path='/engineer/test' element={<TestCalendar/>} />
             </Route>
 
             <Route element={<HeaderFooterAd />}>{/* 관리자 페이지; */}
