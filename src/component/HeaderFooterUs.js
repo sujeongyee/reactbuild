@@ -8,6 +8,7 @@ import HomeIcon from "../img/HomeIcon";
 import FileTextIcon from "../img/FileTextIcon";
 import BarChartIcon from "../img/BarCartIcon";
 import BoxIcon from "../img/BoxIcon";
+import Modal from 'react-modal';
 
 
 function HeaderFooterUs() {
@@ -17,6 +18,8 @@ function HeaderFooterUs() {
         borderRadius:' 0 60px 60px 0',
         
     }
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const handleClick = (e) => {
         $(e.currentTarget).toggleClass("active")
@@ -49,14 +52,19 @@ function HeaderFooterUs() {
                                     </a>
                                 </li>
                                 <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="javascript:void(0)" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   <button className="nav-link dropdown-toggle" onClick={()=> setModalIsOpen(true)} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <img src="../img/profile-pic.jpg" alt="user" className="rounded-circle" width="40" />
                                         <span className="ms-2 d-none d-lg-inline-block">
                                             <span></span>
                                             <span className="text-dark">백승용사원</span>
                                             <Down />
                                         </span>
-                                    </a>
+                                    </button>
+                                        <Modal className="modal-content" overlayClassName="modal-overlay" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+                                        <img src="../img/profile-pic.jpg" alt="user" className="rounded-circle Infoimg" width="100" />
+                                        </Modal>
+
+
                                 </li>
                             </ul>
 
