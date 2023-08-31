@@ -13,12 +13,13 @@ import UserList from "./userMain/UserAnnoList";
 import UserApply from "./userMain/UserApply";
 import UserInQurylist from "./userMain/UserInQurylist";
 import UserAnnoList from "./userMain/UserAnnoList";
+
 import UserProjectDetailList from "./userMain/UserProjectDetailList";
 import UserProjectDetailModal from "./userMain/UserProjectDetailModal";
 import UserProjectDetailModal2 from "./userMain/UserProjectDetailModal2";
 import TestCalendar from "./enMain/testCalendar";
 import EnEngineerList from "./enMain/EnEngineerList";
-
+import Login_join from "./main/Login_join";
 import EnCalendar from "./enMain/EnCalendar";
 
 import MainUser from "./userMain/MainUser";
@@ -27,6 +28,7 @@ import "./userMain/client-main-pro.css";
 import NoticeWrite from "./adminMAin/NoticeWrite";
 import UserInQuryWrite from "./userMain/UserInQuryWrite";
 import UserInQuryDetail from "./userMain/UserInQuryDetail";
+
 
 const menu = [
   { title: "Home", link: "/" },
@@ -42,6 +44,8 @@ function App() {
         <Routes>
             <Route element={<Main/>}>
             <Route path="/" element={<MainInfo/>}/>
+            <Route path='/login_join' element={<Login_join/>}/> 
+            
             </Route>
             
             <Route element={<HeaderFooterEn />}>{/* 엔지니어 페이지 */}
@@ -58,6 +62,7 @@ function App() {
             </Route>
 
 
+
             <Route element={<HeaderFooterUs />}>
               
                 <Route path='/user1' element={<MainUser/>} />
@@ -68,6 +73,9 @@ function App() {
                 <Route path='/user/inQurywrite'element={< UserInQuryWrite/>} />
                 <Route path='/user/inQuryDetail'element={< UserInQuryDetail/>} />
                 <Route path='/user/annoList'element={< UserAnnoList/>} />
+
+                
+
                 <Route path="/user/projectDetailList" element={<UserProjectDetailList />}
         />
         <Route
@@ -78,6 +86,7 @@ function App() {
           path="/user/projectDetail2"
           element={<UserProjectDetailModal2 />}
         />
+
 
             </Route>
 
