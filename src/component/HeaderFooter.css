@@ -93,18 +93,15 @@ ul {
     margin-bottom: 0;
     list-style: none;
 }
-.svg-icon {
-    height: 1.2em;
-    width: 1.2em;
-}
+
 img, svg {
     vertical-align: middle;
 }
 
 .notify-no {
     position: absolute;
-    top: 13px;
-    right: 0px;
+    top: 18px;
+    right: 2px;
     line-height: 11px;
     padding: 4px 6px;
 }
@@ -144,13 +141,13 @@ img, svg {
     font-size: 1rem;
     line-height: 80px;
 }
-img {
+/* img {
     width: 40px;
 }
 img {
     overflow-clip-margin: content-box;
     overflow: clip;
-}
+} */
 .d-lg-inline-block {
     display: inline-block!important;
 }
@@ -163,9 +160,6 @@ img {
 .text-dark {
     --bs-text-opacity: 1;
     color: rgba(var(--bs-dark-rgb),var(--bs-text-opacity))!important;
-}
-#bell{
-    line-height: 40px;
 }
 
 
@@ -353,3 +347,157 @@ img {
     padding: 12px 15px;
 }
 
+/* 모달창========================= */
+.modal-overlay {
+    /* 스크린을 어둡게 덮는 오버레이 스타일링 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    width: 100%;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: flex-start;   /* 상단 정렬 */
+    z-index: 9999;
+    
+  }
+  
+  .modal-content {
+    /* 모달 내부 컨텐츠 스타일링 */
+   
+   
+    border-radius: 8px;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
+    width: 150px;
+    height: 100px;
+    margin-top: 90px; /* 상단 여백 추가 */
+    margin-right: 50px; /* 오른쪽 여백 추가 */
+    animation: fadeInUpTop .4s;
+    border: none;
+    background-color: #fcfcfd;
+}
+.contentIcon{
+display: flex;
+height: 33.33%;
+
+border-bottom: 0.1px solid #e1edff;
+}
+.contentIcon div{
+    line-height: 30px;
+}
+.contentIcon span{
+    padding-left: 10px;
+    line-height: 28px;
+    font-size: 13px;
+    font-weight: 700;
+    color:#85869b
+}
+.contentIcon:hover{
+    background-color: #f1f6fd;
+    /* opacity: 0.7; */
+    text-decoration: none;
+}
+/* 알림 모달창========================= */
+.bell-overlay {
+    /* 스크린을 어둡게 덮는 오버레이 스타일링 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    width: 100%;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: flex-start;   /* 상단 정렬 */
+    z-index: 9999;
+    
+  }
+  
+  .bell-content {
+    /* 모달 내부 컨텐츠 스타일링 */
+
+   
+    border-radius: 8px;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    height: 350px;
+    margin-top: 80px; /* 상단 여백 추가 */
+    margin-right: 170px; /* 오른쪽 여백 추가 */
+    animation: fadeInUpTop .4s;
+    border: none;
+    background-color: #fcfcfd;
+}
+
+  .tui-chart-chartExportMenu-button {
+    z-index: -1; /* 또는 0에 가까운 값을 사용 */
+}
+
+
+
+.bell-link{
+    display: flex;
+    height: 22%;
+    border-bottom: 0.1px solid #e1edff;
+    padding: 8px;
+    text-decoration: none;
+}
+.bell-link:hover{
+    background-color: #f1f6fd;
+    /* opacity: 0.7; */
+    text-decoration: none;
+}
+.bell-more{
+    display: flex;
+    margin-top: 12px;
+    justify-content: center;
+    font-weight: 600;
+}
+.bell-calendar{
+    background-color:#22ca80; 
+    width: 60px;
+    height: 60px;
+    line-height: 48px;
+    border-radius: 50%!important;
+    text-align: center;
+}
+.bell-anno{
+    background-color:#ff4f70;
+    width: 60px;
+    height: 60px;
+    line-height: 52px;
+    border-radius: 50%!important;
+    text-align: center;
+}
+.bell-message{
+    background-color:#01caf1;
+    width: 60px;
+    height: 60px;
+    line-height: 48px;
+    border-radius: 50%!important;
+    text-align: center;
+}
+
+.bell-middle{
+    padding-left: 13px;
+}
+.bell-middle h5{
+    font-weight: 900;
+    font-size: 16px;
+    
+    margin:2px 0 2px 0;
+}
+.bell-middle p{
+    color: #9eabc0!important;
+    margin: 5px 0 5px 0;
+    font-weight: 500;
+}
+
+.bell-middle span{
+    color: #9eabc0!important;
+    font-weight: 500;
+    margin-top: 4px;
+    font-size: 12px;
+}
