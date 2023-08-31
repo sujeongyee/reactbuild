@@ -1,18 +1,4 @@
-HTML CSS JSResult Skip Results Iframe
-EDIT ON
-:root {
-    --primary-color: #7f72ea;
-    --secondary-color: #7f72ea;
-    --black: #000000;
-    --white: #ffffff;
-    --gray: #efefef;
-    --gray-2: #757575;
 
-    --facebook-color: #4267B2;
-    --google-color: #DB4437;
-    --twitter-color: #1DA1F2;
-    --insta-color: #E1306C;
-}
 
 /* 애니메이션 효과를 위한 클래스 정의 */
 .slide-in {
@@ -27,30 +13,13 @@ EDIT ON
 }
 
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
-
-* {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    height: 100vh;
-    overflow: hidden;
-}
-
-
-
-.container {
+.joincontainer {
     position: relative;
     min-height: 100vh;
     overflow: hidden;
 }
 
-.row {
+.logjoin {
     display: flex;
     flex-wrap: wrap;
     height: 100vh;
@@ -86,7 +55,6 @@ body {
     transition: .5s ease-in-out;
     transition-delay: 1s;
     margin-bottom: 60px;
-
 }
 
 .lj_input-group {
@@ -193,21 +161,8 @@ body {
     transform: scale(1.5);
 }
 
-.facebook-bg {
-    background-color: var(--facebook-color);
-}
 
-.google-bg {
-    background-color: var(--google-color);
-}
 
-.twitter-bg {
-    background-color: var(--twitter-color);
-}
-
-.insta-bg {
-    background-color: var(--insta-color);
-}
 
 .pointer {
     cursor: pointer;
@@ -307,7 +262,7 @@ body {
 
 @media only screen and (max-width: 425px) {
 
-    .container::before,
+    .joincontainer::before,
     .container.sign-in::before,
     .container.sign-up::before {
         height: 100vh;
@@ -331,7 +286,7 @@ body {
     .content-row .col {
         transform: translateY(0);
         background-color: unset;
-    }
+    } */
 
     .col {
         width: 100%;
@@ -342,9 +297,9 @@ body {
         border-top-right-radius: 2rem;
         transform: translateY(100%);
         transition: 1s ease-in-out;
-    }
+    } 
 
-    .row {
+    .logjoin {
         align-items: flex-end;
         justify-content: flex-end;
     }
@@ -370,19 +325,19 @@ body {
     }
 
     @font-face {
-				font-family: 'LINESeedKR-Bd';
-				src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-				font-weight: 700;
-				font-style: normal;
-			}
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+         }
 
-		#container {
-				font-family: 'LINESeedKR-Bd';
-				font-size: 15px;
-			}
+      #container {
+            font-family: 'LINESeedKR-Bd';
+            font-size: 15px;
+         }
 }
 
-		body {
-				font-family: 'LINESeedKR-Bd';
-				font-size: 15px;
-			}
+      body {
+            font-family: 'LINESeedKR-Bd';
+            font-size: 15px;
+         }

@@ -106,7 +106,8 @@
   width: 300px;
   margin-left: 15px; 
 }
-th,td {
+
+.projectInfo table th,td {
   font-size: 11px;
 }
 
@@ -117,16 +118,4 @@ th,td {
   font-style: normal;
 }
 
-
-
-/* th,tr,td {
-  font-size: 12px;
-}
-th {
-  padding:13px 7px;
-}
-
-#projectInfo {
-  padding: 10px;
-} */
 

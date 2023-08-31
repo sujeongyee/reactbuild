@@ -44,9 +44,10 @@ function App() {
         <Routes>
             <Route element={<Main/>}>
             <Route path="/" element={<MainInfo/>}/>
-            <Route path='/login_join' element={<Login_join/>}/> 
+            
             
             </Route>
+            <Route path='/login_join' element={<Login_join/>}/> 
             
             <Route element={<HeaderFooterEn />}>{/* 엔지니어 페이지 */}
 

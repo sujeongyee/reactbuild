@@ -16,7 +16,7 @@ function Login_join() {
 
       <div id="container" className="container sign-in">
 
-        <div className="row">
+        <div className="row logjoin">
 
           <div className="col align-items-center flex-col sign-up">
             <div className="form-wrapper align-items-center">
@@ -125,7 +125,7 @@ function Login_join() {
           </div>
         </div>
 
-        <div className="row content-row">
+        <div className="row logjoin content-row">
           <div className="col align-items-center flex-col">
             <div className="text sign-in">
               <h2 style={{ color: 'white' }}>

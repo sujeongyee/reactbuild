@@ -150,8 +150,8 @@ function testCalendar() {
       />
       </div>
 
-      <div id="schedule">
-        <table style={{border: '1px solid #000'}}>
+      <div id="schedule" >
+        <table style={{border: '1px solid #000'}} className="scheduleTable">
           <tr>
             <th>번호</th>
             <th>프로젝트</th>
