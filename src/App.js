@@ -3,6 +3,7 @@ import EnMain from './enMain/EnMain';
 import HeaderFooterAd from "./component/HeaderFooterAd";
 import HeaderFooterUs from "./component/HeaderFooterUs";
 import User from "./userMain/User";
+import User1 from "./userMain/User1";
 import Admin from "./adminMAin/Admin";
 import HeaderFooterEn from "./component/HeaderFooterEn";
 import Main from "./main/Main";
@@ -43,6 +44,7 @@ function App() {
             <Route element={<HeaderFooterUs />}> {/* 유저페이지 */}
 
                 <Route path='/user' element={<User />} />
+                <Route path='/user1' element={<User1 />} />
                 <Route path='/user/list' element={< UserList/>} />
                 <Route path='/user/apply' element={< UserApply/>} />
                 <Route path='/user/inQurylist'element={< UserInQurylist/>} />

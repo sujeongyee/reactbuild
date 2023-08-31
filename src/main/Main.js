@@ -1,11 +1,24 @@
 import { Link } from "react-router-dom"
 import './Main.css';
 import './Body.css';
+import { useRef } from "react";
 function Main() {
-
-    
-
-
+    const Ref2=useRef(null);
+    const Ref3=useRef(null);
+    const Ref4=useRef(null);
+   
+    const handleClick1=()=>{
+       Ref2.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+    const handleClick2=()=>{
+        Ref3.current?.scrollIntoView({ behavior: 'smooth' });
+     }
+     const handleClick3=()=>{
+        Ref4.current?.scrollIntoView({ behavior: 'smooth' });
+     }
+     const handleClick4=()=>{
+        // Ref5.current?.scrollIntoView({ behavior: 'smooth' });
+     }
     return (
         <>
             <header>
@@ -15,10 +28,10 @@ function Main() {
                     <div className="HeaderCategoriBox">
                         <div className="HeaderCategori">
 
-                            <a href="#">COMPANY</a>
-                            <a href="#">BUSINESS</a>
-                            <a href="#">SOLUTION</a>
-                            <a href="#">CONTACT US</a>
+                            <button onClick={handleClick1} value="Ref2">COMPANY</button>
+                            <button onClick={handleClick2} value="Ref3">BUSINESS</button>
+                            <button onClick={handleClick3} value="Ref4">SOLUTION</button>
+                            <button onClick={handleClick4} value="Ref5">CONTACT US</button>
                         </div>
                     </div>
                     <div className="login_singup">
@@ -47,7 +60,7 @@ function Main() {
                         </div>
                     </div>
                 </div>
-                <div className="info2">
+                <div className="info2" ref={Ref2}>
                     <div className="info2Con"/* style="width: 980px; margin: 0 auto;" */>
                         <div className="promotion">
 
@@ -91,7 +104,7 @@ function Main() {
                 </div>
                 <div className="info3">
                     <div className="info3Con"/* style="width: 980px; margin: 0 auto;" */>
-                        <div className="info3_1">
+                        <div className="info3_1" ref={Ref3}>
 
                             <div className="info3Left">
                                 <p>저희에게 <br />
@@ -103,8 +116,10 @@ function Main() {
                             <div className="info3Right"></div>
 
                         </div>
-                        <div className="info3_1">오!</div>
                     </div>
+                    <div className="info3Con"/* style="width: 980px; margin: 0 auto;" */>
+                        <div className="info3_1"  ref={Ref4}>오!</div>
+                        </div>
                 </div>
 
             </div>
