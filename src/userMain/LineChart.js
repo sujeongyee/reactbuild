@@ -23,7 +23,7 @@ class LineChart extends React.Component {
             chart: {
                 width: 480,
                 height: 233,
-              title: '계약&만료 건 수',
+              title: '',
             },
           };
 

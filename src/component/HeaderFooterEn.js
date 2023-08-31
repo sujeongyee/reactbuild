@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react"
-import { Outlet } from "react-router-dom"
+import { Outlet, NavLink } from "react-router-dom"
 import $ from 'jquery';
 import './HeaderFooter.css'
 import BellIcon from "../img/BellIcon";
@@ -11,6 +11,13 @@ import BoxIcon from "../img/BoxIcon";
 
 
 function HeaderFooterEn() {
+
+  const ms={
+    textDecoration: 'none', 
+    background: 'linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8)',
+    borderRadius:' 0 60px 60px 0',
+    
+}
 
     const handleClick = (e) => {
         $(e.currentTarget).toggleClass("active")
@@ -83,10 +90,9 @@ function HeaderFooterEn() {
                                 </a>
                                 <ul aria-expanded="false" className="collapse first-level base-level-line">
                                     <li class="sidebar-item">
-                                        <a href="form-inputs.html" class="sidebar-link">
+                                      <NavLink to='/engineer/calendar' className='sidebar-link' style={({isActive})=>isActive?ms:undefined}>
                                             <span class="hide-menu hide-list"> 달력보기 </span>
-                                        </a>
-
+                                      </NavLink>
                                     </li>
                                     <li class="sidebar-item">
                                         <a href="form-inputs.html" class="sidebar-link">
