@@ -12,7 +12,7 @@
 
 
 /* 기본 테이블 스타일 */
-table {
+.scheduleTable  {
   width: 600px;
   border-collapse: collapse;
   border-spacing: 0;
@@ -21,7 +21,7 @@ table {
 }
 
 /* 테이블 헤더 스타일 */
-th {
+.scheduleTable  th {
   background-color: #e2e6ff;
   font-weight: bold;
   padding: 8px;
@@ -30,22 +30,27 @@ th {
 }
 
 
-tr {
+.scheduleTable tr {
   background-color: #fff;
 }
 
 /* 테이블 셀 스타일 */
-td {
+.scheduleTable td {
   padding: 8px;
   border: 1px solid #dddddd;
 }
 
 /* 테이블 셀 내부 컨텐츠 가운데 정렬 */
-td {
+.scheduleTable td {
   text-align: center;
 }
 
 /* 첫 번째 열 스타일 */
-td:first-child {
+.scheduleTable td:first-child {
   font-weight: bold;
+}
+
+.container::before {
+  background-image:none;
+  box-shadow: none;
 }
