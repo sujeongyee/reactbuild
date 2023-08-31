@@ -12,6 +12,10 @@ import UserList from "./userMain/UserAnnoList";
 import UserApply from "./userMain/UserApply";
 import UserInQurylist from "./userMain/UserInQurylist";
 import UserAnnoList from "./userMain/UserAnnoList";
+
+import MainUser from "./userMain/MainUser";
+import "./userMain/client-main-pro.css";
+
 import NoticeWrite from "./adminMAin/NoticeWrite";
 import UserInQuryWrite from "./userMain/UserInQuryWrite";
 import UserInQuryDetail from "./userMain/UserInQuryDetail";
@@ -41,10 +45,13 @@ function App() {
                 <Route path='/admin' element={<Admin/>} />
                 <Route path='/admin/noticeWrite' element={<NoticeWrite />} />
             </Route>
-            <Route element={<HeaderFooterUs />}> {/* 유저페이지 */}
 
-                <Route path='/user' element={<User />} />
-                <Route path='/user1' element={<User1 />} />
+            <Route element={<HeaderFooterUs />}>
+              
+                <Route path='/user1' element={<MainUser/>} />
+                <Route path='/user' element={<User/>} />
+
+            
                 <Route path='/user/list' element={< UserList/>} />
                 <Route path='/user/apply' element={< UserApply/>} />
                 <Route path='/user/inQurylist'element={< UserInQurylist/>} />
@@ -52,7 +59,7 @@ function App() {
                 <Route path='/user/inQuryDetail'element={< UserInQuryDetail/>} />
                 <Route path='/user/annoList'element={< UserAnnoList/>} />
 
-                </Route>
+            </Route>
 
 
         </Routes>
