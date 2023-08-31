@@ -235,6 +235,7 @@ html body .font-weight-medium {
 
 .text-primary {
 
+
   --bs-text-opacity: 1;
   color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
 }
@@ -258,6 +259,7 @@ html body .font-weight-medium {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 40px;
+
 }
 
 .detail_modal_table th,
@@ -265,16 +267,20 @@ html body .font-weight-medium {
   padding-right: 35px;
   text-align: left;
   table-layout: fixed;
+
   width: 250px;
+
   height: 35px;
   color: #7c8798;
   padding-left: 60px;
 }
 
+
 .detail_modal_button input {
   width: 130px;
   line-height: 40px;
   border-radius: 0.2rem;
+
   background-color: #7f72ea;
   color: white;
   font-weight: 900;
@@ -282,6 +288,7 @@ html body .font-weight-medium {
   font-size: 1rem;
   outline: none;
 }
+
 .detail_modal_button {
   text-align: center;
   padding-top: 5px;
@@ -289,11 +296,13 @@ html body .font-weight-medium {
 
 .detail_modal_table input {
   border-radius: 0.2rem;
+
   border: 1px solid #d3cccc;
   padding-left: 20px;
   height: 32px;
   width: 400px;
 }
+
 .detail_modal_table td {
   padding: 5px;
 }
@@ -309,6 +318,7 @@ html body .font-weight-medium {
   height: 200px;
   width: 400px;
   resize: none;
+
 }
 
 .detail_modal_button_print {
@@ -317,6 +327,7 @@ html body .font-weight-medium {
 
 .detail_modal_table {
   border-collapse: separate;
+
   border-spacing: 0px;
 }
 
@@ -489,4 +500,5 @@ border-top: 1px solid #e7e8ed;
   transition: all  0.4s;
   color: #4662ec;
 }
+
 

@@ -191,6 +191,12 @@ function HeaderFooterUs() {
                                             </NavLink>
 
                                         </li>
+                                        <li class="sidebar-item">
+                                        <NavLink className='sidebar-link ' to='/user/detail'  style={({isActive})=>isActive?ms:undefined} >
+                                                <span class="hide-menu hide-list"> 공지사항 보기 </span>
+                                        </NavLink>
+
+                                        </li>
                                     </ul>
 
                                 </li>
