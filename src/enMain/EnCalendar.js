@@ -101,7 +101,7 @@ function testCalendar() {
 
 
   return (
-    <>
+    <> 
     <div>
     <div class="buttonArea" style={{margin: '0 auto', marginLeft: '180px'}}>
     <button class="button is-rounded today">Today</button>
