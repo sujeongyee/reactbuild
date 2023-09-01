@@ -7,7 +7,7 @@ function Login_join() {
             const container = document.getElementById('container');
             container.classList.toggle('sign-in');
             
-        },1000)
+        },300)
     },[])
     
   const toggle = () => {
@@ -16,7 +16,11 @@ function Login_join() {
     container.classList.toggle('sign-up');
   };
 
-
+  const pwSearch=()=>{
+    const singIn=document.getElementById('singIn');
+    singIn.style. transform ='scale(0)';
+    singIn.style.transition= '.7s ease-in-out';
+  }
   return (
     <>
 
@@ -96,7 +100,7 @@ function Login_join() {
 
           <div className="col align-items-center flex-col sign-in">
             <div className="form-wrapper align-items-center">
-              <div className="form sign-in">
+              <div className="form sign-in" id="singIn">
                 <div className="lj_input-group">
                   <i className='bx bxs-user'></i>
                   <input type="text" placeholder="아이디" />
@@ -109,10 +113,10 @@ function Login_join() {
                   로그인하기
                 </button>
                 <p>
-                  <b>
+                  <b onClick={pwSearch} className="pointer" style={{marginLeft:'10px'}}>
                     아이디 찾기
                   </b>
-                  <b>
+                  <b  onClick={pwSearch} className="pointer"style={{marginLeft:'15px'}}>
                     비밀번호 찾기
                   </b>
                 </p>
@@ -120,7 +124,36 @@ function Login_join() {
                   <span>
                     계정이 없으신가요?
                   </span>
-                  <b onClick={toggle} className="pointer">
+                  <b onClick={toggle} className="pointer" >
+                    가입하러가기
+                  </b>
+                </p>
+              </div>
+              <div className="form sign-in" id="seachId">
+                <div className="lj_input-group">
+                  <i className='bx bxs-user'></i>
+                  <input type="text" placeholder="아이디" />
+                </div>
+                <div className="lj_input-group">
+                  <i className='bx bxs-lock-alt'></i>
+                  <input type="password" placeholder="비밀번호" />
+                </div>
+                <button style={{ color: 'white' }}>
+                  로그인하기
+                </button>
+                <p>
+                  <b onClick={pwSearch} className="pointer" style={{marginLeft:'10px'}}>
+                    아이디 찾기
+                  </b>
+                  <b  onClick={pwSearch} className="pointer"style={{marginLeft:'15px'}}>
+                    비밀번호 찾기
+                  </b>
+                </p>
+                <p>
+                  <span>
+                    계정이 없으신가요?
+                  </span>
+                  <b onClick={toggle} className="pointer" >
                     가입하러가기
                   </b>
                 </p>

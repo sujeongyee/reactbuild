@@ -163,10 +163,15 @@
 
 
 
-
-.pointer {
-    cursor: pointer;
+#seachId{
+    position: absolute;
+    transform: scale(0);
 }
+.pointer:hover {
+    cursor: pointer;
+    color:#7f72ea;
+}
+
 
 .container1.sign-in .form.sign-in,
 .container1.sign-in .social-list.sign-in,
@@ -213,13 +218,13 @@
 .text.sign-in h2,
 .text.sign-in p,
 .img.sign-in img {
-    transform: translateX(-250%);
+    transform: translateX(-400%);
 }
 
 .text.sign-up h2,
 .text.sign-up p,
 .img.sign-up img {
-    transform: translateX(250%);
+    transform: translateX(400%);
 }
 
 .container1.sign-in .text.sign-in h2,
