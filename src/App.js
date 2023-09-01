@@ -3,14 +3,11 @@ import EnMain from "./enMain/EnMain";
 import HeaderFooterAd from "./component/HeaderFooterAd";
 import HeaderFooterUs from "./component/HeaderFooterUs";
 
-import User from "./userMain/User";
-import Admin from "./adminMAin/Admin";
-
 import HeaderFooterEn from "./component/HeaderFooterEn";
 
 import Main from "./main/Main";
 import MainInfo from "./main/MainInfo";
-import UserList from "./userMain/UserAnnoList";
+
 import UserApply from "./userMain/UserApply";
 import UserInQurylist from "./userMain/UserInQurylist";
 import UserAnnoList from "./userMain/UserAnnoList";
@@ -26,52 +23,52 @@ import EnCalendar from "./enMain/EnCalendar";
 import MainUser from "./userMain/MainUser";
 import "./userMain/client-main-pro.css";
 
-import NoticeWrite from "./adminMAin/NoticeWrite";
+import NoticeWrite from "./adminMain/NoticeWrite";
 import UserInQuryWrite from "./userMain/UserInQuryWrite";
 import UserInQuryDetail from "./userMain/UserInQuryDetail";
 
 import EnEngineerMyPage from "./enMain/EnEngineerMyPageModal";
-import MainAdmin from "./adminMAin/MainAdmin";
-
+import MainAdmin from "./adminMain/MainAdmin";
+import AdUserList from "./adminMain/AdUserList";
+import AdProjectList from "./adminMain/AdProjectList";
+import EnWorkDetail from "./enMain/EnWorkDetail";
 
 function App() {
+  return (
+    <Routes>
+      <Route element={<Main />}>
+        <Route path="/" element={<MainInfo />} />
+      </Route>
+      <Route path="/login_join" element={<Login_join />} />
 
-    return (
+      <Route element={<HeaderFooterEn />}>
+        {/* 엔지니어 페이지 */}
 
-        <Routes>
-            <Route element={<Main/>}>
-            <Route path="/" element={<MainInfo/>}/>
-            
-            
-            </Route>
-            <Route path='/login_join' element={<Login_join/>}/> 
-            
-            <Route element={<HeaderFooterEn />}>{/* 엔지니어 페이지 */}
+        <Route path="/engineer" element={<EnMain />} />
+        <Route path="/engineer/calendar" element={<EnCalendar />} />
+        <Route path="/engineer/engineerList" element={<EnEngineerList />} />
+        <Route path="/engineer/workDetail" element={<EnWorkDetail />} />
+      </Route>
 
-                <Route path='/engineer' element={<EnMain />} />
-                <Route path='/engineer/calendar' element={<EnCalendar/>} />
-                <Route path="/engineer/engineerList" element={<EnEngineerList />} />  
-            </Route>
+      <Route element={<HeaderFooterAd />}>
+        {/* 관리자 페이지; */}
 
-            <Route element={<HeaderFooterAd />}>{/* 관리자 페이지; */}
+        <Route path="/admin" element={<MainAdmin />} />
+        <Route path="/admin/noticeWrite" element={<NoticeWrite />} />
+        <Route path="/admin/userList" element={<AdUserList />} />
+        <Route path="/admin/projectList" element={<AdProjectList />} />
+      </Route>
 
-                <Route path='/admin' element={<MainAdmin/>} />
-                <Route path='/admin/noticeWrite' element={<NoticeWrite />} />
-            </Route>
-
-
-
-            <Route element={<HeaderFooterUs />}>
-              
-                <Route path='/user' element={<MainUser/>} />
-                <Route path='/user/list' element={< UserList/>} />
-                <Route path='/user/apply' element={< UserApply/>} />
-                <Route path='/user/inQurylist'element={< UserInQurylist/>} />
-                <Route path='/user/inQurywrite'element={< UserInQuryWrite/>} />
-                <Route path='/user/inQuryDetail'element={< UserInQuryDetail/>} />
-                <Route path='/user/annoList'element={< UserAnnoList/>} />
-                <Route path="/user/projectDetailList" element={<UserProjectDetailList />}
-
+      <Route element={<HeaderFooterUs />}>
+        <Route path="/user" element={<MainUser />} />
+        <Route path="/user/apply" element={<UserApply />} />
+        <Route path="/user/inQurylist" element={<UserInQurylist />} />
+        <Route path="/user/inQurywrite" element={<UserInQuryWrite />} />
+        <Route path="/user/inQuryDetail" element={<UserInQuryDetail />} />
+        <Route path="/user/annoList" element={<UserAnnoList />} />
+        <Route
+          path="/user/projectDetailList"
+          element={<UserProjectDetailList />}
         />
         <Route
           path="/user/projectDetail"
