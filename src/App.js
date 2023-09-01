@@ -23,10 +23,10 @@ import EnCalendar from "./enMain/EnCalendar";
 import MainUser from "./userMain/MainUser";
 import "./userMain/client-main-pro.css";
 
-import NoticeWrite from "./adminMAin/NoticeWrite";
+import NoticeWrite from "./admainMAin/NoticeWrite";
 import UserInQuryWrite from "./userMain/UserInQuryWrite";
 import UserInQuryDetail from "./userMain/UserInQuryDetail";
-import MainAdmin from "./adminMAin/MainAdmin";
+import MainAdmin from "./admainMAin/MainAdmin";
 
 
 function App() {

@@ -29,11 +29,11 @@ button {
 a {
   color: inherit;
 }
-
+/* 
 img {
   max-width: 100%;
   height: auto;
-}
+} */
 
 body {
   font: normal 16px/1.5 "Inter", sans-serif;
