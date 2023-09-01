@@ -16,6 +16,7 @@ import UserProjectDetailList from "./userMain/UserProjectDetailList";
 import UserProjectDetailModal from "./userMain/UserProjectDetailModal";
 import UserProjectDetailModal2 from "./userMain/UserProjectDetailModal2";
 
+
 import EnEngineerList from "./enMain/EnEngineerList";
 import Login_join from "./main/Login_join";
 import EnCalendar from "./enMain/EnCalendar";
@@ -23,10 +24,22 @@ import EnCalendar from "./enMain/EnCalendar";
 import MainUser from "./userMain/MainUser";
 import "./userMain/client-main-pro.css";
 
-import NoticeWrite from "./admainMAin/NoticeWrite";
+
+import NoticeWrite from "./adminMain/NoticeWrite";
 import UserInQuryWrite from "./userMain/UserInQuryWrite";
 import UserInQuryDetail from "./userMain/UserInQuryDetail";
-import MainAdmin from "./admainMAin/MainAdmin";
+
+import MainAdmin from "./adminMain/MainAdmin";
+import EnAnnoList from "./enMain/EnAnnoList";
+import EnInQuryDetail from "./enMain/EnInQuryDetail";
+import EnInQuryWrite from "./enMain/EnInQuryWrite";
+import EnInQurylist from "./enMain/EnInQurylist";
+import AdminInQurylist from "./adminMain/AdminInQurylist";
+import AdminInQuryDetail from "./adminMain/AdminInQuryDetail";
+import AdminAnnoList from "./adminMain/AdminAnnoList";
+import EnAnnoDetail from "./enMain/EnAnnoDetail";
+import AdminAnnoDetail from "./adminMain/AdminAnnoDetail";
+import UserAnnoDetail from "./userMain/UserAnnoDetail";
 import ProjectDetail from "./admainMAin/ProjectDetail";
 
 
@@ -46,14 +59,28 @@ function App() {
 
                 <Route path='/engineer' element={<EnMain />} />
                 <Route path='/engineer/calendar' element={<EnCalendar/>} />
-                <Route path="/engineer/engineerList" element={<EnEngineerList />} />  
+                <Route path='/engineer/engineerList' element={<EnEngineerList />} />  
+                <Route path='/engineer/inQurylist'element={< EnInQurylist/>} />
+                <Route path='/engineer/inQurywrite'element={< EnInQuryWrite/>} />
+                <Route path='/engineer/inQuryDetail'element={< EnInQuryDetail/>} />
+                <Route path='/engineer/annoList'element={<EnAnnoList/>} />
+                <Route path='/engineer/annoDetail' element={<EnAnnoDetail/>} />
             </Route>
 
             <Route element={<HeaderFooterAd />}>{/* 관리자 페이지; */}
 
                 <Route path='/admin' element={<MainAdmin/>} />
+
                 <Route path='/admin/noticeWrite' element={<NoticeWrite />} />
                 <Route path='/admin/projectdetail' element={< ProjectDetail/>} />
+
+                <Route path='/admin/inQurylist'element={< AdminInQurylist/>} />
+                <Route path='/admin/inQuryDetail'element={< AdminInQuryDetail/>} />
+                <Route path='/admin/annoList'element={<AdminAnnoList/>} />
+
+                <Route path='/admin/annoDetail' element={<AdminAnnoDetail/>} />
+
+
             </Route>
 
 
@@ -61,12 +88,13 @@ function App() {
             <Route element={<HeaderFooterUs />}>
               
                 <Route path='/user' element={<MainUser/>} />
-                <Route path='/user/list' element={< UserList/>} />
+                {/* <Route path='/user/list' element={< UserList/>} /> */}
                 <Route path='/user/apply' element={< UserApply/>} />
                 <Route path='/user/inQurylist'element={< UserInQurylist/>} />
                 <Route path='/user/inQurywrite'element={< UserInQuryWrite/>} />
                 <Route path='/user/inQuryDetail'element={< UserInQuryDetail/>} />
                 <Route path='/user/annoList'element={< UserAnnoList/>} />
+                <Route path='/user/annoDetail' element={<UserAnnoDetail/>} />
 
                 
 

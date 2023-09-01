@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import '../enMain/EnMain.css'
-import './User.css'
-function UserInQuryDetail() {
+// import '../enMain/EnMain.css'
+// import './User.css'
+function AdminInQuryDetail() {
 
 
     return (
@@ -146,4 +146,4 @@ function UserInQuryDetail() {
     )
 }
 
-export default UserInQuryDetail
+export default AdminInQuryDetail
