@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BarChartIcon = () => (
+const BarCartIconAd = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -13,7 +13,7 @@ const BarChartIcon = () => (
     strokeLinejoin="round"
     className="feather feather-bar-chart feather-icon"
     
-    color='#8971ea'
+    color='rgb(198 73 42)'
   >
     <line x1="12" y1="20" x2="12" y2="10"></line>
     <line x1="18" y1="20" x2="18" y2="4"></line>
@@ -21,4 +21,4 @@ const BarChartIcon = () => (
   </svg>
 );
 
-export default BarChartIcon;    
+export default BarCartIconAd;    

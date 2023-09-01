@@ -5,9 +5,8 @@ import './HeaderFooter.css'
 import BellIcon from "../img/BellIcon";
 import Down from "../img/ChevronDownIcon";
 import HomeIcon from "../img/HomeIcon";
-import FileTextIcon from "../img/FileTextIcon";
-import BarChartIcon from "../img/BarCartIcon";
-import BoxIcon from "../img/BoxIcon";
+import BarChartIcon from "../img/BarCartIconEn";
+import BoxIconEn from "../img/BoxIconEn";
 import AirplayIcon from "../img/AirplayIcon";
 import CalendarIcon from "../img/CalendarIcon";
 import MessageSquareIcon from "../img/MessageSquareIcon";
@@ -15,15 +14,20 @@ import ProfileIcon from "../img/ProfileIcon";
 import SettingsIcon from "../img/SettingsIcon";
 import LogOutIcon from "../img/LogOutIcon";
 import Modal from 'react-modal';
+import TeamIcon from "../img/TeamIcon";
+import BriefcaseIcon from "../img/BriefcaseIcon";
 
 function HeaderFooterEn() {
     const [bellModal, setbellModalIsOpen] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const ms={
-        textDecoration: 'none', 
-        background: 'linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8)',
-        borderRadius:' 0 60px 60px 0',
-
+    const ms = {
+        textDecoration: 'none',
+        borderRadius: ' 0 60px 60px 0',
+        background: '#2ac661',
+        transition: 'ease-out .2s',
+        height: '36px',
+        color: 'white',
+        fontSize: '16px'
     }
 
 
@@ -40,7 +44,7 @@ function HeaderFooterEn() {
                 <nav className="navbar top-navbar navbar-expand-lg navbar-light">
                     <div className="navbar-header">
                         <div className="navbar-brand">
-                            <a href="index.html"> 엔지니어 페이지~!~!~!~! </a>
+                            <a href="index.html"> (주)승용 </a>
                         </div>
 
 
@@ -49,11 +53,11 @@ function HeaderFooterEn() {
                     <div className="navbar-collapse collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav float-end">
                             <li className="nav-item dropdown">
-                            <button className="nav-link dropdown-toggle pl-md-3 position-relative" onClick={() => setbellModalIsOpen(true)} id="bell" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button className="nav-link dropdown-toggle pl-md-3 position-relative" onClick={() => setbellModalIsOpen(true)} id="bell" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span>
                                         <BellIcon className="feather feather-bell svg-icon" />
                                     </span>
-                                    <span className="badge text-bg-primary notify-no rounded-circle">5</span>
+                                    <span style={{backgroundColor:'#2ac661'}}className="badge text-bg-primary notify-no rounded-circle">5</span>
                                 </button>
                                 <Modal className="bell-content" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}>
                                     <Link to="#" className="bell-link">
@@ -91,7 +95,7 @@ function HeaderFooterEn() {
                                             <CalendarIcon />
                                         </div>
                                         <div className="bell-middle">
-                                              <h5>일정확인</h5>
+                                            <h5>일정확인</h5>
                                             <p> 내용</p>
                                             <span>날짜</span>
                                         </div>
@@ -116,16 +120,16 @@ function HeaderFooterEn() {
                                 </button>
                                 <Modal className="modal-content" overlayClassName="modal-overlay" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                                     <Link to="#" className="contentIcon">
-                                    <div><ProfileIcon/></div> 
-                                    <span>프로필 보기</span>
+                                        <div><ProfileIcon /></div>
+                                        <span>프로필 보기</span>
                                     </Link>
                                     <Link to="#" className="contentIcon">
-                                       <div><SettingsIcon/></div> 
-                                       <span>회원정보 수정</span>
+                                        <div><SettingsIcon /></div>
+                                        <span>회원정보 수정</span>
                                     </Link>
                                     <Link to="#" className="contentIcon">
-                                    <div><LogOutIcon/></div>
-                                    <span>로그아웃</span>
+                                        <div><LogOutIcon /></div>
+                                        <span>로그아웃</span>
                                     </Link>
 
                                 </Modal>
@@ -144,10 +148,10 @@ function HeaderFooterEn() {
                     <nav className="sidebar-nav">
                         <ul id="sidebarnav" className="in">
                             <li className="sidebar-item selected">
-                                <Link to="/user" className="sidebar-link sidebar-link active">
+                                <Link to="/user" style={{background: '#2ac661'}} className="sidebar-link sidebar-link active">
                                     <HomeIcon />
                                     <span className="hide-menu">메인페이지</span>
-                                    </Link>
+                                </Link>
                             </li>
                             <li className="list-divider"></li>
                             <li className="nav-small-cap">
@@ -157,24 +161,64 @@ function HeaderFooterEn() {
                             <li className="sidebar-item">
 
                                 <a className='sidebar-link has-arrow ' onClick={handleClick} aria-expanded="false">
-                                    <FileTextIcon />
-                                    <span className="hide-menu hide-list ">프로젝트 목록 보기</span>
+                                    <TeamIcon />
+                                    <span className="hide-menu hide-list ">팀원보기</span>
                                 </a>
                                 <ul aria-expanded="false" className="collapse first-level base-level-line">
                                     <li class="sidebar-item">
-                                        <NavLink className='sidebar-link ' to='/user/list'  style={({isActive})=>isActive?ms:undefined} >
-                                            <span class="hide-menu hide-list"  > 목록보기 </span>
+                                        <NavLink className='sidebar-link ' to='#' style={({ isActive }) => isActive ? ms : undefined} >
+                                            목록보기
+                                        </NavLink>
+                                    </li>
+                                    
+                                </ul>
+
+                            </li>
+                            <li className="sidebar-item">
+                                <a
+                                    className="sidebar-link has-arrow"
+                                    href="javascript:void(0)"
+                                    onClick={handleClick}
+                                    aria-expanded="false"
+                                >
+                                    <BriefcaseIcon />
+                                    <span className="hide-menu hide-list">프로젝트 관리</span>
+                                </a>
+                                <ul
+                                    aria-expanded="false"
+                                    className="collapse first-level base-level-line"
+                                >
+                                    <li class="sidebar-item">
+                                        <NavLink
+                                            className="sidebar-link "
+                                            to="/engineer"
+                                            style={({ isActive }) => (isActive ? ms : undefined)}
+                                        >
+
+                                            내 프로젝트
                                         </NavLink>
                                     </li>
                                     <li class="sidebar-item">
-                                    <NavLink className='sidebar-link ' to='/user/apply'  style={({isActive})=>isActive?ms:undefined} >
+                                        <NavLink
+                                            className="sidebar-link "
+                                            to="/engineer"
+                                            style={({ isActive }) => (isActive ? ms : undefined)}
+                                        >
 
-                                            <span class="hide-menu hide-list"> 신청하기 </span>
-                                    </NavLink>
+                                            점검 목록
+                                        </NavLink>
+                                    </li>
+                                    <li class="sidebar-item">
+                                        <NavLink
+                                            className="sidebar-link "
+                                            to="/engineer"
+                                            style={({ isActive }) => (isActive ? ms : undefined)}
+                                        >
 
+                                            점검 세부사항 등록
+                                        </NavLink>
                                     </li>
                                 </ul>
-
                             </li>
                             <li className="sidebar-item">
                                 <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
@@ -183,59 +227,32 @@ function HeaderFooterEn() {
                                 </a>
                                 <ul aria-expanded="false" className="collapse first-level base-level-line">
                                     <li class="sidebar-item">
-                                    <NavLink className='sidebar-link ' to='/user/annoList'  style={({isActive})=>isActive?ms:undefined} >
-                                            <span class="hide-menu hide-list"> 공지사항 보기 </span>
-                                    </NavLink>
+                                        <NavLink className='sidebar-link ' to='/user/annoList' style={({ isActive }) => isActive ? ms : undefined} >
+                                            공지사항 보기
+                                        </NavLink>
 
                                     </li>
                                 </ul>
 
                             </li>
 
-                            <li className="sidebar-item">
-              <a
-                className="sidebar-link has-arrow"
-                href="javascript:void(0)"
-                onClick={handleClick}
-                aria-expanded="false"
-              >
-                <BarChartIcon />
-                <span className="hide-menu hide-list">작업 내역</span>
-              </a>
-              <ul
-                aria-expanded="false"
-                className="collapse first-level base-level-line"
-              >
-                <li class="sidebar-item">
-                  <NavLink
-                    className="sidebar-link "
-                    to="/user/projectDetailList"
-                    style={({ isActive }) => (isActive ? ms : undefined)}
-                  >
-                    <span class="hide-menu hide-list">
-                      {" "}
-                      작업 내역 보기{" "}
-                    </span>
-                  </NavLink>
-                </li>
-              </ul>
-            </li>
                             
+
 
 
                             <li className="sidebar-item">
                                 <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
-                                    <BoxIcon />
+                                    <BoxIconEn />
                                     <span className="hide-menu hide-list" >문의사항</span>
                                 </a>
                                 <ul aria-expanded="false" className="collapse first-level base-level-line">
                                     <li class="sidebar-item">
-                                    <NavLink className='sidebar-link ' to='/user/inQurylist'  style={({isActive})=>isActive?ms:undefined} >
-                                            <span class="hide-menu hide-list"> 문의사항 목록 </span>
-                                     </NavLink>
-                                     <NavLink className='sidebar-link ' to='/user/inQurywrite'  style={({isActive})=>isActive?ms:undefined} >
-                                            <span class="hide-menu hide-list"> 문의사항 작성하기</span>
-                                    </NavLink>
+                                        <NavLink className='sidebar-link ' to='/user/inQurylist' style={({ isActive }) => isActive ? ms : undefined} >
+                                            문의사항 목록
+                                        </NavLink>
+                                        <NavLink className='sidebar-link ' to='/user/inQurywrite' style={({ isActive }) => isActive ? ms : undefined} >
+                                            문의사항 작성하기
+                                        </NavLink>
                                     </li>
                                 </ul>
 
@@ -253,8 +270,6 @@ function HeaderFooterEn() {
 
         </div>
     </Fragment>
-
-
 
 
 

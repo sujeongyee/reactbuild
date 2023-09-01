@@ -24,6 +24,7 @@ import EnCalendar from "./enMain/EnCalendar";
 import MainUser from "./userMain/MainUser";
 import "./userMain/client-main-pro.css";
 
+
 import NoticeWrite from "./adminMain/NoticeWrite";
 import UserInQuryWrite from "./userMain/UserInQuryWrite";
 import UserInQuryDetail from "./userMain/UserInQuryDetail";
@@ -38,6 +39,7 @@ import AdminAnnoList from "./adminMain/AdminAnnoList";
 import EnAnnoDetail from "./enMain/EnAnnoDetail";
 import AdminAnnoDetail from "./adminMain/AdminAnnoDetail";
 import UserAnnoDetail from "./userMain/UserAnnoDetail";
+
 
 
 function App() {

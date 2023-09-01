@@ -23,6 +23,7 @@
     line-height: 80px;
     background: 0 0;
     box-shadow: 0 -7px 9px 0 rgba(169,184,200,.15);
+
 }
 
 
@@ -108,10 +109,7 @@ img, svg {
 .rounded-circle {
     border-radius: 50%!important;
 }
-.text-bg-primary {
-    color: #fff!important;
-    background-color: RGBA(95,118,232,var(--bs-bg-opacity,1))!important;
-}
+
 
 .nav-link {
     padding: 0 15px;
@@ -212,7 +210,7 @@ img {
     display: flex;
     white-space: nowrap;
     align-items: center;
-    line-height: 27px;
+    line-height: 14px;
     margin-right: 17px;
 }
 
@@ -246,7 +244,6 @@ img {
     font-style: normal;
     height: 20px;
     width: 20px;
-    color: #fff;
     display: inline-block;
     text-align: center;
     margin-right: 8px;
@@ -263,8 +260,12 @@ img {
 }
 .sidebar-nav .has-arrow {
     position: relative;
+    
 }
 
+.sidebar-nav .has-arrow :hover{
+    font-weight: 900;
+}
 .hide-list {
     color: #2a3547;
 }
