@@ -3,6 +3,9 @@ import EnMain from "./enMain/EnMain";
 import HeaderFooterAd from "./component/HeaderFooterAd";
 import HeaderFooterUs from "./component/HeaderFooterUs";
 
+import User from "./userMain/User";
+import Admin from "./adminMAin/Admin";
+
 import HeaderFooterEn from "./component/HeaderFooterEn";
 
 import Main from "./main/Main";
@@ -26,6 +29,8 @@ import "./userMain/client-main-pro.css";
 import NoticeWrite from "./adminMAin/NoticeWrite";
 import UserInQuryWrite from "./userMain/UserInQuryWrite";
 import UserInQuryDetail from "./userMain/UserInQuryDetail";
+
+import EnEngineerMyPage from "./enMain/EnEngineerMyPageModal";
 import MainAdmin from "./adminMAin/MainAdmin";
 
 
@@ -65,10 +70,8 @@ function App() {
                 <Route path='/user/inQurywrite'element={< UserInQuryWrite/>} />
                 <Route path='/user/inQuryDetail'element={< UserInQuryDetail/>} />
                 <Route path='/user/annoList'element={< UserAnnoList/>} />
-
-                
-
                 <Route path="/user/projectDetailList" element={<UserProjectDetailList />}
+
         />
         <Route
           path="/user/projectDetail"
@@ -78,15 +81,9 @@ function App() {
           path="/user/projectDetail2"
           element={<UserProjectDetailModal2 />}
         />
-
-
-            </Route>
-
-
-        </Routes>
-
-    )
-
+      </Route>
+    </Routes>
+  );
 }
 
 export default App;
