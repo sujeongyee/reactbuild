@@ -44,7 +44,7 @@ function HeaderFooterEn() {
                 <nav className="navbar top-navbar navbar-expand-lg navbar-light">
                     <div className="navbar-header">
                         <div className="navbar-brand">
-                            <a href="index.html"> (주)승용 </a>
+                            <a href="index.html"> 기술지원 A팀 </a>
                         </div>
 
 
@@ -114,7 +114,7 @@ function HeaderFooterEn() {
 
                                     <span className="ms-2 d-none d-lg-inline-block">
                                         <span></span>
-                                        <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>(주)승용</span>
+                                        <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>[대리]백승용</span>
                                         <Down />
                                     </span>
                                 </button>
@@ -148,7 +148,7 @@ function HeaderFooterEn() {
                     <nav className="sidebar-nav">
                         <ul id="sidebarnav" className="in">
                             <li className="sidebar-item selected">
-                                <Link to="/user" style={{background: '#2ac661'}} className="sidebar-link sidebar-link active">
+                                <Link to="/engineer" style={{background: '#2ac661'}} className="sidebar-link sidebar-link active">
                                     <HomeIcon />
                                     <span className="hide-menu">메인페이지</span>
                                 </Link>
@@ -166,7 +166,7 @@ function HeaderFooterEn() {
                                 </a>
                                 <ul aria-expanded="false" className="collapse first-level base-level-line">
                                     <li class="sidebar-item">
-                                        <NavLink className='sidebar-link ' to='#' style={({ isActive }) => isActive ? ms : undefined} >
+                                        <NavLink className='sidebar-link ' to='/engineer/engineerList' style={({ isActive }) => isActive ? ms : undefined} >
                                             목록보기
                                         </NavLink>
                                     </li>
@@ -227,7 +227,7 @@ function HeaderFooterEn() {
                                 </a>
                                 <ul aria-expanded="false" className="collapse first-level base-level-line">
                                     <li class="sidebar-item">
-                                        <NavLink className='sidebar-link ' to='/user/annoList' style={({ isActive }) => isActive ? ms : undefined} >
+                                        <NavLink className='sidebar-link ' to='/engineer/annoList' style={({ isActive }) => isActive ? ms : undefined} >
                                             공지사항 보기
                                         </NavLink>
 
@@ -247,10 +247,10 @@ function HeaderFooterEn() {
                                 </a>
                                 <ul aria-expanded="false" className="collapse first-level base-level-line">
                                     <li class="sidebar-item">
-                                        <NavLink className='sidebar-link ' to='/user/inQurylist' style={({ isActive }) => isActive ? ms : undefined} >
+                                        <NavLink className='sidebar-link ' to='/engineer/inQurylist' style={({ isActive }) => isActive ? ms : undefined} >
                                             문의사항 목록
                                         </NavLink>
-                                        <NavLink className='sidebar-link ' to='/user/inQurywrite' style={({ isActive }) => isActive ? ms : undefined} >
+                                        <NavLink className='sidebar-link ' to='/engineer/inQurywrite' style={({ isActive }) => isActive ? ms : undefined} >
                                             문의사항 작성하기
                                         </NavLink>
                                     </li>

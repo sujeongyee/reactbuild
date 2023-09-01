@@ -89,7 +89,7 @@ function EnInQuryWrite(){
 
                                               <div className="form-actions">
                                                 <div className="text-end">
-                                                    <button type="submit"className="btn-writer">작성하기</button>
+                                                    <button type="submit"className="btn-writer" style={{backgroundColor:'#6dc46e'}}>작성하기</button>
                                                 </div>
                                               </div>
   

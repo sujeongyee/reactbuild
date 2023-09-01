@@ -139,7 +139,7 @@
 
 .card-body1 {
   flex: 1 1 auto;
-  padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+  padding:50px 30px;
   color: var(--bs-card-color);
 }
 
@@ -153,3 +153,16 @@
   margin-top: 5px;
   float: left;
 }
+
+.paginationEn>li>a{
+    color: #1ba266;
+}
+.me-3{
+    text-align: left;
+    width: 30%;
+}
+.me-4{
+    text-align: left;
+    width: 70%;
+}
+

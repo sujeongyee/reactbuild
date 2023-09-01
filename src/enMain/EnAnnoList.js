@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import '../enMain/EnMain.css'
+import FormControlIcon from '../img/FormControlIcon';
 // import './User.css'
 
 function EnAnnoList() {
@@ -27,8 +28,14 @@ function EnAnnoList() {
                             <div className="card">
 
                                 <div className="card-body">
-
                                     <div className="table-responsive">
+                                        <label style={{ display: 'flex' }}>
+                                            <span style={{ transform: 'translateY(5px)', padding: '7px 10px 0 0', width: '8%', color: 'rgb(42, 198, 97)' }}>Search:</span>
+                                            <input type="search" className="form-control form-control-sm" placeholder aria-controls="zero_config" style={{ width: '200px' }} />
+                                            <button style={{ marginLeft: '5px' }}>
+                                                <FormControlIcon />
+                                            </button>
+                                        </label>
                                         <table className="table">
                                             <thead>
                                                 <tr>
@@ -42,7 +49,7 @@ function EnAnnoList() {
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">1</th>
-                                                    <td><Link to="/user">(필독)전체 공지사항입니다</Link></td>
+                                                    <td><Link to="/engineer/annoDetail">(필독)전체 공지사항입니다</Link></td>
                                                     <td>Admin</td>
                                                     <td>2023.08.27</td>
                                                 </tr>
@@ -75,36 +82,35 @@ function EnAnnoList() {
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div className='row'>
-
-                                        <ul className="pagination float-end">
+                                    <div style={{ textAlign: 'center' }}>
+                                        <ul className="pagination paginationEn" >
                                             <li className="page-item disabled">
-                                                <Link className="page-link" href="#" tabindex="-1">Prev</Link>
+                                                <Link className="page-link" href="#" tabindex="-1">
+                                                    Prev
+                                                </Link>
                                             </li>
-                                            <li className="page-item active"><a className="page-link" href="#">1</a></li>
                                             <li className="page-item">
-                                                <Link className="page-link" href="#">2 <span className="sr-only">(current)</span></Link>
+                                                <a className="page-link" href="#">
+                                                    1
+                                                </a>
                                             </li>
-                                            <li className="page-item"><a className="page-link" href="#">3</a></li>
                                             <li className="page-item">
-                                                <Link className="page-link" href="#">Next</Link>
+                                                <Link className="page-link" href="#">
+                                                    2
+                                                </Link>
+                                            </li>
+                                            <li className="page-item">
+                                                <a className="page-link" href="#">
+                                                    3
+                                                </a>
+                                            </li>
+                                            <li className="page-item">
+                                                <Link className="page-link" href="#">
+                                                    Next
+                                                </Link>
                                             </li>
                                         </ul>
 
-
-                                        <div className="col-sm-12 col-md-6">
-
-                                          <div id="zero_config_filter" className="dataTa Namebles_filter" >
-
-                                            <label style={{display: 'flex;'}}>
-                                              <span style={{transform: 'translateY(5px)', paddingRight:'10px'}}>Search:</span><input type="search" className="form-control form-control-sm" placeholder aria-controls="zero_config" style={{width: '200px'}} />
-
-                                            </label>
-                                          </div>
-
-                                        </div>
-
-                                        
                                     </div>
                                 </div>
 
@@ -119,7 +125,6 @@ function EnAnnoList() {
             </div>
 
         </>
-
     )
 
 
