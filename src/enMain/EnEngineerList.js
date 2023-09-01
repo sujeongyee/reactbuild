@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "../enMain/EnMain.css";
 import "../userMain/User.css";
+import EnEngineerMyPage from "./EnEngineerMyPageModal";
 
 function EnEngineerList() {
   return (
@@ -68,7 +69,6 @@ function EnEngineerList() {
                             <th scope="col">입사일</th>
                             <th scope="col">이메일</th>
                             <th scope="col">전화번호</th>
-                            <th scope="col">상세보기</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -87,7 +87,7 @@ function EnEngineerList() {
                                 </div>
                                 <div className="">
                                   <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                    White RaiseDragon
+                                    <EnEngineerMyPage />
                                   </h5>
                                 </div>
                               </div>

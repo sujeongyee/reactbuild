@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "../enMain/EnMain.css";
 import "./User.css";
+import "./EnCss.css";
 import UserProjectDetailModal from "./UserProjectDetailModal";
 import ProjectDetailChart from "./ProjectDetailChart";
 
@@ -64,12 +65,13 @@ function UserProjectDetailList() {
                         <thead>
                           <tr>
                             <th scope="col">NO</th>
-                            <th scope="col">프로젝트 제목(아이디)</th>
+                            <th scope="col">서버 이름</th>
                             <th scope="col">서버 종류</th>
                             <th scope="col">점검 종류</th>
                             <th scope="col">시작 일자</th>
                             <th scope="col">종료 일자</th>
                             <th scope="col">소요 시간</th>
+                            <th scope="col">서버 상태</th>
                             <th scope="col">담당 엔지니어</th>
                           </tr>
                         </thead>
@@ -84,6 +86,14 @@ function UserProjectDetailList() {
                             <td>2023.08.01</td>
                             <td>2023.08.01</td>
                             <td>02:30</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn waves-effect waves-light btn-rounded btn-danger"
+                              >
+                                Danger
+                              </button>
+                            </td>
                             <td className="border-top-0 px-2 py-4;">
                               <div className="d-flex no-block align-items-center">
                                 <div className="me-3">
@@ -107,7 +117,7 @@ function UserProjectDetailList() {
                             </td>
                           </tr>
                           <tr>
-                            <td colspan="8">
+                            <td colspan="9">
                               <ProjectDetailChart />
                             </td>
                           </tr>
@@ -119,6 +129,14 @@ function UserProjectDetailList() {
                             <td>2023.08.15</td>
                             <td>2023.08.15</td>
                             <td>02:30</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn waves-effect waves-light btn-rounded btn-success"
+                              >
+                                Good
+                              </button>
+                            </td>
                             <td className="border-top-0 px-2 py-4;">
                               <div className="d-flex no-block align-items-center">
                                 <div className="me-3">
@@ -142,7 +160,7 @@ function UserProjectDetailList() {
                             </td>
                           </tr>
                           <tr>
-                            <td colspan="8">
+                            <td colspan="9">
                               <ProjectDetailChart />
                             </td>
                           </tr>
