@@ -10,7 +10,7 @@ function UserProjectDetailList() {
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">
-            <div className="col-7 align-self-center">
+            {/* <div className="col-7 align-self-center">
               <h3 className="page-title text-truncate text-dark font-weight-medium mb-1">
                 (주)승용 (회사이름 불러오기)
               </h3>
@@ -23,7 +23,7 @@ function UserProjectDetailList() {
                   </ol>
                 </nav>
               </div>
-            </div>
+            </div> */}
             <div className="col-5 align-self-center">
               <div className="customize-input float-end">
                 <select className="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
