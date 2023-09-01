@@ -40,6 +40,7 @@ import EnAnnoDetail from "./enMain/EnAnnoDetail";
 import AdminAnnoDetail from "./adminMain/AdminAnnoDetail";
 import UserAnnoDetail from "./userMain/UserAnnoDetail";
 import ProjectDetail from "./adminMain/ProjectDetail";
+import TestCalendar from "./enMain/TestCalendar";
 
 
 
@@ -65,6 +66,8 @@ function App() {
                 <Route path='/engineer/inQuryDetail'element={< EnInQuryDetail/>} />
                 <Route path='/engineer/annoList'element={<EnAnnoList/>} />
                 <Route path='/engineer/annoDetail' element={<EnAnnoDetail/>} />
+                <Route path='/engineer/test' element={<TestCalendar/>} />
+
             </Route>
 
             <Route element={<HeaderFooterAd />}>{/* 관리자 페이지; */}
