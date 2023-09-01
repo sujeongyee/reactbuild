@@ -28,6 +28,7 @@ import "./userMain/client-main-pro.css";
 import NoticeWrite from "./adminMain/NoticeWrite";
 import UserInQuryWrite from "./userMain/UserInQuryWrite";
 import UserInQuryDetail from "./userMain/UserInQuryDetail";
+
 import MainAdmin from "./adminMain/MainAdmin";
 import EnAnnoList from "./enMain/EnAnnoList";
 import EnInQuryDetail from "./enMain/EnInQuryDetail";
@@ -39,7 +40,7 @@ import AdminAnnoList from "./adminMain/AdminAnnoList";
 import EnAnnoDetail from "./enMain/EnAnnoDetail";
 import AdminAnnoDetail from "./adminMain/AdminAnnoDetail";
 import UserAnnoDetail from "./userMain/UserAnnoDetail";
-
+import ProjectDetail from "./admainMAin/ProjectDetail";
 
 
 function App() {
@@ -69,11 +70,16 @@ function App() {
             <Route element={<HeaderFooterAd />}>{/* 관리자 페이지; */}
 
                 <Route path='/admin' element={<MainAdmin/>} />
+
+                <Route path='/admin/noticeWrite' element={<NoticeWrite />} />
+                <Route path='/admin/projectdetail' element={< ProjectDetail/>} />
+
                 <Route path='/admin/inQurylist'element={< AdminInQurylist/>} />
                 <Route path='/admin/inQuryDetail'element={< AdminInQuryDetail/>} />
                 <Route path='/admin/annoList'element={<AdminAnnoList/>} />
-                <Route path='/admin/noticeWrite' element={<NoticeWrite/>} />
+
                 <Route path='/admin/annoDetail' element={<AdminAnnoDetail/>} />
+
 
             </Route>
 
