@@ -7,7 +7,6 @@ import HeaderFooterEn from "./component/HeaderFooterEn";
 
 import Main from "./main/Main";
 import MainInfo from "./main/MainInfo";
-import UserList from "./userMain/UserAnnoList";
 import UserApply from "./userMain/UserApply";
 import UserInQurylist from "./userMain/UserInQurylist";
 import UserAnnoList from "./userMain/UserAnnoList";
@@ -40,7 +39,8 @@ import AdminAnnoList from "./adminMain/AdminAnnoList";
 import EnAnnoDetail from "./enMain/EnAnnoDetail";
 import AdminAnnoDetail from "./adminMain/AdminAnnoDetail";
 import UserAnnoDetail from "./userMain/UserAnnoDetail";
-import ProjectDetail from "./admainMAin/ProjectDetail";
+import ProjectDetail from "./adminMain/ProjectDetail";
+
 
 
 function App() {
@@ -98,8 +98,7 @@ function App() {
 
                 
 
-                <Route path="/user/projectDetailList" element={<UserProjectDetailList />}
-        />
+                <Route path="/user/projectDetailList" element={<UserProjectDetailList />}/>
         <Route
           path="/user/projectDetail"
           element={<UserProjectDetailModal />}
