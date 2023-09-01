@@ -11,6 +11,9 @@ function UserInQurylist() {
               <h4 className="page-title text-truncate text-dark font-weight-medium mb-1">
                 문의사항 목록
               </h4>
+              <Link to="/user/inQurywrite" className="write">
+                <span>문의 하기</span>
+              </Link>
             </div>
           </div>
         </div>
@@ -135,10 +138,21 @@ function UserInQurylist() {
                         </Link>
                       </li>
                     </ul>
+                    <div className="col-sm-12 col-md-6">
 
-                    <Link to="/user/inQurywrite" className="write">
-                      <span>문의 하기</span>
-                    </Link>
+                      <div id="zero_config_filter" className="dataTa Namebles_filter" >
+
+                        <label style={{ display: 'flex;'  }}>
+                          <span style={{ transform: 'translateY(5px)', paddingRight: '10px' , width: '40px'}}>Search:</span>
+                          <input type="search" className="form-control form-control-sm" placeholder aria-controls="zero_config" style={{ width: '200px' }} />
+                          <input type="button" value={'검색하기'} className="inqurylist-search" />
+                        </label>
+                      </div>
+
+                    </div>
+
+
+
                   </div>
                 </div>
               </div>

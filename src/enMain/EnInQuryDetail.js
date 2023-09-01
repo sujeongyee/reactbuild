@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import '../enMain/EnMain.css'
-import './User.css'
-function UserInQuryDetail() {
+// import './User.css'
+function EnInQuryDetail() {
 
 
     return (
@@ -32,11 +32,11 @@ function UserInQuryDetail() {
                               <a className="inq-back">
                                 ← 문의 목록
                               </a>
-                               <h1 className="css-148cvwt edhjjyh1 inq-title">프로젝트 등록 문의드립니다.</h1>
+                               <h1 className="css-148cvwt edhjjyh1 inq-title">장애대응 관련</h1>
                                   <div className="list-flex">
                                     <div>
                                      <span className='inq-writer'>작성자</span>  
-                                      <span className='inq-writer2'>jiin0917</span>
+                                      <span className='inq-writer2'>김쩡수</span>
                                     </div>
                                     <div>
                                      <span className='inq-writer'>등록일자</span>  
@@ -146,4 +146,4 @@ function UserInQuryDetail() {
     )
 }
 
-export default UserInQuryDetail
+export default EnInQuryDetail
