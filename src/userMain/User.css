@@ -234,8 +234,6 @@ html body .font-weight-medium {
 }
 
 .text-primary {
-
-
   --bs-text-opacity: 1;
   color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
 }
@@ -259,22 +257,20 @@ html body .font-weight-medium {
   text-align: center;
   margin-top: 10px;
   margin-bottom: 40px;
-
 }
 
-.detail_modal_table th,
+.detail_modal_table th {
+  text-align: center;
+}
 .detail_modal_table_content th {
   padding-right: 35px;
   text-align: left;
   table-layout: fixed;
-
-  width: 250px;
-
+  width: 196px;
   height: 35px;
   color: #7c8798;
   padding-left: 60px;
 }
-
 
 .detail_modal_button input {
   width: 130px;
@@ -318,7 +314,6 @@ html body .font-weight-medium {
   height: 200px;
   width: 400px;
   resize: none;
-
 }
 
 .detail_modal_button_print {
@@ -331,49 +326,42 @@ html body .font-weight-medium {
   border-spacing: 0px;
 }
 
-
 /* *********************지인************************ */
 .title-name {
   padding-bottom: 30px;
   padding-left: 200px;
 }
 
-
-.input-title{
+.input-title {
   padding-left: 200px;
 }
 
 .btn-writer {
   background: #5f78f3;
   padding: 19px 64px;
-  color:#f1f1f1;
+  color: #f1f1f1;
   border-radius: 3px;
   margin-top: 40px;
   float: right;
   margin-right: 250px;
-
 }
 
 .btn-writer:hover {
   background: #4662ec;
 }
 
-
-.file-upload{
- 
-  width:100%;
-  border:1px solid #e9ecef;
-  padding-left:6px
+.file-upload {
+  width: 100%;
+  border: 1px solid #e9ecef;
+  padding-left: 6px;
 }
-
 
 .inq-back {
   font-weight: 800;
-  color:#4662ec
+  color: #4662ec;
 }
 
-
-.list-flex{
+.list-flex {
   display: block;
   display: flex;
 }
@@ -402,8 +390,8 @@ html body .font-weight-medium {
   margin-bottom: 20px;
 }
 
-.inq-writer{
-  background-color: rgba(78, 89, 104, 0.16); 
+.inq-writer {
+  background-color: rgba(78, 89, 104, 0.16);
   color: rgb(78, 89, 104);
   padding: 3px 6px;
   font-weight: 600;
@@ -411,7 +399,7 @@ html body .font-weight-medium {
   font-size: 12px;
 }
 
-.inq-writer2{
+.inq-writer2 {
   font-weight: 500;
   color: rgb(56, 56, 56);
   font-weight: 600;
@@ -419,13 +407,10 @@ html body .font-weight-medium {
   font-size: 12px;
 }
 
-
-.inq-content{
-
+.inq-content {
   margin-top: 80px;
-  color:#7c8798;
+  color: #7c8798;
   font-weight: bold;
-  
 }
 
 .inq-content p {
@@ -435,7 +420,7 @@ html body .font-weight-medium {
 }
 
 .inq-q {
-border-top: 1px solid #e7e8ed;
+  border-top: 1px solid #e7e8ed;
   width: 100%;
   height: 300px;
   padding-top: 50px;
@@ -443,34 +428,31 @@ border-top: 1px solid #e7e8ed;
   display: none;
 }
 
-.inq-answer{
+.inq-answer {
   flex-wrap: nowrap;
 }
 
-.inq-answer-input{
+.inq-answer-input {
   width: 60;
 }
 
-
-.inq-answer .comment{
+.inq-answer .comment {
   width: 70%;
   padding: 0;
- 
 }
 
-.inq-answer .comment .border-0{
+.inq-answer .comment .border-0 {
   border: none;
   font-size: 16px;
   font-weight: 900;
-  color :#4f5467;
+  color: #4f5467;
 }
 
-.inq-answer .commentBtn{
+.inq-answer .commentBtn {
   width: 30%;
-
 }
 
-.inq-answer .commentBtn .btn{
+.inq-answer .commentBtn .btn {
   width: 200px;
   height: 50px;
   background-color: #5f76e8;
@@ -478,36 +460,32 @@ border-top: 1px solid #e7e8ed;
   color: white;
   font-weight: 900;
 }
-.inq-answer .commentBtn .btn:hover{
-  transition: all  0.7s;
+.inq-answer .commentBtn .btn:hover {
+  transition: all 0.7s;
   background-color: #495bb4;
-  
 }
 
-
-.reply .replyId{
+.reply .replyId {
   width: 80%;
 }
 
-.reply .row div{
+.reply .row div {
   width: 20%;
 }
-.replyComment{
+.replyComment {
   border-top: 1px solid #e7e8ed;
 }
-.reply .row div .replySet{ 
+.reply .row div .replySet {
   width: 50%;
 }
-.reply .row div .replySet:hover{ 
-  transition: all  0.4s;
+.reply .row div .replySet:hover {
+  transition: all 0.4s;
   color: #4662ec;
 }
-.reply .row div .replyDelete{ 
+.reply .row div .replyDelete {
   width: 50%;
 }
-.reply .row div .replyDelete:hover{ 
-  transition: all  0.4s;
+.reply .row div .replyDelete:hover {
+  transition: all 0.4s;
   color: #4662ec;
 }
-
-

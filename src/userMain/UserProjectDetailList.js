@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import "../enMain/EnMain.css";
 import "./User.css";
+import "../enMain/EnCss.css";
 import UserProjectDetailModal from "./UserProjectDetailModal";
 import ProjectDetailChart from "./ProjectDetailChart";
+import FormControlIcon from "../img/FormControlIcon";
 
 function UserProjectDetailList() {
   return (
@@ -12,25 +14,29 @@ function UserProjectDetailList() {
           <div className="row">
             {/* <div className="col-7 align-self-center">
               <h3 className="page-title text-truncate text-dark font-weight-medium mb-1">
-                (주)승용 (회사이름 불러오기)
+                프로젝트별 작업 내역
               </h3>
               <div className="d-flex align-items-center">
-                <nav aria-label="breadcrumb">
-                  <ol className="breadcrumb m-0 p-0">
-                    <li className="breadcrumb-item">
-                      <a href="index.html">서버 작업내역</a>
-                    </li>
-                  </ol>
-                </nav>
+                <nav aria-label="breadcrumb"></nav>
               </div>
             </div> */}
             <div className="col-5 align-self-center">
               <div className="customize-input float-end">
-                <select className="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                  <option selected>Aug 23</option>
-                  <option value="1">July 23</option>
-                  <option value="2">Jun 23</option>
-                </select>
+                <Link className="nav-link" href="javascript:void(0)">
+                  <form className="search-engineer">
+                    <div className="customize-input right">
+                      <input
+                        className="form-control custom-shadow custom-radius border-0 bg-white"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                      />
+                    </div>
+                    <div className="customize-input left">
+                      <FormControlIcon />
+                    </div>
+                  </form>
+                </Link>
               </div>
             </div>
           </div>
@@ -40,36 +46,19 @@ function UserProjectDetailList() {
             <div className="col-12">
               <div className="card">
                 <div className="card-body">
-                  <li className="nav-item d-none d-md-block">
-                    <Link className="nav-link" href="javascript:void(0)">
-                      <form>
-                        <div className="customize-input">
-                          <input
-                            className="form-control custom-shadow custom-radius border-0 bg-white"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
-                          />
-                          <i
-                            className="form-control-icon"
-                            data-feather="search"
-                          ></i>
-                        </div>
-                      </form>
-                    </Link>
-                  </li>
                   <div className="table-responsive">
                     <div className="project-table">
                       <table className="table">
                         <thead>
                           <tr>
                             <th scope="col">NO</th>
-                            <th scope="col">프로젝트 제목(아이디)</th>
+                            <th scope="col">서버 이름</th>
                             <th scope="col">서버 종류</th>
                             <th scope="col">점검 종류</th>
                             <th scope="col">시작 일자</th>
                             <th scope="col">종료 일자</th>
                             <th scope="col">소요 시간</th>
+                            <th scope="col">서버 상태</th>
                             <th scope="col">담당 엔지니어</th>
                           </tr>
                         </thead>
@@ -84,6 +73,14 @@ function UserProjectDetailList() {
                             <td>2023.08.01</td>
                             <td>2023.08.01</td>
                             <td>02:30</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn waves-effect waves-light btn-rounded btn-danger"
+                              >
+                                Danger
+                              </button>
+                            </td>
                             <td className="border-top-0 px-2 py-4;">
                               <div className="d-flex no-block align-items-center">
                                 <div className="me-3">
@@ -107,7 +104,7 @@ function UserProjectDetailList() {
                             </td>
                           </tr>
                           <tr>
-                            <td colspan="8">
+                            <td colspan="9">
                               <ProjectDetailChart />
                             </td>
                           </tr>
@@ -119,6 +116,14 @@ function UserProjectDetailList() {
                             <td>2023.08.15</td>
                             <td>2023.08.15</td>
                             <td>02:30</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn waves-effect waves-light btn-rounded btn-success"
+                              >
+                                Good
+                              </button>
+                            </td>
                             <td className="border-top-0 px-2 py-4;">
                               <div className="d-flex no-block align-items-center">
                                 <div className="me-3">
@@ -142,7 +147,7 @@ function UserProjectDetailList() {
                             </td>
                           </tr>
                           <tr>
-                            <td colspan="8">
+                            <td colspan="9">
                               <ProjectDetailChart />
                             </td>
                           </tr>
@@ -154,6 +159,14 @@ function UserProjectDetailList() {
                             <td>2023.08.01</td>
                             <td>2023.08.01</td>
                             <td>02:30</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn waves-effect waves-light btn-rounded btn-warning"
+                              >
+                                Warning
+                              </button>
+                            </td>
                             <td className="border-top-0 px-2 py-4;">
                               <div className="d-flex no-block align-items-center">
                                 <div className="me-3">

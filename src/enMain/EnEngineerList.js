@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import "../enMain/EnMain.css";
 import "../userMain/User.css";
+import "./EnMain.css";
+import EnEngineerMyPage from "./EnEngineerMyPageModal";
+import FormControlIcon from "../img/FormControlIcon";
 
 function EnEngineerList() {
   return (
@@ -10,25 +13,26 @@ function EnEngineerList() {
           <div className="row">
             <div className="col-7 align-self-center">
               <h3 className="page-title text-truncate text-dark font-weight-medium mb-1">
-                CLOUD OJ
+                엔지니어 리스트
               </h3>
-              <div className="d-flex align-items-center">
-                <nav aria-label="breadcrumb">
-                  <ol className="breadcrumb m-0 p-0">
-                    <li className="breadcrumb-item">
-                      <a href="index.html">엔지니어리스트</a>
-                    </li>
-                  </ol>
-                </nav>
-              </div>
             </div>
             <div className="col-5 align-self-center">
               <div className="customize-input float-end">
-                <select className="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                  <option selected>Aug 23</option>
-                  <option value="1">July 23</option>
-                  <option value="2">Jun 23</option>
-                </select>
+                <Link className="nav-link" href="javascript:void(0)">
+                  <form className="search-engineer">
+                    <div className="customize-input right">
+                      <input
+                        className="form-control custom-shadow custom-radius border-0 bg-white"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                      />
+                    </div>
+                    <div className="customize-input left">
+                      <FormControlIcon />
+                    </div>
+                  </form>
+                </Link>
               </div>
             </div>
           </div>
@@ -36,26 +40,8 @@ function EnEngineerList() {
         <div className="container-fluid">
           <div className="row">
             <div className="col-12">
-              <div className="card">
-                <div className="card-body">
-                  <li className="nav-item d-none d-md-block">
-                    <Link className="nav-link" href="javascript:void(0)">
-                      <form>
-                        <div className="customize-input">
-                          <input
-                            className="form-control custom-shadow custom-radius border-0 bg-white"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
-                          />
-                          <i
-                            className="form-control-icon"
-                            data-feather="search"
-                          ></i>
-                        </div>
-                      </form>
-                    </Link>
-                  </li>
+              <div className="card1">
+                <div className="card-body1">
                   <div className="table-responsive">
                     <div className="project-table">
                       <table className="table">
@@ -65,10 +51,8 @@ function EnEngineerList() {
                             <th scope="col">이름</th>
                             <th scope="col">직급</th>
                             <th scope="col">소속</th>
-                            <th scope="col">입사일</th>
                             <th scope="col">이메일</th>
                             <th scope="col">전화번호</th>
-                            <th scope="col">상세보기</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -87,14 +71,13 @@ function EnEngineerList() {
                                 </div>
                                 <div className="">
                                   <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                    White RaiseDragon
+                                    <EnEngineerMyPage />
                                   </h5>
                                 </div>
                               </div>
                             </td>
                             <td>팀장</td>
                             <td>기술지원 2팀</td>
-                            <td>2020.08.01</td>
                             <td>baeksy97@gmail.com</td>
                             <td>010-2350-9845</td>
                             <td className="border-top-0 px-2 py-4;"></td>
@@ -121,7 +104,6 @@ function EnEngineerList() {
                             </td>
                             <td>대리</td>
                             <td>기술지원 2팀</td>
-                            <td>2020.08.01</td>
                             <td>baeksy97@gmail.com</td>
                             <td>010-2350-9845</td>
                             <td className="border-top-0 px-2 py-4;"></td>
@@ -149,7 +131,6 @@ function EnEngineerList() {
                             </td>
                             <td>대리</td>
                             <td>기술지원 2팀</td>
-                            <td>2020.08.01</td>
                             <td>baeksy97@gmail.com</td>
                             <td>010-2350-9845</td>
                             <td className="border-top-0 px-2 py-4;"></td>
@@ -176,7 +157,6 @@ function EnEngineerList() {
                             </td>
                             <td>팀장</td>
                             <td>기술지원 1팀</td>
-                            <td>2020.08.01</td>
                             <td>baeksy97@gmail.com</td>
                             <td>010-2350-9845</td>
                             <td className="border-top-0 px-2 py-4;"></td>
@@ -203,7 +183,6 @@ function EnEngineerList() {
                             </td>
                             <td>대리</td>
                             <td>기술지원 1팀</td>
-                            <td>2020.08.01</td>
                             <td>baeksy97@gmail.com</td>
                             <td>010-2350-9845</td>
                             <td className="border-top-0 px-2 py-4;"></td>
@@ -230,7 +209,6 @@ function EnEngineerList() {
                             </td>
                             <td>대리</td>
                             <td>기술지원 3팀</td>
-                            <td>2020.08.01</td>
                             <td>baeksy97@gmail.com</td>
                             <td>010-2350-9845</td>
                             <td className="border-top-0 px-2 py-4;"></td>
@@ -257,7 +235,6 @@ function EnEngineerList() {
                             </td>
                             <td>대리</td>
                             <td>기술지원 3팀</td>
-                            <td>2020.08.01</td>
                             <td>baeksy97@gmail.com</td>
                             <td>010-2350-9845</td>
                             <td className="border-top-0 px-2 py-4;"></td>
@@ -284,7 +261,6 @@ function EnEngineerList() {
                             </td>
                             <td>대리</td>
                             <td>기술지원 3팀</td>
-                            <td>2020.08.01</td>
                             <td>baeksy97@gmail.com</td>
                             <td>010-2350-9845</td>
                             <td className="border-top-0 px-2 py-4;"></td>
@@ -311,7 +287,6 @@ function EnEngineerList() {
                             </td>
                             <td>대리</td>
                             <td>기술지원 1팀</td>
-                            <td>2020.08.01</td>
                             <td>baeksy97@gmail.com</td>
                             <td>010-2350-9845</td>
                             <td className="border-top-0 px-2 py-4;"></td>
@@ -338,7 +313,6 @@ function EnEngineerList() {
                             </td>
                             <td>대리</td>
                             <td>기술지원 1팀</td>
-                            <td>2020.08.01</td>
                             <td>baeksy97@gmail.com</td>
                             <td>010-2350-9845</td>
                             <td className="border-top-0 px-2 py-4;"></td>

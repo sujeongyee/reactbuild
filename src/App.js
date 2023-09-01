@@ -7,6 +7,7 @@ import HeaderFooterEn from "./component/HeaderFooterEn";
 
 import Main from "./main/Main";
 import MainInfo from "./main/MainInfo";
+
 import UserApply from "./userMain/UserApply";
 import UserInQurylist from "./userMain/UserInQurylist";
 import UserAnnoList from "./userMain/UserAnnoList";
@@ -22,6 +23,7 @@ import EnCalendar from "./enMain/EnCalendar";
 
 import MainUser from "./userMain/MainUser";
 import "./userMain/client-main-pro.css";
+
 
 
 import NoticeWrite from "./adminMain/NoticeWrite";
@@ -43,9 +45,13 @@ import ProjectDetail from "./adminMain/ProjectDetail";
 import TestCalendar from "./enMain/TestCalendar";
 
 
+import EnEngineerMyPage from "./enMain/EnEngineerMyPageModal";
+import MainAdmin from "./adminMain/MainAdmin";
+import AdUserList from "./adminMain/AdUserList";
+import AdProjectList from "./adminMain/AdProjectList";
+import EnWorkDetail from "./enMain/EnWorkDetail";
 
 function App() {
-
     return (
 
         <Routes>
@@ -67,6 +73,7 @@ function App() {
                 <Route path='/engineer/annoList'element={<EnAnnoList/>} />
                 <Route path='/engineer/annoDetail' element={<EnAnnoDetail/>} />
                 <Route path='/engineer/test' element={<TestCalendar/>} />
+                   <Route path="/engineer/workDetail" element={<EnWorkDetail />} />
 
             </Route>
 
@@ -82,6 +89,8 @@ function App() {
                 <Route path='/admin/annoList'element={<AdminAnnoList/>} />
 
                 <Route path='/admin/annoDetail' element={<AdminAnnoDetail/>} />
+                      <Route path="/admin/userList" element={<AdUserList />} />
+        <Route path="/admin/projectList" element={<AdProjectList />} />
 
 
             </Route>
@@ -110,15 +119,9 @@ function App() {
           path="/user/projectDetail2"
           element={<UserProjectDetailModal2 />}
         />
-
-
-            </Route>
-
-
-        </Routes>
-
-    )
-
+      </Route>
+    </Routes>
+  );
 }
 
 export default App;
