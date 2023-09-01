@@ -1,0 +1,341 @@
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    --bs-table-color: var(--bs-body-color);
+    --bs-table-bg: transparent;
+    --bs-table-border-color: #e8eef3;
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: var(--bs-body-color);
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: var(--bs-body-color);
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: var(--bs-body-color);
+    --bs-table-hover-bg: #e8eaec;
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--bs-table-color);
+    vertical-align: top;
+    border-color: var(--bs-table-border-color);
+}
+
+
+table {
+    caption-side: bottom;
+    border-collapse: collapse;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+.table>thead {
+    vertical-align: bottom;
+}
+
+
+
+.table th, .table thead th {
+    font-weight: 500;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    border-bottom: 0.5px;
+    padding: 16px 16px;
+    background-color: var(--bs-table-bg);
+    border-bottom-width: var(--bs-border-width);
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+    padding-left: 30px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 900;
+    color: #7a8c9e;
+}
+tbody, td, tfoot, th, thead, tr a {
+    border-bottom: 0.5px;
+    padding: 16px 16px;
+    background-color: var(--bs-table-bg);
+    border-bottom-width: var(--bs-border-width);
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+    padding-left: 30px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 900;
+    color: #7a8c9e;
+}
+th {
+    text-align: inherit;
+    text-align: -webkit-match-parent;
+}
+
+
+.pagination{
+    width: 60%;
+}
+.row .write{
+    width: 33%;
+    text-align: right;
+    padding-top: 10px;
+}
+.row .write span{
+    float: right;
+    text-decoration: none;
+    background: linear-gradient(to right, rgb(167, 159, 199),  rgb(167, 159, 199),   rgb(167, 159, 199), rgb(167, 159, 199));
+    border-radius: 10px;
+    height: 35px;
+    color: rgb(48, 27, 27);
+    width: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 35px;
+    text-align: center;
+    display: block;
+    
+}
+
+.page-wrapper > .container-fluid, .page-wrapper > .container-lg, .page-wrapper > .container-md, .page-wrapper > .container-sm, .page-wrapper > .container-xl, .page-wrapper > .container-xxl {
+    max-width: 1300px;
+    min-height: calc(100vh - 210px);
+    padding: 35px;
+}
+
+.col-sm-6 {
+    width: 50%;
+    flex: 0 0 auto;
+}
+.col-lg-3 {
+    width: 25%;
+    flex: 0 0 auto;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+.d-flex {
+    display: flex !important;
+}
+.d-inline-flex {
+    display: inline-flex !important;
+}
+
+html body .font-weight-medium {
+    font-weight: 900;
+}
+.change-color {
+    color: rgb(198 73 42);
+}
+
+.mb-1 {
+    margin-bottom: 0.25rem !important;
+}
+
+.text-muted {
+    opacity: 1;
+    color: rgb(158, 171, 192) !important;
+    font-weight: 600;
+}
+
+.mt-lg-0 {
+    margin-top: 0px !important;
+    margin-left: auto !important;
+}
+
+.opacity-7 {
+    opacity: 0.7;
+}
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+.card {
+    box-shadow: rgba(169, 184, 200, 0.15) 0px 3px 9px 0px;
+}
+.col-lg-6 {
+    flex: 0 0 auto;
+    width: 50%;
+}
+.dropdown, .dropdown-center, .dropend, .dropstart, .dropup, .dropup-center {
+    position: relative;
+}
+.text-muted {
+    --bs-text-opacity: 1;
+    color: #9eabc0!important;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mb-0 {
+    margin-bottom: 0!important;
+}
+
+.table>thead {
+    vertical-align: bottom;
+}
+
+html body .font-14 {
+    font-size: 14px;
+}
+html body .font-weight-medium {
+    font-weight: 700;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+.ms-auto {
+    margin-left: auto!important;
+}
+.v-middle td, .v-middle th {
+    vertical-align: middle;
+}
+
+.text-primary {
+    --bs-text-opacity: 1;
+    color: rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important;
+}
+
+
+/* *********************지인************************ */
+.title-name {
+  padding-bottom: 30px;
+  padding-left: 200px;
+}
+
+
+.input-title{
+  padding-left: 200px;
+}
+
+.btn-writer {
+  background: #5f78f3;
+  padding: 19px 64px;
+  color:#f1f1f1;
+  border-radius: 3px;
+  margin-top: 40px;
+  float: right;
+  margin-right: 250px;
+
+}
+
+.btn-writer:hover {
+  background: #4662ec;
+}
+
+
+.file-upload{
+ 
+  width:100%;
+  border:1px solid #e9ecef;
+  padding-left:6px
+}
+
+.file-upload-button {
+  border: 1px solid red;
+}
+
+@font-face {
+  font-family: 'LINESeedKR-Bd';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.container-fluid {
+  font-family: 'LINESeedKR-Bd';
+   font-size: 15px;
+}
+
+.cardpd {
+  --bs-card-spacer-y: 21px;
+  --bs-card-spacer-x: 33px;
+  --bs-card-border-radius: 3.25rem;
+}
+
+.cardpd h2 {
+  margin: 10px 0px 2.5px;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem!important
+}
+
+.listclient {
+  align-items: start;
+}
+
+
+.listsize {
+  width: 80%;
+}
+
+.projectname {
+  cursor: pointer;
+}
+
+.projectname > span {
+  padding-bottom: 2px;
+}
+.projectname > span:hover {
+  color: #4662ec;
+
+}
+
+.pro-d {
+  padding-top: 100px;
+}
+
+.detail-pro {
+  width: 100%;
+ /*  --bs-card-bg: #e5e5e5; */
+}
+.detail-pro h3 {
+  padding-bottom: 10px;
+}
+
+.detail2 {
+  padding: 15px;
+}
+
+.detail-list {
+  margin: 35px 0px 0px 35px;
+
+  font-size: 17px;
+  color: #525252;
+  display: flex;
+}
+
+.detail-list span {
+  padding-bottom: 10px;
+}
+
+
+.team-button {
+  padding: 10px;
+  background-color: #afbcff;
+  color: white;
+
+}
+
+.team-check span {
+  font-size: 19px;
+  margin: 10px;
+  padding: 5px;
+  display: inline-block;
+}
+.detail-list p {
+  display: inline-block;
+  margin-left:40px;
+}
