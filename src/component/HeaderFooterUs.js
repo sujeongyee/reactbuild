@@ -15,17 +15,21 @@ import ProfileIcon from "../img/ProfileIcon";
 import SettingsIcon from "../img/SettingsIcon";
 import LogOutIcon from "../img/LogOutIcon";
 import Modal from 'react-modal';
+import ServerIcon from "../img/ServerIcon";
 
 
 
 function HeaderFooterUs() {
     const [bellModal, setbellModalIsOpen] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const ms={
-        textDecoration: 'none', 
+    const ms = {
+        textDecoration: 'none',
+        borderRadius: ' 0 60px 60px 0',
         background: 'linear-gradient(to right,#8971ea,#7f72ea,#7574ea,#6a75e9,#5f76e8)',
-        borderRadius:' 0 60px 60px 0',
-
+        transition: 'ease-out .2s',
+        height: '36px',
+        color: 'white',
+        fontSize: '16px'
     }
 
     const handleClick = (e) => {
@@ -50,11 +54,11 @@ function HeaderFooterUs() {
                         <div className="navbar-collapse collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav float-end">
                                 <li className="nav-item dropdown">
-                                <button className="nav-link dropdown-toggle pl-md-3 position-relative" onClick={() => setbellModalIsOpen(true)} id="bell" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button className="nav-link dropdown-toggle pl-md-3 position-relative" onClick={() => setbellModalIsOpen(true)} id="bell" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span>
                                             <BellIcon className="feather feather-bell svg-icon" />
                                         </span>
-                                        <span className="badge text-bg-primary notify-no rounded-circle">5</span>
+                                        <span style={{backgroundColor:'#6776e1'}} className="badge text-bg-primary notify-no rounded-circle">5</span>
                                     </button>
                                     <Modal className="bell-content" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}>
                                         <Link to="#" className="bell-link">
@@ -92,7 +96,7 @@ function HeaderFooterUs() {
                                                 <CalendarIcon />
                                             </div>
                                             <div className="bell-middle">
-                                                  <h5>일정확인</h5>
+                                                <h5>일정확인</h5>
                                                 <p> 내용</p>
                                                 <span>날짜</span>
                                             </div>
@@ -117,16 +121,16 @@ function HeaderFooterUs() {
                                     </button>
                                     <Modal className="modal-content" overlayClassName="modal-overlay" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                                         <Link to="#" className="contentIcon">
-                                        <div><ProfileIcon/></div> 
-                                        <span>프로필 보기</span>
+                                            <div><ProfileIcon /></div>
+                                            <span>프로필 보기</span>
                                         </Link>
                                         <Link to="#" className="contentIcon">
-                                           <div><SettingsIcon/></div> 
-                                           <span>회원정보 수정</span>
+                                            <div><SettingsIcon /></div>
+                                            <span>회원정보 수정</span>
                                         </Link>
                                         <Link to="#" className="contentIcon">
-                                        <div><LogOutIcon/></div>
-                                        <span>로그아웃</span>
+                                            <div><LogOutIcon /></div>
+                                            <span>로그아웃</span>
                                         </Link>
 
                                     </Modal>
@@ -148,7 +152,7 @@ function HeaderFooterUs() {
                                     <Link to="/user" className="sidebar-link sidebar-link active">
                                         <HomeIcon />
                                         <span className="hide-menu">메인페이지</span>
-                                        </Link>
+                                    </Link>
                                 </li>
                                 <li className="list-divider"></li>
                                 <li className="nav-small-cap">
@@ -163,15 +167,15 @@ function HeaderFooterUs() {
                                     </a>
                                     <ul aria-expanded="false" className="collapse first-level base-level-line">
                                         <li class="sidebar-item">
-                                            <NavLink className='sidebar-link ' to='/user/list'  style={({isActive})=>isActive?ms:undefined} >
-                                                <span class="hide-menu hide-list"  > 목록보기 </span>
+                                            <NavLink className='sidebar-link ' to='/user/list' style={({ isActive }) => isActive ? ms : undefined} >
+                                                목록보기
                                             </NavLink>
                                         </li>
                                         <li class="sidebar-item">
-                                        <NavLink className='sidebar-link ' to='/user/apply'  style={({isActive})=>isActive?ms:undefined} >
+                                            <NavLink className='sidebar-link ' to='/user/apply' style={({ isActive }) => isActive ? ms : undefined} >
 
-                                                <span class="hide-menu hide-list"> 신청하기 </span>
-                                        </NavLink>
+                                                신청하기
+                                            </NavLink>
 
                                         </li>
                                     </ul>
@@ -184,9 +188,9 @@ function HeaderFooterUs() {
                                     </a>
                                     <ul aria-expanded="false" className="collapse first-level base-level-line">
                                         <li class="sidebar-item">
-                                        <NavLink className='sidebar-link ' to='/user/annoList'  style={({isActive})=>isActive?ms:undefined} >
-                                                <span class="hide-menu hide-list"> 공지사항 보기 </span>
-                                        </NavLink>
+                                            <NavLink className='sidebar-link ' to='/user/annoList' style={({ isActive }) => isActive ? ms : undefined} >
+                                                공지사항 보기
+                                            </NavLink>
 
                                         </li>
                                     </ul>
@@ -194,34 +198,32 @@ function HeaderFooterUs() {
                                 </li>
 
                                 <li className="sidebar-item">
-                  <a
-                    className="sidebar-link has-arrow"
-                    href="javascript:void(0)"
-                    onClick={handleClick}
-                    aria-expanded="false"
-                  >
-                    <BarChartIcon />
-                    <span className="hide-menu hide-list">작업 내역</span>
-                  </a>
-                  <ul
-                    aria-expanded="false"
-                    className="collapse first-level base-level-line"
-                  >
-                    <li class="sidebar-item">
-                      <NavLink
-                        className="sidebar-link "
-                        to="/user/projectDetailList"
-                        style={({ isActive }) => (isActive ? ms : undefined)}
-                      >
-                        <span class="hide-menu hide-list">
-                          {" "}
-                          작업 내역 보기{" "}
-                        </span>
-                      </NavLink>
-                    </li>
-                  </ul>
-                </li>
-                                
+                                    <a
+                                        className="sidebar-link has-arrow"
+                                        href="javascript:void(0)"
+                                        onClick={handleClick}
+                                        aria-expanded="false"
+                                    >
+                                        <ServerIcon />
+                                        <span className="hide-menu hide-list">작업 내역</span>
+                                    </a>
+                                    <ul
+                                        aria-expanded="false"
+                                        className="collapse first-level base-level-line"
+                                    >
+                                        <li class="sidebar-item">
+                                            <NavLink
+                                                className="sidebar-link "
+                                                to="/user/projectDetailList"
+                                                style={({ isActive }) => (isActive ? ms : undefined)}
+                                            >
+
+                                                작업 내역 보기
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                </li>
+
 
 
                                 <li className="sidebar-item">
@@ -231,12 +233,12 @@ function HeaderFooterUs() {
                                     </a>
                                     <ul aria-expanded="false" className="collapse first-level base-level-line">
                                         <li class="sidebar-item">
-                                        <NavLink className='sidebar-link ' to='/user/inQurylist'  style={({isActive})=>isActive?ms:undefined} >
-                                                <span class="hide-menu hide-list"> 문의사항 목록 </span>
-                                         </NavLink>
-                                         <NavLink className='sidebar-link ' to='/user/inQurywrite'  style={({isActive})=>isActive?ms:undefined} >
-                                                <span class="hide-menu hide-list"> 문의사항 작성하기</span>
-                                        </NavLink>
+                                            <NavLink className='sidebar-link ' to='/user/inQurylist' style={({ isActive }) => isActive ? ms : undefined} >
+                                                문의사항 목록
+                                            </NavLink>
+                                            <NavLink className='sidebar-link ' to='/user/inQurywrite' style={({ isActive }) => isActive ? ms : undefined} >
+                                                문의사항 작성하기
+                                            </NavLink>
                                         </li>
                                     </ul>
 
@@ -257,7 +259,8 @@ function HeaderFooterUs() {
 
 
 
-    )}
-    export default HeaderFooterUs;
+    )
+}
+export default HeaderFooterUs;
 
-    Modal.setAppElement('#root');
+Modal.setAppElement('#root');

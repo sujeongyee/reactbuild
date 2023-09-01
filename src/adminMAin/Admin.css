@@ -126,7 +126,7 @@ html body .font-weight-medium {
     font-weight: 900;
 }
 .change-color {
-    color: #5f76e8;
+    color: rgb(198 73 42);
 }
 
 .mb-1 {
@@ -244,4 +244,98 @@ html body .font-weight-medium {
 
 .file-upload-button {
   border: 1px solid red;
+}
+
+@font-face {
+  font-family: 'LINESeedKR-Bd';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+.container-fluid {
+  font-family: 'LINESeedKR-Bd';
+   font-size: 15px;
+}
+
+.cardpd {
+  --bs-card-spacer-y: 21px;
+  --bs-card-spacer-x: 33px;
+  --bs-card-border-radius: 3.25rem;
+}
+
+.cardpd h2 {
+  margin: 10px 0px 2.5px;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem!important
+}
+
+.listclient {
+  align-items: start;
+}
+
+
+.listsize {
+  width: 80%;
+}
+
+.projectname {
+  cursor: pointer;
+}
+
+.projectname > span {
+  padding-bottom: 2px;
+}
+.projectname > span:hover {
+  color: #4662ec;
+
+}
+
+.pro-d {
+  padding-top: 100px;
+}
+
+.detail-pro {
+  width: 100%;
+ /*  --bs-card-bg: #e5e5e5; */
+}
+.detail-pro h3 {
+  padding-bottom: 10px;
+}
+
+.detail2 {
+  padding: 15px;
+}
+
+.detail-list {
+  margin: 35px 0px 0px 35px;
+
+  font-size: 17px;
+  color: #525252;
+  display: flex;
+}
+
+.detail-list span {
+  padding-bottom: 10px;
+}
+
+
+.team-button {
+  padding: 10px;
+  background-color: #afbcff;
+  color: white;
+
+}
+
+.team-check span {
+  font-size: 19px;
+  margin: 10px;
+  padding: 5px;
+  display: inline-block;
+}
+.detail-list p {
+  display: inline-block;
+  margin-left:40px;
 }

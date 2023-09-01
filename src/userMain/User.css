@@ -370,7 +370,21 @@ html body .font-weight-medium {
   float: right;
 }
 
-.inq-title {
+
+.inqurylist-search {
+  border: none;
+  background-color: #896cf5;
+  padding: 9px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+}
+
+
+
+.inq-title{
   padding-top: 10px;
   font-weight: bold;
   margin-bottom: 20px;
