@@ -166,6 +166,40 @@
 #seachId{
     position: absolute;
     transform: scale(0);
+    width: 400px;
+    height: 350px;
+}
+#seachPw{
+    position: absolute;
+    transform: scale(0);
+    width: 400px;
+    height: 350px;
+}
+.lj_input-group .row .serEmail{
+    width: 70%;
+}
+.lj_input-group .row{
+    --bs-gutter-x: 0px;
+
+}
+.pwReset{
+    margin-top: 20px;
+}
+.pwReset button{
+    margin-top: 20px;
+    width: 251px;
+    font-size: 16px;
+}
+.pwView{
+    display: none;
+}
+.lj_input-group .row .emailCheck{
+    margin: 6px 0 1px 0;
+    width: 30%;
+    height: 30px;
+    padding: 0;
+    font-size: 13px;
+    font-weight: 900;
 }
 .pointer:hover {
     cursor: pointer;
@@ -218,13 +252,13 @@
 .text.sign-in h2,
 .text.sign-in p,
 .img.sign-in img {
-    transform: translateX(-400%);
+    transform: translateX(-500%);
 }
 
 .text.sign-up h2,
 .text.sign-up p,
 .img.sign-up img {
-    transform: translateX(400%);
+    transform: translateX(500%);
 }
 
 .container1.sign-in .text.sign-in h2,

@@ -6,111 +6,10 @@ import UserIcon from "../img/UserIcon";
 import FolderIcon from "../img/FolderIcon";
 import FolderPlusIcon from "../img/FolderPlusIcon";
 import PenToolIcon from "../img/PenToolIcon";
-import PieChartComponent from './PieChartComponent';
-import LineChart from "./LineChart";
-import MoreVerticalIcon from "../img/MoreVerticalIcon";
-function User() {
-  // const pieChartData = [
-  //     { name: 'facebook', data: 200000 },
-  //     { name: 'insta', data: 15000000 },
-  //     { name: 'twitter', data: 10000000 },
-  //     { name: 'telegram', data: 4000000 },
-  //   ];
-  // // const data=[
-  //     {
-  //       "id": "temp.",
-  //       "ranges": [
-  //         34,
-  //         37,
-  //         46,
-  //         0,
-  //         100
-  //       ],
-  //       "measures": [
-  //         78
-  //       ],
-  //       "markers": [
-  //         87
-  //       ]
-  //     },
-  //     {
-  //       "id": "power",
-  //       "ranges": [
-  //         0.48035245507398494,
-  //         0.42016366724601084,
-  //         1.1666708309389993,
-  //         0,
-  //         2
-  //       ],
-  //       "measures": [
-  //         0.22365479550191675,
-  //         1.6956324780455652
-  //       ],
-  //       "markers": [
-  //         1.7750464680807774
-  //       ]
-  //     },
-  //     {
-  //       "id": "volume",
-  //       "ranges": [
-  //         14,
-  //         0,
-  //         25,
-  //         10,
-  //         3,
-  //         16,
-  //         0,
-  //         40
-  //       ],
-  //       "measures": [
-  //         12
-  //       ],
-  //       "markers": [
-  //         26
-  //       ]
-  //     },
-  //     {
-  //       "id": "cost",
-  //       "ranges": [
-  //         458007,
-  //         7028,
-  //         485403,
-  //         0,
-  //         500000
-  //       ],
-  //       "measures": [
-  //         303286,
-  //         340261
-  //       ],
-  //       "markers": [
-  //         490173
-  //       ]
-  //     },
-  //     {
-  //       "id": "revenue",
-  //       "ranges": [
-  //         5,
-  //         2,
-  //         6,
-  //         0,
-  //         11
-  //       ],
-  //       "measures": [
-  //         8
-  //       ],
-  //       "markers": [
-  //         9.230197149116378,
-  //         8.370326815164743
-  //       ]
-  //     }
-  //   ]
-
-  // const data = [
-  //     { name: "facebook", value: 200000 },
-  //     { name: 'insta', value: 15000000 },
-  //     { name: "twiter", value: 10000000 },
-  //     { name: 'telegram', value: 4000000 }
-  // ]
+import PieChartComponent from '../userMain/PieChartComponent';
+import LineChart from "../userMain/LineChart";
+function MainAdmin() {
+  
 
   return (
 
@@ -389,4 +288,4 @@ function User() {
 }
 
 
-export default User
+export default MainAdmin
