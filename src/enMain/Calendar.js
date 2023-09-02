@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import Modal from 'react-modal'; // react-modal import
-function TestCalendar() {
+function Calendar() {
   const [events, setEvents] = useState([
     // 초기 이벤트 데이터 배열
     {
-      title: 'Event One',
+      title: '점기점검',
       date: '2023-09-01',
       description: {
         '점검종류': '정기점검',
@@ -44,18 +44,21 @@ function TestCalendar() {
     setEvents([...events, newEvent]);
     closeAddEventModal();
   };
-
+  const Click=(e)=>{
+    console.log(e)
+  }
   return (
-    <div className="page-wrapper" >
+   
     <div  id="myCalender">
-      <button onClick={openAddEventModal}>일정 추가</button>
+      <button onClick={openAddEventModal} style={{backgroundColor:"rgb(42, 198, 97)"}}>일정 추가</button>
       <FullCalendar
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
         events={events}
+        eventClick={Click}
       />
     
-        <Modal
+        <Modal  className="modal-content" overlayClassName="modal-overlay"
         isOpen={isAddEventModalOpen}
         onRequestClose={closeAddEventModal}
       >
@@ -112,8 +115,8 @@ function TestCalendar() {
         
       
     </div>
-    </div>
+  
   );
 }
 
-export default TestCalendar;
+export default Calendar;

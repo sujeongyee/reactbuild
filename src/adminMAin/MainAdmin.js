@@ -1,6 +1,7 @@
 
 
 
+
 /* ES6 in Node.js */
 import UserIcon from "../img/UserIcon";
 import FolderIcon from "../img/FolderIcon";
@@ -8,6 +9,7 @@ import FolderPlusIcon from "../img/FolderPlusIcon";
 import PenToolIcon from "../img/PenToolIcon";
 import PieChartComponent from '../userMain/PieChartComponent';
 import LineChart from "../userMain/LineChart";
+import { Link } from "react-router-dom";
 function MainAdmin() {
   
 
@@ -19,11 +21,11 @@ function MainAdmin() {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-6 col-lg-3">
-              <div className="card border-end">
+              <div className="card border-end cardpd">
                 <div className="card-body">
                   <div className="d-flex align-items-center">
                     <div>
-                      <div className="d-inline-flex align-items-center">
+                      <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color">236명</h2>
                       </div>
 
@@ -44,12 +46,12 @@ function MainAdmin() {
             </div>
 
             <div className="col-sm-6 col-lg-3">
-              <div className="card border-end">
+              <div className="card border-end cardpd">
                 <div className="card-body">
 
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex ">
                     <div>
-                      <div className="d-inline-flex align-items-center">
+                      <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color">230개</h2>
                       </div>
 
@@ -69,12 +71,12 @@ function MainAdmin() {
 
             </div>
             <div className="col-sm-6 col-lg-3">
-              <div className="card border-end">
+              <div className="card border-end cardpd">
                 <div className="card-body">
 
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex ">
                     <div>
-                      <div className="d-inline-flex align-items-center">
+                      <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color">4개</h2>
                       </div>
 
@@ -93,12 +95,12 @@ function MainAdmin() {
 
             </div>
             <div className="col-sm-6 col-lg-3">
-              <div className="card border-end">
+              <div className="card border-end cardpd">
                 <div className="card-body">
 
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex ">
                     <div>
-                      <div className="d-inline-flex align-items-center">
+                      <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color">200명</h2>
                       </div>
 
@@ -119,9 +121,9 @@ function MainAdmin() {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row adminchart">
             <div className="col-lg-6 col-md-12">
-              <div className="card">
+              <div className="card cardpd">
                 <div className="card-body">
                   <h4 className="card-title">총 프로젝트 현황</h4>
                   <div id="chart-area" className="col-lg-6 col-md-12"/* style={{ width: '466px', height: '350px' }} */>
@@ -133,7 +135,7 @@ function MainAdmin() {
 
             </div>
             <div className="col-lg-6 col-md-12">
-              <div className="card">
+              <div className="card cardpd">
                 <div className="card-body">
                   <h4 className="card-title">월 별 계약 수 </h4>
                   <div id="chart-area2" className="col-lg-6 col-md-12">
@@ -147,11 +149,11 @@ function MainAdmin() {
           </div>
 
 
-          <div className="row" style={{ float: 'none', margin: '0 auto' }}>
-            <div className="col-8" style={{ float: 'none', margin: '0 auto' }}>
-              <div className="card">
+          <div className="row listsize" style={{ float: 'none', margin: '0 auto' }}>
+            <div className="col-6" style={{ float: 'none', margin: '0 auto' }}>
+              <div className="card cardpd">
                 <div className="card-body">
-                  <div className="d-flex align-items-center mb-4">
+                  <div className=" listclient mb-4">
                     <h4 className="card-title">신규요청리스트</h4>
                     <div className="ms-auto">
                       <div className="dropdown sub-dropdown">
@@ -169,12 +171,13 @@ function MainAdmin() {
                     </div>
                   </div>
                   <div className="table-responsive">
-                    <table className="table no-wrap v-middle mb-0">
+                    <table className="table v-middle mb-0 tablesize">
                       <thead>
                         <tr className="border-0">
                           <th className="border-0 font-14 font-weight-medium text-muted">클라이언트
                           </th>
                           <th className="border-0 font-14 font-weight-medium text-muted px-2">프로젝트명
+                            
                           </th>
 
                           <th className="border-0 font-14 font-weight-medium text-muted text-center">
@@ -186,11 +189,7 @@ function MainAdmin() {
                       <tbody>
                         <tr>
                           <td className="border-top-0 px-2 py-4">
-                            <div className="d-flex no-block align-items-center">
-                              <div className="me-3"><img
-                                src="../assets/images/users/widget-table-pic1.jpg"
-                                alt="user" className="rounded-circle" width="45"
-                                height="45" /></div>
+                            <div className="d-flex no-block ">
                               <div className="">
                                 <h5 className="text-dark mb-0 font-16 font-weight-medium">Hanna
                                   Gover</h5>
@@ -198,8 +197,7 @@ function MainAdmin() {
                               </div>
                             </div>
                           </td>
-                          <td className="border-top-0 text-muted px-2 py-4 font-14">Elite Admin</td>
-
+                          <td className="border-top-0 text-muted px-2 py-4 font-14 projectname"><span><Link to="/admin/projectdetail">WebServer No1</Link></span> </td>
 
                           <td
                             className="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
@@ -209,11 +207,8 @@ function MainAdmin() {
                         </tr>
                         <tr>
                           <td className="px-2 py-4">
-                            <div className="d-flex no-block align-items-center">
-                              <div className="me-3"><img
-                                src="../assets/images/users/widget-table-pic2.jpg"
-                                alt="user" className="rounded-circle" width="45"
-                                height="45" /></div>
+                            <div className="d-flex no-block ">
+                              
                               <div className="">
                                 <h5 className="text-dark mb-0 font-16 font-weight-medium">Daniel
                                   Kristeen
@@ -222,7 +217,7 @@ function MainAdmin() {
                               </div>
                             </div>
                           </td>
-                          <td className="text-muted px-2 py-4 font-14">Real Homes WP Theme</td>
+                          <td className="text-muted px-2 py-4 font-14 projectname"><span><Link to="/admin/projectdetail">Real Homes WP Theme</Link></span> </td>
 
 
                           <td className="text-center text-muted font-weight-medium px-2 py-4">23/09/23</td>
@@ -230,11 +225,8 @@ function MainAdmin() {
                         </tr>
                         <tr>
                           <td className="px-2 py-4">
-                            <div className="d-flex no-block align-items-center">
-                              <div className="me-3"><img
-                                src="../assets/images/users/widget-table-pic3.jpg"
-                                alt="user" className="rounded-circle" width="45"
-                                height="45" /></div>
+                            <div className="d-flex no-block ">
+                             
                               <div className="">
                                 <h5 className="text-dark mb-0 font-16 font-weight-medium">Julian
                                   Josephs
@@ -243,7 +235,7 @@ function MainAdmin() {
                               </div>
                             </div>
                           </td>
-                          <td className="text-muted px-2 py-4 font-14">MedicalPro WP Theme</td>
+                          <td className="text-muted px-2 py-4 font-14  projectname"><span><Link to="/admin/projectdetail">MedicalPro WP Theme</Link></span> </td>
 
 
                           <td className="text-center text-muted font-weight-medium px-2 py-4">23/09/12</td>
@@ -251,11 +243,8 @@ function MainAdmin() {
                         </tr>
                         <tr>
                           <td className="border-bottom-0 px-2 py-4">
-                            <div className="d-flex no-block align-items-center">
-                              <div className="me-3"><img
-                                src="../assets/images/users/widget-table-pic4.jpg"
-                                alt="user" className="rounded-circle" width="45"
-                                height="45" /></div>
+                            <div className="d-flex no-block ">
+                              
                               <div className="">
                                 <h5 className="text-dark mb-0 font-16 font-weight-medium">Jan
                                   Petrovic
@@ -264,8 +253,9 @@ function MainAdmin() {
                               </div>
                             </div>
                           </td>
-                          <td className="border-bottom-0 text-muted px-2 py-4 font-14">Hosting Press
-                            HTML</td>
+                          <td className="border-bottom-0 text-muted px-2 py-4 font-14 projectname">
+                            <span> <Link to="/admin/projectdetail">Hosting Press HTML</Link></span>
+                           </td>
 
 
                           <td
@@ -283,9 +273,11 @@ function MainAdmin() {
         </div>
       </div>
     </>
+
   )
 
 }
+
 
 
 export default MainAdmin
