@@ -29,7 +29,7 @@ function AdminAnnoDetail() {
                     <div className="col-12">
                         <div className="card">
                             <div className="card-body" style={{padding:'30px 70px 0 100px', height: '750px'}} >
-                              <a className="inq-back">
+                              <a className="inq-back" >
                                 ← 공지 목록
                               </a>
                                <h1 className="css-148cvwt edhjjyh1 inq-title">(필독)전체 공지사항입니다</h1>
