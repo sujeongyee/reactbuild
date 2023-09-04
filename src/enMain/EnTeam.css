@@ -1,0 +1,98 @@
+
+
+.team-select-table{
+ 
+  margin: 0 auto;
+}
+
+.team-list-flex{
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+}
+
+.team-select-table th,.team-select-table td {
+  padding:5px 12px;
+  font-size: 12px;
+  margin: 0;
+}
+
+.team-select-table thead tr {
+  border-bottom: 1px solid rgba(224, 224, 224,0.7);
+}
+
+.team-select-table thead tr {
+  padding-top: 10px;
+}
+
+.team-select-btn{
+  background-color: #5346c5;
+  color: rgb(233, 233, 233);
+  padding: 2px 4px;
+  border-radius: 8px;
+
+}
+
+.team-select-btn:hover {
+  background: #0c137a;
+}
+
+
+
+/*  */
+
+
+.assingment-btn {
+  
+  background: #15813b;
+  color: white;
+  width: 100px;
+  height: 30px;
+  border-radius: 3px;
+  display: inline-block;
+}
+ 
+.detail_modal_btn {
+  margin-left: 80px;
+}
+
+
+.detail_modal_btn input {
+  width: 130px;
+  line-height: 40px;
+  border-radius: 0.2rem;
+
+  background-color: #2AC661;
+  color: white;
+  font-weight: 900;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+ 
+}
+
+.detail_modal_btn_show {
+    width: 80px;
+    height: 40px;
+    margin-top: 10px;
+    text-align: center;
+    margin-right: 10px;
+
+}
+
+.detail_modal_btn_show:hover{
+  background: #15813b;
+}
+
+.detail_modal_btn_close{
+      width: 80px;
+    height: 40px;
+    margin-top: 10px;
+    text-align: center;
+    margin-left: 10px;
+    background: #2AC661;
+}
+
+.detail_modal_btn_close:hover{
+  background: #15813b;
+}
