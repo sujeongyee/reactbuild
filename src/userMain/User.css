@@ -477,3 +477,12 @@ html body .font-weight-medium {
     color: #5f76e8;
 }
 
+/* *********************************************** */
+.new_b {
+  background: rgb(21, 180, 87);
+  margin-left: 10px;
+  color: white;
+  padding:1px 3px ;
+  font-size: 8px;
+  border-radius: 10px;
+}
