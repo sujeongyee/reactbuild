@@ -49,6 +49,7 @@ import EnEngineerMyPage from "./enMain/EnEngineerMyPageModal";
 import AdUserList from "./adminMain/AdUserList";
 import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";
+import AnEngineerList from "./adminMain/AnEngineerList";
 
 
 import EnInspectionList from "./enMain/EnInspectionList";
@@ -106,6 +107,7 @@ function App() {
                 <Route path='/admin/annoDetail' element={<AdminAnnoDetail />} />
                 <Route path="/admin/userList" element={<AdUserList />} />
                 <Route path="/admin/projectList" element={<AdProjectList />} />
+                <Route path="/admin/engineerList" element={<AnEngineerList />} />
 
 
             </Route>
