@@ -48,7 +48,7 @@ function UserInQurylist() {
                                                 <tr>
                                                     <th scope="row">1</th>
                                                     <td>
-                                                        <Link to="/user">프로젝트 등록 문의 드립니다.</Link>
+                                                        <Link to="/user/inQuryDetail">프로젝트 등록 문의 드립니다.</Link>
                                                     </td>
                                                     <td>jiin0917</td>
                                                     <td>2023.08.27</td>

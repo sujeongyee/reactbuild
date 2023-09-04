@@ -42,7 +42,7 @@ import EnAnnoDetail from "./enMain/EnAnnoDetail";
 import AdminAnnoDetail from "./adminMain/AdminAnnoDetail";
 import UserAnnoDetail from "./userMain/UserAnnoDetail";
 import ProjectDetail from "./adminMain/ProjectDetail";
-import TestCalendar from "./enMain/TestCalendar";
+import TestCalendar from "./enMain/testCalendar";
 
 
 import EnEngineerMyPage from "./enMain/EnEngineerMyPageModal";
@@ -50,8 +50,15 @@ import AdUserList from "./adminMain/AdUserList";
 import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";
 
+
 import EnInspectionList from "./enMain/EnInspectionList";
 
+import EnL_newProject from "./enMain/EnL_newProject";
+import EnL_newProjectDetail from "./enMain/EnL_newProjectDetail";
+import EnL_TeamassingmentModal from "./enMain/EnL_TeamassginmentModal";
+
+import UserProList from "./userMain/UserProList";
+import UserDetailPro from "./userMain/UserDetailPro";
 
 
 function App() {
@@ -80,19 +87,22 @@ function App() {
                 <Route path='/engineer/test' element={<TestCalendar />} />
                 <Route path="/engineer/workDetail" element={<EnWorkDetail />} />
 
+                <Route path='/engineer/newList' element={<EnL_newProject/>}/>
+                <Route path='/engineer/newProjectDetail' element={<EnL_newProjectDetail/>} />
+                <Route path='/engineer/newProjectDetail2' element={<EnL_TeamassingmentModal/>}/>
+
+
+
             </Route>
 
             <Route element={<HeaderFooterAd />}>{/* 관리자 페이지; */}
 
                 <Route path='/admin' element={<MainAdmin />} />
-
                 <Route path='/admin/noticeWrite' element={<NoticeWrite />} />
                 <Route path='/admin/projectdetail' element={< ProjectDetail />} />
-
                 <Route path='/admin/inQurylist' element={< AdminInQurylist />} />
                 <Route path='/admin/inQuryDetail' element={< AdminInQuryDetail />} />
                 <Route path='/admin/annoList' element={<AdminAnnoList />} />
-
                 <Route path='/admin/annoDetail' element={<AdminAnnoDetail />} />
                 <Route path="/admin/userList" element={<AdUserList />} />
                 <Route path="/admin/projectList" element={<AdProjectList />} />
@@ -105,13 +115,14 @@ function App() {
             <Route element={<HeaderFooterUs />}>
 
                 <Route path='/user' element={<MainUser />} />
-                {/* <Route path='/user/list' element={< UserList/>} /> */}
+                <Route path='/user/list' element={< UserProList/>} />
                 <Route path='/user/apply' element={< UserApply />} />
                 <Route path='/user/inQurylist' element={< UserInQurylist />} />
                 <Route path='/user/inQurywrite' element={< UserInQuryWrite />} />
                 <Route path='/user/inQuryDetail' element={< UserInQuryDetail />} />
                 <Route path='/user/annoList' element={< UserAnnoList />} />
                 <Route path='/user/annoDetail' element={<UserAnnoDetail />} />
+                <Route path='/user/prodetail' element={<UserDetailPro/>}/>
                 <Route path="/user/projectDetailList" element={<UserProjectDetailList />} />
                 <Route path="/user/projectDetail" element={<UserProjectDetailModal />} />
                 <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 />} />
