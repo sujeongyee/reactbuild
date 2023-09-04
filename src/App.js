@@ -42,13 +42,15 @@ import EnAnnoDetail from "./enMain/EnAnnoDetail";
 import AdminAnnoDetail from "./adminMain/AdminAnnoDetail";
 import UserAnnoDetail from "./userMain/UserAnnoDetail";
 import ProjectDetail from "./adminMain/ProjectDetail";
-import TestCalendar from "./enMain/TestCalendar";
+import TestCalendar from "./enMain/testCalendar";
 
 
 import EnEngineerMyPage from "./enMain/EnEngineerMyPageModal";
 import AdUserList from "./adminMain/AdUserList";
 import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";
+import UserProList from "./userMain/UserProList";
+import UserDetailPro from "./userMain/UserDetailPro";
 
 function App() {
     return (
@@ -101,13 +103,14 @@ function App() {
             <Route element={<HeaderFooterUs />}>
 
                 <Route path='/user' element={<MainUser />} />
-                {/* <Route path='/user/list' element={< UserList/>} /> */}
+                <Route path='/user/list' element={< UserProList/>} />
                 <Route path='/user/apply' element={< UserApply />} />
                 <Route path='/user/inQurylist' element={< UserInQurylist />} />
                 <Route path='/user/inQurywrite' element={< UserInQuryWrite />} />
                 <Route path='/user/inQuryDetail' element={< UserInQuryDetail />} />
                 <Route path='/user/annoList' element={< UserAnnoList />} />
                 <Route path='/user/annoDetail' element={<UserAnnoDetail />} />
+                <Route path='/user/prodetail' element={<UserDetailPro/>}/>
                 <Route path="/user/projectDetailList" element={<UserProjectDetailList />} />
                 <Route path="/user/projectDetail" element={<UserProjectDetailModal />} />
                 <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 />} />
