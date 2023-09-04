@@ -41,7 +41,6 @@ import UserAnnoDetail from "./userMain/UserAnnoDetail";
 import ProjectDetail from "./adminMain/ProjectDetail";
 import TestCalendar from "./enMain/testCalendar";
 
-import EnEngineerMyPage from "./enMain/EnEngineerMyPageModal";
 import AdUserList from "./adminMain/AdUserList";
 import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";

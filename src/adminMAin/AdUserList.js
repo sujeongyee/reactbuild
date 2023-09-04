@@ -75,10 +75,7 @@ function AdUserList() {
                             <td>010-3024-0343</td>
                             <td>baeksy97@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
+                              <button type="button" class="button-success">
                                 contract
                               </button>
                             </td>
@@ -95,10 +92,7 @@ function AdUserList() {
                             <td>010-3024-0343</td>
                             <td>baeksy97@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-secondary"
-                              >
+                              <button type="button" class="button-success">
                                 expiration
                               </button>
                             </td>
@@ -115,10 +109,7 @@ function AdUserList() {
                             <td>010-3024-0343</td>
                             <td>baeksy97@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
+                              <button type="button" class="button-success">
                                 contract
                               </button>
                             </td>
@@ -135,10 +126,7 @@ function AdUserList() {
                             <td>010-3024-0343</td>
                             <td>baeksy97@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-secondary"
-                              >
+                              <button type="button" class="button-secondary">
                                 expiration
                               </button>
                             </td>
@@ -155,10 +143,7 @@ function AdUserList() {
                             <td>010-3024-0343</td>
                             <td>baeksy97@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
+                              <button type="button" class="button-success">
                                 contract
                               </button>
                             </td>
@@ -175,10 +160,7 @@ function AdUserList() {
                             <td>010-3024-0343</td>
                             <td>baeksy97@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-secondary"
-                              >
+                              <button type="button" class="button-secondary">
                                 expiration
                               </button>
                             </td>
@@ -195,10 +177,7 @@ function AdUserList() {
                             <td>010-3024-0343</td>
                             <td>baeksy97@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
+                              <button type="button" class="button-success">
                                 contract
                               </button>
                             </td>

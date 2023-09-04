@@ -211,7 +211,7 @@ function HeaderFooterEn() {
                                     <li class="sidebar-item">
                                         <NavLink
                                             className="sidebar-link "
-                                            to="/engineer"
+                                            to="/engineer/workDetail"
                                             style={({ isActive }) => (isActive ? ms : undefined)}
                                         >
 

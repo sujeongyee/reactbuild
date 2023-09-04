@@ -55,9 +55,7 @@ function UserProjectDetailList() {
                             <th scope="col">서버 이름</th>
                             <th scope="col">서버 종류</th>
                             <th scope="col">점검 종류</th>
-                            <th scope="col">시작 일자</th>
-                            <th scope="col">종료 일자</th>
-                            <th scope="col">소요 시간</th>
+                            <th scope="col">최근 점검</th>
                             <th scope="col">서버 상태</th>
                             <th scope="col">담당 엔지니어</th>
                           </tr>
@@ -71,13 +69,8 @@ function UserProjectDetailList() {
                             <td>Data</td>
                             <td>OJJ</td>
                             <td>2023.08.01</td>
-                            <td>2023.08.01</td>
-                            <td>02:30</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-rounded btn-danger"
-                              >
+                              <button type="button" class="button-danger">
                                 Danger
                               </button>
                             </td>
@@ -114,13 +107,8 @@ function UserProjectDetailList() {
                             <td>Storage</td>
                             <td>OJJ</td>
                             <td>2023.08.15</td>
-                            <td>2023.08.15</td>
-                            <td>02:30</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-rounded btn-success"
-                              >
+                              <button type="button" class="button-success">
                                 Good
                               </button>
                             </td>
@@ -157,13 +145,8 @@ function UserProjectDetailList() {
                             <td>Data</td>
                             <td>OJJ</td>
                             <td>2023.08.01</td>
-                            <td>2023.08.01</td>
-                            <td>02:30</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-rounded btn-warning"
-                              >
+                              <button type="button" class="button-warning">
                                 Warning
                               </button>
                             </td>
@@ -195,8 +178,11 @@ function UserProjectDetailList() {
                             <td>Data</td>
                             <td>OJJ</td>
                             <td>2023.08.01</td>
-                            <td>2023.08.01</td>
-                            <td>02:30</td>
+                            <td>
+                              <button type="button" class="button-success">
+                                Good
+                              </button>
+                            </td>
                             <td className="border-top-0 px-2 py-4;">
                               <div className="d-flex no-block align-items-center">
                                 <div className="me-3">
@@ -208,6 +194,7 @@ function UserProjectDetailList() {
                                     height="45"
                                   />
                                 </div>
+                                
                                 <div className="">
                                   <h5 className="text-dark mb-0 font-16 font-weight-medium">
                                     DDabong Yeji
@@ -225,8 +212,11 @@ function UserProjectDetailList() {
                             <td>Data</td>
                             <td>OJJ</td>
                             <td>2023.08.01</td>
-                            <td>2023.08.01</td>
-                            <td>02:30</td>
+                            <td>
+                              <button type="button" class="button-success">
+                                Good
+                              </button>
+                            </td>
                             <td className="border-top-0 px-2 py-4;">
                               <div className="d-flex no-block align-items-center">
                                 <div className="me-3">
@@ -255,8 +245,11 @@ function UserProjectDetailList() {
                             <td>Data</td>
                             <td>OJJ</td>
                             <td>2023.08.01</td>
-                            <td>2023.08.01</td>
-                            <td>02:30</td>
+                            <td>
+                              <button type="button" class="button-success">
+                                Good
+                              </button>
+                            </td>
                             <td className="border-top-0 px-2 py-4;">
                               <div className="d-flex no-block align-items-center">
                                 <div className="me-3">
@@ -284,9 +277,12 @@ function UserProjectDetailList() {
                             <td>회사 serverNo1</td>
                             <td>OJJ</td>
                             <td>2023.08.01</td>
-                            <td>2023.08.01</td>
-                            <td>02:30</td>
                             <td>Data</td>
+                            <td>
+                              <button type="button" class="button-success">
+                                Good
+                              </button>
+                            </td>
                             <td className="border-top-0 px-2 py-4;">
                               <div className="d-flex no-block align-items-center">
                                 <div className="me-3">
@@ -309,38 +305,7 @@ function UserProjectDetailList() {
                               </div>
                             </td>
                           </tr>
-                          <tr>
-                            <th scope="row">7</th>
-                            <td>엔지니어팀 회식 일정 공유</td>
-                            <td>admin</td>
-                            <td>2023.08.22</td>
-                            <td>67</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">8</th>
-                            <td>정기정검 관련 엔지니어팀 공유사항</td>
-                            <td>admin</td>
-                            <td>2023.08.05</td>
-                            <td>7</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">9</th>
-                            <td>회사 서비스 사용 공지</td>
-                            <td>admin</td>
-                            <td>2023.08.03</td>
-                            <td>2</td>
-                          </tr>
-                          <tr>
-                            <th className="border-bottom-0" scope="row">
-                              10
-                            </th>
-                            <td className="border-bottom-0">
-                              비용관련 문의 답변주세요
-                            </td>
-                            <td className="border-bottom-0">BSY9700_</td>
-                            <td className="border-bottom-0">2023.08.01</td>
-                            <td className="border-bottom-0">3</td>
-                          </tr>
+                          
                         </tbody>
                       </table>
                     </div>
