@@ -16,26 +16,6 @@ function AdProjectList() {
                 프로젝트 리스트
               </h3>
             </div>
-            <div className="col-5 align-self-center">
-              <div className="customize-input float-end">
-                <Link className="nav-link" href="javascript:void(0)">
-                  <form className="search-engineer">
-                    <div className="customize-input right">
-                      <input
-                        className="form-control custom-shadow custom-radius border-0 bg-white"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                      />
-                    </div>
-                    <div className="customize-input left">
-                      <FormControlIcon />
-                    </div>
-                    <div></div>
-                  </form>
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
         <div className="container-fluid">
@@ -43,6 +23,28 @@ function AdProjectList() {
             <div className="col-12">
               <div className="card1">
                 <div className="card-body1">
+                  <label>
+                    <div className="col-5 align-self-center">
+                      <div className="customize-input float-end">
+                        <Link className="nav-link" href="javascript:void(0)">
+                          <form className="search-engineer">
+                            <div className="customize-input right">
+                              <input
+                                className="form-control custom-shadow custom-radius border-0 bg-white"
+                                type="search"
+                                placeholder="검색하기"
+                                aria-label="Search"
+                              />
+                            </div>
+                            <div className="customize-input left">
+                              <FormControlIcon />
+                            </div>
+                            <div></div>
+                          </form>
+                        </Link>
+                      </div>
+                    </div>
+                  </label>
                   <div className="table-responsive">
                     <div className="project-table">
                       <table className="table">
@@ -223,33 +225,35 @@ function AdProjectList() {
                       </table>
                     </div>
                   </div>
-                  <ul className="pagination float-end list">
-                    <li className="page-item disabled">
-                      <Link className="page-link" href="#" tabindex="-1">
-                        Prev
-                      </Link>
-                    </li>
-                    <li className="page-item active">
-                      <Link className="page-link" href="#">
-                        1
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link className="page-link" href="#">
-                        2 <span className="sr-only">(current)</span>
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link className="page-link" href="#">
-                        3
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link className="page-link" href="#">
-                        Next
-                      </Link>
-                    </li>
-                  </ul>
+                  <div style={{ textAlign: 'center' }}>
+                    <ul className="pagination">
+                      <li className="page-item disabled">
+                        <Link className="page-link" href="#" tabindex="-1">
+                          Prev
+                        </Link>
+                      </li>
+                      <li className="page-item active">
+                        <Link className="page-link" href="#">
+                          1
+                        </Link>
+                      </li>
+                      <li className="page-item">
+                        <Link className="page-link" href="#">
+                          2 <span className="sr-only">(current)</span>
+                        </Link>
+                      </li>
+                      <li className="page-item">
+                        <Link className="page-link" href="#">
+                          3
+                        </Link>
+                      </li>
+                      <li className="page-item">
+                        <Link className="page-link" href="#">
+                          Next
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

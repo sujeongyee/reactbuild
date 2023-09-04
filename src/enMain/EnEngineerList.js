@@ -4,6 +4,7 @@ import "../userMain/User.css";
 import "./EnMain.css";
 import EnEngineerMyPage from "./EnEngineerMyPageModal";
 import FormControlIcon from "../img/FormControlIcon";
+import { left } from "@popperjs/core";
 
 function EnEngineerList() {
     return (
@@ -36,9 +37,8 @@ function EnEngineerList() {
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">NO</th>
-                                                        <th scope="col">이름</th>
+                                                        <th scope="col" style={{paddingLeft:'80px'}}>이름</th>
                                                         <th scope="col">직급</th>
-                                                        <th scope="col">소속</th>
                                                         <th scope="col">이메일</th>
                                                         <th scope="col">전화번호</th>
                                                     </tr>
@@ -48,13 +48,13 @@ function EnEngineerList() {
                                                         <th scope="row">1</th>
                                                         <td>
                                                             <div className="d-flex no-block align-items-center">
-                                                                <div className="me-3">
+                                                                <div className="me-3" >
                                                                     <img
                                                                         src="../img/widget-table-pic1.jpg"
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        width="45"
-                                                                        height="45"
+                                                                        width="40"
+                                                                        height="40"
                                                                     />
                                                                 </div>
                                                                 <div className="me-4">
@@ -65,7 +65,6 @@ function EnEngineerList() {
                                                             </div>
                                                         </td>
                                                         <td>팀장</td>
-                                                        <td>기술지원 2팀</td>
                                                         <td>baeksy97@gmail.com</td>
                                                         <td>010-2350-9845</td>
                                                         <td className="border-top-0 px-2 py-4;"></td>
@@ -74,24 +73,23 @@ function EnEngineerList() {
                                                         <th scope="row">2</th>
                                                         <td>
                                                             <div className="d-flex no-block align-items-center">
-                                                                <div className="me-3">
+                                                                <div className="me-3" >
                                                                     <img
                                                                         src="../img/widget-table-pic1.jpg"
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        width="45"
-                                                                        height="45"
+                                                                        width="40"
+                                                                        height="40"
                                                                     />
                                                                 </div>
                                                                 <div className="me-4">
                                                                     <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                                                        White RaiseDragon
+                                                                        유현주
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>대리</td>
-                                                        <td>기술지원 2팀</td>
                                                         <td>baeksy97@gmail.com</td>
                                                         <td>010-2350-9845</td>
                                                         <td className="border-top-0 px-2 py-4;"></td>
@@ -101,24 +99,23 @@ function EnEngineerList() {
                                                         <th scope="row">3</th>
                                                         <td>
                                                             <div className="d-flex no-block align-items-center">
-                                                                <div className="me-3">
+                                                                <div className="me-3" >
                                                                     <img
                                                                         src="../img/widget-table-pic1.jpg"
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        width="45"
-                                                                        height="45"
+                                                                        width="40"
+                                                                        height="40"
                                                                     />
                                                                 </div>
                                                                 <div className="me-4">
                                                                     <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                                                        White RaiseDragon
+                                                                    유현주
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>대리</td>
-                                                        <td>기술지원 2팀</td>
                                                         <td>baeksy97@gmail.com</td>
                                                         <td>010-2350-9845</td>
                                                         <td className="border-top-0 px-2 py-4;"></td>
@@ -127,24 +124,23 @@ function EnEngineerList() {
                                                         <th scope="row">4</th>
                                                         <td>
                                                             <div className="d-flex no-block align-items-center">
-                                                                <div className="me-3">
+                                                                <div className="me-3" >
                                                                     <img
                                                                         src="../img/widget-table-pic1.jpg"
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        width="45"
-                                                                        height="45"
+                                                                        width="40"
+                                                                        height="40"
                                                                     />
                                                                 </div>
                                                                 <div className="me-4">
                                                                     <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                                                        BBark SuJung
+                                                                    유현주
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td>팀장</td>
-                                                        <td>기술지원 1팀</td>
+                                                        <td>주임</td>
                                                         <td>baeksy97@gmail.com</td>
                                                         <td>010-2350-9845</td>
                                                         <td className="border-top-0 px-2 py-4;"></td>
@@ -153,24 +149,23 @@ function EnEngineerList() {
                                                         <th scope="row">5</th>
                                                         <td>
                                                             <div className="d-flex no-block align-items-center">
-                                                                <div className="me-3">
+                                                                <div className="me-3" >
                                                                     <img
                                                                         src="../img/widget-table-pic1.jpg"
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        width="45"
-                                                                        height="45"
+                                                                        width="40"
+                                                                        height="40"
                                                                     />
                                                                 </div>
                                                                 <div className="me-4">
                                                                     <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                                                        White RaiseDragon
+                                                                    유현주
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>대리</td>
-                                                        <td>기술지원 1팀</td>
                                                         <td>baeksy97@gmail.com</td>
                                                         <td>010-2350-9845</td>
                                                         <td className="border-top-0 px-2 py-4;"></td>
@@ -179,24 +174,23 @@ function EnEngineerList() {
                                                         <th scope="row">6</th>
                                                         <td>
                                                             <div className="d-flex no-block align-items-center">
-                                                                <div className="me-3">
+                                                                <div className="me-3" >
                                                                     <img
                                                                         src="../img/widget-table-pic1.jpg"
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        width="45"
-                                                                        height="45"
+                                                                        width="40"
+                                                                        height="40"
                                                                     />
                                                                 </div>
                                                                 <div className="me-4">
                                                                     <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                                                        White RaiseDragon
+                                                                    유현주
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>대리</td>
-                                                        <td>기술지원 3팀</td>
                                                         <td>baeksy97@gmail.com</td>
                                                         <td>010-2350-9845</td>
                                                         <td className="border-top-0 px-2 py-4;"></td>
@@ -205,24 +199,23 @@ function EnEngineerList() {
                                                         <th scope="row">7</th>
                                                         <td>
                                                             <div className="d-flex no-block align-items-center">
-                                                                <div className="me-3">
+                                                                <div className="me-3" >
                                                                     <img
                                                                         src="../img/widget-table-pic1.jpg"
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        width="45"
-                                                                        height="45"
+                                                                        width="40"
+                                                                        height="40"
                                                                     />
                                                                 </div>
                                                                 <div className="me-4">
                                                                     <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                                                        White RaiseDragon
+                                                                    유현주
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>대리</td>
-                                                        <td>기술지원 3팀</td>
                                                         <td>baeksy97@gmail.com</td>
                                                         <td>010-2350-9845</td>
                                                         <td className="border-top-0 px-2 py-4;"></td>
@@ -231,24 +224,23 @@ function EnEngineerList() {
                                                         <th scope="row">8</th>
                                                         <td>
                                                             <div className="d-flex no-block align-items-center">
-                                                                <div className="me-3">
+                                                                <div className="me-3" >
                                                                     <img
                                                                         src="../img/widget-table-pic1.jpg"
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        width="45"
-                                                                        height="45"
+                                                                        width="40"
+                                                                        height="40"
                                                                     />
                                                                 </div>
                                                                 <div className="me-4">
                                                                     <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                                                        White RaiseDragon
+                                                                    유현주
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>대리</td>
-                                                        <td>기술지원 3팀</td>
                                                         <td>baeksy97@gmail.com</td>
                                                         <td>010-2350-9845</td>
                                                         <td className="border-top-0 px-2 py-4;"></td>
@@ -257,24 +249,23 @@ function EnEngineerList() {
                                                         <th scope="row">9</th>
                                                         <td>
                                                             <div className="d-flex no-block align-items-center">
-                                                                <div className="me-3">
+                                                                <div className="me-3" >
                                                                     <img
                                                                         src="../img/widget-table-pic1.jpg"
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        width="45"
-                                                                        height="45"
+                                                                        width="40"
+                                                                        height="40"
                                                                     />
                                                                 </div>
                                                                 <div className="me-4">
                                                                     <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                                                        White RaiseDragon
+                                                                    유현주
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>대리</td>
-                                                        <td>기술지원 1팀</td>
                                                         <td>baeksy97@gmail.com</td>
                                                         <td>010-2350-9845</td>
                                                         <td className="border-top-0 px-2 py-4;"></td>
@@ -283,24 +274,23 @@ function EnEngineerList() {
                                                         <th scope="row">10</th>
                                                         <td>
                                                             <div className="d-flex no-block align-items-center">
-                                                                <div className="me-3">
+                                                                <div className="me-3" >
                                                                     <img
                                                                         src="../img/widget-table-pic1.jpg"
                                                                         alt="user"
                                                                         className="rounded-circle"
-                                                                        width="45"
-                                                                        height="45"
+                                                                        width="40"
+                                                                        height="40"
                                                                     />
                                                                 </div>
                                                                 <div className="me-4">
                                                                     <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                                                        White RaiseDragon
+                                                                    유현주
                                                                     </h5>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td>대리</td>
-                                                        <td>기술지원 1팀</td>
                                                         <td>baeksy97@gmail.com</td>
                                                         <td>010-2350-9845</td>
                                                         <td className="border-top-0 px-2 py-4;"></td>
