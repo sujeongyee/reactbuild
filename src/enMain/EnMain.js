@@ -29,7 +29,6 @@ function EnMain() {
                                 <div className="col-lg-9">
                                     <div className="card-body b-l calender-sidebar">
                                         <div className='row'>
-                                        <h1 className='title'>내 일정 확인 및 추가</h1>
                                         <b>
                                         <button onClick={toggleButton}>
                                             <FontAwesomeIcon style={{fontSize:'37px', color:'rgb(42, 198, 97)'}} icon={isToggled ? faToggleOn : faToggleOff} />

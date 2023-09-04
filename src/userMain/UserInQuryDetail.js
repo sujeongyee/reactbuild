@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import '../enMain/EnMain.css'
 import './User.css'
 function UserInQuryDetail() {
-
+    
 
     return (
         <>

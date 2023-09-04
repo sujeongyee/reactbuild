@@ -50,6 +50,7 @@ function Calendar() {
   return (
    
     <div  id="myCalender">
+         <h1>내 일정 확인</h1>
       <button onClick={openAddEventModal} style={{backgroundColor:"rgb(42, 198, 97)"}}>일정 추가</button>
       <FullCalendar
         plugins={[dayGridPlugin]}
