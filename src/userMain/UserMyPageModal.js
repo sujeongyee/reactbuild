@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import "../enMain/EnMain.css";
+// import "../enMain/EnMain.css";
 import "../userMain/User.css";
 
-function EnEngineerMyPage() {
+function UserMyPageModal() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const customStyles = {
@@ -24,7 +24,7 @@ function EnEngineerMyPage() {
 
   return (
     <>
-      <button onClick={() => setModalIsOpen(true)}>김아무개</button>
+      <button onClick={() => setModalIsOpen(true)}>쥬쥬소프트(주)</button>
       <Modal
         /* className="modal-content"
         overlayClassName="modal-overlay" */
@@ -33,76 +33,71 @@ function EnEngineerMyPage() {
         style={customStyles}
       >
         <div className="detail_modal_container">
-          <h2>엔지니어 정보</h2>
+          <h2>기업 상세정보</h2>
           <div className="detail_modal_container_inner">
-            <table className="detail_modal_table">
+            <table className="detail_modal_table" style={{margin: 'auto'}}>
               <tr>
-                <th>
-                  <div className="me-3">
-                    <img
-                      src="../img/widget-table-pic1.jpg"
-                      alt="user"
-                      className="rounded-circle"
-                      width="150"
-                      height="150"
-                    />
-                  </div>
-                </th>
+                <th>회사명</th>
                 <td>
-                  <input type="text" value="백스이" readOnly />
+                  <input type="text" value="쥬쥬소프트(주)" readOnly />
                 </td>
               </tr>
               <tr>
-                <th>직급</th>
+                <th>대표명</th>
                 <td>
-                  <input type="text" value="사원" readOnly />
+                  <input type="text" value="유현주" readOnly />
                 </td>
               </tr>
               <tr>
-                <th>소속 부서</th>
+                <th>사업자등록번호</th>
                 <td>
-                  <input type="text" value="기술지원 1팀" readOnly />
+                  <input type="text" value="211-12-12345" readOnly />
                 </td>
               </tr>
               <tr>
-                <th>입사일</th>
+                <th>회사 연락처</th>
                 <td>
-                  <input type="text" value="2020-03-03" readOnly />
+                  <input type="text" value="02-123-4567" readOnly />
                 </td>
               </tr>
               <tr>
-                <th>내선번호</th>
+                <th>회사 주소</th>
                 <td>
-                  <input type="text" value="02-2034-3043" readOnly />
+                  <input type="text" value="서울시 강남구 역삼동 " readOnly />
                 </td>
               </tr>
               <tr>
-                <th>휴대전화번호</th>
+                <th>담당자 이름</th>
                 <td>
-                  <input type="text" value="010-3492-4034" readOnly />
+                  <input type="text" value="이땡땡" readOnly />
                 </td>
               </tr>
               <tr>
-                <th>이메일</th>
+                <th>담당자 이메일</th>
                 <td>
-                  <input type="text" value="co404@naver.com" readOnly />
+                  <input type="text" value="jooosoft123@naver.com" readOnly />
                 </td>
               </tr>
-            </table>
-            <table className="detail_modal_table_content">
               <tr>
-                <th>작업내용</th>
+                <th>담당자 연락처</th>
                 <td>
-                  <textarea
-                    name="modal_textarea"
-                    id="modal_textarea"
-                    cols="60"
-                    rows="10"
-                    readOnly
-                  ></textarea>
+                  <input type="text" value="010-1234-5678" readOnly />
+                </td>
+              </tr>
+              <tr>
+                <th>사이트 가입일</th>
+                <td>
+                  <input type="text" value="2023.05.08" readOnly />
+                </td>
+              </tr>
+              <tr>
+                <th>계약상태</th>
+                <td>
+                  <input type="text" value="계약중" readOnly />
                 </td>
               </tr>
             </table>
+
             <div className="detail_modal_button">
               <input
                 type="button"
@@ -123,4 +118,4 @@ function EnEngineerMyPage() {
   );
 }
 
-export default EnEngineerMyPage;
+export default UserMyPageModal;

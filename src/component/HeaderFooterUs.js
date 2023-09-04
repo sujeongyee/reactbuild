@@ -22,6 +22,13 @@ import ServerIcon from "../img/ServerIcon";
 function HeaderFooterUs() {
     const [bellModal, setbellModalIsOpen] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpenAll, setModalIsOpenAll] = useState(false);
+    const handleModal=()=>{
+        
+        setbellModalIsOpen(false);
+        setModalIsOpenAll(true)
+
+    }
     const ms = {
         textDecoration: 'none',
         borderRadius: ' 0 60px 60px 0',
@@ -58,10 +65,10 @@ function HeaderFooterUs() {
                                         <span>
                                             <BellIcon className="feather feather-bell svg-icon" />
                                         </span>
-                                        <span style={{backgroundColor:'#6776e1'}} className="badge text-bg-primary notify-no rounded-circle">5</span>
+                                        <span style={{ backgroundColor: '#6776e1' }} className="badge text-bg-primary notify-no rounded-circle">5</span>
                                     </button>
                                     <Modal className="bell-content" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}>
-                                        <Link to="#" className="bell-link">
+                                        <Link to="/user/annoDetail?num=1" className="bell-link" onClick={()=>setbellModalIsOpen(false)}>
                                             <div className="bell-anno">
                                                 <AirplayIcon />
                                             </div>
@@ -71,17 +78,17 @@ function HeaderFooterUs() {
                                                 <span>날짜</span>
                                             </div>
                                         </Link>
-                                        <Link to="#" className="bell-link">
+                                        <Link to="/user/projectDetailList" className="bell-link"  onClick={()=>setbellModalIsOpen(false)}>
                                             <div className="bell-calendar">
                                                 <CalendarIcon />
                                             </div>
                                             <div className="bell-middle">
-                                                <h5>일정확인</h5>
+                                                <h5>작업내역 확인</h5>
                                                 <p> 내용</p>
                                                 <span>날짜</span>
                                             </div>
                                         </Link>
-                                        <Link to="#" className="bell-link">
+                                        <Link to="/user/inQuryDetail" className="bell-link"  onClick={()=>setbellModalIsOpen(false)}>
                                             <div className="bell-message">
                                                 <MessageSquareIcon />
                                             </div>
@@ -91,7 +98,53 @@ function HeaderFooterUs() {
                                                 <span>날짜</span>
                                             </div>
                                         </Link>
-                                        <Link to="#" className="bell-link">
+                                        <Link to="/user/projectDetailList" className="bell-link"  onClick={()=>setbellModalIsOpen(false)}>
+                                            <div className="bell-calendar">
+                                                <CalendarIcon />
+                                            </div>
+                                            <div className="bell-middle">
+                                                <h5>작업내역 확인</h5>
+                                                <p> 내용</p>
+                                                <span>날짜</span>
+                                            </div>
+                                        </Link>
+                                        <button style={{ margin: '0 auto', paddingTop: '13px' }} className="bell-more" onClick={handleModal}>
+                                            <storng> 모든 알람 확인하기</storng>
+                                        </button>
+                                    </Modal>
+                                        <Modal className="bell-content1"
+                                            overlayClassName="bell-overlay" isOpen={modalIsOpenAll} onRequestClose={() => setModalIsOpenAll(false)}>
+                                         <Link to="/user/inQuryDetail?num=1" onClick={()=>setModalIsOpenAll(false)} className="bell-link1">
+                                            <div className="bell-anno">
+                                                <AirplayIcon />
+                                            </div>
+                                            <div className="bell-middle">
+                                                <h5>공지사항</h5>
+                                                <p>공지사항 내용</p>
+                                                <span>날짜</span>
+                                            </div>
+                                        </Link>
+                                        <Link to="#" className="bell-link1">
+                                            <div className="bell-calendar">
+                                                <CalendarIcon />
+                                            </div>
+                                            <div className="bell-middle">
+                                                <h5>작업내역 확인</h5>
+                                                <p> 내용</p>
+                                                <span>날짜</span>
+                                            </div>
+                                        </Link>
+                                        <Link to="#" className="bell-link1">
+                                            <div className="bell-message">
+                                                <MessageSquareIcon />
+                                            </div>
+                                            <div className="bell-middle">
+                                                <h5>문의사항</h5>
+                                                <p>문의사항 답변 내용</p>
+                                                <span>날짜</span>
+                                            </div>
+                                        </Link>
+                                        <Link to="#" className="bell-link1">
                                             <div className="bell-calendar">
                                                 <CalendarIcon />
                                             </div>
@@ -101,10 +154,38 @@ function HeaderFooterUs() {
                                                 <span>날짜</span>
                                             </div>
                                         </Link>
-                                        <Link to="#" className="bell-more">
-                                            <storng> 모든 알람 확인하기</storng>
+                                        <Link to="/user/inQuryDetail?num=1" className="bell-link1">
+                                            <div className="bell-anno">
+                                                <AirplayIcon />
+                                            </div>
+                                            <div className="bell-middle">
+                                                <h5>공지사항</h5>
+                                                <p>공지사항 내용</p>
+                                                <span>날짜</span>
+                                            </div>
                                         </Link>
-                                    </Modal>
+                                        <Link to="#" className="bell-link1">
+                                            <div className="bell-calendar">
+                                                <CalendarIcon />
+                                            </div>
+                                            <div className="bell-middle">
+                                                <h5>작업내역 확인</h5>
+                                                <p> 내용</p>
+                                                <span>날짜</span>
+                                            </div>
+                                        </Link>
+                                        <Link to="#" className="bell-link1">
+                                            <div className="bell-message">
+                                                <MessageSquareIcon />
+                                            </div>
+                                            <div className="bell-middle">
+                                                <h5>문의사항</h5>
+                                                <p>문의사항 답변 내용</p>
+                                                <span>날짜</span>
+                                            </div>
+                                        </Link>
+                                      
+                                        </Modal>
                                 </li>
                                 <li className="nav-item dropdown">
 

@@ -468,3 +468,157 @@ html body .font-weight-medium {
   border: none;
   color: #5f76e8;
 }
+
+
+
+/* *********************************************** */
+.new_b {
+  background: rgb(21, 180, 87);
+  margin-left: 10px;
+  color: white;
+  padding:1px 3px ;
+  font-size: 8px;
+  border-radius: 10px;
+}
+
+.pro-info {
+  padding: 30px;
+  
+}
+
+.pro-info span{
+  margin-left: 50px;
+  color: #586188;
+  font-size: 17px;
+  padding: 10px;
+}
+
+.pro-body {
+  border: 2px solid #c4ceff;
+}
+
+.server-btn {
+  border: 2px solid #c4ceff;
+  padding: 10px;
+  background-color: #cad2fa;
+  float: right;
+  border-radius: 20px;
+  margin: 5px;
+}
+
+.emergency {
+  border: 2px solid #fcbdae;
+  padding: 10px;
+  background-color: #fcbdae;
+  float: right;
+  border-radius: 20px;
+  margin: 5px;
+}
+
+.infoServer {
+  display: inline-block;
+}
+
+.sevaddbtn {
+  float: right;
+  background-color: #baceda;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #5c5c5c;
+  margin-right: 150px;
+}
+
+
+.server-info-list {
+  display: inline-block;
+  padding: 10px;
+  width: 240px;
+}
+
+.all-server-info {
+  margin: 30px;
+  border: 0.5px solid rgb(218, 217, 218);
+  margin-left: 140px;
+  width: 770px;
+  padding: 15px;
+}
+
+.sevdelbtn {
+  float: right;
+  font-size: 15px;
+  color: #353535;
+}
+
+.infoUser p {
+  font-size: 13px;
+  color: #7c7c7c;
+}
+.form-group p {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #7c7c7c;
+}
+
+.select-day {
+  margin-top: 6px;
+}
+
+.select-day p {
+  display: inline-block;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.select-op {
+  font-size: 13px;
+  padding: 3px;
+  width: 75px;
+}
+
+.select-op:focus {
+  outline: none;
+}
+
+.info-txt {
+  height: 4em;
+  border: 1px solid #e9ecef;
+  resize: none;
+  width: 100%;
+  margin-left: 10px;
+  padding: 10px;
+  font-size: 13px;
+}
+.info-txt:focus {
+  outline: none;
+  border: 1px solid #baceda;
+}
+
+#regist-form .form-control:focus {
+  outline: none !important; 
+  border-color: none; 
+  box-shadow: none; 
+  border: 1px solid #baceda;
+}
+
+.sever-n {
+  font-size: 13px;
+  color: #a3a3a3;
+  display: inline-block;
+}
+
+.custom-control-label {
+  margin-left: 5px;
+}
+
+.custom-checkbox1 a {
+  margin-left: 5px;
+}
+
+.linkto:hover {
+  text-decoration: none;
+  font-size: 16px;
+  color: #353535;
+} 
+

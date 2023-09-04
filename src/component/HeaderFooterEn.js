@@ -201,10 +201,8 @@ function HeaderFooterEn() {
                                     <li class="sidebar-item">
                                         <NavLink
                                             className="sidebar-link "
-                                            to="/engineer"
-                                            style={({ isActive }) => (isActive ? ms : undefined)}
-                                        >
-
+                                            to="/engineer/inspectionList"
+                                            style={({ isActive }) => (isActive ? ms : undefined)}>
                                             점검 목록
                                         </NavLink>
                                     </li>

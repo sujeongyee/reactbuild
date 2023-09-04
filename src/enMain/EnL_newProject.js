@@ -5,7 +5,7 @@ import "../enMain/EnCss.css";
 
 import FormControlIcon from "../img/FormControlIcon";
 
-function AdProjectList() {
+function EnL_newProject() {
   return (
     <>
       <div className="page-wrapper">
@@ -13,8 +13,11 @@ function AdProjectList() {
           <div className="row">
             <div className="col-7 align-self-center">
               <h3 className="page-title text-truncate text-dark font-weight-medium mb-1">
-                프로젝트 리스트
+                엔지니어 팀장(프로젝트 리스트)
               </h3>
+            </div>
+            <div className="col-5 align-self-center">
+              
             </div>
           </div>
         </div>
@@ -22,29 +25,27 @@ function AdProjectList() {
           <div className="row">
             <div className="col-12">
               <div className="card1">
-                <div className="card-body1">
-                  <label>
-                    <div className="col-5 align-self-center">
-                      <div className="customize-input float-end">
-                        <Link className="nav-link" href="javascript:void(0)">
-                          <form className="search-engineer">
-                            <div className="customize-input right">
-                              <input
-                                className="form-control custom-shadow custom-radius border-0 bg-white"
-                                type="search"
-                                placeholder="검색하기"
-                                aria-label="Search"
-                              />
-                            </div>
-                            <div className="customize-input left">
-                              <FormControlIcon />
-                            </div>
-                            <div></div>
-                          </form>
-                        </Link>
-                      </div>
+              <div className="customize-input float-end search-btn">
+                <Link className="nav-link" href="javascript:void(0)">
+                  <form className="search-engineer">
+                    <div className="customize-input right">
+                      <input
+                        className="form-control custom-shadow custom-radius border-0 bg-white"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                      />
                     </div>
-                  </label>
+                    <div className="customize-input left">
+                      <FormControlIcon />
+                    </div>
+                    <div></div>
+                  </form>
+                </Link>
+                </div>
+                <div className="card-body1">
+           
+              
                   <div className="table-responsive">
                     <div className="project-table">
                       <table className="table">
@@ -55,18 +56,18 @@ function AdProjectList() {
                             <th scope="col">회사명</th>
                             <th scope="col">담당자</th>
                             <th scope="col">연락처</th>
-                            <th scope="col">이메일</th>
+                            <th scope="col">계약일자</th>
                             <th scope="col">계약 상태</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <th scope="row">1</th>
-                            <td>서울대 서버관리</td>
+                            <td><Link to="/engineer/newProjectDetail" style={{padding:'0'}}>서울대 서버관리</Link><span className="new_b">new</span></td>
                             <td>서울대</td>
                             <td>장지인</td>
                             <td>010-3024-0343</td>
-                            <td>baeksy97@gmail.com</td>
+                            <td>2023-09-04</td>
                             <td>
                               <button
                                 type="button"
@@ -83,7 +84,7 @@ function AdProjectList() {
                             <td>중앙학원(주)</td>
                             <td>백승용</td>
                             <td>010-3024-0343</td>
-                            <td>baeksy97@gmail.com</td>
+                            <td>2023-09-03</td>
                             <td>
                               <button
                                 type="button"
@@ -99,7 +100,7 @@ function AdProjectList() {
                             <td>중앙 서울(주)</td>
                             <td>장지인</td>
                             <td>010-3024-0343</td>
-                            <td>baeksy97@gmail.com</td>
+                            <td>2023-09-01</td>
                             <td>
                               <button
                                 type="button"
@@ -225,35 +226,33 @@ function AdProjectList() {
                       </table>
                     </div>
                   </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <ul className="pagination">
-                      <li className="page-item disabled">
-                        <Link className="page-link" href="#" tabindex="-1">
-                          Prev
-                        </Link>
-                      </li>
-                      <li className="page-item active">
-                        <Link className="page-link" href="#">
-                          1
-                        </Link>
-                      </li>
-                      <li className="page-item">
-                        <Link className="page-link" href="#">
-                          2 <span className="sr-only">(current)</span>
-                        </Link>
-                      </li>
-                      <li className="page-item">
-                        <Link className="page-link" href="#">
-                          3
-                        </Link>
-                      </li>
-                      <li className="page-item">
-                        <Link className="page-link" href="#">
-                          Next
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
+                  <ul className="pagination float-end list">
+                    <li className="page-item disabled">
+                      <Link className="page-link" href="#" tabindex="-1">
+                        Prev
+                      </Link>
+                    </li>
+                    <li className="page-item active">
+                      <Link className="page-link" href="#">
+                        1
+                      </Link>
+                    </li>
+                    <li className="page-item">
+                      <Link className="page-link" href="#">
+                        2 <span className="sr-only">(current)</span>
+                      </Link>
+                    </li>
+                    <li className="page-item">
+                      <Link className="page-link" href="#">
+                        3
+                      </Link>
+                    </li>
+                    <li className="page-item">
+                      <Link className="page-link" href="#">
+                        Next
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -264,4 +263,4 @@ function AdProjectList() {
   );
 }
 
-export default AdProjectList;
+export default EnL_newProject;
