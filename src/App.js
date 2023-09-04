@@ -43,12 +43,20 @@ import AdminAnnoDetail from "./adminMain/AdminAnnoDetail";
 import UserAnnoDetail from "./userMain/UserAnnoDetail";
 import ProjectDetail from "./adminMain/ProjectDetail";
 
-import EnEngineerMyPage from "./enMain/EnEngineerMyPageModal";
 import AdUserList from "./adminMain/AdUserList";
 import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";
+
+
+import EnInspectionList from "./enMain/EnInspectionList";
+
+import EnL_newProject from "./enMain/EnL_newProject";
+import EnL_newProjectDetail from "./enMain/EnL_newProjectDetail";
+import EnL_TeamassingmentModal from "./enMain/EnL_TeamassginmentModal";
+
 import UserProList from "./userMain/UserProList";
 import UserDetailPro from "./userMain/UserDetailPro";
+
 
 function App() {
     return (
@@ -72,7 +80,15 @@ function App() {
                 <Route path='/engineer/annoList' element={<EnAnnoList />} />
                 <Route path='/engineer/annoDetail' element={<EnAnnoDetail />} />
 
+                <Route path='/engineer/inspectionList' element={<EnInspectionList/>} />
+
                 <Route path="/engineer/workDetail" element={<EnWorkDetail />} />
+
+                <Route path='/engineer/newList' element={<EnL_newProject/>}/>
+                <Route path='/engineer/newProjectDetail' element={<EnL_newProjectDetail/>} />
+                <Route path='/engineer/newProjectDetail2' element={<EnL_TeamassingmentModal/>}/>
+
+
 
             </Route>
 
