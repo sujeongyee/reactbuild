@@ -84,10 +84,7 @@ function AdUserList() {
                             <td>010-1234-5678</td>
                             <td>guswn8013@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
+                              <button type="button" class="button-success">
                                 contract
                               </button>
                             </td>
@@ -103,6 +100,7 @@ function AdUserList() {
                             <td>010-0987-6543</td>
                             <td>joooo92@gmail.com</td>
                             <td>
+
                               <button
                                 type="button"
                                 class="btn waves-effect waves-light btn-success"
@@ -122,10 +120,7 @@ function AdUserList() {
                             <td>010-8765-9876</td>
                             <td>nananan@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
+                              <button type="button" class="button-success">
                                 contract
                               </button>
                             </td>
@@ -141,6 +136,10 @@ function AdUserList() {
                             <td>010-2345-9876</td>
                             <td>gagao90@gmail.com</td>
                             <td>
+
+                              <button type="button" class="button-secondary">
+                                expiration
+
                               <button
                                 type="button"
                                 class="btn waves-effect waves-light btn-success"
@@ -160,10 +159,7 @@ function AdUserList() {
                             <td>010-44567-1234</td>
                             <td>gugle@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
+                              <button type="button" class="button-success">
                                 contract
                               </button>
                             </td>
@@ -179,10 +175,7 @@ function AdUserList() {
                             <td>010-0987-5678</td>
                             <td>twosome33@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-secondary"
-                              >
+                              <button type="button" class="button-secondary">
                                 expiration
                               </button>
                             </td>
@@ -198,10 +191,7 @@ function AdUserList() {
                             <td>010-9856-7890</td>
                             <td>star77@gmail.com</td>
                             <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
+                              <button type="button" class="button-success">
                                 contract
                               </button>
                             </td>
