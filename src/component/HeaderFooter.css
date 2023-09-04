@@ -432,7 +432,30 @@ border-bottom: 0.1px solid #e1edff;
     border: none;
     background-color: #fcfcfd;
 }
+.bell-link1{
+    display: flex;
+    height: 13%;
+    border-bottom: 0.1px solid #e1edff;
+    padding: 8px;
+    text-decoration: none;
+}
+.bell-content1 {
+    /* 모달 내부 컨텐츠 스타일링 */
+    position: absolute;
+    border-radius: 8px;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    height: 600px;
+    transform: translate(0,0);
+    top: 18%;
+    left: 39%;
 
+    /* margin-top: 80px;  *//* 상단 여백 추가 */
+    /* margin-right: 170px;  *//* 오른쪽 여백 추가 */
+    animation: fadeInUpTop .4s;
+    border: none;
+    background-color: #fcfcfd;
+}
   .tui-chart-chartExportMenu-button {
     z-index: -1; /* 또는 0에 가까운 값을 사용 */
 }
