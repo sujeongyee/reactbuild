@@ -50,6 +50,9 @@ import AdUserList from "./adminMain/AdUserList";
 import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";
 
+
+import EnInspectionList from "./enMain/EnInspectionList";
+
 import EnL_newProject from "./enMain/EnL_newProject";
 import EnL_newProjectDetail from "./enMain/EnL_newProjectDetail";
 import EnL_TeamassingmentModal from "./enMain/EnL_TeamassginmentModal";
@@ -79,7 +82,7 @@ function App() {
                 <Route path='/engineer/inQuryDetail' element={< EnInQuryDetail />} />
                 <Route path='/engineer/annoList' element={<EnAnnoList />} />
                 <Route path='/engineer/annoDetail' element={<EnAnnoDetail />} />
-
+                <Route path='/engineer/inspectionList' element={<EnInspectionList/>} />
 
                 <Route path='/engineer/test' element={<TestCalendar />} />
                 <Route path="/engineer/workDetail" element={<EnWorkDetail />} />
