@@ -50,6 +50,10 @@ import AdUserList from "./adminMain/AdUserList";
 import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";
 
+import EnInspectionList from "./enMain/EnInspectionList";
+
+
+
 function App() {
     return (
 
@@ -71,7 +75,7 @@ function App() {
                 <Route path='/engineer/inQuryDetail' element={< EnInQuryDetail />} />
                 <Route path='/engineer/annoList' element={<EnAnnoList />} />
                 <Route path='/engineer/annoDetail' element={<EnAnnoDetail />} />
-
+                <Route path='/engineer/inspectionList' element={<EnInspectionList/>} />
 
                 <Route path='/engineer/test' element={<TestCalendar />} />
                 <Route path="/engineer/workDetail" element={<EnWorkDetail />} />
