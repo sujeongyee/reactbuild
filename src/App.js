@@ -83,14 +83,11 @@ function App() {
             <Route element={<HeaderFooterAd />}>{/* 관리자 페이지; */}
 
                 <Route path='/admin' element={<MainAdmin />} />
-
                 <Route path='/admin/noticeWrite' element={<NoticeWrite />} />
                 <Route path='/admin/projectdetail' element={< ProjectDetail />} />
-
                 <Route path='/admin/inQurylist' element={< AdminInQurylist />} />
                 <Route path='/admin/inQuryDetail' element={< AdminInQuryDetail />} />
                 <Route path='/admin/annoList' element={<AdminAnnoList />} />
-
                 <Route path='/admin/annoDetail' element={<AdminAnnoDetail />} />
                 <Route path="/admin/userList" element={<AdUserList />} />
                 <Route path="/admin/projectList" element={<AdProjectList />} />
