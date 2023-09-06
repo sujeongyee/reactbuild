@@ -1,15 +1,13 @@
-
-
 /* 애니메이션 효과를 위한 클래스 정의 */
 .slide-in {
-  opacity: 0;
-  transform: translateX(-100%);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .slide-in.active {
-  opacity: 1;
-  transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
 }
 
 
@@ -30,7 +28,7 @@
 }
 
 .form sign-up {
-  padding: 200px;
+    padding: 200px;
 }
 
 .align-items-center {
@@ -73,14 +71,14 @@
 }
 
 .lj_input-group input {
-  width: 100%;
-  padding: 1.2rem 1rem;
-  font-size: 1.3rem;
-  background-color: var(--gray);
-  border-radius: 0.5rem;
-  border: 0.125rem solid var(--white);
-  outline: none;
-  font-size: 14px;
+    width: 100%;
+    padding: 1.2rem 1rem;
+    font-size: 1.3rem;
+    background-color: var(--gray);
+    border-radius: 0.5rem;
+    border: 0.125rem solid var(--white);
+    outline: none;
+    font-size: 14px;
 }
 
 .lj_input-group input:focus {
@@ -88,7 +86,7 @@
 }
 
 .button_check:focus {
-  background-color: rgb(245, 243, 243);
+    background-color: rgb(245, 243, 243);
 }
 
 .form button {
@@ -163,37 +161,44 @@
 
 
 
-#seachId{
+#seachId {
     position: absolute;
     transform: scale(0);
     width: 400px;
     height: 350px;
 }
-#seachPw{
+
+#seachPw {
     position: absolute;
     transform: scale(0);
     width: 400px;
     height: 350px;
 }
-.lj_input-group .row .serEmail{
+
+.lj_input-group .row .serEmail {
     width: 70%;
 }
-.lj_input-group .row{
+
+.lj_input-group .row {
     --bs-gutter-x: 0px;
 
 }
-.pwReset{
+
+.pwReset {
     margin-top: 20px;
 }
-.pwReset button{
+
+.pwReset button {
     margin-top: 20px;
     width: 251px;
     font-size: 16px;
 }
-.pwView{
+
+.pwView {
     display: none;
 }
-.lj_input-group .row .emailCheck{
+
+.lj_input-group .row .emailCheck {
     margin: 6px 0 1px 0;
     width: 30%;
     height: 30px;
@@ -201,9 +206,10 @@
     font-size: 13px;
     font-weight: 900;
 }
+
 .pointer:hover {
     cursor: pointer;
-    color:#7f72ea;
+    color: #7f72ea;
 }
 
 
@@ -302,13 +308,13 @@
 @media only screen and (max-width: 425px) {
 
     .joincontainer::before,
-     .sign-in::before,
+    .sign-in::before,
     .sign-up::before {
         height: 100vh;
         border-bottom-right-radius: 0;
         border-top-left-radius: 0;
         z-index: 0;
-        
+
         /* transform: none; */
         right: 0;
     }
@@ -326,9 +332,9 @@
     .content-row .col {
         transform: translateY(0);
         background-color: unset;
-    } */
+    }
 
-    .col {
+    */ .col {
         width: 100%;
         position: absolute;
         padding: 2rem;
@@ -337,7 +343,7 @@
         border-top-right-radius: 2rem;
         transform: translateY(100%);
         transition: 1s ease-in-out;
-    } 
+    }
 
     .logjoin {
         align-items: flex-end;
@@ -365,23 +371,47 @@
     }
 
     @font-face {
-            font-family: 'LINESeedKR-Bd';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-            font-weight: 700;
-            font-style: normal;
-         }
+        font-family: 'LINESeedKR-Bd';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+    }
 
-      #container {
-            font-family: 'LINESeedKR-Bd';
-            font-size: 15px;
-         }
+    #container {
+        font-family: 'LINESeedKR-Bd';
+        font-size: 15px;
+    }
 }
-    #container{
-        position: relative;
+
+#container {
+    position: relative;
     min-height: 100vh;
     overflow: hidden;
-    }
-      body {
-            font-family: 'LINESeedKR-Bd';
-            font-size: 15px;
-         }
+}
+
+body {
+    font-family: 'LINESeedKR-Bd';
+    font-size: 15px;
+}
+
+.go_back {
+    position: absolute;
+    z-index: 99999;
+    color: rgb(253, 253, 253);
+    font-size: 20px;
+    top: 15px;
+    left: 15px;
+}
+
+.post-modal{
+    position: absolute;
+    top: 30%;
+    left: 36%;
+    width: 500px;
+    border: 1px solid black;
+}
+
+.errCheck{
+    margin:1px 0 1px 0!important;
+    color: red;
+}
