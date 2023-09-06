@@ -273,6 +273,8 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    height: 23px;
+    line-height: 29px;
 }
 
 .sidebar-nav .has-arrow::after {

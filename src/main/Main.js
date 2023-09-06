@@ -36,8 +36,8 @@ function Main() {
                     </div>
                     <div className="login_singup">
                         <ul>
-                            <li><Link to="/user">회원가입</Link></li>
-                            <li><Link to="/login_join">로그인</Link></li>
+                            <li><Link to="/login_join?class=sing-up">회원가입</Link></li>
+                            <li><Link to="/login_join?class=sing-in">로그인</Link></li>
                         </ul>
                     </div>
                 </div>
