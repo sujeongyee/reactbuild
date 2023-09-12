@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 // import "../enMain/EnMain.css";
 import "../userMain/User.css";
+import axios from "axios";
 
 function UserMyPageModal() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [UserMyPage , setUserMyPage] = useState([]);
+  const [file, setFile] = useState(null); // State to store the selected file
+
 
   const customStyles = {
     content: {
@@ -22,9 +26,61 @@ function UserMyPageModal() {
     },
   };
 
+
+  useEffect(() => {
+    axios.get("/api/client/UserMyPage")
+      .then(response => setUserMyPage(response.data))
+      .catch(error => console.log(error));
+  }, []);
+
+  const fileUpload = (file) => {
+    const url = 'http://localhost:8888/api/client/imgupload';
+    const formData = new FormData();
+    formData.append('file', file);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    }
+    return axios.post(url, formData, config);
+  }
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    if (File) {
+      fileUpload(file).then((response) => {
+        console.log(response.data);
+      });
+    }
+  }
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile); // Update the file state
+  };
+
+/* export async function getMyPage() {
+  const response = await fetch(
+    "http://ec2-3-35-91-109.ap-northeast-2.compute.amazonaws.com:8888/api/client/UserMyPage",
+    {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        Authorization: token,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("마이페이지 정보를 불러오는데 실패했습니다");
+  }
+  const body = await response.json();
+  return body;
+} */
+
   return (
     <>
-      <button onClick={() => setModalIsOpen(true)}>쥬쥬소프트(주)</button>
+      <button onClick={() => setModalIsOpen(true)}>회원정보수정</button>
       <Modal
         /* className="modal-content"
         overlayClassName="modal-overlay" */
@@ -33,9 +89,30 @@ function UserMyPageModal() {
         style={customStyles}
       >
         <div className="detail_modal_container">
-          <h2>기업 상세정보</h2>
+          <h2>마이페이지</h2>
           <div className="detail_modal_container_inner">
             <table className="detail_modal_table" style={{margin: 'auto'}}>
+            <tr>
+                <th>
+                  <div className="me-3">
+                    <img
+                      src="../img/widget-table-pic1.jpg"
+                      alt="user"
+                      className="rounded-circle"
+                      width="150"
+                      height="150"
+                    />
+                  </div>
+                  <form onSubmit={handleUpload}>
+                    <h1>File Upload</h1>
+                    <input type="file" onChange={handleFileChange} name="file" />
+                    <button type="submit">Upload</button>
+                  </form>
+                </th>
+                <td>
+                  <input type="text" value="백스이" readOnly />
+                </td>
+              </tr>
               <tr>
                 <th>회사명</th>
                 <td>
@@ -85,7 +162,13 @@ function UserMyPageModal() {
                 </td>
               </tr>
               <tr>
-                <th>사이트 가입일</th>
+                <th>계약 시작일</th>
+                <td>
+                  <input type="text" value="2023.05.08" readOnly />
+                </td>
+              </tr>
+              <tr>
+                <th>계약 만료일</th>
                 <td>
                   <input type="text" value="2023.05.08" readOnly />
                 </td>

@@ -45,7 +45,6 @@ import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";
 import AnEngineerList from "./adminMain/AnEngineerList";
 
-
 import EnInspectionList from "./enMain/EnInspectionList";
 
 import EnL_newProject from "./enMain/EnL_newProject";
@@ -63,8 +62,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 
-
 function App() {
+
+
+    return (
+
 
 
     const location = useLocation();
@@ -114,6 +116,7 @@ function App() {
             <Route element={<PrivateRouteLogin checkPermission={checkPermission()} />}>
                 <Route path='/login_join' element={<Login_join />} />
             </Route>
+
 
 
             <Route element={<PrivateRouteEn checkPermission={checkPermission()} />} >
@@ -178,6 +181,7 @@ function App() {
                     <Route path="/user/projectDetail" element={<UserProjectDetailModal />} />
                     <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 />} />
                 </Route>
+
             </Route>
 
         </Routes>

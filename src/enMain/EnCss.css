@@ -34,22 +34,17 @@
   border-color: #ff9700;
 }
 
-
 .button-success {
   color: #fff;
   background-color: #00c870;
   border-color: #00c870;
 }
 
-
-
 .button-secondary {
   color: #fff;
   background-color: #6c757d;
   border-color: #6c757d;
 }
-
-
 
 .button-secondary,
 .button-danger,
@@ -163,6 +158,7 @@
 .button-writer:hover {
   background: #4662ec;
 }
+
 .circle-image {
     position: relative;
     width: 150px; /* 이미지 컨테이너의 원형 크기 설정 */
@@ -217,3 +213,32 @@
     font-size: 17px; /* 아이콘 크기 설정 */
     color: white; /* 아이콘 색상 설정 */
   }
+
+
+
+.tableWD .usage {
+  width: 20px;
+}
+
+
+.pastInspectionHistoryList th{
+  color: #038d38;
+  
+}
+
+.pastInspectionHistoryList th, .pastInspectionHistoryList td {
+  padding: 10px;
+  padding-right: 20px;
+  border: 1px solid #d3d7da;
+  text-align: center;
+}
+
+.pastInspectionHistoryList {
+  border: 1px solid #d3d7da;
+}
+
+.trans {
+  transition: all 0.5s ease;
+}
+
+
