@@ -163,3 +163,7 @@
 .button-writer:hover {
   background: #4662ec;
 }
+
+.trans {
+  transition: all 0.5s ease;
+}

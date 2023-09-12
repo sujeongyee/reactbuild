@@ -16,6 +16,7 @@ import SettingsIcon from "../img/SettingsIcon";
 import LogOutIcon from "../img/LogOutIcon";
 import Modal from 'react-modal';
 import ServerIcon from "../img/ServerIcon";
+import UserMyPageModal from "../userMain/UserMyPageModal";
 
 
 
@@ -207,7 +208,7 @@ function HeaderFooterUs() {
                                         </Link>
                                         <Link to="#" className="contentIcon">
                                             <div><SettingsIcon /></div>
-                                            <span>회원정보 수정</span>
+                                            <span> <UserMyPageModal /></span>
                                         </Link>
                                         <Link to="#" className="contentIcon">
                                             <div><LogOutIcon /></div>
