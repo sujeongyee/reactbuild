@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import "../enMain/EnMain.css";
 import "./User.css";
 
-function UserProjectDetailModal2() {
+function UserProjectDetailModal2({projectData}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const customStyles = {
@@ -20,7 +20,7 @@ function UserProjectDetailModal2() {
       borderRadius: "15px",
     },
   };
-
+                                                                                      
   return (
     <>
       <button onClick={() => setModalIsOpen(true)}>정기점검</button>
@@ -34,60 +34,79 @@ function UserProjectDetailModal2() {
         <div className="detail_modal_container">
           <h2>작업 상세보기</h2>
           <div className="detail_modal_container_inner">
-            <table className="detail_modal_table">
+          <table className="detail_modal_table">
               <tr>
                 <th>프로젝트명</th>
                 <td>
-                  <input type="text" />
+                  {projectData.pro_name}
                 </td>
               </tr>
               <tr>
                 <th>담당 엔지니어 팀</th>
                 <td>
-                  <input type="text" />
+                {projectData.team_id}
                 </td>
               </tr>
               <tr>
                 <th>담당 엔지니어 이름</th>
                 <td>
-                  <input type="text" />
+                  {projectData.eng_name}
                 </td>
               </tr>
               <tr>
                 <th>담당 엔지니어 연락처</th>
                 <td>
-                  <input type="text" />
-                </td>
-              </tr>
-              <tr>
-                <th>작업분류</th>
-                <td>
-                  <input type="text" />
+                 {projectData.eng_phone}
                 </td>
               </tr>
               <tr>
                 <th>작업일자</th>
                 <td>
-                  <input type="text" />
+                  {projectData.work_date}
                 </td>
               </tr>
               <tr>
-                <th>소요시간</th>
+                <th>작업분류</th>
                 <td>
-                  <input type="text" />
+                  {projectData.work_division}
                 </td>
               </tr>
-            </table>
-            <table className="detail_modal_table_content">
               <tr>
-                <th>작업내용</th>
+                <th>작업시간</th>
                 <td>
-                  <textarea
-                    name="modal_textarea"
-                    id="modal_textarea"
-                    cols="60"
-                    rows="10"
-                  ></textarea>
+                  {projectData.work_time}
+                </td>
+              </tr>
+              <tr>
+                <th>CPU 사용량</th>
+                <td>
+                  {projectData.work_cpu}
+                </td>
+              </tr>
+              <tr>
+                <th>RAM 사용량</th>
+                <td>
+                  {projectData.work_ram}
+                </td>
+              </tr>
+              <tr>
+                <th>HDD 사용량</th>
+                <td>
+                  {projectData.work_hdd}
+                </td>
+              </tr>
+              <tr>
+                <th>상태</th>
+                <td>
+                  {projectData.work_status}
+                </td>
+              </tr>
+         
+   
+              <tr>
+               <th>작업내용</th>
+                <td>
+                {projectData.work_note}
                 </td>
               </tr>
             </table>
