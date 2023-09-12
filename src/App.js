@@ -45,7 +45,6 @@ import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";
 import AnEngineerList from "./adminMain/AnEngineerList";
 
-
 import EnInspectionList from "./enMain/EnInspectionList";
 
 import EnL_newProject from "./enMain/EnL_newProject";
@@ -55,9 +54,8 @@ import EnL_TeamassingmentModal from "./enMain/EnL_TeamassginmentModal";
 import UserProList from "./userMain/UserProList";
 import UserDetailPro from "./userMain/UserDetailPro";
 
-
 function App() {
-  
+
     return (
 
         <Routes>
