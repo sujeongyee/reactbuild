@@ -279,7 +279,6 @@ h6 {
   width: 100%;
 }
 
-
 .form-control[type="file"]:not(:disabled):not([readonly]) {
   cursor: pointer;
 }
@@ -360,8 +359,8 @@ label {
 .rowCheck {
   padding-top: 37px;
   padding-left: 128px;
-}f
-.custom-control label a {
+}
+f .custom-control label a {
   color: red;
 }
 
@@ -373,8 +372,7 @@ label {
   margin-left: -15px;
   border: 2px solid #fff;
 }
-F
-.btn-info1 {
+F .btn-info1 {
   font-size: 15px;
   color: white;
   opacity: 0.7;
@@ -399,17 +397,12 @@ a {
   width: 60%;
 }
 
-
 .row b {
   text-align: right;
   width: 40%;
 }
 
-
-
-
-
-.infoUser-answer{
+.infoUser-answer {
   font-size: 13px;
   margin-top: 10px;
   padding: 0;
@@ -422,3 +415,11 @@ a {
   padding-left: 950px;
 }
 
+.file_box {
+  border: 2px solid rgb(13, 110, 253, 25%);
+  width: 500px;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 40px;
+  text-align: center;
+}

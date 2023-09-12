@@ -34,22 +34,17 @@
   border-color: #ff9700;
 }
 
-
 .button-success {
   color: #fff;
   background-color: #00c870;
   border-color: #00c870;
 }
 
-
-
 .button-secondary {
   color: #fff;
   background-color: #6c757d;
   border-color: #6c757d;
 }
-
-
 
 .button-secondary,
 .button-danger,
@@ -162,4 +157,8 @@
 
 .button-writer:hover {
   background: #4662ec;
+}
+
+.tableWD .usage {
+  width: 20px;
 }
