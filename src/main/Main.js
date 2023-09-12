@@ -1,30 +1,78 @@
-import { Link, Outlet } from "react-router-dom"
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom"
 import './Main.css';
 import './Body.css';
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Logout from "./Logout";
 function Main() {
-    const Ref2=useRef(null);
-    const Ref3=useRef(null);
-    const Ref4=useRef(null);
-   
-    const handleClick1=()=>{
-       Ref2.current?.scrollIntoView({ behavior: 'smooth' });
+    const token = localStorage.getItem('token');
+
+
+
+    const TestFunction = async () => {
+        if (token == null) {
+            return;
+        }
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        try {
+            
+            // 여기에서 response를 사용할 수 있음
+        } catch (error) {
+            // 오류 처리
+        }
     }
-    const handleClick2=()=>{
+
+    const location=useLocation();
+    const showAlert=location.state?.showAlert;
+    const alertMessage=location.state?.alertMessage;
+    if (showAlert) {
+                // showAlert가 true일 때 alert를 띄우고, 다음에 해당 alert가 다시 뜨지 않도록 showAlert 상태를 false로 설정합니다.
+                window.alert(alertMessage);
+            }
+    // const [showAlert, setShowAlert] = useState(false);
+    // useEffect(() => {
+    //     // showAlert 상태가 true로 변경될 때 실행되는 효과를 추가합니다.
+    //     console.log(location.state?.showAlert)
+    //     setShowAlert(location.state?.showAlert)
+    //     if (showAlert) {
+    //         // showAlert가 true일 때 alert를 띄우고, 다음에 해당 alert가 다시 뜨지 않도록 showAlert 상태를 false로 설정합니다.
+    //         alert('잘못된 접근입니다.');
+
+    //         // showAlert 상태를 false로 업데이트하여 다음에 alert가 표시되지 않도록 합니다.
+    //         setShowAlert(false);
+    //     }
+    // }, []);
+    
+
+    useEffect(() =>{
+        TestFunction()
+    }, [])
+
+    const Ref2 = useRef(null);
+    const Ref3 = useRef(null);
+    const Ref4 = useRef(null);
+
+    const handleClick1 = () => {
+        Ref2.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+    const handleClick2 = () => {
         Ref3.current?.scrollIntoView({ behavior: 'smooth' });
-     }
-     const handleClick3=()=>{
+    }
+    const handleClick3 = () => {
         Ref4.current?.scrollIntoView({ behavior: 'smooth' });
-     }
-     const handleClick4=()=>{
+    }
+    const handleClick4 = () => {
         // Ref5.current?.scrollIntoView({ behavior: 'smooth' });
-     }
+    }
     return (
         <>
             <header>
                 <div id="header">
 
-                    <div className="mainLogo"><a href="#"><img className="mainLogo1" src="./img/logo1.png"/></a></div>
+                    <div className="mainLogo"><a href="#"><img className="mainLogo1" src="./img/logo1.png" /></a></div>
                     <div className="HeaderCategoriBox">
                         <div className="HeaderCategori">
 
@@ -36,8 +84,13 @@ function Main() {
                     </div>
                     <div className="login_singup">
                         <ul>
-                            <li><Link to="/login_join?class=sing-up">회원가입</Link></li>
-                            <li><Link to="/login_join?class=sing-in">로그인</Link></li>
+                            {token==null?
+                              <li><Link to="/login_join?class=sing-up">회원가입</Link></li>
+                            :<Logout/>}
+                           {token==null?
+                              <li><Link to="/login_join?class=sing-in">로그인</Link></li>
+                            :null}
+                           
                         </ul>
                     </div>
                 </div>
@@ -47,13 +100,13 @@ function Main() {
 
 
             <Outlet />
-        
+
 
             <footer>
                 <section className="FloatingInquirystyle__FloatingInquiry-sc-5whm20-0 ylzFj gtm-inquiry">
                     <button type="button">
 
-                        <img src="../img/channeltalk_character.png" alt="바로문의"/>
+                        <img src="../img/channeltalk_character.png" alt="바로문의" />
                     </button>
                 </section>
                 <div id="footer">
@@ -61,7 +114,7 @@ function Main() {
                     <div className="footerMid">
                         <ul className="midTop">
                             <li><a href="#">이용약관</a></li>
-                            <li><a className="policy"href="#"/*  style="color: red;" */>운영정책</a></li>
+                            <li><a className="policy" href="#"/*  style="color: red;" */>운영정책</a></li>
                             <li><a href="#">개인정보 처리 방침</a></li>
                         </ul>
                         <p className="midBot">주소</p>

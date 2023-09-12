@@ -22,6 +22,7 @@
     "@types/react-router-dom": "^5.3.3",
     "apexcharts": "^3.42.0",
     "axios": "^1.5.0",
+    "base-64": "^1.0.0",
     "bootstrap": "^5.3.1",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
@@ -35,6 +36,10 @@
     "install": "^0.13.0",
     "jquery": "^3.7.0",
     "js-cookie": "^3.0.5",
+
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^3.1.2",
+
 
     "jspdf": "^2.5.1",
 
