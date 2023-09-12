@@ -236,16 +236,36 @@ html body .font-weight-medium {
   margin-bottom: 40px;
 }
 
-.detail_modal_table th {
-  text-align: center;
-}
+
 .detail_modal_table_content th {
   padding-right: 35px;
   text-align: left;
   table-layout: fixed;
   width: 196px;
   height: 35px;
-  color: #7c8798;
+  color: #0e0f11;
+  padding-left: 60px;
+}
+
+.detail_modal_table th {
+  padding-right: 35px;
+  text-align: left;
+  table-layout: fixed;
+  width: 196px;
+  height: 35px;
+  color: #3b3f44;
+  padding-left: 60px;
+}
+
+.detail_modal_table tr th td {
+  padding-right: 35px;
+  text-align: left;
+  table-layout: fixed;
+  width: 196px;
+  height: 35px;
+  color: #60676e;
+  font-weight: 300;
+  font-size: 10px;
   padding-left: 60px;
 }
 
@@ -622,3 +642,7 @@ html body .font-weight-medium {
   color: #353535;
 } 
 
+
+td .hide {
+  display: none;
+}

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Timeline.css";
 import { Link } from "react-router-dom";
 import UserProjectDetailModal2 from "./UserProjectDetailModal2";
+import axios from "axios";
 
-function ProjectDetailChart() {
+function ProjectDetailChart({ serverId,projectData}) {
   // VARIABLES
   const elH = document.querySelectorAll(".timeline li > div");
 
@@ -29,75 +30,36 @@ function ProjectDetailChart() {
       el[i].style.height = `${counter}px`;
     }
   }
+  const [ProjectDetailList, setProjectDetailList] = useState([]);
+  const serverData = ProjectDetailList.filter((item) => item.server_id === serverId);
+  useEffect(() => {
+    const getProjectDetailList = async () => {
+      try {
+        const response = await axios.get("/api/client/projectDetailChart");
+        setProjectDetailList(response.data);
+        console.log(response.data)
+      } catch (error) {
+        console.log("Error", error);
+      }
+    };
+    getProjectDetailList(); // Call the function to fetch data
+  }, []);
+  
+
 
   return (
     <>
       <section className="timeline">
         <ol>
-          <li>
-            <div>
-              <time>2023-01-05</time>
-
-              <UserProjectDetailModal2 />
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-02-05</time> 정기점검
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-03-05</time> 정기점검
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-04-05</time> 장애발생 긴급점검
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-04-15</time> 장애발생 긴급점검
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-05-05</time> 정기점검
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-06-05</time> 정기점검
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-07-05</time> 장애발생 긴급점검
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-08-05</time> 정기점검
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-08-07</time> 트래픽초과
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-08-10</time> 추가점검
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023-09-05</time> 계약종료
-            </div>
-          </li>
-          <li></li>
-          <li></li>
+        {ProjectDetailList.map((item, index) => (
+            <li key={index}>
+              <div>
+                <time>{item.work_date}</time>
+                  {/* Render other details as needed */}
+                  <UserProjectDetailModal2 projectData={item}/>
+                </div>
+              </li>
+        ))}
         </ol>
       </section>
     </>

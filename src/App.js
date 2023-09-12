@@ -57,6 +57,7 @@ import UserDetailPro from "./userMain/UserDetailPro";
 
 
 function App() {
+  
     return (
 
         <Routes>
@@ -116,9 +117,9 @@ function App() {
                 <Route path='/user/inQurylist' element={< UserInQurylist />} />
                 <Route path='/user/inQurywrite' element={< UserInQuryWrite />} />
                 <Route path='/user/inQuryDetail' element={< UserInQuryDetail />} />
-                <Route path='/user/annoList' element={< UserAnnoList />} />
-                <Route path='/user/annoDetail' element={<UserAnnoDetail />} />
-                <Route path='/user/prodetail' element={<UserDetailPro/>}/>
+                <Route path="/user/annoList" element={< UserAnnoList />} />
+                <Route path="/user/annoDetail" element={<UserAnnoDetail />} />
+                <Route path="/user/prodetail" element={<UserDetailPro/>}/>
                 <Route path="/user/projectDetailList" element={<UserProjectDetailList />} />
                 <Route path="/user/projectDetail" element={<UserProjectDetailModal />} />
                 <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 />} />

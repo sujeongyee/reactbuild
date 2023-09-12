@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import '../enMain/EnMain.css'
 import './User.css'
+import Search from './Search'
 
 function UserList() {
 
@@ -27,11 +28,7 @@ function UserList() {
                             <div className="card">
 
                                 <div className="card-body">
-                                <label style={{ display: 'flex;' }}>
-                                            <span style={{ transform: 'translateY(5px)', paddingRight: '10px', width: '40px' }}>Search:</span>
-                                            <input type="search" className="form-control form-control-sm" placeholder aria-controls="zero_config" style={{ width: '200px' }} />
-                                            <input type="button" value={'검색하기'} className="inqurylist-search" />
-                                        </label>
+                                  <Search/>
                                     <div className="table-responsive">
                                         <table className="table">
                                             <thead>

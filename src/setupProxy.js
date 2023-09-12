@@ -1,6 +1,7 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
+
   app.use(
     '/main', // 이 경로로 들어오는 요청을 프록시할 것입니다.
     createProxyMiddleware({
@@ -19,3 +20,4 @@ module.exports = function(app) {
 
 
 };
+
