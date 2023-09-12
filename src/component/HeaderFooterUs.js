@@ -16,9 +16,11 @@ import SettingsIcon from "../img/SettingsIcon";
 import LogOutIcon from "../img/LogOutIcon";
 import Modal from 'react-modal';
 import ServerIcon from "../img/ServerIcon";
-import EnEngineerMyPageModal from "../enMain/EnEngineerMyPageModal"
+
+
 import axios from "axios";
 import MyPage from "./MyPage";
+
 
 
 function HeaderFooterUs({checkPermission}) {
@@ -236,11 +238,9 @@ function HeaderFooterUs({checkPermission}) {
                                            
                                            <MyPage setModalIsOpen={setModalIsOpen} state={info} poto={poto}/>
                                         </Link>
-                                        {/* <Link to="#" className="contentIcon">
-                                            <div><SettingsIcon /></div>
-                                            <span>회원정보 수정</span>
-                                        </Link> */}
+
                                         <Link to="#"onClick={logout} className="contentIcon">
+
                                             <div><LogOutIcon /></div>
                                             <span>로그아웃</span>
                                         </Link>

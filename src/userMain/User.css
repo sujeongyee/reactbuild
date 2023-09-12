@@ -236,16 +236,36 @@ html body .font-weight-medium {
   margin-bottom: 40px;
 }
 
-.detail_modal_table th {
-  text-align: center;
-}
+
 .detail_modal_table_content th {
   padding-right: 35px;
   text-align: left;
   table-layout: fixed;
   width: 196px;
   height: 35px;
-  color: #7c8798;
+  color: #0e0f11;
+  padding-left: 60px;
+}
+
+.detail_modal_table th {
+  padding-right: 35px;
+  text-align: left;
+  table-layout: fixed;
+  width: 196px;
+  height: 35px;
+  color: #3b3f44;
+  padding-left: 60px;
+}
+
+.detail_modal_table tr th td {
+  padding-right: 35px;
+  text-align: left;
+  table-layout: fixed;
+  width: 196px;
+  height: 35px;
+  color: #60676e;
+  font-weight: 300;
+  font-size: 10px;
   padding-left: 60px;
 }
 
@@ -258,7 +278,7 @@ html body .font-weight-medium {
   color: white;
   font-weight: 900;
   border: none;
-  font-size: 1rem;
+  font-size: 1.5rem;
   outline: none;
 }
 
@@ -469,24 +489,21 @@ html body .font-weight-medium {
   color: #5f76e8;
 }
 
-
-
 /* *********************************************** */
 .new_b {
   background: rgb(21, 180, 87);
   margin-left: 10px;
   color: white;
-  padding:1px 3px ;
+  padding: 1px 3px;
   font-size: 8px;
   border-radius: 10px;
 }
 
 .pro-info {
   padding: 30px;
-  
 }
 
-.pro-info span{
+.pro-info span {
   margin-left: 50px;
   color: #586188;
   font-size: 17px;
@@ -529,7 +546,6 @@ html body .font-weight-medium {
   color: #5c5c5c;
   margin-right: 150px;
 }
-
 
 .server-info-list {
   display: inline-block;
@@ -596,9 +612,9 @@ html body .font-weight-medium {
 }
 
 #regist-form .form-control:focus {
-  outline: none !important; 
-  border-color: none; 
-  box-shadow: none; 
+  outline: none !important;
+  border-color: none;
+  box-shadow: none;
   border: 1px solid #baceda;
 }
 
@@ -620,6 +636,7 @@ html body .font-weight-medium {
   text-decoration: none;
   font-size: 16px;
   color: #353535;
+
 } 
 .page-item .active{
     background-color: #495bb4;
@@ -644,6 +661,7 @@ html body .font-weight-medium {
     right: 29%;
     z-index: 10000;
 }
+
 
 .myPageModalOverlay{
     position: fixed;
@@ -671,3 +689,10 @@ html body .font-weight-medium {
     text-align: left;
     color:#7a8ff7;
 }
+
+
+td .hide {
+  display: none;
+
+}
+

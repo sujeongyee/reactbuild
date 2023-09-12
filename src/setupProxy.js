@@ -2,7 +2,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
 
-  
+
   app.use(
     '/api', // 이 경로로 들어오는 요청을 프록시할 것입니다.
     createProxyMiddleware({
@@ -13,12 +13,6 @@ module.exports = function(app) {
 
 
 
-  
-  process.on('SIGINT', () => {
-    // 로컬 스토리지에서 토큰을 삭제
-    localStorage.removeItem('token');
-  
-    // 서버 종료
-    process.exit();
-  });
+
 };
+

@@ -4,8 +4,24 @@ import "../userMain/User.css";
 import "../enMain/EnCss.css";
 
 import FormControlIcon from "../img/FormControlIcon";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 function EnL_newProject() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/api/engineer/newList")
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   return (
     <>
       <div className="page-wrapper">
@@ -16,36 +32,32 @@ function EnL_newProject() {
                 엔지니어 팀장(프로젝트 리스트)
               </h3>
             </div>
-            <div className="col-5 align-self-center">
-              
-            </div>
+            <div className="col-5 align-self-center"></div>
           </div>
         </div>
         <div className="container-fluid">
           <div className="row">
             <div className="col-12">
               <div className="card1">
-              <div className="customize-input float-end search-btn">
-                <Link className="nav-link" href="javascript:void(0)">
-                  <form className="search-engineer">
-                    <div className="customize-input right">
-                      <input
-                        className="form-control custom-shadow custom-radius border-0 bg-white"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                      />
-                    </div>
-                    <div className="customize-input left">
-                      <FormControlIcon />
-                    </div>
-                    <div></div>
-                  </form>
-                </Link>
+                <div className="customize-input float-end search-btn">
+                  <Link className="nav-link" href="javascript:void(0)">
+                    <form className="search-engineer">
+                      <div className="customize-input right">
+                        <input
+                          className="form-control custom-shadow custom-radius border-0 bg-white"
+                          type="search"
+                          placeholder="Search"
+                          aria-label="Search"
+                        />
+                      </div>
+                      <div className="customize-input left">
+                        <FormControlIcon />
+                      </div>
+                      <div></div>
+                    </form>
+                  </Link>
                 </div>
                 <div className="card-body1">
-           
-              
                   <div className="table-responsive">
                     <div className="project-table">
                       <table className="table">
@@ -60,168 +72,47 @@ function EnL_newProject() {
                             <th scope="col">계약 상태</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td><Link to="/engineer/newProjectDetail" style={{padding:'0'}}>서울대 서버관리</Link><span className="new_b">new</span></td>
-                            <td>서울대</td>
-                            <td>장지인</td>
-                            <td>010-3024-0343</td>
-                            <td>2023-09-04</td>
-                            <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
-                                계약중
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>중앙학원 신촌 서버관리</td>
 
-                            <td>중앙학원(주)</td>
-                            <td>백승용</td>
-                            <td>010-3024-0343</td>
-                            <td>2023-09-03</td>
-                            <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-secondary"
-                              >
-                                계약신청
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>중앙 서울 서버관리</td>
-                            <td>중앙 서울(주)</td>
-                            <td>장지인</td>
-                            <td>010-3024-0343</td>
-                            <td>2023-09-01</td>
-                            <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
-                                계약중
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">4</th>
-                            <td>롯데월드 서버관리</td>
-                            <td>롯데월드(주)</td>
-                            <td>백승용</td>
-                            <td>010-3024-0343</td>
-                            <td>baeksy97@gmail.com</td>
-                            <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-secondary"
-                              >
-                                계약신청
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">5</th>
-                            <td>서울대 지방캠퍼스 서버관리</td>
-                            <td>서울대 지방캠퍼스(주)</td>
-                            <td>장지인</td>
-                            <td>010-3024-0343</td>
-                            <td>baeksy97@gmail.com</td>
-                            <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
-                                계약중
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">6</th>
-                            <td>클라우드OJ 서버관리</td>
-                            <td>클라우드 OJ(주)</td>
-                            <td>백승용</td>
-                            <td>010-3024-0343</td>
-                            <td>baeksy97@gmail.com</td>
-                            <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-secondary"
-                              >
-                                계약신청
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">7</th>
-                            <td>아마존 서버관리</td>
-                            <td>아마존(주)</td>
-                            <td>장지인</td>
-                            <td>010-3024-0343</td>
-                            <td>baeksy97@gmail.com</td>
-                            <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
-                                계약중
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">8</th>
-                            <td>파이썬 서버관리</td>
-                            <td>플라스크(주)</td>
-                            <td>백승용</td>
-                            <td>010-3024-0343</td>
-                            <td>baeksy97@gmail.com</td>
-                            <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-secondary"
-                              >
-                                계약신청
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">9</th>
-                            <td>홈고잉 홈</td>
-                            <td>우리집(주)</td>
-                            <td>장지인</td>
-                            <td>010-3024-0343</td>
-                            <td>baeksy97@gmail.com</td>
-                            <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-success"
-                              >
-                                계약중
-                              </button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">10</th>
-                            <td>데이터서버관리</td>
-                            <td>오릴리(주)</td>
-                            <td>백승용</td>
-                            <td>010-3024-0343</td>
-                            <td>baeksy97@gmail.com</td>
-                            <td>
-                              <button
-                                type="button"
-                                class="btn waves-effect waves-light btn-secondary"
-                              >
-                                계약신청
-                              </button>
-                            </td>
-                          </tr>
+                        <tbody>
+                          {data.map((project, index) => (
+                            <tr key={project.pro_id}>
+                              <td>{index + 1}</td>
+                              <td>
+                                <Link
+                                  to={`/engineer/newProjectDetail`}
+                                  state={{ project }}
+
+                                  // state={{
+                                  //   cus_company_name: project.cus_company_name,
+                                  //   cus_boss: project.cus_boss,
+                                  //   cus_company_ph: project.cus_company_ph,
+                                  //   cus_business_id: project.cus_business_id,
+                                  //   cus_address1: project.cus_address1,
+                                  //   cus_address2: project.cus_address2,
+                                  //   pro_startDate: project.pro_startDate,
+                                  //   pro_endDate: project.pro_endDate,
+                                  //   pro_rep: project.pro_rep,
+                                  //   cus_phone_number: project.cus_phone_number,
+                                  //   cus_email: project.cus_email,
+                                  //}}
+                                >
+                                  {project.pro_name}
+                                </Link>{" "}
+                                {project.new ? (
+                                  <span className="new_b">new</span>
+                                ) : null}
+                              </td>
+                              <td>{project.cus_company_name}</td>
+                              <td>{project.cus_managet_name}</td>
+                              <td>{project.cus_phone_number}</td>
+                              <td>{project.pro_startDate}</td>
+                              <td>
+                                <button className="btn btn-success">
+                                  {project.pro_status}
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>
