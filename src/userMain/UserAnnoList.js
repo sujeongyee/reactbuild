@@ -93,7 +93,7 @@ function UserList() {
                                             </li>
                                             <li className="page-item">
                                                 <Link className="page-link" href="#">
-                                                    2 <span className="sr-only">(current)</span>
+                                                    2
                                                 </Link>
                                             </li>
                                             <li className="page-item">

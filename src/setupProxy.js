@@ -1,8 +1,10 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
+
+  
   app.use(
-    '/', // 이 경로로 들어오는 요청을 프록시할 것입니다.
+    '/api', // 이 경로로 들어오는 요청을 프록시할 것입니다.
     createProxyMiddleware({
       target: 'http://localhost:8888', // 프록시할 대상 서버 주소를 여기에 지정합니다.
       changeOrigin: true
@@ -10,4 +12,13 @@ module.exports = function(app) {
   );
 
 
+
+  
+  process.on('SIGINT', () => {
+    // 로컬 스토리지에서 토큰을 삭제
+    localStorage.removeItem('token');
+  
+    // 서버 종료
+    process.exit();
+  });
 };

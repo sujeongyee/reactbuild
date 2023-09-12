@@ -621,4 +621,53 @@ html body .font-weight-medium {
   font-size: 16px;
   color: #353535;
 } 
+.page-item .active{
+    background-color: #495bb4;
+}
+.page-item .active:hover{
+    background-color: #495bb4;
+}
 
+
+.myPageModal{
+
+    width: 600px;
+    height: 650px;
+    font-family: "LINESeedKR-Bd";
+    font-size: 15px;
+    position: relative;
+    background-color: #f9f9fd;
+    border-radius: 20px;
+    /* margin: 0 auto; */
+    text-align: center;
+    top: 15%;
+    right: 29%;
+    z-index: 10000;
+}
+
+.myPageModalOverlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-start; 
+    z-index: 9999;
+   
+}
+
+.detail_modal_container1{
+    width: 100%;
+}
+
+.detail_modal_container1 .detail_modal_table{
+    margin-left: 130px;
+}
+.detail_modal_container1 .detail_modal_table th{
+    text-align: left;
+    color:#7a8ff7;
+}

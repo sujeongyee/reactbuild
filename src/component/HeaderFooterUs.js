@@ -1,5 +1,5 @@
-import { Fragment, useState } from "react"
-import { Link, NavLink, Outlet } from "react-router-dom"
+import { Fragment, useEffect, useState } from "react"
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
 import $ from 'jquery';
 import './HeaderFooter.css'
 import BellIcon from "../img/BellIcon";
@@ -16,10 +16,13 @@ import SettingsIcon from "../img/SettingsIcon";
 import LogOutIcon from "../img/LogOutIcon";
 import Modal from 'react-modal';
 import ServerIcon from "../img/ServerIcon";
+import EnEngineerMyPageModal from "../enMain/EnEngineerMyPageModal"
+import axios from "axios";
+import MyPage from "./MyPage";
 
 
-
-function HeaderFooterUs() {
+function HeaderFooterUs({checkPermission}) {
+   
     const [bellModal, setbellModalIsOpen] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalIsOpenAll, setModalIsOpenAll] = useState(false);
@@ -29,6 +32,8 @@ function HeaderFooterUs() {
         setModalIsOpenAll(true)
 
     }
+    const [poto,setPoto]=useState('')
+  
     const ms = {
         textDecoration: 'none',
         borderRadius: ' 0 60px 60px 0',
@@ -43,6 +48,31 @@ function HeaderFooterUs() {
         $(e.currentTarget).toggleClass("active")
         $(e.currentTarget).next().toggleClass("in")
     }
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        alert("로그아웃 되었습니다😎");
+        navigate("/");
+        window.location.reload();
+      };
+
+      const [info,setInfo]=useState({})
+      const cus_id=checkPermission.sub
+      const getInfo=async()=>{
+
+      const response1=  await  axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
+      setInfo(response1.data)
+         const response=await axios.get(`/api/main/getPoto?cus_id=${cus_id}`)
+        
+       setPoto(response.data)
+      }
+
+
+      useEffect(()=>{
+        getInfo()
+    },[])
+    
     return (
 
 
@@ -52,7 +82,7 @@ function HeaderFooterUs() {
                     <nav className="navbar top-navbar navbar-expand-lg navbar-light">
                         <div className="navbar-header">
                             <div className="navbar-brand">
-                                <a href="index.html"> (주)승용 </a>
+                                <a href="index.html"> {info.cus_company_name} </a>
                             </div>
 
 
@@ -192,30 +222,31 @@ function HeaderFooterUs() {
 
 
                                     <button className="nav-link dropdown-toggle" onClick={() => setModalIsOpen(true)} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="../img/baek.jpg" alt="user" className="rounded-circle" width="50" height="50" />
+                                        <img src={poto.file_path}alt="user" className="rounded-circle" width="50" height="50" />
 
                                         <span className="ms-2 d-none d-lg-inline-block">
                                             <span></span>
-                                            <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>(주)승용</span>
+                                            <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>{info.cus_managet_name}</span>
                                             <Down />
                                         </span>
                                     </button>
                                     <Modal className="modal-content" overlayClassName="modal-overlay" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                                         <Link to="#" className="contentIcon">
-                                            <div><ProfileIcon /></div>
-                                            <span>프로필 보기</span>
+                                            <div><ProfileIcon/></div>
+                                           
+                                           <MyPage setModalIsOpen={setModalIsOpen} state={info} poto={poto}/>
                                         </Link>
-                                        <Link to="#" className="contentIcon">
+                                        {/* <Link to="#" className="contentIcon">
                                             <div><SettingsIcon /></div>
                                             <span>회원정보 수정</span>
-                                        </Link>
-                                        <Link to="#" className="contentIcon">
+                                        </Link> */}
+                                        <Link to="#"onClick={logout} className="contentIcon">
                                             <div><LogOutIcon /></div>
                                             <span>로그아웃</span>
                                         </Link>
 
                                     </Modal>
-
+                                   
                                 </li>
                             </ul>
 
@@ -333,7 +364,7 @@ function HeaderFooterUs() {
 
                 </aside>
 
-                <Outlet />
+                <Outlet state={info} />
 
             </div>
         </Fragment>

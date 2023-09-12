@@ -415,3 +415,10 @@ body {
     margin:1px 0 1px 0!important;
     color: red;
 }
+
+.logOut-btn2:hover{
+    color: #7f72ea;
+}
+.logOut-btn1:hover{
+    color: red;
+}

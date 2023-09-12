@@ -2,7 +2,9 @@ import ChartComponent1 from "./ChartComponent1";
 //import "normalize.css";
 import "./client-main-pro.css";
 
-function MainUser() {
+function MainUser(state) {
+    
+    console.log(state)
   return (
     <>
       <div class="page-wrapper">
