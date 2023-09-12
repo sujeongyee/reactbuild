@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import "../enMain/EnMain.css";
 import "../userMain/User.css";
 
-function EnEngineerMyPage() {
+function EnEngineerMyPage(props) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const customStyles = {
@@ -24,7 +24,7 @@ function EnEngineerMyPage() {
 
   return (
     <>
-      <button onClick={() => setModalIsOpen(true)}>김아무개</button>
+      <button onClick={() => setModalIsOpen(true)}>{props.engName}</button>
       <Modal
         /* className="modal-content"
         overlayClassName="modal-overlay" */
@@ -49,60 +49,37 @@ function EnEngineerMyPage() {
                   </div>
                 </th>
                 <td>
-                  <input type="text" value="백스이" readOnly />
+                  <input type="text" value={props.engName} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>직급</th>
                 <td>
-                  <input type="text" value="사원" readOnly />
+                  <input type="text" value={props.engRank} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>소속 부서</th>
                 <td>
-                  <input type="text" value="기술지원 1팀" readOnly />
-                </td>
-              </tr>
-              <tr>
-                <th>입사일</th>
-                <td>
-                  <input type="text" value="2020-03-03" readOnly />
-                </td>
-              </tr>
-              <tr>
-                <th>내선번호</th>
-                <td>
-                  <input type="text" value="02-2034-3043" readOnly />
-                </td>
-              </tr>
-              <tr>
-                <th>휴대전화번호</th>
-                <td>
-                  <input type="text" value="010-3492-4034" readOnly />
+                  <input type="text" value={props.team_Id} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>이메일</th>
                 <td>
-                  <input type="text" value="co404@naver.com" readOnly />
+                  <input type="text" value={props.engEmail} readOnly />
                 </td>
               </tr>
-            </table>
-            <table className="detail_modal_table_content">
+              
               <tr>
-                <th>작업내용</th>
+                <th>휴대전화번호</th>
                 <td>
-                  <textarea
-                    name="modal_textarea"
-                    id="modal_textarea"
-                    cols="60"
-                    rows="10"
-                    readOnly
-                  ></textarea>
+                  <input type="text" value={props.engPhone} readOnly />
                 </td>
               </tr>
+
             </table>
+            
             <div className="detail_modal_button">
               <input
                 type="button"
@@ -111,7 +88,7 @@ function EnEngineerMyPage() {
               />
               <input
                 type="button"
-                value="목록"
+                value="목록보기"
                 className="detail_modal_button_close"
                 onClick={() => setModalIsOpen(false)}
               />

@@ -159,6 +159,30 @@
   background: #4662ec;
 }
 
+
 .tableWD .usage {
   width: 20px;
 }
+
+
+.pastInspectionHistoryList th{
+  color: #038d38;
+  
+}
+
+.pastInspectionHistoryList th, .pastInspectionHistoryList td {
+  padding: 10px;
+  padding-right: 20px;
+  border: 1px solid #d3d7da;
+  text-align: center;
+}
+
+.pastInspectionHistoryList {
+  border: 1px solid #d3d7da;
+}
+
+.trans {
+  transition: all 0.5s ease;
+}
+
+
