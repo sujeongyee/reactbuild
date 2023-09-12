@@ -22,7 +22,6 @@ import axios from "axios";
 import MyPage from "./MyPage";
 
 
-
 function HeaderFooterUs({checkPermission}) {
    
     const [bellModal, setbellModalIsOpen] = useState(false);

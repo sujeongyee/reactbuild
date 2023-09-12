@@ -72,82 +72,81 @@ function App() {
     const location = useLocation();
 
     const token = localStorage.getItem('token');
-    const [info,setInfo]=useState({})
-    function  checkPermission(){
-        
-       
+    const [info, setInfo] = useState({})
+    function checkPermission() {
+
+
         if (!token) {
             return null;
-          }
-          let payload = token.substring(token.indexOf('.') + 1, token.lastIndexOf('.'));
-          let dec = JSON.parse(base64.decode(payload));
-        if(dec==null){
+        }
+        let payload = token.substring(token.indexOf('.') + 1, token.lastIndexOf('.'));
+        let dec = JSON.parse(base64.decode(payload));
+        if (dec == null) {
             return;
         }
         return dec;
     }
-    const Info=async()=>{
-        if(checkPermission().role==="ROLE_USER"){
+    const Info = async () => {
+        if (checkPermission().role === "ROLE_USER") {
 
-            const cus_id=checkPermission().sub
-            console.log(cus_id)
-            
-            
-            const response1=  await  axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
+            const cus_id = checkPermission().sub
+
+
+
+            const response1 = await axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
             setInfo(response1.data)
         }
-        
+
     }
-   useEffect(()=>{
+    useEffect(() => {
 
-    Info()
+        Info()
 
-   },[])
+    }, [])
 
-   console.log(info)
     return (
-       
+
         <Routes>
-            
-            <Route element={<PrivateRouteMa/>}>
-            <Route element={<Main />}>
-                <Route path="/" element={<MainInfo />} />
-            </Route>
+
+            <Route element={<PrivateRouteMa />}>
+                <Route element={<Main />}>
+                    <Route path="/" element={<MainInfo />} />
+                </Route>
             </Route>
             <Route element={<PrivateRouteLogin checkPermission={checkPermission()} />}>
-            <Route path='/login_join' element={<Login_join />} />
+                <Route path='/login_join' element={<Login_join />} />
             </Route>
 
 
 
             <Route element={<PrivateRouteEn checkPermission={checkPermission()} />} >
-                <Route element={<HeaderFooterEn checkPermission={checkPermission()}/>}>{/* 엔지니어 페이지 */}
+                <Route element={<HeaderFooterEn checkPermission={checkPermission()} />}>{/* 엔지니어 페이지 */}
 
-                    <Route path='/engineer' element={<EnMain checkPermission={checkPermission()}/>} />
-                    <Route path='/engineer/calendar' element={<EnCalendar checkPermission={checkPermission()}/>} />
-                    <Route path='/engineer/engineerList' element={<EnEngineerList checkPermission={checkPermission()}/>} />
-                    <Route path='/engineer/inQurylist' element={< EnInQurylist checkPermission={checkPermission()}/>} />
-                    <Route path='/engineer/inQurywrite' element={< EnInQuryWrite checkPermission={checkPermission()}/>} />
-                    <Route path='/engineer/inQuryDetail' element={< EnInQuryDetail checkPermission={checkPermission()}/>} />
-                    <Route path='/engineer/annoList' element={<EnAnnoList checkPermission={checkPermission()}/>} />
-                    <Route path='/engineer/annoDetail' element={<EnAnnoDetail checkPermission={checkPermission()}/>} />
+                    <Route path='/engineer' element={<EnMain checkPermission={checkPermission()} />} />
+                    <Route path='/engineer/calendar' element={<EnCalendar checkPermission={checkPermission()} />} />
+                    <Route path='/engineer/engineerList' element={<EnEngineerList checkPermission={checkPermission()} />} />
+                    <Route path='/engineer/inQurylist' element={< EnInQurylist checkPermission={checkPermission()} />} />
+                    <Route path='/engineer/inQurywrite' element={< EnInQuryWrite checkPermission={checkPermission()} />} />
+                    <Route path='/engineer/inQuryDetail' element={< EnInQuryDetail checkPermission={checkPermission()} />} />
+                    <Route path='/engineer/annoList' element={<EnAnnoList checkPermission={checkPermission()} />} />
+                    <Route path='/engineer/annoDetail' element={<EnAnnoDetail checkPermission={checkPermission()} />} />
 
-                    <Route path='/engineer/inspectionList' element={<EnInspectionList checkPermission={checkPermission()}/>} />
+                    <Route path='/engineer/inspectionList' element={<EnInspectionList checkPermission={checkPermission()} />} />
 
-                    <Route path="/engineer/workDetail" element={<EnWorkDetail checkPermission={checkPermission()}/>} />
+                    <Route path="/engineer/workDetail" element={<EnWorkDetail checkPermission={checkPermission()} />} />
 
-                    <Route path='/engineer/newList' element={<EnL_newProject checkPermission={checkPermission()}/>} />
-                    <Route path='/engineer/newProjectDetail' element={<EnL_newProjectDetail checkPermission={checkPermission()}/>} />
-                    <Route path='/engineer/newProjectDetail2' element={<EnL_TeamassingmentModal checkPermission={checkPermission()}/>} />
-
-
-                </Route>
-
+                    <Route path='/engineer/newList' element={<EnL_newProject checkPermission={checkPermission()} />} />
+                    <Route path='/engineer/newProjectDetail' element={<EnL_newProjectDetail checkPermission={checkPermission()} />} />
+                    <Route path='/engineer/newProjectDetail2' element={<EnL_TeamassingmentModal checkPermission={checkPermission()} />} />
 
 
                 </Route>
-      
-                <Route element={<PrivateRouteAd checkPermission={checkPermission()}/>} >
+
+
+
+            </Route>
+
+            <Route element={<PrivateRouteAd checkPermission={checkPermission()} />} >
                 <Route element={<HeaderFooterAd />}>{/* 관리자 페이지; */}
 
                     <Route path='/admin' element={<MainAdmin />} />
@@ -163,13 +162,13 @@ function App() {
 
 
                 </Route>
-                </Route>
-          
+            </Route>
 
-           
-                <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
-                <Route element={<HeaderFooterUs checkPermission={checkPermission()}/>}>
-                    <Route path='/user' element={<MainUser state={info}/>} />
+
+
+            <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
+                <Route element={<HeaderFooterUs checkPermission={checkPermission()} />}>
+                    <Route path='/user' element={<MainUser state={info} />} />
                     <Route path='/user/list' element={< UserProList />} />
                     <Route path='/user/apply' element={< UserApply />} />
                     <Route path='/user/inQurylist' element={< UserInQurylist />} />
@@ -182,12 +181,12 @@ function App() {
                     <Route path="/user/projectDetail" element={<UserProjectDetailModal />} />
                     <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 />} />
                 </Route>
-                </Route>
-           
+
+            </Route>
 
         </Routes>
-    
-    
+
+
     );
 }
 

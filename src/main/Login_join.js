@@ -317,7 +317,7 @@ function Login_join(props) {
             let payload = token.substring(token.indexOf('.') + 1, token.lastIndexOf('.'));
             let dec = JSON.parse(base64.decode(payload));
        
-    
+            console.log(token)
    
                 if (dec.role === 'ROLE_USER') {
                     history('/user',{state: {
