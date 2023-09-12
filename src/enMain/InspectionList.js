@@ -2,9 +2,24 @@ import { Link } from "react-router-dom";
 import "../enMain/EnCss.css";
 import "../enMain/InspectionList.css";
 import FormControlIcon from "../img/FormControlIcon";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import EnServerDetailModal from "./EnServerDetailModal";
 
 function InspectionList() {
 
+  const[list, setList] = useState([]);
+
+  useEffect(()=>{
+    axios.get('/api/engineer/inspectionList').then((res)=>{
+      setList(res.data);
+      console.log(res.data);
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+  },[]);
+console.log(list);
 
 return(
  
@@ -29,17 +44,26 @@ return(
                                           <th scope="col">번호</th>
                                           <th scope="col">서버</th>
                                           <th scope="col">점검종류</th>
-                                          <th scope="col">담당엔지니어</th>
+                                          <th scope="col">프로젝트명</th>
                                           <th scope="col">점검일자</th>
                                           <th scope="col">현재상태</th>
                                       </tr>
                                   </thead>
                                   <tbody className="insListTableTBody">
-                                      <tr>
-                                          <th scope="row">1</th>
-                                          <td><Link to="#">서울대학교 수강신청 시스템</Link></td>
-                                          <td>정기점검</td>
+                                    {list.map((workInfo, index)=>(
+                                      <tr key={index}>
+                                          <th scope="row">{index+1}</th>
                                           <td>
+                                            <EnServerDetailModal 
+                                            proName={workInfo.pro_name}
+                                            serverName= {workInfo.server_name}
+                                            engName={workInfo.eng_name}
+
+                                            />
+                                          </td>
+                                          <td>{workInfo.work_division}</td>
+                                          <td>{workInfo.pro_name}</td>
+                                          {/* <td>
                                             <div className="d-flex no-block align-items-center">
                                               <div className="me-3">
                                                 <img
@@ -50,10 +74,10 @@ return(
                                                   height="45"
                                                 />
                                               </div>
-                                              <p className="insListP" style={{paddingLeft: "10px"}}>KimJJangSu</p>
+                                              <p className="insListP" style={{paddingLeft: "26px", margin: 0}}>{workInfo.eng_name}</p>
                                             </div>
-                                          </td>
-                                          <td>2023.09.06</td>
+                                          </td> */}
+                                          <td>{workInfo.work_date}</td>
                                           <td>
                                           <button
                                             type="button"
@@ -62,7 +86,10 @@ return(
                                           </button>
                                           </td>
                                       </tr>
-                                      <tr>
+                                    ))}
+                                      
+                                      {/* <tr>
+                                        <tr>
                                           <th scope="row">2</th>
                                           <td><Link to="#">ICT대학교 학생관리 시스템</Link></td>
                                           <td>정기점검</td>
@@ -170,6 +197,8 @@ return(
                                           </button>
                                           </td>
                                       </tr>
+                                
+                                    </tr> */}
                                   </tbody>
                               </table>
                           </div>
