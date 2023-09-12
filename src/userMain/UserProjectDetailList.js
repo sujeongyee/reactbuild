@@ -3,10 +3,75 @@ import "../enMain/EnMain.css";
 import "./User.css";
 import "../enMain/EnCss.css";
 import UserProjectDetailModal from "./UserProjectDetailModal";
-import ProjectDetailChart from "./ProjectDetailChart";
 import FormControlIcon from "../img/FormControlIcon";
-
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import ProjectDetailChart from "./ProjectDetailChart";
+import Search from "./Search";
 function UserProjectDetailList() {
+
+  const [ProjectDetailList, setProjectDetailList] = useState([]);
+  const [searchValue , setSearchValue] = useState("");
+  const [activeRow, setActiveRow] =useState(null);
+  const wrapperRef = useRef(null);
+  const [selectedServer, setSelectedServer] = useState(null);
+
+
+
+
+
+  useEffect(() => {
+    axios.get("/api/client/projectDetailList") // Spring Boot API 엔드포인트
+      .then(response =>
+        setProjectDetailList(response.data))
+      .catch(error => console.log(error))
+  }, []);
+
+ /* const toggleDropDown = (e) => {
+    console.log(e.currentTarget.nextElementSibling.querySelector('.hide'))
+    const nextTarget = e.currentTarget.nextElementSibling.querySelector('.hide');
+    if(nextTarget){
+      nextTarget.classList.toggle('hide')
+    }else{
+      return;
+    }
+  }*/
+
+  useEffect(()=>{
+    function handleClickOutside(e){
+      if(wrapperRef.current && !wrapperRef.current.contains(e.target)){
+        setActiveRow(null);
+      }
+    }
+    document.addEventListener("mousedown",handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown",handleClickOutside);
+    }
+  })
+
+  function toggleDropDown(index) {
+    if (activeRow === index) {
+      setActiveRow(null);
+      setSelectedServer(null); // Deselect the server
+    } else {
+      setActiveRow(index);
+      setSelectedServer(index); // Set the selected server
+    }
+  }
+
+/*   useEffect(() => {
+    const getProjectDetailList = async () => {
+      try {s
+        const response = await axios.get("/api/client/projectDetailList");
+        setProjectDetailList(response.data);
+        console.log(response.data)
+      } catch (error) {
+        console.log("Error", error);
+      }
+    };
+    getProjectDetailList(); // Call the function to fetch data
+  }, []); */
+  
   return (
     <>
       <div className="page-wrapper">
@@ -21,23 +86,6 @@ function UserProjectDetailList() {
               </div>
             </div> */}
             <div className="col-5 align-self-center">
-              <div className="customize-input float-end">
-                <Link className="nav-link" href="javascript:void(0)">
-                  <form className="search-engineer">
-                    <div className="customize-input right">
-                      <input
-                        className="form-control custom-shadow custom-radius border-0 bg-white"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                      />
-                    </div>
-                    <div className="customize-input left">
-                      <FormControlIcon />
-                    </div>
-                  </form>
-                </Link>
-              </div>
             </div>
           </div>
         </div>
@@ -46,268 +94,100 @@ function UserProjectDetailList() {
             <div className="col-12">
               <div className="card">
                 <div className="card-body">
+                <div className="col-md-4 ">
+                        <div className="form-group mb-3">
+
+                        </div>
+                      </div>
+                  <Search setSearchValue={setSearchValue}/>
+
+
                   <div className="table-responsive">
                     <div className="project-table">
+                    <div ref={wrapperRef}>
+
                       <table className="table">
+
                         <thead>
                           <tr>
                             <th scope="col">NO</th>
                             <th scope="col">서버 이름</th>
-                            <th scope="col">서버 종류</th>
-                            <th scope="col">점검 종류</th>
+                            <th scope="col">작업 분류</th>
                             <th scope="col">최근 점검</th>
-                            <th scope="col">서버 상태</th>
+                            <th scope="col">작업 상태</th>
                             <th scope="col">담당 엔지니어</th>
                           </tr>
                         </thead>
+
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>
-                              <UserProjectDetailModal />
-                            </td>
-                            <td>Data</td>
-                            <td>OJJ</td>
-                            <td>2023.08.01</td>
-                            <td>
-                              <button type="button" class="button-danger">
-                                Danger
-                              </button>
-                            </td>
-                            <td className="border-top-0 px-2 py-4;">
-                              <div className="d-flex no-block align-items-center">
-                                <div className="me-3">
-                                  <img
-                                    src="../img/widget-table-pic1.jpg"
-                                    alt="user"
-                                    className="rounded-circle"
-                                    width="45"
-                                    height="45"
-                                  />
+                        {ProjectDetailList
+                            .map((item, index) => ({ ...item, index })) // Add the 'index' property to each item
+                            .filter((value) => {
+                              if (searchValue === "") {
+                                return true;
+                              } else if (
+                                value.server_name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                value.work_division.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                value.eng_name.toLowerCase().includes(searchValue.toLowerCase())
+                              ) {
+                                return true;
+                              }
+                              return false;
+                            })
+                            .map((filteredItem, index) => (
+                            <>
+                             <tr key={index} onClick={() => toggleDropDown(index)}>
+                           
+                              <th scope="row">{index + 1}</th>
+                              <td>
+                                <UserProjectDetailModal projectData={filteredItem}/>
+                              </td>
+                              <td>{filteredItem.work_division}</td>
+                              <td>{filteredItem.work_date}</td>
+                              <td>
+                                <button type="button" className="button-danger" style={ 
+                                                                filteredItem.work_status === '완료'
+                                                                ? { backgroundColor: '#00c870' }
+                                                                :
+                                                                 { backgroundColor: '#ff0030' } 
+                                                               }>
+                                {filteredItem.work_status}
+                                </button>
+                              </td>
+                              <td className="border-top-0 px-2 py-4">
+                                <div className="d-flex no-block ">
+                                  <div className="me-3">
+                                    <img
+                                      src="../img/widget-table-pic1.jpg"
+                                      alt="user"
+                                      className="rounded-circle"
+                                      width="45"
+                                      height="45"
+                                    />
+                                  </div>
+                                  <div>
+                                    <h5 className="text-dark mb-0 font-16 font-weight-medium">
+                                      {filteredItem.eng_name}
+                                    </h5>
+                         
+                                  </div>
                                 </div>
-                                <div className="">
-                                  <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                    BBark SuJung
-                                  </h5>
-                                  <span className="text-muted font-14">
-                                    baeksy97293@gmail.com
-                                  </span>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="9">
-                              <ProjectDetailChart />
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>회사 serverNo2</td>
-                            <td>Storage</td>
-                            <td>OJJ</td>
-                            <td>2023.08.15</td>
-                            <td>
-                              <button type="button" class="button-success">
-                                Good
-                              </button>
-                            </td>
-                            <td className="border-top-0 px-2 py-4;">
-                              <div className="d-flex no-block align-items-center">
-                                <div className="me-3">
-                                  <img
-                                    src="../img/widget-table-pic2.jpg"
-                                    alt="user"
-                                    className="rounded-circle"
-                                    width="45"
-                                    height="45"
-                                  />
-                                </div>
-                                <div className="">
-                                  <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                    BBark SuJung
-                                  </h5>
-                                  <span className="text-muted font-14">
-                                    hgover@gmail.com
-                                  </span>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td colspan="9">
-                              <ProjectDetailChart />
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>회사 serverNo3</td>
-                            <td>Data</td>
-                            <td>OJJ</td>
-                            <td>2023.08.01</td>
-                            <td>
-                              <button type="button" class="button-warning">
-                                Warning
-                              </button>
-                            </td>
-                            <td className="border-top-0 px-2 py-4;">
-                              <div className="d-flex no-block align-items-center">
-                                <div className="me-3">
-                                  <img
-                                    src="../img/widget-table-pic3.jpg"
-                                    alt="user"
-                                    className="rounded-circle"
-                                    width="45"
-                                    height="45"
-                                  />
-                                </div>
-                                <div className="">
-                                  <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                    Baek UpDragon
-                                  </h5>
-                                  <span className="text-muted font-14">
-                                    hgover@gmail.com
-                                  </span>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>회사 serverNo1</td>
-                            <td>Data</td>
-                            <td>OJJ</td>
-                            <td>2023.08.01</td>
-                            <td>
-                              <button type="button" class="button-success">
-                                Good
-                              </button>
-                            </td>
-                            <td className="border-top-0 px-2 py-4;">
-                              <div className="d-flex no-block align-items-center">
-                                <div className="me-3">
-                                  <img
-                                    src="../img/widget-table-pic4.jpg"
-                                    alt="user"
-                                    className="rounded-circle"
-                                    width="45"
-                                    height="45"
-                                  />
-                                </div>
-                                
-                                <div className="">
-                                  <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                    DDabong Yeji
-                                  </h5>
-                                  <span className="text-muted font-14">
-                                    hgover@gmail.com
-                                  </span>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">4</th>
-                            <td>회사 serverNo1</td>
-                            <td>Data</td>
-                            <td>OJJ</td>
-                            <td>2023.08.01</td>
-                            <td>
-                              <button type="button" class="button-success">
-                                Good
-                              </button>
-                            </td>
-                            <td className="border-top-0 px-2 py-4;">
-                              <div className="d-flex no-block align-items-center">
-                                <div className="me-3">
-                                  <img
-                                    src="../img/widget-table-pic1.jpg"
-                                    alt="user"
-                                    className="rounded-circle"
-                                    width="45"
-                                    height="45"
-                                  />
-                                </div>
-                                <div className="">
-                                  <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                    ZZangsuri
-                                  </h5>
-                                  <span className="text-muted font-14">
-                                    hgover@gmail.com
-                                  </span>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">5</th>
-                            <td>회사 serverNo1</td>
-                            <td>Data</td>
-                            <td>OJJ</td>
-                            <td>2023.08.01</td>
-                            <td>
-                              <button type="button" class="button-success">
-                                Good
-                              </button>
-                            </td>
-                            <td className="border-top-0 px-2 py-4;">
-                              <div className="d-flex no-block align-items-center">
-                                <div className="me-3">
-                                  <img
-                                    src="../img/widget-table-pic2.jpg"
-                                    alt="user"
-                                    className="rounded-circle"
-                                    width="45"
-                                    height="45"
-                                  />
-                                </div>
-                                <div className="">
-                                  <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                    Jang jjing
-                                  </h5>
-                                  <span className="text-muted font-14">
-                                    hgover@gmail.com
-                                  </span>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">6</th>
-                            <td>회사 serverNo1</td>
-                            <td>OJJ</td>
-                            <td>2023.08.01</td>
-                            <td>Data</td>
-                            <td>
-                              <button type="button" class="button-success">
-                                Good
-                              </button>
-                            </td>
-                            <td className="border-top-0 px-2 py-4;">
-                              <div className="d-flex no-block align-items-center">
-                                <div className="me-3">
-                                  <img
-                                    src="../img/widget-table-pic3.jpg"
-                                    alt="user"
-                                    className="rounded-circle"
-                                    width="45"
-                                    height="45"
-                                  />
-                                </div>
-                                <div className="">
-                                  <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                    HyunJyu
-                                  </h5>
-                                  <span className="text-muted font-14">
-                                    hgover@gmail.com
-                                  </span>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          
+                              </td>
+                             </tr>
+                            {selectedServer === index && (
+                                <tr>
+                                  <td colSpan="9" className={`trans ${activeRow === index ? '' : 'hide'}`} >
+                                  <ProjectDetailChart serverId={filteredItem.server_id} projectData={filteredItem} />
+                                  </td>
+                                </tr>
+                              )}
+                             </>
+                          ))}
+
                         </tbody>
-                      </table>
+                        </table>
+                        </div>
+
                     </div>
                   </div>
                   <ul className="pagination float-end list">

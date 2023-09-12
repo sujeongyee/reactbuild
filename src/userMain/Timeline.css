@@ -2,10 +2,10 @@
 
 :root {
   --white: #fff;
-  --black: #323135;
+  --black: #b9b9b9;
   --crystal: #a8dadd;
   --columbia-blue: #cee9e4;
-  --midnight-green: #01565b;
+  --midnight-green: #3316a7;
   --yellow: #e5f33d;
   --timeline-gradient: rgba(206, 233, 228, 1) 0%, rgba(206, 233, 228, 1) 50%,
     rgba(206, 233, 228, 0) 100%;
@@ -505,7 +505,7 @@ body {
   font-size: 1.4rem;
   font-weight: bold;
   margin-bottom: 8px;
-  color: var(--midnight-green);
+  color: var(#8971ea);
 }
 
 /* GENERAL MEDIA QUERIES
