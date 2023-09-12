@@ -5,7 +5,6 @@ import "../userMain/User.css";
 import axios from "axios";
 
 function MyPage(info) {
-    console.log(info.poto)
     const [formInputData, setFormData] = useState({
         cus_id:info.state.cus_id,
         cus_company_name: info.state.cus_company_name,

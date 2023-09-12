@@ -20,7 +20,7 @@ import EnEngineerMyPageModal from "../enMain/EnEngineerMyPageModal"
 import axios from "axios";
 import MyPage from "./MyPage";
 
-
+import UserMyPageModal from "../userMain/UserMyPageModal";
 function HeaderFooterUs({checkPermission}) {
    
     const [bellModal, setbellModalIsOpen] = useState(false);
