@@ -163,3 +163,20 @@
 .button-writer:hover {
   background: #4662ec;
 }
+
+/* ============================= */
+.pastInspectionHistoryList th{
+  color: #038d38;
+  
+}
+
+.pastInspectionHistoryList th, .pastInspectionHistoryList td {
+  padding: 10px;
+  padding-right: 20px;
+  border: 1px solid #d3d7da;
+  text-align: center;
+}
+
+.pastInspectionHistoryList {
+  border: 1px solid #d3d7da;
+}
