@@ -12,7 +12,7 @@ function EnL_newProject() {
 
   useEffect(() => {
     axios
-      .get("/api/engineer/newList")
+      .get("/api/main/engineer/newList")
       .then((response) => {
         setData(response.data);
         console.log(response.data);

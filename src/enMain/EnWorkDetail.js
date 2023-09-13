@@ -8,7 +8,7 @@ import FileUpload from "./EnWorkDetailUpload";
 function EnWorkDetail(handleFileUpload) {
   //스프링으로부터 데이터 받아오기(엔지니어 아이디별 프로젝트)
   useEffect(() => {
-    axios.get("/api/engineer/workDetail").then((response) => {
+    axios.get("/api/main/engineer/workDetail").then((response) => {
       setProjectData(response.data);
       console.log(response.data);
     });
@@ -135,7 +135,7 @@ function EnWorkDetail(handleFileUpload) {
       }));
 
     const response = await axios
-      .post("/api/engineer/workDetail", workInfoVO)
+      .post("v/api/main/engineer/workDetail", workInfoVO)
       .then((response) => {
         console.log("완료", response.data);
       });

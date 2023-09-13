@@ -38,7 +38,7 @@ function FileUpload() {
       formData.append("file_data", fileData);
 
       axios
-        .post("/api/awsUpload", formData)
+        .post("/api/main/awsUpload", formData)
         .then((response) => {
           alert(response.data);
         })

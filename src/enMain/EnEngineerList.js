@@ -8,20 +8,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 function EnEngineerList() {
-
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/engineer/engineerList').then((res) => {
-      setList(res.data);
-      console.log(res.data);
-    })
+    axios
+      .get("/api/main/engineer/engineerList")
+      .then((res) => {
+        setList(res.data);
+        console.log(res.data);
+      })
       .catch((error) => {
         console.log(error);
       });
   }, []);
   console.log(list);
-
 
   return (
     <>
@@ -33,7 +33,6 @@ function EnEngineerList() {
                 엔지니어 리스트
               </h3>
             </div>
-
           </div>
         </div>
         <div className="container-fluid">
@@ -41,9 +40,15 @@ function EnEngineerList() {
             <div className="col-12">
               <div className="card1">
                 <div className="card-body1">
-                  <label style={{ display: 'flex' }}>
-                    <input type="search" className="form-control form-control-sm" placeholder="검색" aria-controls="zero_config" style={{ width: '200px' }} />
-                    <button style={{ marginLeft: '5px' }}>
+                  <label style={{ display: "flex" }}>
+                    <input
+                      type="search"
+                      className="form-control form-control-sm"
+                      placeholder="검색"
+                      aria-controls="zero_config"
+                      style={{ width: "200px" }}
+                    />
+                    <button style={{ marginLeft: "5px" }}>
                       <FormControlIcon />
                     </button>
                   </label>
@@ -53,7 +58,9 @@ function EnEngineerList() {
                         <thead>
                           <tr>
                             <th scope="col">NO</th>
-                            <th scope="col" style={{ paddingLeft: '80px' }}>이름</th>
+                            <th scope="col" style={{ paddingLeft: "80px" }}>
+                              이름
+                            </th>
                             <th scope="col">직급</th>
                             <th scope="col">이메일</th>
                             <th scope="col">전화번호</th>
@@ -61,13 +68,11 @@ function EnEngineerList() {
                         </thead>
                         <tbody>
                           {list.map((engineer, index) => (
-
-
                             <tr key={index}>
                               <th scope="row">{index + 1}</th>
                               <td>
                                 <div className="d-flex no-block align-items-center">
-                                  <div className="me-3" >
+                                  <div className="me-3">
                                     <img
                                       src="../img/widget-table-pic1.jpg"
                                       alt="user"
@@ -95,13 +100,12 @@ function EnEngineerList() {
                               <td className="border-top-0 px-2 py-4;"></td>
                             </tr>
                           ))}
-
                         </tbody>
                       </table>
                     </div>
                   </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <ul className="pagination paginationEn" >
+                  <div style={{ textAlign: "center" }}>
+                    <ul className="pagination paginationEn">
                       <li className="page-item disabled">
                         <Link className="page-link" href="#" tabindex="-1">
                           Prev
@@ -128,9 +132,7 @@ function EnEngineerList() {
                         </Link>
                       </li>
                     </ul>
-
                   </div>
-
                 </div>
               </div>
             </div>
