@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react"
-import { Link, NavLink, Outlet } from "react-router-dom"
+import { Link, NavLink, Navigate, Outlet, useNavigate } from "react-router-dom"
 import $ from 'jquery';
 import './HeaderFooter.css'
 import BellIcon from "../img/BellIcon";
@@ -32,8 +32,14 @@ function HeaderFooterAd() {
         color: 'white',
         fontSize: '16px'
     }
+    const navigate = useNavigate();
 
-
+    const logout = () => {
+        localStorage.removeItem("token");
+        alert("로그아웃 되었습니다😎");
+        navigate("/");
+        window.location.reload();
+      };
     const handleClick = (e) => {
         $(e.currentTarget).toggleClass("active")
         $(e.currentTarget).next().toggleClass("in")
@@ -130,7 +136,7 @@ function HeaderFooterAd() {
                                         <div><SettingsIcon /></div>
                                         <span>회원정보 수정</span>
                                     </Link>
-                                    <Link to="#" className="contentIcon">
+                                    <Link to="#" onClick={logout} className="contentIcon">
                                         <div><LogOutIcon /></div>
                                         <span>로그아웃</span>
                                     </Link>

@@ -1,13 +1,69 @@
 import { Link } from 'react-router-dom'
+import PageNation from '../pagenation/PageNation'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { formatDate } from '@fullcalendar/core';
 // import '../enMain/EnMain.css'
 // import './User.css'
-
+import Loading from '../loding/Loding';
+import Search from '../pagenation/Search';
 function AdminAnnoList() {
+    const [loading, setLoading] = useState(true);
+
+    
+    const [total, setTotal] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageInfo, setPageInfo] = useState([])
+    const postsPerPage = 10;
+
+    const list = async () => {//현재 목록 불러오기
+
+        const response = await axios.get(`/api/main/AnnoList?currentPage=${currentPage}&postsPerPage=${postsPerPage}`)
+        setPageInfo(response);
+        
+        setLoading(false);
+    }
+    const totalListNum = async () => {//토탈 목록 불러오기
+        const response = await axios.get("/api/main/AnnoTotal")
+        setTotal(response.data);
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        list()
+
+        totalListNum()
+    }, []);
+
+
+    useEffect(() => {
+
+        list()
+
+    }, [currentPage]);
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber); // 페이지 변경 시 현재 페이지 업데이트
+    };
+
+    function formatDateTime(timestamp) {
+        const date = new Date(timestamp);
+    
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고 2자리로 포맷팅
+        const day = String(date.getDate()).padStart(2, '0'); // 일을 2자리로 포맷팅
+        const hours = String(date.getHours()).padStart(2, '0'); // 시간을 2자리로 포맷팅
+        const minutes = String(date.getMinutes()).padStart(2, '0'); // 분을 2자리로 포맷팅
+    
+        const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
+        return formattedDateTime;
+    }
+    
 
     return (
 
         <>
-            <div className="page-wrapper" >
+         {loading ? <Loading /> : null}
+            <div className="page-wrapper">
 
                 <div className="page-breadcrumb">
                     <div className="row">
@@ -15,15 +71,17 @@ function AdminAnnoList() {
                             <h4 className="page-title text-truncate text-dark font-weight-medium mb-1">
                                 공지 사항
                             </h4>
-                        <Link to="/admin/noticeWrite" className="write">
-                      <span>공지사항 작성</span>
-                    </Link>
+                            <Link to="/admin/noticeWrite" className="write">
+                                <span>공지사항 작성</span>
+                            </Link>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div className="container-fluid">
+                    
                     <div className="row">
+                        
                         <div className="col-12">
 
                             <div className="card">
@@ -31,6 +89,7 @@ function AdminAnnoList() {
                                 <div className="card-body">
 
                                     <div className="table-responsive">
+                                        <Search/>
                                         <table className="table">
                                             <thead>
                                                 <tr>
@@ -42,72 +101,25 @@ function AdminAnnoList() {
 
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td><Link to="/user">(필독)전체 공지사항입니다</Link></td>
-                                                    <td>Admin</td>
-                                                    <td>2023.08.27</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td><Link to="/user">[공지사항]리액트 너무 어렵습니다.</Link></td>
-                                                    <td>Admin</td>
-                                                    <td>2023.08.27</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td><Link to="/user">[공지사항]리액트 너무 어렵습니다.</Link></td>
-                                                    <td>Admin</td>
-                                                    <td>2023.08.27</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">4</th>
-                                                    <td><Link to="/user">[공지사항]리액트 너무 어렵습니다.</Link></td>
-                                                    <td>Admin</td>
-                                                    <td>2023.08.27</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">5</th>
-                                                    <td><Link to="/user">[공지사항]리액트 너무 어렵습니다.</Link></td>
-                                                    <td>Admin</td>
-                                                    <td>2023.08.27</td>
-                                                </tr>
-
+                                          
+                                            
+                                                {pageInfo.data&&pageInfo.data.map((item, index) => (
+                                                        <tr key={index}>
+                                                            <th scope="row">{index + 1}</th>
+                                                            <td><Link to={`/admin/annoDetail`} state={{item}} >{item.notice_title}</Link></td>
+                                                            <td>Admin</td>
+                                                            <td>{item.notice_regdate ? formatDateTime(item.notice_regdate) : ""}</td>
+                                                        </tr>
+                                                    ))}
 
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div className='row'>
+                                    {total != '' ? <PageNation currentPage={currentPage}
+                                        totalPosts={total} // 전체 게시글 수를 전달
+                                        onPageChange={handlePageChange} 
+                                        postsPerPage={postsPerPage} /> : null}
 
-                                        <ul className="pagination float-end">
-                                            <li className="page-item disabled">
-                                                <Link className="page-link" href="#" tabindex="-1">Prev</Link>
-                                            </li>
-                                            <li className="page-item active"><a className="page-link" href="#">1</a></li>
-                                            <li className="page-item">
-                                                <Link className="page-link" href="#">2 <span className="sr-only">(current)</span></Link>
-                                            </li>
-                                            <li className="page-item"><a className="page-link" href="#">3</a></li>
-                                            <li className="page-item">
-                                                <Link className="page-link" href="#">Next</Link>
-                                            </li>
-                                        </ul>
-
-
-                                        <div className="col-sm-12 col-md-6">
-
-                                          <div id="zero_config_filter" className="dataTa Namebles_filter" >
-
-                                            <label style={{display: 'flex;'}}>
-                                              <span style={{transform: 'translateY(5px)', paddingRight:'10px'}}>Search:</span><input type="search" className="form-control form-control-sm" placeholder aria-controls="zero_config" style={{width: '200px'}} />
-
-                                            </label>
-                                          </div>
-
-                                        </div>
-
-                                        
-                                    </div>
                                 </div>
 
                             </div>
