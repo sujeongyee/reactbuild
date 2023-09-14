@@ -22,8 +22,8 @@ import axios from "axios";
 import MyPage from "./MyPage";
 
 
-function HeaderFooterUs({checkPermission}) {
-   
+function HeaderFooterUs({checkPermission,state}) {
+    console.log(state)
     const [bellModal, setbellModalIsOpen] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalIsOpenAll, setModalIsOpenAll] = useState(false);
@@ -59,12 +59,14 @@ function HeaderFooterUs({checkPermission}) {
       };
 
       const [info,setInfo]=useState({})
-      const cus_id=checkPermission.sub
+      const cus_id=checkPermission.sub;
       const getInfo=async()=>{
 
-      const response1=  await  axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
+
+          const response1=  await axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
+          const response=await axios.get(`/api/main/getPoto?cus_id=${state.cus_num}`)
       setInfo(response1.data)
-         const response=await axios.get(`/api/main/getPoto?cus_id=${info.cus_num}`)
+      console.log(info)
         
        setPoto(response.data)
       }
@@ -72,6 +74,7 @@ function HeaderFooterUs({checkPermission}) {
 
       useEffect(()=>{
         getInfo()
+       
     },[])
     
     return (

@@ -168,7 +168,7 @@ return;
 
 
             <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
-                <Route element={<HeaderFooterUs checkPermission={checkPermission()} />}>
+                <Route element={<HeaderFooterUs checkPermission={checkPermission()} state={info}/>}>
                     <Route path='/user' element={<MainUser state={info} />} />
                     <Route path='/user/list' element={< UserProList />} />
                     <Route path='/user/apply' element={< UserApply />} />
