@@ -64,7 +64,7 @@ function HeaderFooterUs({checkPermission}) {
 
       const response1=  await  axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
       setInfo(response1.data)
-         const response=await axios.get(`/api/main/getPoto?cus_id=${cus_id}`)
+         const response=await axios.get(`/api/main/getPoto?cus_id=${info.cus_num}`)
         
        setPoto(response.data)
       }

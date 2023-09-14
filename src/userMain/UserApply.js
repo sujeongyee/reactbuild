@@ -5,8 +5,12 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import Loading from '../loding/Loding';
 
-function UserApply() {
+
+function UserApply({state}) {
+
+
   const [loading, setLoading] = useState(true);
+
 
   
   const navigate = useNavigate();
