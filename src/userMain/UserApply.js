@@ -4,7 +4,7 @@ import '../enMain/EnMain.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
-function UserApply() {
+function UserApply({state}) {
   
   const navigate = useNavigate();
   const [allChecked, setAllChecked] = useState(false);
