@@ -9,9 +9,13 @@ import { faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import List from "./List"
 import Calendar from "./Calendar"
+import Loading from '../loding/Loding';
 
 
 function EnMain() {
+  const [loading, setLoading] = useState(true);
+
+
     const [isToggled, setToggled] = useState(true);
 
     const toggleButton = () => {
@@ -20,6 +24,7 @@ function EnMain() {
     return (
 
         <>
+                 {loading ? <Loading /> : null}
             <div className="page-wrapper" >
                 <div className="container-fluid">
 
