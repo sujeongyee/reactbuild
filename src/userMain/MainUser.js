@@ -2,9 +2,15 @@ import ChartComponent1 from "./ChartComponent1";
 //import "normalize.css";
 import "./client-main-pro.css";
 
-function MainUser() {
+import { useState } from "react";
+
+function MainUser(state) {
+
+    
+    console.log(state)
   return (
     <>
+
       <div class="page-wrapper">
         <div class="container-fluid">
           <div id="projectList">

@@ -1,19 +1,46 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
+import { useInView } from "react-intersection-observer";
+
 
 function MainInfo(){
 
+  const completionWord = 'O.J PROJECT SOLUTION'
 
-return(
+  const [blogTitle, setBlogTitle] = useState('');
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const typingInterval = setInterval(() => {
+      setBlogTitle((prevTitleValue) => {
+        let result = prevTitleValue ? prevTitleValue + completionWord[count] : completionWord[0];
+        setCount(count + 1);
+
+        if (count >= completionWord.length) {
+          setCount(0);
+          setBlogTitle('');
+        }
+
+        return result;
+      });
+    }, 200);
+
+    return () => {
+      clearInterval(typingInterval);
+    };
+  });
+
+
+  return(
     <>
     
      <div id="container" className="mainBody">
-                <div className="infoHead"/* style="width: 980px; margin: 0 auto;" */>
+          <div className="infoHead"></div>
                     <div className="info">
                         <div className="mainL">
                             <h1>CHANGES</h1>
                             <h1>FOR THE BETTER</h1>
-                            <h2>O.J PROJECT SOLUTION</h2>
+                            <h2>{blogTitle}</h2>
                             <p className="infoP"/* style="font-size: 10px; margin: 10px 0 0 0px;" */>
                                 스타트업을 위한 30만 플랫폼 창업팀 , CLOUD O.J</p>
 
@@ -23,18 +50,18 @@ return(
                 </div>
                 <div className="info2">
                     <div className="info2Con"/* style="width: 980px; margin: 0 auto;" */>
-                        <div className="promotion" >
+                        <div className="promotion"  id="Ref2">
 
                     
-                            <p className="promotionCon">내 모든 프로젝트 내역을 한눈에 조회하고 한 곳에서 관리하세요. <br />
-                                이제껏 경험 못 했던 쉽고 편리한 서버관리 서비스, <br/>
-                                CLOUD O.J와 함께라면 당신의 일상이 새로워 질 거에요.</p>
+                            <p className="promotionCon">내 모든 프로젝트 내역을 한눈에 조회하고 한 곳에서 관리하세요.<br/> 
+                            이제껏 경험 못 했던 쉽고 편리한 서버관리 서비스, <br/>
+                            CLOUD O.J와 함께라면 당신의 일상이 새로워 질 거에요.</p>
                         </div>
-                        <div className="promotionTop">
+                        <div className="promotionTop" id="Ref3">
                           <h3 className="promotionMain">O.J SOLUTION</h3>  
                             {/*   <p className="promotionsolution">내 프로젝트의 시작부터 성장까지,
                               O.J의 커리어 솔루션과 함께하세요.</p>  */}
-                            <div className="promotionIcon">
+                            <div className="promotionIcon" >
                                 <a href="#" className="proIcon1">
                                     <h2>내 프로젝트</h2>
                                     <p>언제 어디서든, 원할때        간편하게<br />
@@ -58,16 +85,16 @@ return(
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="info2-1">
-                    <div className="info2_1Con"/* style="width: 980px; margin: 0 auto;" */>
+                    </div>
+                  <div className="info2-1">
+                    <div className="info2_1Con">
                         <div className="contact">
                             <p className="contact-con">더 알고 싶으신가요?</p>
                             <a href="" className="contact-btn">VIEW MORE</a>
                         </div>
                    </div>
                 </div>
-                <div className="info3">
+                <div className="info3" id="Ref4">
                     <div className="info3Con"/* style="width: 980px; margin: 0 auto;" */>
                     <div className="info3_1">
 
@@ -122,7 +149,7 @@ return(
                    </div>
                 </div>
 
-                <div className="info4">
+                <div className="info4" id="Ref5">
                     <div className="info4Con"/* style="width: 980px; margin: 0 auto;" */>
                         <div className="contact">
                             <p className="contact-con">내 프로젝트의 시작부터     성장까지,
@@ -131,7 +158,7 @@ return(
                         </div>
                    </div>
                 </div>
-            </div>
+       
 
     </>
 )

@@ -2,12 +2,15 @@ import { Link } from 'react-router-dom'
 import '../enMain/EnMain.css'
 import './User.css'
 import Search from './Search'
+import Loading from '../loding/Loding';
+import { useState } from 'react';
 
 function UserList() {
-
+ 
     return (
 
         <>
+    
             <div className="page-wrapper" >
 
                 <div className="page-breadcrumb">
@@ -90,7 +93,7 @@ function UserList() {
                                             </li>
                                             <li className="page-item">
                                                 <Link className="page-link" href="#">
-                                                    2 <span className="sr-only">(current)</span>
+                                                    2
                                                 </Link>
                                             </li>
                                             <li className="page-item">

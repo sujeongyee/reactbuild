@@ -1,9 +1,29 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Loading from '../loding/Loding';
 
 function UserProList() {
+  const [loading, setLoading] = useState(true);
+
+  const[proList, setProList] = useState([]);
+
+  useEffect(()=>{
+    axios.get('/api/user/list').then((response)=>{
+      setProList(response.data);
+      console.log(response.data);
+
+      setLoading(false);
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+  },[]);
+console.log(proList);
 
   return (
     <>
+             {loading ? <Loading /> : null}
       <div className="page-wrapper" >
 
         <div className="page-breadcrumb">
@@ -42,14 +62,20 @@ function UserProList() {
 
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td class="user-proname"><Link to="/user/prodetail"> ProjectXplorer</Link></td>
-                          <td>요청승인중</td>
-                          <td>2023.09.27</td>
-                          <td>18일</td>
-                        </tr>
-                        <tr>
+                        {proList.map((project,index) => (
+
+                          <tr key={project.pro_id}>
+                          <th scope="row">{index}</th>
+                          <td class="user-proname"><Link to={{pathname: '/user/prodetail', state: { pro_id: project.pro_id }}}> {project.pro_name}</Link></td>
+                          <td>{project.pro_status}</td>
+                          <td>{project.pro_startdate}</td>
+                          <td>{project.pro_pi}</td>
+                          </tr>
+
+                        ) 
+                        )}
+                       
+                        {/* <tr>
                           <th scope="row">2</th>
                           <td class="user-proname"><Link to="/user/prodetail">CyberGuardian</Link> </td>
                           <td>계약중</td>
@@ -76,7 +102,7 @@ function UserProList() {
                           <td>계약만료</td>
                           <td>2022.08.11</td>
                           <td>30일</td>
-                        </tr>
+                        </tr> */}
 
 
                       </tbody>

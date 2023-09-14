@@ -375,7 +375,8 @@ img {
     border-radius: 8px;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
     width: 150px;
-    height: 100px;
+  
+    height: 80px;
     margin-top: 90px; /* 상단 여백 추가 */
     margin-right: 50px; /* 오른쪽 여백 추가 */
     animation: fadeInUpTop .4s;
@@ -384,8 +385,7 @@ img {
 }
 .contentIcon{
 display: flex;
-height: 33.33%;
-
+height: 50%;
 border-bottom: 0.1px solid #e1edff;
 }
 .contentIcon div{
@@ -393,8 +393,8 @@ border-bottom: 0.1px solid #e1edff;
 }
 .contentIcon span{
     padding-left: 10px;
-    line-height: 28px;
-    font-size: 13px;
+    line-height: 30px;
+    font-size: 15px;
     font-weight: 700;
     color:#85869b
 }

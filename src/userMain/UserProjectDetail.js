@@ -1,8 +1,11 @@
 
 import { useState } from 'react'
 import '../enMain/EnMain.css'
+import Loading from '../loding/Loding';
 
 function UserApply() {
+  const [loading, setLoading] = useState(true);
+
 
     const [allChecked,setAllChecked]=useState(false);
     const handleCheck=(e)=>{
@@ -16,6 +19,7 @@ function UserApply() {
     return (
 
         <>
+                 {loading ? <Loading /> : null}
             <div className="page-wrapper" >
                 <div className="page-breadcrumb">
                     <div className="row">

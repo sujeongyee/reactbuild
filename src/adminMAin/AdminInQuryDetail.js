@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 // import '../enMain/EnMain.css'
 // import './User.css'
 function AdminInQuryDetail() {
+
 
 
     return (
