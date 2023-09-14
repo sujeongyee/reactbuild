@@ -121,7 +121,7 @@ function UserProjectDetailList() {
 
                         <tbody>
                         {ProjectDetailList
-                            .map((item, index) => ({ ...item, index })) // Add the 'index' property to each item
+                            .map((item, index) => ({ ...item, index }))
                             .filter((value) => {
                               if (searchValue === "") {
                                 return true;
