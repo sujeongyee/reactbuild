@@ -17,7 +17,7 @@ function EnglProjectDetail() {
   const [list, setList] = useState([]);
   useEffect(() => {
 
-    axios.get(`/engleader/projectDetail/${pro_id}`)
+    axios.get(`/api/main/engleader/projectDetail/${pro_id}`)
       .then(response => {
         console.log(response);
         setInfo(response.data);
@@ -30,7 +30,7 @@ function EnglProjectDetail() {
   const assignEmer = () => {
     const engid = 'tnwjd2580';
     const serverId = '21ff55ca-4c9d-11ee-acdc-8cb0e993c4ae';
-    axios.post('/alarm/assignEmer', { engid: engid, serverId: serverId })
+    axios.post('/api/main/alarm/assignEmer', { engid: engid, serverId: serverId })
       .catch(err => { alert('실패' + err) })
   }
 
@@ -166,7 +166,7 @@ function EnglProjectDetail() {
               <div className="col-12">
                 <div className="form-group mb-3 req-info">
                   <div className="request-user">요청 정기점검일</div>
-                  <p className="infoUser-answer request-user2">{info.PRO_PI}</p>
+                  <p className="infoUser-answer request-user2">{info.PRO_PI}일</p>
 
                 </div>
               </div>

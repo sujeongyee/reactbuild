@@ -17,7 +17,7 @@ function EnglProjectList() {
   const leader_id = 'eng_1';
 
   useEffect(() => {
-    axios.get(`/engleader/getAllPro/${leader_id}`)
+    axios.get(`/api/main/engleader/getAllPro/${leader_id}`)
       .then(response => {
         console.log(response.data)
         setList(response.data);
@@ -141,8 +141,8 @@ function EnglProjectList() {
                               <th scope="row" className="col1st">{(currentPage - 1) * itemsPerPage + key + 1}</th>
                               <td><Link to={{ pathname: `/engineerleader/projectDetail/${list.pro_id}`}} style={{ padding: '0' }}>{list.pro_name}</Link></td>
                               <td>{list.cus_company_name}</td>
-                              <td>{list.pro_startDate}</td>
-                              <td>{list.pro_endDate}</td>
+                              <td>{list.pro_startdate}</td>
+                              <td>{list.pro_enddate}</td>
                               <td>{list.pro_rep}</td>
 
                             </tr>

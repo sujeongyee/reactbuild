@@ -318,6 +318,8 @@ function Login_join(props) {
             let dec = JSON.parse(base64.decode(payload));
        
             console.log(token)
+
+            console.log(dec.role)
    
                 if (dec.role === 'ROLE_USER') {
                     history('/user',{state: {
@@ -332,7 +334,12 @@ function Login_join(props) {
                     history('/admin',{state: {
                         role:'ROLE_ADMIN'
                       }});
-                }
+                } else if (dec.role === 'ROLE_ENGLEADER') {
+                    
+                  history('/engineerleader',{state: {
+                      role:'ROLE_ENGLEADER'
+                    }});
+              }
             
         } catch (error) {
             console.error(error);

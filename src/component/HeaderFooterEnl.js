@@ -1,5 +1,5 @@
 import { Fragment, useState } from "react"
-import { Link, NavLink, Outlet } from "react-router-dom"
+import { Link, NavLink, Outlet , useNavigate} from "react-router-dom"
 import $ from 'jquery';
 import './HeaderFooter.css'
 import BellIcon from "../img/BellIcon";
@@ -33,21 +33,33 @@ function HeaderFooterEnl(props) {
     fontSize: '16px'
   }
 
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    alert("로그아웃 되었습니다😎");
+    navigate("/");
+    window.location.reload();
+  };
+
 
   const handleClick = (e) => {
     $(e.currentTarget).toggleClass("active")
     $(e.currentTarget).next().toggleClass("in")
   }
+
+  const leader_id = 'eng_1';
+
   return (
 
 
     <Fragment>
-      <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+      <div id="main-wrapper" className="englmain" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
         <div className="header">
           <nav className="navbar top-navbar navbar-expand-lg navbar-light">
             <div className="navbar-header">
               <div className="navbar-brand">
-                <a href="index.html"> 기술지원 2팀 </a>
+              <Link to="/engineerleader" style={{color:'black'}}>기술지원 2팀 </Link> 
               </div>
 
 
@@ -130,7 +142,7 @@ function HeaderFooterEnl(props) {
                       <div><SettingsIcon /></div>
                       <span>회원정보 수정</span>
                     </Link>
-                    <Link to="#" className="contentIcon">
+                    <Link to="#" onClick={logout} className="contentIcon">
                       <div><LogOutIcon /></div>
                       <span>로그아웃</span>
                     </Link>
@@ -174,7 +186,7 @@ function HeaderFooterEnl(props) {
                       </NavLink>
                     </li>
                     <li class="sidebar-item">
-                      <NavLink className='sidebar-link ' to='/engineer/engineerList' style={({ isActive }) => isActive ? ms : undefined} >
+                      <NavLink className='sidebar-link ' to={{ pathname: `/engineerleader/allSchedule/${leader_id}`}} style={({ isActive }) => isActive ? ms : undefined} >
                         팀원 일정보기
                       </NavLink>
                     </li>
