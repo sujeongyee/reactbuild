@@ -2,13 +2,17 @@ import { Link } from "react-router-dom";
 import "../enMain/EnCss.css";
 import "../enMain/InspectionList.css";
 import FormControlIcon from "../img/FormControlIcon";
+import Loading from '../loding/Loding';
+import { useState } from "react";
+
 
 function EndInsList() {
+  const [loading, setLoading] = useState(true);
 
 
 return(
- 
-  <>
+  <>      
+   {loading ? <Loading /> : null}
         <div className="container-fluid">
           <div className="row">
               <div className="col-12">

@@ -6,8 +6,12 @@ import EnL_TeamassingmentModal from "./EnL_TeamassginmentModal";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
+import Loading from '../loding/Loding';
+
 function EnL_newProjectDetail() {
   //쿼리파라미터 값
+  const [loading, setLoading] = useState(true);
+
 
   const location = useLocation();
   // console.log(location);
@@ -25,6 +29,7 @@ function EnL_newProjectDetail() {
 
   return (
     <>
+             {loading ? <Loading /> : null}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">

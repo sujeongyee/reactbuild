@@ -1,10 +1,17 @@
 import { Link } from "react-router-dom";
 import "../enMain/EnMain.css";
 import FormControlIcon from "../img/FormControlIcon";
+import Loading from '../loding/Loding'
+import { useState } from "react";
 // import "./User.css";
 function EnInQurylist() {
+
+  const [loading, setLoading] = useState(true);
+
+
   return (
     <>
+             {loading ? <Loading /> : null}
          <div className="page-wrapper">
             <div className="page-breadcrumb">
                     <div className="row">

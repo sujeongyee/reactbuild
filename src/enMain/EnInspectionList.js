@@ -5,10 +5,13 @@ import { faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import InspectionList from './InspectionList';
 import EndInsList from './EndInsList';
-
+import Loading from '../loding/Loding';
 
 
 function EnInspectionList() {
+  const [loading, setLoading] = useState(true);
+
+
     const [isToggled, setToggled] = useState(true);
 
     const toggleButton = () => {
@@ -17,6 +20,7 @@ function EnInspectionList() {
     return (
 
         <>
+                 {loading ? <Loading /> : null}
             <div className="page-wrapper" >
              
               <div className="container-fluid">
