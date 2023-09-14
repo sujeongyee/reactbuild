@@ -10,7 +10,10 @@ import Modal from "react-modal";
 import './EngLeader.css';
 import { Link } from "react-router-dom";
 
+
 function EnglEngDetail() {
+  const [loading, setLoading] = useState(true);
+
   const { eng_enid } = useParams();
   const [serverList, setServerList] = useState([]);
   const [scheList, setScheList] = useState([]);
@@ -102,6 +105,7 @@ function EnglEngDetail() {
 
   return (
     <>
+
       <div className="page-wrapper englschedule">
         <div>
           <h3 style={{ color: 'black',marginBottom:'30px',marginLeft:'120px',fontSize:'18px' }}>담당 서버 리스트</h3>

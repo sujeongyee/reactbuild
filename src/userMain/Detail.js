@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom'
 import '../enMain/EnMain.css'
 import './User.css'
+import Loading from '../loding/Loding';
 
 function Detail(){
-
+  const [loading, setLoading] = useState(true);
 
 
   return(
     <>
+             {loading ? <Loading /> : null}
     <div class="detail_modal_container">
     <h2>작업 상세보기</h2>
     <div class="detail_modal_container_inner">

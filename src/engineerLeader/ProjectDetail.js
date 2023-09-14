@@ -9,8 +9,11 @@ import './EngLeader.css';
 import { Link, useParams } from 'react-router-dom';
 import EnglTeamassign from './EnglTeamassign';
 import './EngLeader.css';
+import Loading from '../loding/Loding';
 
 function EnglProjectDetail() {
+  const [loading, setLoading] = useState(true);
+
 
   const { pro_id } = useParams();
   const [info, setInfo] = useState([]);
@@ -22,6 +25,8 @@ function EnglProjectDetail() {
         console.log(response);
         setInfo(response.data);
         setList(response.data.list);
+
+        setLoading(false);
       })
       .catch(err => { console.log(err) })
 
@@ -38,6 +43,8 @@ function EnglProjectDetail() {
   return (
 
     <>
+
+{loading ? <Loading /> : null}  
       <div className="page-wrapper engl-all-proli" >
         <div className="page-breadcrumb">
           

@@ -7,11 +7,11 @@ import axios from 'axios';
 import './EngLeader.css';
 import { useParams } from 'react-router-dom';
 import EnglTeamassign from './EnglTeamassign';
-
+import Loading from '../loding/Loding';
 
 
 function RequestDetail() {
-
+  const [loading, setLoading] = useState(true);
 
 
   const { pro_id } = useParams();
@@ -24,6 +24,8 @@ function RequestDetail() {
         console.log(response);
         setInfo(response.data);
         setList(response.data.list);
+
+        setLoading(false);
       })
       .catch(err => { console.log(err) })
 
@@ -40,6 +42,7 @@ function RequestDetail() {
   return (
 
     <>
+           {loading ? <Loading /> : null}
       <div className="page-wrapper" >
         <div className="page-breadcrumb">
           <div className="row">

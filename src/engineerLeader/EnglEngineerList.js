@@ -6,8 +6,12 @@ import SearchIcon from "./SearchIcon";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "react-js-pagination";
+import Loading from '../loding/Loding';
 
 function EnglEngineerList() {
+
+  const [loading, setLoading] = useState(true);
+
   const [first, setFirst] = useState([]);
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,6 +22,8 @@ function EnglEngineerList() {
       .then(response => {
         setList(response.data);
         setFirst(response.data);
+
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -62,6 +68,8 @@ function EnglEngineerList() {
 
   return (
     <>
+
+{loading ? <Loading /> : null}
     <div className="page-wrapper prolist-engl">
 
 <div className="container-fluid englpro-all" style={{ padding: '10px', marginLeft: '100px', marginTop: '50px' }}>

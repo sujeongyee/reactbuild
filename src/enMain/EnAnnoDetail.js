@@ -2,11 +2,16 @@ import { Link } from 'react-router-dom'
 // import '../enMain/EnMain.css'
 // import './User.css'
 import Comment from '../component/Comment';
+import Loading from '../loding/Loding';
+import { useState } from 'react';
 function EnAnnoDetail() {
+  const [loading, setLoading] = useState(true);
+
 
 
     return (
         <>
+                 {loading ? <Loading /> : null}
         <div className="page-wrapper" >
 
       

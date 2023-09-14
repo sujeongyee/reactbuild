@@ -5,9 +5,9 @@ import "../enMain/EnMain.css";
 // import "../enMain/EnTeam.css";
 import './EngLeader.css';
 import axios from "axios";
+import Loading from '../loding/Loding';
 
 function EnglTeamassign(props) {
-
   //console.log(props.leaderid);
 
   const [loading, setLoading] = useState(true);
@@ -103,6 +103,7 @@ function EnglTeamassign(props) {
 
   return (
     <>
+             {loading ? <Loading /> : null}
       {props.check === true ? <button type="button" className="assingment-btn ok-bbtn">팀원배정완료</button> : <button type="button" className="assingment-btn" onClick={()=>setModalIsOpen(true)}>팀원배정</button>}
       <input type="hidden" className={server_id}></input>
 

@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import Modal from 'react-modal'; // react-modal import
+import Loading from '../loding/Loding';
+
 function Calendar() {
+
+  const [loading, setLoading] = useState(true);
+
+
   const [events, setEvents] = useState([
     // 초기 이벤트 데이터 배열
     {
@@ -58,7 +64,7 @@ function Calendar() {
         events={events}
         eventClick={Click}
       />
-    
+      {loading ? <Loading /> : null}
         <Modal  className="modal-content" overlayClassName="modal-overlay"
         isOpen={isAddEventModalOpen}
         onRequestClose={closeAddEventModal}

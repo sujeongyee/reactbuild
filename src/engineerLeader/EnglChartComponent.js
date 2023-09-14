@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'tui-chart'; // tui-chart의 모듈을 가져옴
 import 'tui-chart/dist/tui-chart.css';
 
 const EnglChartComponent = ({ periodic, disability, maintenance }) => {
+
   const containerRef = useRef(null);
 
   useEffect(() => {

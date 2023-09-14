@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import Loading from '../loding/Loding';
 
 function EnglClientDetail() {
+  const [loading, setLoading] = useState(true);
 
   const { cus_id } = useParams();
   const [list, setList] = useState([]);
   const [vo, setVo] = useState([]);
+
 
   // useEffect(()=>{
   //   axios.get(`/engleader/getClientInfo/${cus_id}`)
@@ -21,6 +24,8 @@ function EnglClientDetail() {
         setVo(response.data.vo);
         console.log(list);
         console.log(vo);
+
+        setLoading(false);
       })
       .catch(err => { console.log(err) })
 
@@ -28,6 +33,7 @@ function EnglClientDetail() {
 
   return (
     <>
+      {loading ? <Loading /> : null}
       <div className="page-wrapper clientDetailpage-engl">
         <div><h4 className="cdp-head" style={{color:'#424242'}} >클라이언트정보</h4></div>
         <div className=" cardcusdetail">

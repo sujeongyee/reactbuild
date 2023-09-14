@@ -1,11 +1,13 @@
 // import './User.css'
-
+import { useState } from 'react';
+import Loading from '../loding/Loding';
 function EnInQuryWrite(){
-
+  const [loading, setLoading] = useState(true);
 
     return(
 
     <>
+         {loading ? <Loading /> : null}
         <div className="page-wrapper" >
 
             <div className="page-breadcrumb">

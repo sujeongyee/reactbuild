@@ -11,9 +11,12 @@ import { Doughnut } from 'react-chartjs-2';
 import { useEffect, useState } from "react"
 import axios from "axios"
 import EnglChartComponent from "./EnglChartComponent"
+import Loading from '../loding/Loding';
 
 
 function EngLeadMain(props) {
+  const [loading, setLoading] = useState(true);
+
 
   const [vo, setVo] = useState([]);
   //const [ivedinspectionList,setIvedinspectionList] = useState([]);
@@ -41,6 +44,8 @@ function EngLeadMain(props) {
         setDisability(receiveddisability);
         setMaintenance(receivedmaintenance);
 
+
+        setLoading(false);
       })
   }, [])
 
@@ -79,6 +84,7 @@ function EngLeadMain(props) {
 
   return (
     <>
+        {loading ? <Loading /> : null}
       <div className="page-wrapper" >
         <div className="container-fluid">
           <div className="row l-main-pa">

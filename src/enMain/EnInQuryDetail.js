@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom'
 import '../enMain/EnMain.css'
 // import './User.css'
-function EnInQuryDetail() {
 
+import Loading from '../loding/Loding';
+import { useState } from 'react';
+
+
+function EnInQuryDetail() {
+  const [loading, setLoading] = useState(true);
 
     return (
         <>
+          {loading ? <Loading /> : null}
             <div className="page-wrapper" >
 
             <div class="page-breadcrumb">
