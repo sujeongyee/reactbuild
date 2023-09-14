@@ -6,8 +6,11 @@ import '@toast-ui/calendar/dist/toastui-calendar.min.css'; // Calendar 스타일
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import Modal from "react-modal";
+import Loading from '../loding/Loding';
 
 function EnglEngDetail() {
+  const [loading, setLoading] = useState(true);
+
   const { eng_enid } = useParams();
   const [list, setList] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -35,6 +38,8 @@ function EnglEngDetail() {
       .then(response => {
         setList(response.data.serverList);
         console.log(response.data);
+
+        setLoading(false);
       });
   }, []);
 
@@ -81,6 +86,7 @@ function EnglEngDetail() {
 
   return (
     <>
+          {loading ? <Loading /> : null}
     <div className='page-wrapper englschedule'>
       <div>
         <h3>담당 서버 리스트</h3>

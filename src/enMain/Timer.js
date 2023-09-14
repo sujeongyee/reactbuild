@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
+import Loading from '../loding/Loding';
 
 function Timer() {
+  const [loading, setLoading] = useState(true);
+
+
   const initialSeconds = parseInt(localStorage.getItem("seconds")) || 0;
   const [seconds, setSeconds] = useState(initialSeconds);
   const [isRunning, setIsRunning] = useState(false);
@@ -41,6 +45,7 @@ function Timer() {
 
   return (
     <div>
+               {loading ? <Loading /> : null}
       <p>경과 시간: {seconds} 초</p>
       <button onClick={startTimer}>시작</button>
       <button onClick={stopTimer}>기록</button>

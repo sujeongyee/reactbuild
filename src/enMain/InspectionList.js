@@ -5,8 +5,10 @@ import FormControlIcon from "../img/FormControlIcon";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import EnServerDetailModal from "./EnServerDetailModal";
+import Loading from '../loding/Loding';
 
 function InspectionList() {
+  const [loading, setLoading] = useState(true);
 
   const[list, setList] = useState([]);
 
@@ -14,6 +16,8 @@ function InspectionList() {
     axios.get('/api/engineer/inspectionList').then((res)=>{
       setList(res.data);
       console.log(res.data);
+
+      setLoading(false);
     })
     .catch((error)=>{
       console.log(error);
@@ -24,6 +28,7 @@ console.log(list);
 return(
  
   <>
+           {loading ? <Loading /> : null}
         <div className="container-fluid">
           <div className="row">
               <div className="col-12">

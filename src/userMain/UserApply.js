@@ -3,8 +3,11 @@ import { useEffect, useState } from 'react'
 import '../enMain/EnMain.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import Loading from '../loding/Loding';
 
 function UserApply() {
+  const [loading, setLoading] = useState(true);
+
   
   const navigate = useNavigate();
   const [allChecked, setAllChecked] = useState(false);
@@ -71,6 +74,7 @@ function UserApply() {
     const response= await axios.get('/api/user/apply')
     
     setCusData(response.data) 
+    setLoading(false);
   
   }
 
@@ -160,6 +164,8 @@ const handleApply = async (e) => {
         alert('등록되었습니다')
         
         navigate('/user/list');
+
+        setLoading(false);
   
       } else {
         // 요청이 실패한 경우
@@ -176,6 +182,7 @@ const handleApply = async (e) => {
   return (
 
     <>
+           {loading ? <Loading /> : null}
       <div className="page-wrapper" >
         <div className="page-breadcrumb">
           <div className="row">

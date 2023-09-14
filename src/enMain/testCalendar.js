@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import Modal from "react-modal"; // react-modal import
+import Loading from '../loding/Loding';
+
+
 function TestCalendar() {
+  const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState([
     // 초기 이벤트 데이터 배열
     {
@@ -47,6 +51,7 @@ function TestCalendar() {
 
   return (
     <div className="page-wrapper">
+      
       <div id="myCalender">
         <button onClick={openAddEventModal}>일정 추가</button>
         <FullCalendar
@@ -54,7 +59,7 @@ function TestCalendar() {
           initialView="dayGridMonth"
           events={events}
         />
-
+         {loading ? <Loading /> : null}
         <Modal isOpen={isAddEventModalOpen} onRequestClose={closeAddEventModal}>
           <h2>일정 추가</h2>
           <input

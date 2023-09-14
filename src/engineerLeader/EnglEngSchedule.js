@@ -7,7 +7,7 @@ import axios from 'axios';
 import Calendar from '@toast-ui/react-calendar';
 import '@toast-ui/calendar/dist/toastui-calendar.min.css'; // Calendar 스타일
 // 캘린더를 생성하기 위해 tui-calendar 객체와 스타일 코드 삽입
-
+import Loading from '../loding/Loding';
 
 function EnglEngSchedule() {
 
@@ -16,6 +16,8 @@ function EnglEngSchedule() {
   useEffect(()=>{
     axios.get(`/engleader/getEngInfo/${eng_enid}`)
     .then(response => console.log(response.data))
+
+    setLoading(false);
   },[])
 
   const schedules = [
@@ -88,6 +90,7 @@ function EnglEngSchedule() {
 
   return (
     <>
+            {loading ? <Loading /> : null}
       <div className='page-wrapper englschedule'>
 
         <div>

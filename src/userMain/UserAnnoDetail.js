@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom'
 // import '../enMain/EnMain.css'
 // import './User.css'
+import Loading from '../loding/Loding';
+import { useState } from 'react';
+
 function UserAnnoDetail() {
 
 
     return (
         <>
+  
             <div className="page-wrapper" >
 
           

@@ -2,12 +2,16 @@ import { Link } from 'react-router-dom'
 import '../enMain/EnMain.css'
 import FormControlIcon from '../img/FormControlIcon';
 // import './User.css'
+import Loading from '../loding/Loding';
+import { useState } from 'react';
 
 function EnAnnoList() {
+  const [loading, setLoading] = useState(true);
 
     return (
 
         <>
+               {loading ? <Loading /> : null}
             <div className="page-wrapper" >
 
                 <div className="page-breadcrumb">
