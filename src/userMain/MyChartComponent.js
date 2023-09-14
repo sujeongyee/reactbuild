@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'tui-chart/dist/tui-chart.css';
 import { ColumnLineChart } from '@toast-ui/react-chart';
 
+
 class MyChartComponent extends Component {
   render() {
     const data = {

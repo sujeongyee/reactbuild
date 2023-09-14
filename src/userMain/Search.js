@@ -4,10 +4,6 @@ import { useCallback, useState } from "react"
 function Search({setSearchValue }){
   
   const [input , setInput] = useState("");
-  const [payStatusKeyword, setPayStatusKeyword] = useState("");
-  const [plateNumKeyword, setPlateNumKeyword] = useState("");
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
 
 
   const handleChange = (e) => {
@@ -15,17 +11,11 @@ function Search({setSearchValue }){
   }
 
   const handleClick = () => {
-    // Construct an object containing search criteria
-    const searchCriteria = {
-      payStatusKeyword,
-      plateNumKeyword,
-      startDate,
-      endDate,
-      input, // Add the input value for general search
+    input(setSearchValue)
+
     };
 
-    setSearchValue(searchCriteria);
-  }
+  
 
 
   return(

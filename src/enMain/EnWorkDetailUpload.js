@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Loading from '../loding/Loding';
 
 function FileUpload() {
+  const [loading, setLoading] = useState(true);
   const [fileData, setFileData] = useState(null);
   const [filename, setFilename] = useState("");
 
@@ -41,6 +43,8 @@ function FileUpload() {
         .post("/api/awsUpload", formData)
         .then((response) => {
           alert(response.data);
+
+          setLoading(false);
         })
         .catch((err) => {
           alert("업로드에 실패했습니다: " + err);
@@ -52,6 +56,7 @@ function FileUpload() {
 
   return (
     <div>
+               {loading ? <Loading /> : null}
       <div
         className="file_box"
         onDragOver={handleDragOver}

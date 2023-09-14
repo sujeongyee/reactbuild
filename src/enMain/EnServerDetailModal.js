@@ -5,8 +5,12 @@ import "../enMain/EnCss.css";
 import "../userMain/User.css";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import Loading from '../loding/Loding';
 
 function EnServerDetailModal(props, areaID) {
+  const [loading, setLoading] = useState(true);
+
+
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const[data, setData] = useState([]);
@@ -24,6 +28,8 @@ function EnServerDetailModal(props, areaID) {
       .then(response => {
         setData(response.data);
         console.log(response.data);
+
+        setLoading(false);
         
       })
       .catch((error)=>{
@@ -93,12 +99,14 @@ function EnServerDetailModal(props, areaID) {
 
   return (
     <>
+   
       <button onClick={openModal}>{props.serverName}</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
       >
+                  {loading ? <Loading /> : null}
         <div className="detail_modal_container" ref={printableAreaRef}  id={areaID} >
           <h2>서버 상세보기</h2>
           <div className="detail_modal_container_inner" >

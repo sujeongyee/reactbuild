@@ -7,7 +7,12 @@ import FormControlIcon from "../img/FormControlIcon";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+import Loading from '../loding/Loding';
+
 function EnL_newProject() {
+  const [loading, setLoading] = useState(true);
+
+  
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -16,6 +21,8 @@ function EnL_newProject() {
       .then((response) => {
         setData(response.data);
         console.log(response.data);
+
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -24,6 +31,7 @@ function EnL_newProject() {
 
   return (
     <>
+             {loading ? <Loading /> : null}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">

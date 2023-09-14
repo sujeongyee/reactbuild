@@ -8,7 +8,11 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import ProjectDetailChart from "./ProjectDetailChart";
 import Search from "./Search";
+import Loading from '../loding/Loding';
+
+
 function UserProjectDetailList() {
+  const [loading, setLoading] = useState(true);
 
   const [ProjectDetailList, setProjectDetailList] = useState([]);
   const [searchValue , setSearchValue] = useState("");
@@ -25,6 +29,7 @@ function UserProjectDetailList() {
       .then(response =>
         setProjectDetailList(response.data))
       .catch(error => console.log(error))
+      setLoading(false);
   }, []);
 
  /* const toggleDropDown = (e) => {
@@ -74,6 +79,7 @@ function UserProjectDetailList() {
   
   return (
     <>
+             {loading ? <Loading /> : null}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">
@@ -121,7 +127,7 @@ function UserProjectDetailList() {
 
                         <tbody>
                         {ProjectDetailList
-                            .map((item, index) => ({ ...item, index })) // Add the 'index' property to each item
+                            .map((item, index) => ({ ...item, index }))
                             .filter((value) => {
                               if (searchValue === "") {
                                 return true;

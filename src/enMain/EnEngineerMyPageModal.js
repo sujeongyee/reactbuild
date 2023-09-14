@@ -7,8 +7,10 @@ import axios from "axios";
 
 import base64 from 'base-64';
 
+import Loading from '../loding/Loding';
 
 function EnEngineerMyPage(props) {
+  const [loading, setLoading] = useState(true);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
     const token=localStorage.getItem("token");
@@ -87,6 +89,7 @@ const handleFileChange = async(e) => {
 
   return (
     <>
+            {loading ? <Loading /> : null}
       <button onClick={() => setModalIsOpen(true)}>{props.engName}</button>
       <Modal
         /* className="modal-content"*/
