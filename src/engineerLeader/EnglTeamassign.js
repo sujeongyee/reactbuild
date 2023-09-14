@@ -19,7 +19,7 @@ function EnglTeamassign(props) {
     // props.leaderid가 null이 아닌 경우에만 axios.post 요청을 보냅니다.
     if (pro_id !== null) {
 
-      axios.get(`/engleader/getTeamEngList/${pro_id}`)
+      axios.get(`/api/main/engleader/getTeamEngList/${pro_id}`)
         .then(response => {
           setData(response.data);
           setLoading(false);
@@ -75,7 +75,7 @@ function EnglTeamassign(props) {
 
     var eng_enid = checkedEng.previousElementSibling.value;
 
-    axios.post('/engleader/assignEng', { eng_enid: eng_enid, pro_id: pro_id, server_id: server_id })
+    axios.post('/api/main/engleader/assignEng', { eng_enid: eng_enid, pro_id: pro_id, server_id: server_id })
       .then(response => {
         console.log(response);
         if (response.data === 'ok') {

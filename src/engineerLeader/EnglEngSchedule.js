@@ -14,7 +14,7 @@ function EnglEngSchedule() {
   const {eng_enid} = useParams();
 
   useEffect(()=>{
-    axios.get(`/engleader/getEngInfo/${eng_enid}`)
+    axios.get(`/api/main/engleader/getEngInfo/${eng_enid}`)
     .then(response => console.log(response.data))
 
     setLoading(false);

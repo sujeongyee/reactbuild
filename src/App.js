@@ -72,6 +72,7 @@ import EnglClientList from "./engineerLeader/EnglClientList";
 import EnglEngineerList from "./engineerLeader/EnglEngineerList";
 import EnglClientDetail from "./engineerLeader/EnglClientDetail";
 import EnglEngDetail from "./engineerLeader/EnglEngDetail";
+import EnglAllSchedule from "./engineerLeader/EnglAllSchedule";
 
 
 function App() {
@@ -113,6 +114,8 @@ function App() {
 
   }, [])
 
+  const leader_id = 'eng_1';
+
   return (
 
     <Routes>
@@ -151,7 +154,7 @@ function App() {
 
         </Route>
 
-
+      
 
       </Route>
       {/* $ npm install react-js-pagination */}
@@ -165,8 +168,9 @@ function App() {
           <Route path='/engineerleader/clientList' element={<EnglClientList />} />
           <Route path='/engineerleader/engineerList' element={<EnglEngineerList />} />
           <Route path='/engineerleader/clientDetail/:cus_id' element={<EnglClientDetail />} />
-          <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail />} />
+          <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail/>} />
           {/* <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngCalendar/>}/> */}
+          <Route path='/engineerleader/allSchedule/:leader_id' element={<EnglAllSchedule leader_id={leader_id}/>}/>
         </Route>
       </Route>
 

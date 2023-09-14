@@ -464,7 +464,7 @@
 
 .englschedule {
   padding-top: 110px;
-
+  color: black;
 }
 
 .englCalendar {
@@ -483,7 +483,76 @@
 }
 
 .sche_modal {
-  width: 300px;
-  height: 200px;
+
   z-index: 8;
 }
+
+.ReactModal__Overlay {
+  background-color: none;
+}
+
+.sche_modal {
+  color: black;
+  font-size: 13px;
+}
+
+.fc-event{
+  cursor: pointer;
+}
+.sche_modal p{
+  text-align: left;
+  margin-bottom: 10px;
+}
+.sche_modal a:hover {
+  color: black;
+  background-color: none;
+}
+.fc-daygrid-block-event:focus {
+  text-decoration: none;
+  
+}
+.fc-daygrid-dot-event:hover {
+  color: black;
+  background-color: none;
+}
+.fc-daygrid-dot-event:focus {
+  color: black;
+  text-decoration: none;
+}
+
+
+.fc .fc-toolbar-title {
+  color: #746a60;
+}
+
+.fc-event:focus,
+.fc-event-start:focus,
+.fc-event-past:focus,
+.fc-daygrid-event:focus,
+.fc-daygrid-block-event:focus,
+.fc-h-event:focus {
+  outline: none; /* 포커스 또는 클릭시 outline 제거 */
+}
+
+.fc-direction-ltr:focus {
+  background-color: none;
+}
+.fc-direction-ltr:hover {
+  color: black;
+}
+
+.englcuslist2 {
+  width: 1000px;
+}
+
+.englprolisttable2{
+  margin: 0px 200px;
+
+}
+
+.movetoengl:hover {
+  text-decoration : none;
+  color: rgb(28, 66, 41);
+
+}
+

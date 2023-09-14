@@ -19,7 +19,7 @@ function RequestDetail() {
   const [list, setList] = useState([]);
   useEffect(() => {
     //console.log(pro_id);
-    axios.get(`/engleader/requestDetail/${pro_id}`)
+    axios.get(`/api/main/engleader/requestDetail/${pro_id}`)
       .then(response => {
         console.log(response);
         setInfo(response.data);
@@ -34,7 +34,7 @@ function RequestDetail() {
   const assignEmer = () => {
     const engid = 'tnwjd2580';
     const serverId = '21ff55ca-4c9d-11ee-acdc-8cb0e993c4ae';
-    axios.post('/alarm/assignEmer', { engid: engid, serverId: serverId })
+    axios.post('/api/main/alarm/assignEmer', { engid: engid, serverId: serverId })
       .catch(err => { alert('실패' + err) })
   }
 
