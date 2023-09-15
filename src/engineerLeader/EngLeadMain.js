@@ -4,7 +4,17 @@ import FolderPlusIcon from "../img/FolderPlusIcon";
 import FolderIcon from "../img/FolderIcon";
 import UsersIcon from "../img/UserIcon";
 
-import ChartComponent1 from "../userMain/ChartComponent1";
+
+
+import ChartComponent1 from "../userMain/ChartComponent1"
+
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+import { useEffect, useState } from "react"
+import axios from "axios"
+import EnglChartComponent from "./EnglChartComponent"
+import Loading from '../loding/Loding';
+
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
@@ -13,6 +23,11 @@ import axios from "axios";
 import EnglChartComponent from "./EnglChartComponent";
 
 function EngLeadMain(props) {
+
+  const [loading, setLoading] = useState(true);
+
+
+
   const [vo, setVo] = useState([]);
   //const [ivedinspectionList,setIvedinspectionList] = useState([]);
   const [list, setList] = useState([]);
@@ -21,24 +36,32 @@ function EngLeadMain(props) {
   const [maintenance, setMaintenance] = useState([]);
   const [id, setId] = useState("");
   useEffect(() => {
-    const leaderId = "eng_1";
-    setId("eng_1");
-    axios.get(`/api/main/engleader/main/${leaderId}`).then((response) => {
-      const data2 = response.data;
-      // console.log(data2);
-      const receivedvo = data2.vo;
-      const receivedlist = data2.list;
-      const receivedperiodic = data2.periodic;
-      const receiveddisability = data2.disability;
-      const receivedmaintenance = data2.maintenance;
-      setVo(receivedvo);
-      //setIvedinspectionList(receivedinspectionList);
-      setList(receivedlist);
-      setPeriodic(receivedperiodic);
-      setDisability(receiveddisability);
-      setMaintenance(receivedmaintenance);
-    });
-  }, []);
+
+    const leaderId = 'eng_1';
+    setId('eng_1');
+    axios.get(`/api/main/engleader/main/${leaderId}`)
+      .then(response => {
+        const data2 = response.data;
+        // console.log(data2);
+        const receivedvo = data2.vo;
+        const receivedlist = data2.list;
+        const receivedperiodic = data2.periodic;
+        const receiveddisability = data2.disability;
+        const receivedmaintenance = data2.maintenance;
+        setVo(receivedvo);
+        //setIvedinspectionList(receivedinspectionList);
+        setList(receivedlist);
+        setPeriodic(receivedperiodic);
+        setDisability(receiveddisability);
+        setMaintenance(receivedmaintenance);
+
+
+        setLoading(false);
+      })
+  }, [])
+
+
+
 
   const data = {
     labels: ["신규계약", "계약종료"],
@@ -70,7 +93,10 @@ function EngLeadMain(props) {
 
   return (
     <>
-      <div className="page-wrapper">
+
+        {loading ? <Loading /> : null}
+      <div className="page-wrapper" >
+
         <div className="container-fluid">
           <div className="row l-main-pa">
             <div className="col-sm-6 col-lg-3 engl-card">
@@ -80,8 +106,9 @@ function EngLeadMain(props) {
                     <div>
                       <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color-engl">
-                          {vo.teamCount}명
-                        </h2>
+
+                          <Link className="movetoengl" to={'/engineerleader/engineerList'}> {vo.teamCount}명</Link></h2>
+
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -105,8 +132,9 @@ function EngLeadMain(props) {
                     <div>
                       <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color-engl">
-                          {vo.projectCount}개
-                        </h2>
+
+                          <Link className="movetoengl" to={'/engineerleader/projectList'}>{vo.projectCount}개</Link></h2>
+
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -232,18 +260,18 @@ function EngLeadMain(props) {
                                   <div className="">{data.pro_rep}</div>
                                 </div>
                               </td>
-                              <td className="" style={{ padding: "6px" }}>
-                                <Link
-                                  className="engl-main-a"
-                                  to={{
-                                    pathname: `/engineerleader/requestDetail/${data.pro_id}`,
-                                    state: {
-                                      id: id,
-                                    },
-                                  }}
-                                >
-                                  {data.pro_name}
-                                </Link>
+
+                              <td className="" style={{ padding: '6px' }}><Link className="engl-main-a" to={{
+                                pathname: `/engineerleader/requestDetail/${data.pro_id}`,
+                                state: {
+                                  id: id,                           
+                                },
+                              }} >{data.pro_name}</Link></td>
+
+                              <td
+                                className="">
+                                {data.pro_startdate}
+
                               </td>
 
                               <td className="">{data.pro_startDate}</td>

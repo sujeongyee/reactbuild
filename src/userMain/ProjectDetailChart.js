@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import UserProjectDetailModal2 from "./UserProjectDetailModal2";
 import axios from "axios";
 
-function ProjectDetailChart({ serverId, projectData }) {
+
+
+function ProjectDetailChart({ serverId,projectData}) {
+
+
+
+
   // VARIABLES
   const elH = document.querySelectorAll(".timeline li > div");
 
@@ -49,6 +55,7 @@ function ProjectDetailChart({ serverId, projectData }) {
 
   return (
     <>
+
       <section className="timeline">
         <ol>
           {ProjectDetailList.map((item, index) => (

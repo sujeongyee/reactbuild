@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import "../enMain/EnMain.css";
 import "./EnTeam.css";
+import Loading from '../loding/Loding';
 
 function EnL_TeamassingmentModal() {
+  const [loading, setLoading] = useState(true);
+
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const customStyles = {
@@ -23,6 +27,8 @@ function EnL_TeamassingmentModal() {
 
   return (
     <>
+             {loading ? <Loading /> : null}
+             
       <button type="button" className="assingment-btn" onClick={() => setModalIsOpen(true)}>팀원배정</button>
       <Modal
         /* className="modal-content"

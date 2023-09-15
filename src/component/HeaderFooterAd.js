@@ -18,7 +18,7 @@ import LayersIcon from "../img/LayersIcon";
 import SmileIcon from "../img/SmileIcon";
 
 
-function HeaderFooterAd() {
+function HeaderFooterAd(props) {
 
   
     const [bellModal, setbellModalIsOpen] = useState(false);
@@ -53,7 +53,7 @@ function HeaderFooterAd() {
                 <nav className="navbar top-navbar navbar-expand-lg navbar-light">
                     <div className="navbar-header">
                         <div className="navbar-brand">
-                            <a href="index.html"> (주)승용 </a>
+                            <a href="index.html"> 관리자 페이지</a>
                         </div>
 
 
@@ -123,7 +123,7 @@ function HeaderFooterAd() {
 
                                     <span className="ms-2 d-none d-lg-inline-block">
                                         <span></span>
-                                        <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>(주)승용</span>
+                                        <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>{props.checkPermission.sub}</span>
                                         <Down />
                                     </span>
                                 </button>
@@ -132,10 +132,7 @@ function HeaderFooterAd() {
                                         <div><ProfileIcon /></div>
                                         <span>프로필 보기</span>
                                     </Link>
-                                    <Link to="#" className="contentIcon">
-                                        <div><SettingsIcon /></div>
-                                        <span>회원정보 수정</span>
-                                    </Link>
+                                  
                                     <Link to="#" onClick={logout} className="contentIcon">
                                         <div><LogOutIcon /></div>
                                         <span>로그아웃</span>

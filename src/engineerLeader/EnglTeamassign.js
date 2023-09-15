@@ -4,6 +4,7 @@ import "../enMain/EnMain.css";
 // import "../enMain/EnTeam.css";
 import "./EngLeader.css";
 import axios from "axios";
+import Loading from '../loding/Loding';
 
 function EnglTeamassign(props) {
   //console.log(props.leaderid);
@@ -16,9 +17,11 @@ function EnglTeamassign(props) {
   useEffect(() => {
     // props.leaderid가 null이 아닌 경우에만 axios.post 요청을 보냅니다.
     if (pro_id !== null) {
-      axios
-        .get(`/api/main/engleader/getTeamEngList/${pro_id}`)
-        .then((response) => {
+
+
+      axios.get(`/api/main/engleader/getTeamEngList/${pro_id}`)
+        .then(response => {
+
           setData(response.data);
           setLoading(false);
         })
@@ -70,13 +73,10 @@ function EnglTeamassign(props) {
 
     var eng_enid = checkedEng.previousElementSibling.value;
 
-    axios
-      .post("/api/main/engleader/assignEng", {
-        eng_enid: eng_enid,
-        pro_id: pro_id,
-        server_id: server_id,
-      })
-      .then((response) => {
+
+    axios.post('/api/main/engleader/assignEng', { eng_enid: eng_enid, pro_id: pro_id, server_id: server_id })
+      .then(response => {
+
         console.log(response);
         if (response.data === "ok") {
           setModalIsOpen(false);
@@ -105,19 +105,10 @@ function EnglTeamassign(props) {
 
   return (
     <>
-      {props.check === true ? (
-        <button type="button" className="assingment-btn ok-bbtn">
-          팀원배정완료
-        </button>
-      ) : (
-        <button
-          type="button"
-          className="assingment-btn"
-          onClick={() => setModalIsOpen(true)}
-        >
-          팀원배정
-        </button>
-      )}
+
+             {loading ? <Loading /> : null}
+      {props.check === true ? <button type="button" className="assingment-btn ok-bbtn">팀원배정완료</button> : <button type="button" className="assingment-btn" onClick={()=>setModalIsOpen(true)}>팀원배정</button>}
+
       <input type="hidden" className={server_id}></input>
 
       {/* <button type="button" className="assingment-btn" onClick={() => setModalIsOpen(true)}>팀원배정</button> */}

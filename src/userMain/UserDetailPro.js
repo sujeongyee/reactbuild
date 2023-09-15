@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router-dom"
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from '../loding/Loding';
 
 function UserDetailPro({}) {
+  const [loading, setLoading] = useState(true);
 
   const[proDetail, setProDetail] = useState([]);
 
@@ -11,6 +13,7 @@ function UserDetailPro({}) {
     axios.get('/api/user/prodetail').then((response)=>{
       setProDetail(response.data);
       console.log(response.data);
+      setLoading(false);
       
     })
     .catch((error)=>{
@@ -22,7 +25,7 @@ function UserDetailPro({}) {
 
   return (
     <>
-
+         {loading ? <Loading /> : null}
       <div className="page-wrapper" >
 
         <div className="page-breadcrumb">

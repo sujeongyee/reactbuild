@@ -534,130 +534,180 @@ function Login_join(props) {
                   )}
                 </div>
 
-                <div className="lj_input-group">
-                  <div className="row">
-                    <input
-                      type="text"
-                      placeholder="우편번호"
-                      value={extraAddress}
-                      readOnly
-                      style={{ width: "50%" }}
-                    />
-                    <button
-                      onClick={() => setbellModalIsOpen(true)}
-                      style={{ width: "50%" }}
-                    >
-                      우편번호 찾기
-                    </button>
-                    <input
-                      type="text"
-                      placeholder="주소"
-                      value={address}
-                      readOnly
-                    />
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="상세 주소 입력"
-                    name="cus_address2"
-                    onChange={handleChange}
-                    value={formData.cus_address2}
-                  />
-                  <Modal
-                    className="post-modal"
-                    overlayClassName="bell-overlay"
-                    isOpen={bellModal}
-                    onRequestClose={() => setbellModalIsOpen(false)}
-                  >
-                    {" "}
-                    <DaumPostcode
-                      onComplete={handleComplete}
-                      autoClose
-                      animation
-                      className="post-code"
-                    />
-                  </Modal>
-                </div>
-                {errForm.cus_address2 !== "undefined" ||
-                errForm.cus_address2 !== "" ? (
-                  <p className="errCheck">{errForm.cus_address2}</p>
-                ) : (
-                  <></>
-                )}
-                <div className="lj_input-group">
-                  <i className="bx bx-mail-send"></i>
-                  <input
-                    type="text"
-                    className="contact_name"
-                    placeholder="담당자 이름"
-                    name="cus_managet_name"
-                    onChange={handleChange}
-                    value={formData.cus_managet_name}
-                  />
-                </div>
-                {errForm.cus_managet_name !== "undefined" ||
-                errForm.cus_managet_name !== "" ? (
-                  <p className="errCheck">{errForm.cus_managet_name}</p>
-                ) : (
-                  <></>
-                )}
 
-                <div className="lj_input-group">
-                  <i className="bx bx-mail-send"></i>
-                  <input
-                    type="email"
-                    className="contact_email"
-                    placeholder="담당자 이메일"
-                    name="cus_email"
-                    onChange={handleChange}
-                    value={formData.cus_email}
-                  />
-                </div>
-                {errForm.cus_email !== "undefined" ||
-                errForm.cus_email !== "" ? (
-                  <p className="errCheck">{errForm.cus_email}</p>
-                ) : (
-                  <></>
-                )}
+    }
+    const history = useNavigate ();
 
-                <div className="lj_input-group">
-                  <i className="bx bx-mail-send"></i>
-                  <input
-                    type="tel"
-                    className="contact_phonenumber"
-                    placeholder="담당자 연락처 000-0000-0000 양식으로 작성"
-                    name="cus_phone_number"
-                    onChange={handleChange}
-                    value={formData.cus_phone_number}
-                  />
-                </div>
-                {errForm.cus_phone_number !== "undefined" ||
-                errForm.cus_phone_number !== "" ? (
-                  <p className="errCheck">{errForm.cus_phone_number}</p>
-                ) : (
-                  <></>
-                )}
+    const handleSingIn = async (e) => {
+        e.preventDefault();
+    
+        try {
+            const response = await axios.post('/api/main/login', singIn);
+           
+            localStorage.setItem('token', response.data);
+    
+            const token = localStorage.getItem('token');
+            let payload = token.substring(token.indexOf('.') + 1, token.lastIndexOf('.'));
+            let dec = JSON.parse(base64.decode(payload));
+       
+            console.log(token)
 
-                <button style={{ color: "white" }} onClick={handleLogin}>
-                  가입하기
-                </button>
+            console.log(dec.role)
+   
+                if (dec.role === 'ROLE_USER') {
+                    history('/user',{state: {
+                        role:'ROLE_USER'
+                      }});
+                } else if (dec.role === 'ROLE_ENGINEER') {
+                    
+                    history('/engineer',{state: {
+                        role:'ROLE_ENGINEER'
+                      }});
+                } else if (dec.role === 'ROLE_ADMIN') {
+                    history('/admin',{state: {
+                        role:'ROLE_ADMIN'
+                      }});
+                } else if (dec.role === 'ROLE_ENGLEADER') {
+                    
+                  history('/engineerleader',{state: {
+                      role:'ROLE_ENGLEADER'
+                    }});
+              }
+            
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    
 
-                <p>
-                  <span>이미 계정이 있으신가요?</span>
-                  <b onClick={toggle} className="pointer">
-                    로그인하러가기
-                  </b>
-                  <Modal
-                    className="modal-login"
-                    overlayClassName="login-modal-container"
-                    isOpen={loginS}
-                    onRequestClose={() => {
-                      setLoginS(false);
-                      toggle();
-                    }}
-                  >
-                    <div className="loginSuccess">
-                      <p>환영합니다!</p>
+
+    return (
+        <>
+            <div id="container" className="container1">
+                <Link to="/" className="go_back">
+                    홈으로<GoBack />
+                </Link>
+                <div className="row logjoin">
+
+                    <div className="col align-items-center flex-col sign-up">
+                        <div className="form-wrapper align-items-center">
+                            <div className="form sign-up">
+                                <div className="lj_input-group">
+                                    <i className='bx bx-mail-send'></i>
+                                    <div className="input-button-wrapper" style={{ display: 'flex', textAlign: 'center', alignItems: 'center' }}>
+                                        <input type="text" placeholder="아이디" onChange={idhandleChange} name="cus_id" value={formData.cus_id} id='cus_id' />
+                                        <input type="button" value={check.id_massage} className="button_check" id="id_check" onClick={idCheck}
+                                            style={{ marginLeft: '7px', color: '#757575', width: 'calc(45%)', border: '1px solid #757575', textAlign: 'center', fontWeight: '800', height: '44px', lineHeight: '10px' }} />
+                                    </div>
+                                    {check.id_check !== 'undefined' || check.id_check !== '' ? <p className='errCheck'>{check.id_check}</p> : <></>}
+                                    {errForm.cus_id !== 'undefined' || errForm.cus_id !== '' ? <p className='errCheck'>{errForm.cus_id}</p> : <></>}
+                                </div>
+                                <div className="lj_input-group">
+                                    <i className='bx bxs-lock-alt'></i>
+                                    <input type="password" placeholder="비밀번호" name="cus_pw" className="cus_pw" onBlur={myFunction} onChange={handleChange} value={formData.cus_pw} />
+                                </div>
+                                {errForm.cus_pw !== 'undefined' || errForm.cus_pw !== '' ? <p className='errCheck'>{errForm.cus_pw}</p> : <></>}
+                                <div className="lj_input-group">
+                                    <i className='bx bxs-lock-alt'></i>
+                                    <input type="password" placeholder="비밀번호 확인" name="cus_pw_check" className="cus_pw_check" onBlur={pwCheck} onChange={handleChange} value={formData.cus_pw_check} readOnly='true' />
+                                    {pw_check.pw_check !== 'undefined' || pw_check.pw_check !== '' ? <p className='errCheck'>{pw_check.pw_check}</p> : <></>}
+                                </div>
+                                <div className="lj_input-group">
+                                    <i className='bx bx-mail-send'></i>
+                                    <input type="text" className="corporate_name" placeholder="회사명" name="cus_company_name" onChange={handleChange} value={formData.cus_company_name} />
+
+                                </div>
+                                {errForm.cus_company_name !== 'undefined' || errForm.cus_company_name !== '' ? <p className='errCheck'>{errForm.cus_company_name}</p> : <></>}
+                                <div className="lj_input-group">
+                                    <i className='bx bx-mail-send'></i>
+                                    <input type="text" className="corporate_ph" placeholder="회사 전화번호" name="cus_company_ph" onChange={handleChange} value={formData.cus_company_ph} />
+
+                                </div>
+                                {errForm.cus_company_ph !== 'undefined' || errForm.cus_company_ph !== '' ? <p className='errCheck'>{errForm.cus_company_ph}</p> : <></>}
+                                <div className="lj_input-group">
+                                    <i className='bx bx-mail-send'></i>
+                                    <input type="text" className="ceo_name" placeholder="대표명" name="cus_boss" onChange={handleChange} value={formData.cus_boss} />
+                                </div>
+                                {errForm.cus_boss !== 'undefined' || errForm.cus_boss !== '' ? <p className='errCheck'>{errForm.cus_boss}</p> : <></>}
+                                <div className="lj_input-group">
+                                    <i className='bx bx-mail-send'></i>
+                                    <div className="input-button-wrapper" style={{ display: 'flex', textAlign: 'center', alignItems: 'center' }}>
+                                        <input type="text" className="business_registration_number" placeholder="사업자등록번호  XXX-XX-XXXXX" onChange={buhandleChange} id="cus_business_id" name="cus_business_id" value={formData.cus_business_id} />
+                                        <input type="button" value={businessCh.message} className="button_check" onClick={businessCheck} id="businessCh"
+                                            style={{ marginLeft: '5px', color: '#757575', width: 'calc(45%)', border: '1px solid #757575', textAlign: 'center', fontWeight: '800', height: '44px', lineHeight: '10px' }} />
+                                    </div>
+                                    {businessCh.error !== 'undefined' || businessCh.error !== '' ? <p className='errCheck'>{businessCh.error}</p> : <></>}
+                                    {errForm.cus_business_id !== 'undefined' || errForm.cus_business_id !== '' ? <p className='errCheck'>{errForm.cus_business_id}</p> : <></>}
+
+                                </div>
+
+                                <div className="lj_input-group">
+
+                                    <div className='row'>
+                                        <input type="text" placeholder="우편번호" value={extraAddress} readOnly style={{ width: '50%' }} />
+                                        <button onClick={() => setbellModalIsOpen(true)} style={{ width: '50%' }} >우편번호 찾기</button>
+                                        <input type="text" placeholder="주소" value={address} readOnly />
+                                    </div>
+                                    <input type="text" placeholder="상세 주소 입력" name="cus_address2" onChange={handleChange} value={formData.cus_address2} />
+                                    <Modal className="post-modal" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}> <DaumPostcode onComplete={handleComplete} autoClose
+                                        animation className="post-code" /></Modal>
+
+                                </div>
+                                {errForm.cus_address2 !== 'undefined' || errForm.cus_address2 !== '' ? <p className='errCheck'>{errForm.cus_address2}</p> : <></>}
+                                <div className="lj_input-group">
+                                    <i className='bx bx-mail-send'></i>
+                                    <input type="text" className="contact_name" placeholder="담당자 이름" name="cus_managet_name" onChange={handleChange} value={formData.cus_managet_name} />
+                                </div>
+                                {errForm.cus_managet_name !== 'undefined' || errForm.cus_managet_name !== '' ? <p className='errCheck'>{errForm.cus_managet_name}</p> : <></>}
+
+                                <div className="lj_input-group">
+                                    <i className='bx bx-mail-send'></i>
+                                    <input type="email" className="contact_email" placeholder="담당자 이메일" name="cus_email" onChange={handleChange} value={formData.cus_email} />
+                                </div>
+                                {errForm.cus_email !== 'undefined' || errForm.cus_email !== '' ? <p className='errCheck'>{errForm.cus_email}</p> : <></>}
+
+                                <div className="lj_input-group">
+                                    <i className='bx bx-mail-send'></i>
+                                    <input type="tel" className="contact_phonenumber" placeholder="담당자 연락처 000-0000-0000 양식으로 작성" name="cus_phone_number" onChange={handleChange} value={formData.cus_phone_number} />
+                                </div>
+                                {errForm.cus_phone_number !== 'undefined' || errForm.cus_phone_number !== '' ? <p className='errCheck'>{errForm.cus_phone_number}</p> : <></>}
+
+                                <button style={{ color: 'white' }} onClick={handleLogin} >
+                                    가입하기
+                                </button>
+                                
+                                <p>
+                                    <span>
+                                        이미 계정이 있으신가요?
+                                    </span>
+                                    <b onClick={toggle} className="pointer">
+                                        로그인하러가기
+                                    </b>
+                                    <Modal
+                                      className="modal-login"
+                                      overlayClassName="login-modal-container"
+                                      isOpen={loginS}
+                                      onRequestClose={() => {
+                                        setLoginS(false)
+                                        toggle()
+                                      }}>
+                                        
+                                        <div className='loginSuccess'>
+                                            <p>환영합니다!</p>
+                                        </div>
+                                        <div className='row'>
+                                            <div className="successBtn">
+                                           
+                                        <button className="scBtn" onClick={toggle}>로그인</button></div>
+                                        <div  className="successBtn">
+                                            <Link className="scBtn" to="/" onClick={()=>setLoginS(false)}>홈으로</Link>
+                                            </div>
+                                        </div>
+                                    </Modal>
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
                     <div className="row">
                       <div className="successBtn">

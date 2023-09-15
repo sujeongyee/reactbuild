@@ -6,9 +6,17 @@ import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import EnglTeamassign from "../engineerLeader/EnglTeamassign";
 
+import Loading from '../loding/Loding';
+
 function EnL_newProjectDetail() {
   //쿼리파라미터 값
+
   const { pro_id } = useParams();
+
+  const [loading, setLoading] = useState(true);
+
+
+
   const location = useLocation();
   const [list, setList] = useState([]);
   // console.log(location);
@@ -31,6 +39,7 @@ function EnL_newProjectDetail() {
 
   return (
     <>
+             {loading ? <Loading /> : null}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-function Comment() {
+function Comment({style,pk}) {
+    console.log(style)
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
 
@@ -54,7 +55,7 @@ function Comment() {
                                 <div className="commentBtn">
                                     <div className="btn-list">
                                         <button type="button"
-                                           className="btn waves-effect waves-light - inq-answer-btn" onClick={handleCreateComment} style={{backgroundColor:'#5cb85c'}}>등록
+                                           className="btn waves-effect waves-light - inq-answer-btn" onClick={handleCreateComment} style={{backgroundColor:style.backgroundColor}}>등록
                                         </button>
             
                                     </div>

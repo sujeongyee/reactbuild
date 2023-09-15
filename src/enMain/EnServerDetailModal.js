@@ -5,28 +5,39 @@ import "../enMain/EnCss.css";
 import "../userMain/User.css";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+import Loading from '../loding/Loding';
 
 function EnServerDetailModal(props, areaID) {
+
+  const [loading, setLoading] = useState(true);
+
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [data, setData] = useState([]);
 
   const printableAreaRef = useRef(null);
 
-  useEffect(() => {
-    if (modalIsOpen) {
-      console.log("여기" + props.serverName);
 
-      axios
-        .post("/api/main/engineer/inspectionList2", {
-          serverName: props.serverName,
-        })
-        .then((response) => {
-          setData(response.data);
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+
+
+
+  useEffect(()=>{
+    if(modalIsOpen){
+      console.log('여기'+props.serverName)
+
+      axios.post('/api/engineer/inspectionList2',{serverName:props.serverName})
+      .then(response => {
+        setData(response.data);
+        console.log(response.data);
+
+        setLoading(false);
+        
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+
+
     }
   }, [modalIsOpen]);
 
@@ -84,17 +95,17 @@ function EnServerDetailModal(props, areaID) {
 
   return (
     <>
+   
       <button onClick={openModal}>{props.serverName}</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <div
-          className="detail_modal_container"
-          ref={printableAreaRef}
-          id={areaID}
-        >
+
+                  {loading ? <Loading /> : null}
+        <div className="detail_modal_container" ref={printableAreaRef}  id={areaID} >
+
           <h2>서버 상세보기</h2>
           <div className="detail_modal_container_inner">
             <table className="detail_modal_table" style={{ margin: "0 auto" }}>

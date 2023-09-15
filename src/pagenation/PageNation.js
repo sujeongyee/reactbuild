@@ -9,7 +9,7 @@ import { Background, LoadingText } from '../loding/Styles';
 
 
 
-const PageNation = ({ currentPage, totalPosts,postsPerPage, onPageChange }) => {
+const PageNation = ({ currentPage, totalPosts,postsPerPage, onPageChange ,style}) => {
     const token = localStorage.getItem('token');
 
     const config = {
@@ -20,7 +20,7 @@ const PageNation = ({ currentPage, totalPosts,postsPerPage, onPageChange }) => {
     const [pageNation, setPageNation] = useState({})
 
 
-
+    
     useEffect(() => {
         pageChange(1)
 
@@ -62,13 +62,13 @@ return (
 
 
             <li className="page-item ">
-                <Link className="page-link" onClick={() => pageChange(1)}>
+                <Link className="page-link" style={{color:style.color}}onClick={() => pageChange(1)}>
                     맨 앞
                 </Link>
             </li>
             {pageNation.prev != false ?
                 <li className="page-item ">
-                    <Link className="page-link" onClick={() => pageChange(pageNation.start - 1)} >
+                    <Link className="page-link"  style={{color:style.color}}onClick={() => pageChange(pageNation.start - 1)} >
                         이전
                     </Link>
                 </li>
@@ -77,7 +77,7 @@ return (
             {pageNation.pageList ? ( // pageNation.pageList가 정의되어 있을 때에만 처리
                 pageNation.pageList.map((data, index) => (
                     <li className="page-item" key={index}>
-                        <Link
+                        <Link  style={{color:style.color}}
                             onClick={() => pageChange(data)}   className={data === currentPage ? 'active' : 'page-link'}
                             href="#"
                         >
@@ -89,14 +89,14 @@ return (
 
             {pageNation.next != false ?
                 <li className="page-item ">
-                    <Link className="page-link" onClick={() => pageChange(pageNation.end + 1)}>
+                    <Link className="page-link"  style={{color:style.color}} onClick={() => pageChange(pageNation.end + 1)}>
                         뒤로 가기
                     </Link>
                 </li>
                 : null}
 
             <li className="page-item ">
-                <Link className="page-link" onClick={() => pageChange(pageNation.realEnd)} >
+                <Link className="page-link"  style={{color:style.color}} onClick={() => pageChange(pageNation.realEnd)} >
                     맨 뒤
                 </Link>
             </li>

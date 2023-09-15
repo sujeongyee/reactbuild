@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Loading from '../loding/Loding';
 
 function FileUpload() {
+
   const [fileList, setFileList] = useState([]);
   const [removeFileId, setRemoveFileId] = useState(new Set());
   const [fileName, setFileName] = useState("");
   const [post, setPost] = useState(null);
+
+  const [loading, setLoading] = useState(true);
+  const [fileData, setFileData] = useState(null);
+  
+
 
   useEffect(() => {
     // 전체 파일 조회 로직
@@ -73,7 +80,7 @@ function FileUpload() {
     }
   };
 
-  // 파일 추가
+
   const addFile = () => {
     setFileList((prevFileList) => [...prevFileList, { id: null, name: "" }]); // 빈 문자열을 추가하여 렌더링된 파일 입력 필드 초기화
   };
@@ -82,6 +89,25 @@ function FileUpload() {
     // 1. 삭제할 파일 id 추가
     if (id) {
       setRemoveFileId((prevRemoveFileId) => new Set([...prevRemoveFileId, id]));
+
+  const handleFileUpload = () => {
+    if (fileData) {
+      let formData = new FormData();
+      formData.append("file_data", fileData);
+
+      axios
+        .post("/api/awsUpload", formData)
+        .then((response) => {
+          alert(response.data);
+
+          setLoading(false);
+        })
+        .catch((err) => {
+          alert("업로드에 실패했습니다: " + err);
+        });
+    } else {
+      alert("파일을 먼저 선택하세요.");
+
     }
 
     // 2. 파일 영역 초기화 & 삭제
@@ -99,6 +125,7 @@ function FileUpload() {
 
   return (
     <div>
+
       <div className="file_list">
         {fileList.map((file, index) => (
           <div key={index} className="file_input">
@@ -118,6 +145,7 @@ function FileUpload() {
             </button>
           </div>
         ))}
+
       </div>
       <button type="button" onClick={addFile}>
         파일 추가

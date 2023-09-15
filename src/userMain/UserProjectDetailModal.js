@@ -3,8 +3,10 @@ import Modal from "react-modal";
 import "../enMain/EnMain.css";
 import "./User.css";
 import axios from "axios";
+import Loading from '../loding/Loding';
 
 function UserProjectDetailModal({projectData}) {
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const customStyles = {
@@ -25,6 +27,7 @@ function UserProjectDetailModal({projectData}) {
 
   return (
     <>
+
       <button onClick={() => setModalIsOpen(true)}>{projectData.server_name}</button>
       <Modal
         /* className="modal-content"

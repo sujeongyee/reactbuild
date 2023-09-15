@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import Loading from '../loding/Loding';
+import { useState } from "react";
 
 function UserInQurylist() {
+  const [loading, setLoading] = useState(true);
     return (
         <>
+                 {loading ? <Loading /> : null}
             <div className="page-wrapper">
             <div className="page-breadcrumb">
                     <div className="row">

@@ -4,14 +4,21 @@ import "../userMain/User.css";
 import "../enMain/EnCss.css";
 import axios from "axios";
 import FileUpload from "./EnWorkDetailUpload";
+
 import { Link } from "react-router-dom";
 
+import Loading from '../loding/Loding';
+
+
 function EnWorkDetail(handleFileUpload) {
+
+  const [loading, setLoading] = useState(true);
   //스프링으로부터 데이터 받아오기(엔지니어 아이디별 프로젝트)
   useEffect(() => {
     axios.get("/api/main/engineer/workDetail").then((response) => {
       setProjectData(response.data);
       console.log(response.data);
+      setLoading(false);
     });
   }, []);
 
@@ -144,6 +151,7 @@ function EnWorkDetail(handleFileUpload) {
 
   return (
     <>
+             {loading ? <Loading /> : null}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">
