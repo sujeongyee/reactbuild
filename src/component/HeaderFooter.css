@@ -426,18 +426,18 @@ border-bottom: 0.1px solid #e1edff;
    
     border-radius: 8px;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
-    width: 350px;
-    height: 350px;
-    margin-top: 80px; /* 상단 여백 추가 */
-    margin-right: 170px; /* 오른쪽 여백 추가 */
+    width: auto;
+    height: auto;
+    margin-top: 82px; /* 상단 여백 추가 */
+    margin-right: 50px; /* 오른쪽 여백 추가 */
     animation: fadeInUpTop .4s;
     border: none;
-    background-color: #fcfcfd;
+    background-color: #ffffff;
 }
 .bell-link1{
     display: flex;
     height: 13%;
-    border-bottom: 0.1px solid #e1edff;
+    border-bottom: 0.1px solid #e3d8ff;
     padding: 8px;
     text-decoration: none;
 }
@@ -446,11 +446,11 @@ border-bottom: 0.1px solid #e1edff;
     position: absolute;
     border-radius: 8px;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
-    width: 500px;
-    height: 600px;
+    width: auto;
+    height: auto;
     transform: translate(0,0);
     top: 18%;
-    left: 39%;
+    left: 100%;
 
     /* margin-top: 80px;  *//* 상단 여백 추가 */
     /* margin-right: 170px;  *//* 오른쪽 여백 추가 */
@@ -466,13 +466,13 @@ border-bottom: 0.1px solid #e1edff;
 
 .bell-link{
     display: flex;
-    height: 22%;
+    height: auto;
     border-bottom: 0.1px solid #e1edff;
     padding: 8px;
     text-decoration: none;
 }
 .bell-link:hover{
-    background-color: #f1f6fd;
+    background-color: #f1edf1;
     /* opacity: 0.7; */
     text-decoration: none;
 }
@@ -517,13 +517,13 @@ border-bottom: 0.1px solid #e1edff;
     margin:2px 0 2px 0;
 }
 .bell-middle p{
-    color: #9eabc0!important;
+    color: #5c5956!important;
     margin: 5px 0 5px 0;
-    font-weight: 500;
+    font-size: 14px;
 }
 
 .bell-middle span{
-    color: #9eabc0!important;
+    color: #8a7e6f!important;
     font-weight: 500;
     margin-top: 4px;
     font-size: 12px;

@@ -1,5 +1,6 @@
 
-import { Fragment, useState } from "react"
+import { Fragment, useState , useEffect} from "react"
+
 import { Link, NavLink, Outlet , useNavigate} from "react-router-dom"
 import $ from 'jquery';
 import './HeaderFooter.css'
@@ -18,7 +19,10 @@ import LogOutIcon from "../img/LogOutIcon";
 import Modal from "react-modal";
 import TeamIcon from "../img/TeamIcon";
 import BriefcaseIcon from "../img/BriefcaseIcon";
-import "../engineerLeader/EngLeader.css";
+
+import '../engineerLeader/EngLeader.css';
+import axios from "axios";
+
 
 function HeaderFooterEnl(props) {
   console.log(props.name);
@@ -34,7 +38,7 @@ function HeaderFooterEnl(props) {
     color: 'white',
     fontSize: '16px'
   }
-
+ 
   const navigate = useNavigate();
 
   const logout = () => {
@@ -49,6 +53,20 @@ function HeaderFooterEnl(props) {
     $(e.currentTarget).toggleClass("active")
     $(e.currentTarget).next().toggleClass("in")
   }
+
+  const [alarmList, setAlarmList] = useState([]);
+
+  useEffect(() => {
+    const user_id = 'admin'
+    axios.get(`/api/main/alarm/getAlarmList/${user_id}`)
+      .then(response => {
+        setAlarmList(response.data)
+        console.log(alarmList)
+      })
+      .catch(err => { alert('에러') })
+
+
+  }, []);
 
   const leader_id = 'eng_1';
 
@@ -90,53 +108,32 @@ function HeaderFooterEnl(props) {
                       5
                     </span>
                   </button>
-                  <Modal
-                    className="bell-content"
-                    overlayClassName="bell-overlay"
-                    isOpen={bellModal}
-                    onRequestClose={() => setbellModalIsOpen(false)}
-                  >
-                    <Link to="#" className="bell-link">
-                      <div className="bell-anno">
-                        <AirplayIcon />
-                      </div>
-                      <div className="bell-middle">
-                        <h5>공지사항</h5>
-                        <p>공지사항 내용</p>
-                        <span>날짜</span>
-                      </div>
-                    </Link>
-                    <Link to="#" className="bell-link">
-                      <div className="bell-calendar">
-                        <CalendarIcon />
-                      </div>
-                      <div className="bell-middle">
-                        <h5>일정확인</h5>
-                        <p> 내용</p>
-                        <span>날짜</span>
-                      </div>
-                    </Link>
-                    <Link to="#" className="bell-link">
-                      <div className="bell-message">
-                        <MessageSquareIcon />
-                      </div>
-                      <div className="bell-middle">
-                        <h5>문의사항</h5>
-                        <p>문의사항 답변 내용</p>
-                        <span>날짜</span>
-                      </div>
-                    </Link>
-                    <Link to="#" className="bell-link">
-                      <div className="bell-calendar">
-                        <CalendarIcon />
-                      </div>
-                      <div className="bell-middle">
-                        <h5>일정확인</h5>
-                        <p> 내용</p>
-                        <span>날짜</span>
-                      </div>
-                    </Link>
-                    <Link to="#" className="bell-more">
+
+                  <Modal className="bell-content" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}>
+
+                    {alarmList.map((list, index) => {
+                      // Timestamp 문자열을 Date 객체로 파싱
+                      const dateObject = new Date(list.alarm_DATE); 
+
+                      // Date 객체를 "yyyy/MM/dd HH:mm" 형식으로 변환
+                      const formattedDate = `${dateObject.getFullYear()}/${String(dateObject.getMonth() + 1).padStart(2, '0')
+                        }/${String(dateObject.getDate()).padStart(2, '0')} ${String(dateObject.getHours()).padStart(2, '0')
+                        }:${String(dateObject.getMinutes()).padStart(2, '0')}`;
+
+                      return (
+                        <Link to="#" className="bell-link" key={index}>
+                          
+                          <div className="bell-middle alarm-list">
+                            <h5>{list.alarm_TYPE}</h5>
+                            <p>{list.alarm_CONTENT}</p>
+                            <span>{formattedDate}</span>
+                          </div>
+                        </Link>
+                      );
+                    })}
+
+                    <Link to="#" className="bell-more all-alarm">
+
                       <storng> 모든 알람 확인하기</storng>
                     </Link>
                   </Modal>

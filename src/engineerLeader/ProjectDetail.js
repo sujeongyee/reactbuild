@@ -213,20 +213,43 @@ function EnglProjectDetail() {
           </div>
         </div>
 
-        <div className="">
-          <div className="col-12">
-            <div className="server-tab ser-tab1">
-              <table className="ser-tab">
-                <thead>
-                  <tr>
-                    <th>서버 이름</th>
-                    <th>아이피주소</th>
-                    <th>운영체제</th>
-                    <th>cpu정보</th>
-                    <th>ram용량</th>
-                    <th>디스크용량</th>
-                    <th>담당엔지니어</th>
-                    <th>작업내역</th>
+          <div className="">
+            <div className="col-12">
+        <div className='server-tab ser-tab1'>
+            <table className='ser-tab'>
+              <thead>
+                <tr>
+                  <th>서버 이름</th>
+                  <th>아이피주소</th>
+                  <th>운영체제</th>
+                  <th>cpu정보</th>
+                  <th>ram용량</th>
+                  <th>디스크용량</th>
+                  <th>담당엔지니어</th>
+                  <th>작업내역</th>
+                </tr>
+              </thead>
+              <tbody>
+                {list.map((data, key) => (
+                  <tr key={key}>
+                    <td>{data.server_name}</td>
+                    <td>{data.ip_address}</td>
+                    <td>{data.operating_system}</td>
+                    <td>{data.cpu}</td>
+                    <td>{data.ram} GB</td>
+                    <td>{data.disk_capacitygb} GB</td>
+                    <td>{data.eng_enid ? (
+                      data.eng_name // 데이터가 있으면
+                    ) : (
+                      <EnglTeamassign pro_pi={info.PRO_PI} pro_id={info.PRO_ID} server_id={data.server_id} check={false} />
+                    )}
+                    </td>
+                    <td>{data.eng_enid ? (
+                       <Link className='toworkinfobtn' to={{pathname: `/engineerleader/workinfo/${data.server_id}`}}><button>내역확인</button> </Link> // 데이터가 있으면
+                    ) : (
+                      'X'
+                    )}
+                    </td>
                   </tr>
                 </thead>
                 <tbody>
