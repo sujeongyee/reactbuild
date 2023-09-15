@@ -2,20 +2,24 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function UserProList() {
+function UserProList({state}) {
 
   const[proList, setProList] = useState([]);
 
-  useEffect(()=>{
-    axios.get('/api/user/list').then((response)=>{
+  //console.log(state);
+  console.log(state.cus_id);
+ 
+ useEffect(()=>{
+    axios.get(`/api/main/user/list/${state.cus_id}`).then((response)=>{
       setProList(response.data);
       console.log(response.data);
+      console.log('state: ',state);
     })
     .catch((error)=>{
       console.log(error);
     });
-  },[]);
-console.log(proList);
+  },[state.cus_id]);
+//console.log(proList);
 
   return (
     <>
@@ -61,7 +65,7 @@ console.log(proList);
 
                           <tr key={project.pro_id}>
                           <th scope="row">{index}</th>
-                          <td class="user-proname"><Link to={{pathname: '/user/prodetail', state: { pro_id: project.pro_id }}}> {project.pro_name}</Link></td>
+                          <td class="user-proname"><Link to={{pathname: `/user/prodetail/${project.pro_id}` }}>{project.pro_name}</Link></td>
                           <td>{project.pro_status}</td>
                           <td>{project.pro_startdate}</td>
                           <td>{project.pro_pi}</td>

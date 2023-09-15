@@ -85,6 +85,8 @@ function App() {
 
   const token = localStorage.getItem('token');
   const [info, setInfo] = useState({})
+
+
   function checkPermission() {
 
 
@@ -98,6 +100,8 @@ function App() {
     }
     return dec;
   }
+
+
   const Info = async () => {
     if (checkPermission().role === "ROLE_USER") {
 
@@ -110,6 +114,8 @@ function App() {
     }
 
   }
+
+
   useEffect(() => {
 
     Info()
@@ -197,14 +203,14 @@ function App() {
       <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
         <Route element={<HeaderFooterUs checkPermission={checkPermission()} />}>
           <Route path='/user' element={<MainUser state={info} />} />
-          <Route path='/user/list' element={< UserProList />} />
-          <Route path='/user/apply' element={< UserApply />} />
+          <Route path='/user/list' element={< UserProList state={info} />} />
+          <Route path='/user/apply' element={< UserApply state={info}/>} />
           <Route path='/user/inQurylist' element={< UserInQurylist />} />
           <Route path='/user/inQurywrite' element={< UserInQuryWrite />} />
           <Route path='/user/inQuryDetail' element={< UserInQuryDetail />} />
           <Route path='/user/annoList' element={< UserAnnoList />} />
           <Route path='/user/annoDetail' element={<UserAnnoDetail />} />
-          <Route path='/user/prodetail' element={<UserDetailPro />} />
+          <Route path='/user/prodetail/:pro_id' element={<UserDetailPro />} />
           <Route path="/user/projectDetailList" element={<UserProjectDetailList />} />
           <Route path="/user/projectDetail" element={<UserProjectDetailModal />} />
           <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 />} />

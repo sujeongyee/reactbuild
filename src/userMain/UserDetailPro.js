@@ -1,14 +1,15 @@
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function UserDetailPro({}) {
+function UserDetailPro() {
 
   const[proDetail, setProDetail] = useState([]);
 
+  const {pro_id} = useParams();
 
   useEffect(()=>{
-    axios.get('/api/user/prodetail').then((response)=>{
+    axios.get(`/api/main/user/prodetail/${pro_id}`).then((response)=>{
       setProDetail(response.data);
       console.log(response.data);
       
