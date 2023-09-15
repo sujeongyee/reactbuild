@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useState } from "react"
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
-import $ from 'jquery';
-import './HeaderFooter.css'
+import { Fragment, useEffect, useState } from "react";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import $ from "jquery";
+import "./HeaderFooter.css";
 import BellIcon from "../img/BellIcon";
 import Down from "../img/ChevronDownIcon";
 import HomeIcon from "../img/HomeIcon";
@@ -14,12 +14,12 @@ import MessageSquareIcon from "../img/MessageSquareIcon";
 import ProfileIcon from "../img/ProfileIcon";
 import SettingsIcon from "../img/SettingsIcon";
 import LogOutIcon from "../img/LogOutIcon";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import ServerIcon from "../img/ServerIcon";
-
 
 import axios from "axios";
 import MyPage from "./MyPage";
+
 
 
 
@@ -367,13 +367,16 @@ function HeaderFooterUs({ checkPermission, state }) {
 
                 <Outlet state={info} />
 
+
             </div>
+
         </Fragment>
 
 
 
     )
+
 }
 export default HeaderFooterUs;
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");

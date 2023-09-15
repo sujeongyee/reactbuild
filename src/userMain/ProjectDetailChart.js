@@ -5,7 +5,9 @@ import UserProjectDetailModal2 from "./UserProjectDetailModal2";
 import axios from "axios";
 
 
+
 function ProjectDetailChart({ serverId,projectData}) {
+
 
 
 
@@ -35,36 +37,36 @@ function ProjectDetailChart({ serverId,projectData}) {
     }
   }
   const [ProjectDetailList, setProjectDetailList] = useState([]);
-  const serverData = ProjectDetailList.filter((item) => item.server_id === serverId);
+  const serverData = ProjectDetailList.filter(
+    (item) => item.server_id === serverId
+  );
   useEffect(() => {
     const getProjectDetailList = async () => {
       try {
-        const response = await axios.get("/api/client/projectDetailChart");
+        const response = await axios.get("/api/main/client/projectDetailChart");
         setProjectDetailList(response.data);
-        console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         console.log("Error", error);
       }
     };
     getProjectDetailList(); // Call the function to fetch data
   }, []);
-  
-
 
   return (
     <>
 
       <section className="timeline">
         <ol>
-        {ProjectDetailList.map((item, index) => (
+          {ProjectDetailList.map((item, index) => (
             <li key={index}>
               <div>
                 <time>{item.work_date}</time>
-                  {/* Render other details as needed */}
-                  <UserProjectDetailModal2 projectData={item}/>
-                </div>
-              </li>
-        ))}
+                {/* Render other details as needed */}
+                <UserProjectDetailModal2 projectData={item} />
+              </div>
+            </li>
+          ))}
         </ol>
       </section>
     </>

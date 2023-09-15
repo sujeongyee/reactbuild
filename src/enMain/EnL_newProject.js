@@ -17,7 +17,7 @@ function EnL_newProject() {
 
   useEffect(() => {
     axios
-      .get("/api/engineer/newList")
+      .get("/api/main/engineer/newList")
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -37,7 +37,7 @@ function EnL_newProject() {
           <div className="row">
             <div className="col-7 align-self-center">
               <h3 className="page-title text-truncate text-dark font-weight-medium mb-1">
-                엔지니어 팀장(프로젝트 리스트)
+                엔지니어(프로젝트 리스트)
               </h3>
             </div>
             <div className="col-5 align-self-center"></div>
@@ -87,7 +87,9 @@ function EnL_newProject() {
                               <td>{index + 1}</td>
                               <td>
                                 <Link
-                                  to={`/engineer/newProjectDetail`}
+                                  to={{
+                                    pathname: `/engineer/newProjectDetail/${project.pro_id}`,
+                                  }}
                                   state={{ project }}
 
                                   // state={{
