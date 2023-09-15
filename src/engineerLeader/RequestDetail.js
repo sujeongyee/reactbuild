@@ -5,7 +5,7 @@ import '../enMain/EnMain.css'
 import '../enMain/EnTeam.css';
 import axios from 'axios';
 import './EngLeader.css';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import EnglTeamassign from './EnglTeamassign';
 import Loading from '../loding/Loding';
 
@@ -14,12 +14,13 @@ function RequestDetail() {
   const [loading, setLoading] = useState(true);
 
 
-
   const { pro_id } = useParams();
   const [info, setInfo] = useState([]);
   const [list, setList] = useState([]);
   useEffect(() => {
+
     //console.log(pro_id);
+
 
     axios.get(`/api/main/engleader/requestDetail/${pro_id}`)
       .then(response => {
@@ -234,13 +235,9 @@ function RequestDetail() {
                     <td>{data.cpu}</td>
                     <td>{data.ram} GB</td>
                     <td>{data.disk_capacitygb} GB</td>
-                    <td>
-                      <EnglTeamassign
-                        pro_id={info.PRO_ID}
-                        server_id={data.server_id}
-                        check={data.eng_enid == null ? false : true}
-                      />
-                    </td>
+
+                    <td><EnglTeamassign pro_pi={info.PRO_PI} pro_id={info.PRO_ID} server_id={data.server_id} check={data.eng_enid == null ? false : true} /></td>
+
                   </tr>
                 ))}
               </tbody>
