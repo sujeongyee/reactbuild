@@ -78,8 +78,10 @@ function App() {
 
   const location = useLocation();
 
+
   const token = localStorage.getItem("token");
   const [info, setInfo] = useState({});
+
   function checkPermission() {
 
     if (!token) {
@@ -96,6 +98,7 @@ function App() {
     return dec;
   }
 
+
   const Info = async () => {
     if (checkPermission().role === "ROLE_ENGINEER") {
       const cus_id = checkPermission().sub;
@@ -108,6 +111,7 @@ function App() {
     return;
 
   }
+
 
 
   useEffect(() => {
@@ -244,7 +248,7 @@ function App() {
           <Route path="/user/inQuryDetail" element={<UserInQuryDetail />} />
           <Route path="/user/annoList" element={<UserAnnoList />} />
           <Route path="/user/annoDetail" element={<UserAnnoDetail />} />
-          <Route path="/user/prodetail" element={<UserDetailPro />} />
+          <Route path="/user/prodetail/:pro_id" element={<UserDetailPro />} />
           <Route
             path="/user/projectDetailList"
             element={<UserProjectDetailList />}
