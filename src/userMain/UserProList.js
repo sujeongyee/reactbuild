@@ -40,7 +40,7 @@ function UserProList({state}) {
           <div className="row">
             <div className="col-6">
 
-              <div className="card">
+            <div className="card">
 
                 <div className="card-body">
                   <label style={{ display: 'flex;' }}>
