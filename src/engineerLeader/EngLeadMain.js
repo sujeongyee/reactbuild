@@ -16,12 +16,6 @@ import EnglChartComponent from "./EnglChartComponent"
 import Loading from '../loding/Loding';
 
 
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import EnglChartComponent from "./EnglChartComponent";
-
 function EngLeadMain(props) {
 
   const [loading, setLoading] = useState(true);

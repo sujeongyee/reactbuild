@@ -93,27 +93,8 @@ function EnglClientDetail() {
                 <th scope="col">정기점검일</th>
               </tr>
             </thead>
-            <tbody>
-              {list.map((data, key) => (
-                <tr key={key}>
-                  <th scope="row">{key + 1}</th>
-                  <td>
-                    <Link
-                      to={{
-                        pathname: `/engineerleader/projectDetail/${data.pro_id}`,
-                      }}
-                    >
-                      {data.pro_name}
-                    </Link>
-                  </td>
-                  <td>{data.pro_startDate}</td>
-                  <td>{data.pro_endDate}</td>
-                  <td>{data.pro_status}</td>
-                  <td>{data.pro_info}</td>
-                  <td>{data.pro_pi}일</td>
-                </tr>
-
-              </thead>
+          
+              
               <tbody>
                 {list.map((data,key)=>(
                     <tr key={key}>
