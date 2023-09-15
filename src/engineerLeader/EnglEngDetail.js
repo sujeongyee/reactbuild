@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import Calendar from '@toast-ui/react-calendar';
 import '@toast-ui/calendar/dist/toastui-calendar.min.css';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import moment from 'moment';
+
 import Modal from "react-modal";
 import './EngLeader.css';
 import { Link } from "react-router-dom";
@@ -44,6 +46,7 @@ function EnglEngDetail() {
 
 
   useEffect(() => {
+
     axios.get(`/api/main/engleader/getEngInfo/${eng_enid}`)
       .then(response => {
         setServerList(response.data.serverList);
@@ -85,6 +88,7 @@ function EnglEngDetail() {
   const [events, setEvents] = useState([]);
 
   const handleEventClick = (event) => {
+
     setSelectedEvent(event.event);
     console.log(event.event)
 
@@ -182,6 +186,7 @@ function EnglEngDetail() {
           내용~
         </div>
       </Modal> */}
+
       </div>
     </>
   );

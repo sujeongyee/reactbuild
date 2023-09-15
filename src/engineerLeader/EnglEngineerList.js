@@ -16,10 +16,12 @@ function EnglEngineerList() {
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10; // 페이지당 아이템 수
-  const leader_id = 'eng_1';
+  const leader_id = "eng_1";
   useEffect(() => {
+
     axios.get(`/api/main/engleader/getEngineerList/${leader_id}`)
       .then(response => {
+
         setList(response.data);
         setFirst(response.data);
 
@@ -27,19 +29,18 @@ function EnglEngineerList() {
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   }, []);
-
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
   const handleSearch = (e) => {
-    
     const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
-    
+
     const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명
+
 
     console.log(first)
     console.log(searchWord +' 오긴 오니 '+ filter)
@@ -53,14 +54,15 @@ function EnglEngineerList() {
         return item
       } else if (filter==="전체"){
         return item.eng_name.includes(searchWord) || item.eng_enid.includes(searchWord);
+
       }
-      return true; 
+      return true;
     });
 
     // 필터링된 데이터를 업데이트
     setList(filteredList);
     setCurrentPage(1); // 페이지를 첫 번째 페이지로 리셋
-  }
+  };
   // 현재 페이지의 데이터 추출
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -68,6 +70,7 @@ function EnglEngineerList() {
 
   return (
     <>
+
 
 {loading ? <Loading /> : null}
     <div className="page-wrapper prolist-engl">
@@ -85,8 +88,11 @@ function EnglEngineerList() {
           <div className="customize-input right select-proengl">
 
             {/* <select style={{ display: 'inline-block' }}>
+
                   <option>프로젝트명</option>
                 </select> */}
+                  </div>
+
 
           </div>
 
@@ -153,32 +159,67 @@ function EnglEngineerList() {
                       <td>{list.eng_phone}</td>
                    
 
-                    </tr>
-                  ))}
 
-                </tbody>
-              </table>
+                <div className="card-body1 englpro-carbody">
+                  <div className="table-responsive">
+                    <div className="projectlist-engl-table">
+                      <table className="table englprolisttable englcuslist">
+                        <thead>
+                          <tr>
+                            <th scope="col" style={{ width: "10px" }}>
+                              NO
+                            </th>
+                            <th scope="col" style={{ width: "30px" }}>
+                              이름
+                            </th>
+                            <th scope="col">직급</th>
+                            <th scope="col">이메일</th>
+                            <th scope="col">전화번호</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {currentItems.map((list, key) => (
+                            <tr key={key}>
+                              <th scope="row" className="col1st">
+                                {(currentPage - 1) * itemsPerPage + key + 1}
+                              </th>
+                              <td>
+                                <Link
+                                  to={{
+                                    pathname: `/engineerleader/engDetail/${list.eng_enid}`,
+                                  }}
+                                  style={{ padding: "0" }}
+                                >
+                                  {list.eng_name}
+                                </Link>
+                              </td>
+                              <td>{list.eng_rank}</td>
+                              <td>{list.eng_email}</td>
+                              <td>{list.eng_phone}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div className="pagedivengl pagination-engl">
+                    <Pagination
+                      activePage={currentPage}
+                      itemsCountPerPage={itemsPerPage}
+                      totalItemsCount={list.length}
+                      pageRangeDisplayed={5}
+                      prevPageText={"prev"}
+                      nextPageText={"next"}
+                      onChange={handlePageChange}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div className="pagedivengl pagination-engl">
-            <Pagination
-              activePage={currentPage}
-              itemsCountPerPage={itemsPerPage}
-              totalItemsCount={list.length}
-              pageRangeDisplayed={5}
-              prevPageText={"prev"}
-              nextPageText={"next"}
-              onChange={handlePageChange}
-            />
-          </div>
-
         </div>
       </div>
-    </div>
-  </div>
-</div>
-</div>
       {/* <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">

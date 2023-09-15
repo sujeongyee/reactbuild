@@ -8,9 +8,26 @@ import EnServerDetailModal from "./EnServerDetailModal";
 import Loading from '../loding/Loding';
 
 function InspectionList() {
+
+  const [list, setList] = useState([]);
+
   const [loading, setLoading] = useState(true);
 
-  const[list, setList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/api/main/engineer/inspectionList")
+      .then((res) => {
+        setList(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  console.log(list);
+
+
 
   useEffect(()=>{
     axios.get('/api/engineer/inspectionList').then((res)=>{
@@ -69,6 +86,7 @@ return(
                                           <td>{workInfo.work_division}</td>
                                           <td>{workInfo.pro_name}</td>
                                           {/* <td>
+
                                             <div className="d-flex no-block align-items-center">
                                               <div className="me-3">
                                                 <img
@@ -82,18 +100,19 @@ return(
                                               <p className="insListP" style={{paddingLeft: "26px", margin: 0}}>{workInfo.eng_name}</p>
                                             </div>
                                           </td> */}
-                                          <td>{workInfo.work_date}</td>
-                                          <td>
-                                          <button
-                                            type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-warning">
-                                            점검예정
-                                          </button>
-                                          </td>
-                                      </tr>
-                                    ))}
-                                      
-                                      {/* <tr>
+                          <td>{workInfo.work_date}</td>
+                          <td>
+                            <button
+                              type="button"
+                              class="btn waves-effect waves-light btn-rounded btn-warning"
+                            >
+                              점검예정
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+
+                      {/* <tr>
                                         <tr>
                                           <th scope="row">2</th>
                                           <td><Link to="#">ICT대학교 학생관리 시스템</Link></td>
@@ -204,61 +223,55 @@ return(
                                       </tr>
                                 
                                     </tr> */}
-                                  </tbody>
-                              </table>
-                          </div>
-                          <div style={{textAlign:'center', marginTop: '30px'}}>
-                              <ul className="pagination" >
-                                  <li className="page-item disabled">
-                                      <a className="page-link" href="#" tabindex="-1">
-                                          Prev
-                                      </a>
-                                  </li>
-                                  <li className="page-item">
-                                      <a className="page-link" href="#">
-                                          1
-                                      </a>
-                                  </li>
-                                  <li className="page-item">
-                                      <a className="page-link" href="#">
-                                          2 <span className="sr-only">(current)</span>
-                                      </a>
-                                  </li>
-                                  <li className="page-item">
-                                      <a className="page-link" href="#">
-                                          3
-                                      </a>
-                                  </li>
-                                  <li className="page-item">
-                                      <a className="page-link" href="#">
-                                          4
-                                      </a>
-                                  </li>
-                                  <li className="page-item">
-                                      <a className="page-link" href="#">
-                                          5
-                                      </a>
-                                  </li>
-                                  <li className="page-item">
-                                      <a className="page-link" href="#">
-                                          Next
-                                      </a>
-                                  </li>
-                              </ul>
-                            </div>
-                      </div>
-
-                  </div>
+                    </tbody>
+                  </table>
+                </div>
+                <div style={{ textAlign: "center", marginTop: "30px" }}>
+                  <ul className="pagination">
+                    <li className="page-item disabled">
+                      <a className="page-link" href="#" tabindex="-1">
+                        Prev
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        1
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        2 <span className="sr-only">(current)</span>
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        3
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        4
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        5
+                      </a>
+                    </li>
+                    <li className="page-item">
+                      <a className="page-link" href="#">
+                        Next
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-
+            </div>
           </div>
-
         </div>
-  </>
-
-
-)
-
+      </div>
+    </>
+  );
 }
 
 export default InspectionList;
