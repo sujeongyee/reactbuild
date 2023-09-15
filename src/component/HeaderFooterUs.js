@@ -1,7 +1,7 @@
-import { Fragment, useEffect, useState } from "react"
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
-import $ from 'jquery';
-import './HeaderFooter.css'
+import { Fragment, useEffect, useState } from "react";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import $ from "jquery";
+import "./HeaderFooter.css";
 import BellIcon from "../img/BellIcon";
 import Down from "../img/ChevronDownIcon";
 import HomeIcon from "../img/HomeIcon";
@@ -14,22 +14,24 @@ import MessageSquareIcon from "../img/MessageSquareIcon";
 import ProfileIcon from "../img/ProfileIcon";
 import SettingsIcon from "../img/SettingsIcon";
 import LogOutIcon from "../img/LogOutIcon";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import ServerIcon from "../img/ServerIcon";
-
 
 import axios from "axios";
 import MyPage from "./MyPage";
+
 
 
 function HeaderFooterUs({ checkPermission }) {
 
   const [info, setInfo] = useState({})
   const cus_id = checkPermission.sub
+
   const [bellModal, setbellModalIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsOpenAll, setModalIsOpenAll] = useState(false);
   const handleModal = () => {
+
 
     setbellModalIsOpen(false);
     setModalIsOpenAll(true)
@@ -51,6 +53,7 @@ function HeaderFooterUs({ checkPermission }) {
     $(e.currentTarget).toggleClass("active")
     $(e.currentTarget).next().toggleClass("in")
   }
+
   const navigate = useNavigate();
 
   const logout = () => {
@@ -59,6 +62,7 @@ function HeaderFooterUs({ checkPermission }) {
     navigate("/");
     window.location.reload();
   };
+
 
   const getInfo = async () => {
 
@@ -80,12 +84,14 @@ function HeaderFooterUs({ checkPermission }) {
 
     <Fragment>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+
         <div className="header">
           <nav className="navbar top-navbar navbar-expand-lg navbar-light">
             <div className="navbar-header">
               <div className="navbar-brand">
                 <a href="index.html"> {info.cus_company_name} </a>
               </div>
+
 
 
 
@@ -101,6 +107,7 @@ function HeaderFooterUs({ checkPermission }) {
                   </button>
                   <Modal className="bell-content" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}>
                     <Link to="/user/annoDetail?num=1" className="bell-link" onClick={() => setbellModalIsOpen(false)}>
+
                       <div className="bell-anno">
                         <AirplayIcon />
                       </div>
@@ -110,7 +117,9 @@ function HeaderFooterUs({ checkPermission }) {
                         <span>날짜</span>
                       </div>
                     </Link>
+
                     <Link to="/user/projectDetailList" className="bell-link" onClick={() => setbellModalIsOpen(false)}>
+
                       <div className="bell-calendar">
                         <CalendarIcon />
                       </div>
@@ -120,7 +129,9 @@ function HeaderFooterUs({ checkPermission }) {
                         <span>날짜</span>
                       </div>
                     </Link>
+
                     <Link to="/user/inQuryDetail" className="bell-link" onClick={() => setbellModalIsOpen(false)}>
+
                       <div className="bell-message">
                         <MessageSquareIcon />
                       </div>
@@ -130,7 +141,9 @@ function HeaderFooterUs({ checkPermission }) {
                         <span>날짜</span>
                       </div>
                     </Link>
+
                     <Link to="/user/projectDetailList" className="bell-link" onClick={() => setbellModalIsOpen(false)}>
+
                       <div className="bell-calendar">
                         <CalendarIcon />
                       </div>
@@ -140,6 +153,7 @@ function HeaderFooterUs({ checkPermission }) {
                         <span>날짜</span>
                       </div>
                     </Link>
+
                     <button style={{ margin: '0 auto', paddingTop: '13px' }} className="bell-more" onClick={handleModal}>
                       <storng> 모든 알람 확인하기</storng>
                     </button>
@@ -147,6 +161,7 @@ function HeaderFooterUs({ checkPermission }) {
                   <Modal className="bell-content1"
                     overlayClassName="bell-overlay" isOpen={modalIsOpenAll} onRequestClose={() => setModalIsOpenAll(false)}>
                     <Link to="/user/inQuryDetail?num=1" onClick={() => setModalIsOpenAll(false)} className="bell-link1">
+
                       <div className="bell-anno">
                         <AirplayIcon />
                       </div>
@@ -217,6 +232,7 @@ function HeaderFooterUs({ checkPermission }) {
                       </div>
                     </Link>
 
+
                   </Modal>
                 </li>
                 <li className="nav-item dropdown">
@@ -258,6 +274,7 @@ function HeaderFooterUs({ checkPermission }) {
         </div>
         <aside className="left-sidebar" data-sidebarbg="skin6">
           <div className="scroll-sidebar ps-container ps-theme-default" data-sidebarbg="skin6" data-ps-id="49c8c710-23b9-874c-d968-f904306f1d70">
+
             <nav className="sidebar-nav">
               <ul id="sidebarnav" className="in">
                 <li className="sidebar-item selected">
@@ -273,6 +290,7 @@ function HeaderFooterUs({ checkPermission }) {
 
                 <li className="sidebar-item">
 
+
                   <a className='sidebar-link has-arrow ' onClick={handleClick} aria-expanded="false">
                     <FileTextIcon />
                     <span className="hide-menu hide-list ">프로젝트 목록 보기</span>
@@ -280,10 +298,12 @@ function HeaderFooterUs({ checkPermission }) {
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
                     <li class="sidebar-item">
                       <NavLink className='sidebar-link ' to='/user/list' style={({ isActive }) => isActive ? ms : undefined} >
+
                         목록보기
                       </NavLink>
                     </li>
                     <li class="sidebar-item">
+
                       <NavLink className='sidebar-link ' to='/user/apply' style={({ isActive }) => isActive ? ms : undefined} >
 
                         신청하기
@@ -306,6 +326,7 @@ function HeaderFooterUs({ checkPermission }) {
 
                     </li>
                   </ul>
+
 
                 </li>
 
@@ -338,6 +359,7 @@ function HeaderFooterUs({ checkPermission }) {
 
 
 
+
                 <li className="sidebar-item">
                   <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
                     <BoxIcon />
@@ -349,10 +371,12 @@ function HeaderFooterUs({ checkPermission }) {
                         문의사항 목록
                       </NavLink>
                       <NavLink className='sidebar-link ' to='/user/inQurywrite' style={({ isActive }) => isActive ? ms : undefined} >
+
                         문의사항 작성하기
                       </NavLink>
                     </li>
                   </ul>
+
 
                 </li>
               </ul>
@@ -372,7 +396,8 @@ function HeaderFooterUs({ checkPermission }) {
 
 
   )
+
 }
 export default HeaderFooterUs;
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");

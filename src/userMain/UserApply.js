@@ -12,7 +12,9 @@ function UserApply({state}) {
   const [loading, setLoading] = useState(true);
 
 
-  
+
+function UserApply({state}) {
+
   const navigate = useNavigate();
   const [allChecked, setAllChecked] = useState(false);
   const [serverFields, setServerFields] = useState([
@@ -46,7 +48,7 @@ function UserApply({state}) {
 
 
   //클라이언트 정보 불러오기
-  const [cusData, setCusData] = useState([]);
+  //const [cusData, setCusData] = useState([]);
 
   //프로젝트 정보 입력하기
   const [proInfo, setProInfo] = useState({
@@ -72,20 +74,24 @@ function UserApply({state}) {
   );
 
 
-  // 클라이언트 정보 불러오기
-  const clientInfo = async()=>{
 
-    const response= await axios.get('/api/user/apply')
-    
-    setCusData(response.data) 
-    setLoading(false);
-  
-  }
+  // // 클라이언트 정보 불러오기
+  // const clientInfo = async()=>{
+  //   if(state.cus_id!=undefined){
+      
+  //     const response= await axios.get('/api/main/user/apply')
+  //     setCusData(response.data) 
+  //     console.log(response.data);
+  //   }else{
+  //     console.log(state.cus_id);
+  //     return;
+  //   }
+  //  }
 
   
-  useEffect( () => {
-   clientInfo()
-  }, [])
+  // useEffect( () => {
+  //  clientInfo()
+  // }, [])
   
 
 //프로젝트 정보 저장
@@ -146,22 +152,36 @@ const handleApply = async (e) => {
         disk_capacitygb: server.disk_capacitygb,
         ram: server.ram,
       })), // 서버 정보 상태
-      
+      cus_id: state.cus_id,
     };
     console.log(formData);
 
   
     try {
       // Axios를 사용하여 서버에 POST 요청을 보냅니다.
-      const response = await axios.post('/api/applyForm', formData);
+      const response = await axios.post('/api/main/applyForm', formData);
   
-      // if(handleCheck()==false) {
-      //   alert('약관 동의는 필수입니다')
-      //   return
-      // }
 
       // 서버에서 반환한 응답을 확인합니다.
       if (response.status === 200) {
+
+        const checkboxes = document.querySelectorAll('.custom-control-input');
+        
+        // 하나라도 체크되어 있지 않은지 확인하는 변수
+        let isAnyUnchecked = false;
+
+        checkboxes.forEach((checkbox) => {
+          if (!checkbox.checked) {
+            isAnyUnchecked = true;
+          }
+        });
+
+        if (isAnyUnchecked) {
+          // 하나라도 체크되어 있지 않은 경우에 실행할 코드
+          alert('약관에 전부 동의하셔야 등록이 완료됩니다');
+          return
+        }
+
         // 요청이 성공한 경우
         const data = response.data;
 
@@ -173,7 +193,8 @@ const handleApply = async (e) => {
   
       } else {
         // 요청이 실패한 경우
-        console.error('서버 응답 오류:', response.statusText);
+        alert('등록되지 않았습니다. 다시 확인해주시기 바랍니다')
+        return
       }
     } catch (error) {
       // 오류 처리
@@ -217,7 +238,7 @@ const handleApply = async (e) => {
                         </div>
                         <div className="col-md-4">
                           <div className="form-group mb-3">
-                            <input type="text" className="form-control" placeholder="가입정보 불러오기" value={cusData?.[0]?.cus_company_name}/>
+                            <input type="text" className="form-control" placeholder="가입정보 불러오기" value={state.cus_company_name}/>
                           </div>
                         </div>
                       </div>
@@ -229,7 +250,7 @@ const handleApply = async (e) => {
                         </div>
                         <div className="col-md-4">
                           <div className="form-group mb-3">
-                            <input type="text" className="form-control" placeholder="담당자명" value={cusData?.[0]?.cus_managet_name}/>
+                            <input type="text" className="form-control" placeholder="담당자명" value={state.cus_managet_name}/>
                           </div>
                         </div>
                       </div>
@@ -241,7 +262,7 @@ const handleApply = async (e) => {
                         </div>
                         <div className="col-md-4">
                           <div className="form-group mb-3">
-                            <input type="text" className="form-control" placeholder="(-)없이 표기" value={cusData?.[0]?.cus_phone_number}/>
+                            <input type="text" className="form-control" placeholder="(-)없이 표기" value={state.cus_phone_number}/>
                           </div>
                         </div>
                       </div>
@@ -253,7 +274,7 @@ const handleApply = async (e) => {
                           </div>
                           <div className="col-md-4">
                             <div className="form-group mb-3">
-                              <input type="text" className="form-control" placeholder="abc@gmail.com" value={cusData?.[0]?.cus_email}/>
+                              <input type="text" className="form-control" placeholder="abc@gmail.com" value={state.cus_email}/>
                             </div>
                           </div>
 
@@ -267,7 +288,7 @@ const handleApply = async (e) => {
                         </div>
                         <div className="col-md-4">
                           <div className="form-group mb-3">
-                            <input type="text" className="form-control" placeholder="가입정보 불러오기" value={cusData?.[0]?.cus_business_id}/>
+                            <input type="text" className="form-control" placeholder="가입정보 불러오기" value={state.cus_business_id}/>
                           </div>
                         </div>
                       </div>
@@ -281,13 +302,13 @@ const handleApply = async (e) => {
 
                         <div className="col-md-2 col-md-2-1">
                           <div className="form-group mb-3">
-                            <input type="text" class="form-control" placeholder="(우편번호)" value={cusData?.[0]?.cus_postal_code}/>
+                            <input type="text" class="form-control" placeholder="(우편번호)" value={state.cus_postal_code}/>
 
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group mb-3">
-                            <input type="text" className="form-control" placeholder="가입정보 불러오기" value={cusData?.[0]?.cus_address1}/>
+                            <input type="text" className="form-control" placeholder="가입정보 불러오기" value={state.cus_address1}/>
                           </div>
                         </div>
 
