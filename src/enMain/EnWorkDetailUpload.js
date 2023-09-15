@@ -11,7 +11,7 @@ function FileUpload() {
 
   const [loading, setLoading] = useState(true);
   const [fileData, setFileData] = useState(null);
-  
+
 
 
   useEffect(() => {
@@ -90,71 +90,54 @@ function FileUpload() {
     if (id) {
       setRemoveFileId((prevRemoveFileId) => new Set([...prevRemoveFileId, id]));
 
-  const handleFileUpload = () => {
-    if (fileData) {
-      let formData = new FormData();
-      formData.append("file_data", fileData);
 
-      axios
-        .post("/api/awsUpload", formData)
-        .then((response) => {
-          alert(response.data);
 
-          setLoading(false);
-        })
-        .catch((err) => {
-          alert("업로드에 실패했습니다: " + err);
-        });
-    } else {
-      alert("파일을 먼저 선택하세요.");
+      // 2. 파일 영역 초기화 & 삭제
+      const updatedFileList = [...fileList];
+      updatedFileList.splice(index, 1);
+      setFileList(updatedFileList);
+    };
 
-    }
+    // 파일 업로드
+    const handleFileUpload = () => {
+      // 파일 업로드 처리
+      // removeFileId Set을 이용하여 삭제할 파일 ID들을 처리
+      console.log("파일 업로드 및 삭제 ID 처리:", Array.from(removeFileId));
+    };
 
-    // 2. 파일 영역 초기화 & 삭제
-    const updatedFileList = [...fileList];
-    updatedFileList.splice(index, 1);
-    setFileList(updatedFileList);
-  };
+    return (
+      <div>
 
-  // 파일 업로드
-  const handleFileUpload = () => {
-    // 파일 업로드 처리
-    // removeFileId Set을 이용하여 삭제할 파일 ID들을 처리
-    console.log("파일 업로드 및 삭제 ID 처리:", Array.from(removeFileId));
-  };
+        <div className="file_list">
+          {fileList.map((file, index) => (
+            <div key={index} className="file_input">
+              <label>
+                <input
+                  type="file"
+                  name="files"
+                  onChange={(e) => selectFile(e.target, file.id)}
+                />
+              </label>
+              <button
+                type="button"
+                onClick={() => removeFile(index, file.id)}
+                className="btns del_btn"
+              >
+                <span>삭제</span>
+              </button>
+            </div>
+          ))}
 
-  return (
-    <div>
-
-      <div className="file_list">
-        {fileList.map((file, index) => (
-          <div key={index} className="file_input">
-            <label>
-              <input
-                type="file"
-                name="files"
-                onChange={(e) => selectFile(e.target, file.id)}
-              />
-            </label>
-            <button
-              type="button"
-              onClick={() => removeFile(index, file.id)}
-              className="btns del_btn"
-            >
-              <span>삭제</span>
-            </button>
-          </div>
-        ))}
-
+        </div>
+        <button type="button" onClick={addFile}>
+          파일 추가
+        </button>
+        <button type="button" onClick={handleFileUpload}>
+          파일 업로드
+        </button>
       </div>
-      <button type="button" onClick={addFile}>
-        파일 추가
-      </button>
-      <button type="button" onClick={handleFileUpload}>
-        파일 업로드
-      </button>
-    </div>
-  );
-}
+    );
+  }
 
-export default FileUpload;
+}
+  export default FileUpload;

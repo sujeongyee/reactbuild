@@ -24,8 +24,9 @@ function EnServerDetailModal(props, areaID) {
   useEffect(()=>{
     if(modalIsOpen){
       console.log('여기'+props.serverName)
-
-      axios.post('/api/engineer/inspectionList2',{serverName:props.serverName})
+      console.log('이건 가니'+ props.serverId )
+      //axios.post('/api/main/engineer/inspectionList2',{serverName:props.serverName})
+      axios.post('/api/main/engineer/inspectionList2',{serverId:props.serverId})
       .then(response => {
         setData(response.data);
         console.log(response.data);
@@ -49,9 +50,9 @@ function EnServerDetailModal(props, areaID) {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      maxWidth: "100%", // Adjust the width as needed
-      maxHeight: "85%", // Adjust the height as needed
-      overflow: "auto", // Enable scrolling if content overflows
+      maxWidth: "100%", 
+      maxHeight: "85%", 
+      overflow: "auto", 
       borderRadius: "15px",
       backgroundColor: "#f9f9fd",
     },
@@ -75,7 +76,9 @@ function EnServerDetailModal(props, areaID) {
 
   const closeModal = () => {
     setModalIsOpen(false);
-  };
+  }
+
+
   // const printArea = () => {
   //   if (!isPrinting) {
   //     setInitBody(document.body.innerHTML);
