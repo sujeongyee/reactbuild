@@ -33,7 +33,7 @@ function Calendar() {
   const openAddEventModal = () => {
     setIsAddEventModalOpen(true);
   };
-  //
+  ////
   // 일정 추가 모달 닫기
   const closeAddEventModal = () => {
     setIsAddEventModalOpen(false);
