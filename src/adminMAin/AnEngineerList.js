@@ -3,6 +3,7 @@ import FormControlIcon from "../img/FormControlIcon";
 import EnEngineerMyPage from "../enMain/EnEngineerMyPageModal";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import AdEngineerMyPage from "./AdEngineerMyPageModal";
 // import "../enMain/EnMain.css";
 // import "../userMain/User.css";
 // import "./EnMain.css";
@@ -13,7 +14,7 @@ function AnEngineerList() {
   const [list, setList] = useState([]);
 
   useEffect(()=>{
-    axios.get('/api/admin/engineerList').then((res) => {
+    axios.get('/api/main/admin/engineerList').then((res) => {
       setList(res.data);
       console.log(res.data);
     })
@@ -80,7 +81,9 @@ function AnEngineerList() {
                                 </div>
                                 <div className="me-4">
                                   <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                    <EnEngineerMyPage/>
+                                    {/* <AdEngineerMyPage */}
+                                    {engineer.eng_name}
+                                    {/* /> */}
                                   </h5>
                                 </div>
                               </div>
@@ -92,243 +95,7 @@ function AnEngineerList() {
                             <td className="border-top-0 px-2 py-4;"></td>
                           </tr>
                           )}
-                          {/* <div>
-                            <tr>
-                              <th scope="row">2</th>
-                              <td>
-                                <div className="d-flex no-block align-items-center">
-                                  <div className="me-3 style={{withd: '20px'}}">
-                                    <img
-                                      src="../img/widget-table-pic1.jpg"
-                                      alt="user"
-                                      className="rounded-circle"
-                                      width="40"
-                                      height="40"
-                                    />
-                                  </div>
-                                  <div className="me-4">
-                                    <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                      White RaiseDragon
-                                    </h5>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>대리</td>
-                              <td>기술지원 2팀</td>
-                              <td>baeksy97@gmail.com</td>
-                              <td>010-2350-9845</td>
-                              <td className="border-top-0 px-2 py-4;"></td>
-                            </tr>
-
-                            <tr>
-                              <th scope="row">3</th>
-                              <td>
-                                <div className="d-flex no-block align-items-center">
-                                  <div className="me-3 style={{withd: '20px'}}">
-                                    <img
-                                      src="../img/widget-table-pic1.jpg"
-                                      alt="user"
-                                      className="rounded-circle"
-                                      width="40"
-                                      height="40"
-                                    />
-                                  </div>
-                                  <div className="me-4">
-                                    <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                      White RaiseDragon
-                                    </h5>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>대리</td>
-                              <td>기술지원 2팀</td>
-                              <td>baeksy97@gmail.com</td>
-                              <td>010-2350-9845</td>
-                              <td className="border-top-0 px-2 py-4;"></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">4</th>
-                              <td>
-                                <div className="d-flex no-block align-items-center">
-                                  <div className="me-3 style={{withd: '20px'}}">
-                                    <img
-                                      src="../img/widget-table-pic1.jpg"
-                                      alt="user"
-                                      className="rounded-circle"
-                                      width="40"
-                                      height="40"
-                                    />
-                                  </div>
-                                  <div className="me-4">
-                                    <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                      BBark SuJung
-                                    </h5>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>팀장</td>
-                              <td>기술지원 1팀</td>
-                              <td>baeksy97@gmail.com</td>
-                              <td>010-2350-9845</td>
-                              <td className="border-top-0 px-2 py-4;"></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">5</th>
-                              <td>
-                                <div className="d-flex no-block align-items-center">
-                                  <div className="me-3 style={{withd: '20px'}}">
-                                    <img
-                                      src="../img/widget-table-pic1.jpg"
-                                      alt="user"
-                                      className="rounded-circle"
-                                      width="40"
-                                      height="40"
-                                    />
-                                  </div>
-                                  <div className="me-4">
-                                    <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                      White RaiseDragon
-                                    </h5>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>대리</td>
-                              <td>기술지원 1팀</td>
-                              <td>baeksy97@gmail.com</td>
-                              <td>010-2350-9845</td>
-                              <td className="border-top-0 px-2 py-4;"></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">6</th>
-                              <td>
-                                <div className="d-flex no-block align-items-center">
-                                  <div className="me-3 style={{withd: '20px'}}">
-                                    <img
-                                      src="../img/widget-table-pic1.jpg"
-                                      alt="user"
-                                      className="rounded-circle"
-                                      width="40"
-                                      height="40"
-                                    />
-                                  </div>
-                                  <div className="me-4">
-                                    <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                      White RaiseDragon
-                                    </h5>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>대리</td>
-                              <td>기술지원 3팀</td>
-                              <td>baeksy97@gmail.com</td>
-                              <td>010-2350-9845</td>
-                              <td className="border-top-0 px-2 py-4;"></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">7</th>
-                              <td>
-                                <div className="d-flex no-block align-items-center">
-                                  <div className="me-3 style={{withd: '20px'}}">
-                                    <img
-                                      src="../img/widget-table-pic1.jpg"
-                                      alt="user"
-                                      className="rounded-circle"
-                                      width="40"
-                                      height="40"
-                                    />
-                                  </div>
-                                  <div className="me-4">
-                                    <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                      White RaiseDragon
-                                    </h5>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>대리</td>
-                              <td>기술지원 3팀</td>
-                              <td>baeksy97@gmail.com</td>
-                              <td>010-2350-9845</td>
-                              <td className="border-top-0 px-2 py-4;"></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">8</th>
-                              <td>
-                                <div className="d-flex no-block align-items-center">
-                                  <div className="me-3 style={{withd: '20px'}}">
-                                    <img
-                                      src="../img/widget-table-pic1.jpg"
-                                      alt="user"
-                                      className="rounded-circle"
-                                      width="40"
-                                      height="40"
-                                    />
-                                  </div>
-                                  <div className="me-4">
-                                    <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                      White RaiseDragon
-                                    </h5>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>대리</td>
-                              <td>기술지원 3팀</td>
-                              <td>baeksy97@gmail.com</td>
-                              <td>010-2350-9845</td>
-                              <td className="border-top-0 px-2 py-4;"></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">9</th>
-                              <td>
-                                <div className="d-flex no-block align-items-center">
-                                  <div className="me-3 style={{withd: '20px'}}">
-                                    <img
-                                      src="../img/widget-table-pic1.jpg"
-                                      alt="user"
-                                      className="rounded-circle"
-                                      width="40"
-                                      height="40"
-                                    />
-                                  </div>
-                                  <div className="me-4">
-                                    <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                      White RaiseDragon
-                                    </h5>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>대리</td>
-                              <td>기술지원 1팀</td>
-                              <td>baeksy97@gmail.com</td>
-                              <td>010-2350-9845</td>
-                              <td className="border-top-0 px-2 py-4;"></td>
-                            </tr>
-                            <tr>
-                              <th scope="row">10</th>
-                              <td>
-                                <div className="d-flex no-block align-items-center">
-                                  <div className="me-3 style={{withd: '20px'}}">
-                                    <img
-                                      src="../img/widget-table-pic1.jpg"
-                                      alt="user"
-                                      className="rounded-circle"
-                                      width="40"
-                                      height="40"
-                                    />
-                                  </div>
-                                  <div className="me-4">
-                                    <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                      White RaiseDragon
-                                    </h5>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>대리</td>
-                              <td>기술지원 1팀</td>
-                              <td>baeksy97@gmail.com</td>
-                              <td>010-2350-9845</td>
-                              <td className="border-top-0 px-2 py-4;"></td>
-                            </tr>
-                          </div> */}
+                          
                         </tbody>
                       </table>
                     </div>
