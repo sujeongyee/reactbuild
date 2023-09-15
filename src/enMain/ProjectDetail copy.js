@@ -1,38 +1,24 @@
 import { useEffect, useState } from "react";
 import "../enMain/EnMain.css";
 
-
-
-import { useEffect, useState } from 'react'
-import '../enMain/EnMain.css'
-
-import '../enMain/EnTeam.css';
-import axios from 'axios';
-import './EngLeader.css';
-import { Link, useParams } from 'react-router-dom';
-import EnglTeamassign from './EnglTeamassign';
-import './EngLeader.css';
-import Loading from '../loding/Loding';
+import "../enMain/EnTeam.css";
+import axios from "axios";
+import "./EngLeader.css";
+import { Link, useParams } from "react-router-dom";
+import EnglTeamassign from "./EnglTeamassign";
+import "./EngLeader.css";
 
 function EnglProjectDetail() {
-  const [loading, setLoading] = useState(true);
-
-
-
   const { pro_id } = useParams();
   const [info, setInfo] = useState([]);
   const [list, setList] = useState([]);
   useEffect(() => {
-
-
-    axios.get(`/api/main/engleader/projectDetail/${pro_id}`)
-      .then(response => {
-
+    axios
+      .get(`/api/main/engleader/projectDetail/${pro_id}`)
+      .then((response) => {
         console.log(response);
         setInfo(response.data);
         setList(response.data.list);
-
-        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -40,22 +26,18 @@ function EnglProjectDetail() {
   }, []);
 
   const assignEmer = () => {
-
-    const engid = 'tnwjd2580';
-    const serverId = '21ff55ca-4c9d-11ee-acdc-8cb0e993c4ae';
-    axios.post('/api/main/alarm/assignEmer', { engid: engid, serverId: serverId })
-      .catch(err => { alert('실패' + err) })
-  }
-
-
+    const engid = "tnwjd2580";
+    const serverId = "21ff55ca-4c9d-11ee-acdc-8cb0e993c4ae";
+    axios
+      .post("/alarm/assignEmer", { engid: engid, serverId: serverId })
+      .catch((err) => {
+        alert("실패" + err);
+      });
+  };
 
   return (
     <>
-
-
-{loading ? <Loading /> : null}  
-      <div className="page-wrapper engl-all-proli" >
-
+      <div className="page-wrapper engl-all-proli">
         <div className="page-breadcrumb">
           <div className="col-7 align-self-center header-div-engl">
             <h4 className="info-head8" style={{ color: "rgb(61 61 61)" }}>
@@ -200,10 +182,7 @@ function EnglProjectDetail() {
               <div className="col-12">
                 <div className="form-group mb-3 req-info">
                   <div className="request-user">요청 정기점검일</div>
-
-                  <p className="infoUser-answer request-user2">{info.PRO_PI}일</p>
-
-
+                  <p className="infoUser-answer request-user2">{info.PRO_PI}</p>
                 </div>
               </div>
 

@@ -1,9 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import "../enMain/EnMain.css";
 // import "../enMain/EnTeam.css";
-import './EngLeader.css';
+import "./EngLeader.css";
 import axios from "axios";
 import Loading from '../loding/Loding';
 
@@ -19,12 +18,14 @@ function EnglTeamassign(props) {
     // props.leaderid가 null이 아닌 경우에만 axios.post 요청을 보냅니다.
     if (pro_id !== null) {
 
+
       axios.get(`/api/main/engleader/getTeamEngList/${pro_id}`)
         .then(response => {
+
           setData(response.data);
           setLoading(false);
         })
-        .catch(error => {
+        .catch((error) => {
           // 요청에 대한 오류 처리를 수행합니다.
         });
     }
@@ -44,21 +45,20 @@ function EnglTeamassign(props) {
       maxHeight: "85%", // Adjust the height as needed
       overflow: "auto", // Enable scrolling if content overflows
       borderRadius: "15px",
-      padding: '40px'
+      padding: "40px",
     },
   };
 
-  
   const assign = (e) => {
     const checklist = document.querySelectorAll(".eng-assign-check");
     let count = 0;
-    let checkedEng = '';
+    let checkedEng = "";
     for (let i = 0; i < checklist.length; i++) {
       if (checklist[i].checked) {
-        checkedEng = checklist[i]
+        checkedEng = checklist[i];
         count++;
         if (count > 1) {
-          alert('한 서버에는 한명의 엔지니어만 배정이 가능합니다');
+          alert("한 서버에는 한명의 엔지니어만 배정이 가능합니다");
           for (let i = 0; i < checklist.length; i++) {
             checklist[i].checked = false;
           }
@@ -67,29 +67,32 @@ function EnglTeamassign(props) {
       }
     }
     if (count === 0) {
-      alert('한명의 엔지니어 선택은 필수입니다.');
+      alert("한명의 엔지니어 선택은 필수입니다.");
       return;
     }
 
-
-
     var eng_enid = checkedEng.previousElementSibling.value;
+
 
     axios.post('/api/main/engleader/assignEng', { eng_enid: eng_enid, pro_id: pro_id, server_id: server_id })
       .then(response => {
-        console.log(response);
-        if (response.data === 'ok') {
 
-          setModalIsOpen(false)
+        console.log(response);
+        if (response.data === "ok") {
+          setModalIsOpen(false);
           const classname = props.server_id;
-          const btn_change = document.querySelector(`[class="${classname}"]`).previousElementSibling;
-          console.log(btn_change)
-          btn_change.style.backgroundColor = 'rgb(101 98 98)';
-          btn_change.innerHTML = '팀원배정완료';
-          alert('해당 서버에 팀원을 배정 했습니다')
+          const btn_change = document.querySelector(
+            `[class="${classname}"]`
+          ).previousElementSibling;
+          console.log(btn_change);
+          btn_change.style.backgroundColor = "rgb(101 98 98)";
+          btn_change.innerHTML = "팀원배정완료";
+          alert("해당 서버에 팀원을 배정 했습니다");
         }
       })
-      .catch(err => { console.log(err) })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // const engId = '김철수';
     // const cusId = 'tnwjd5622';
@@ -98,20 +101,19 @@ function EnglTeamassign(props) {
     //   .catch(err => { console.log('실패' + err) })
     // alert('배정 완료');
     // setModalIsOpen(false);
-  }
-
+  };
 
   return (
     <>
+
              {loading ? <Loading /> : null}
       {props.check === true ? <button type="button" className="assingment-btn ok-bbtn">팀원배정완료</button> : <button type="button" className="assingment-btn" onClick={()=>setModalIsOpen(true)}>팀원배정</button>}
-      <input type="hidden" className={server_id}></input>
 
+      <input type="hidden" className={server_id}></input>
 
       {/* <button type="button" className="assingment-btn" onClick={() => setModalIsOpen(true)}>팀원배정</button> */}
 
       <Modal
-
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
         style={customStyles}
@@ -127,7 +129,6 @@ function EnglTeamassign(props) {
                   <th scope="col">소속</th> */}
                   <th scope="col">전화번호</th>
                   <th scope="col">선택</th>
-
                 </tr>
               </thead>
               <tbody>
@@ -146,24 +147,18 @@ function EnglTeamassign(props) {
                         />
                       </div> */}
                         <div className="team-member-name">
-                          <td>
-                            {list.eng_name}
-                          </td>
+                          <td>{list.eng_name}</td>
                         </div>
                       </div>
                     </td>
                     <td>{list.eng_phone}</td>
 
-                    <td><input type="hidden" value={list.eng_enid}></input> <input type="checkbox" className="eng-assign-check" /></td>
+                    <td>
+                      <input type="hidden" value={list.eng_enid}></input>{" "}
+                      <input type="checkbox" className="eng-assign-check" />
+                    </td>
                   </tr>
                 ))}
-
-
-
-
-
-
-
               </tbody>
             </table>
             <div className="detail_modal_btn btn-assign-zone">
@@ -171,25 +166,22 @@ function EnglTeamassign(props) {
                 type="button"
                 value="배정"
                 className="detail_modal_btn_show btn-assign-eng"
-                style={{ backgroundColor: 'rgb(44, 117, 70)' }}
+                style={{ backgroundColor: "rgb(44, 117, 70)" }}
                 onClick={assign}
-
               />
               <input
                 type="button"
                 value="취소"
                 className="detail_modal_btn_close btn-assign-eng"
-                style={{ backgroundColor: 'rgb(44, 117, 70)' }}
+                style={{ backgroundColor: "rgb(44, 117, 70)" }}
                 onClick={() => setModalIsOpen(false)}
               />
             </div>
           </div>
         </div>
       </Modal>
-
-
     </>
-  )
+  );
 }
 
-export default EnglTeamassign
+export default EnglTeamassign;
