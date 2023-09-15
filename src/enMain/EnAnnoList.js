@@ -1,18 +1,99 @@
 import { Link } from 'react-router-dom'
-import '../enMain/EnMain.css'
-import FormControlIcon from '../img/FormControlIcon';
+import PageNation from '../pagenation/PageNation'
+import { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
+import { formatDate } from '@fullcalendar/core';
+// import '../enMain/EnMain.css'
 // import './User.css'
 import Loading from '../loding/Loding';
-import { useState } from 'react';
+import Search from '../userMain/Search'
+function EnAnnoList({ checkPermission }) {
+    const [loading, setLoading] = useState(true);
 
-function EnAnnoList() {
-  const [loading, setLoading] = useState(true);
+    const [searchValue, setSearchValue] = useState([])
+    const [select,setSelect]=useState("notice_title")
+    const [total, setTotal] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageInfo, setPageInfo] = useState([])
+    const postsPerPage = 10;
+    const startIndex=(currentPage-1)*postsPerPage;
+    const endIndex= startIndex + postsPerPage;
+    const currentPosts = searchValue.slice(startIndex, endIndex);
+    
+    const list = async () => {//현재 목록 불러오기
 
+        if(searchValue.length==0){
+
+            const response = await axios.get(`/api/main/AnnoList?currentPage=${currentPage}&postsPerPage=${postsPerPage}&role=${checkPermission.role}`)
+          
+           
+            setPageInfo(response.data)
+            console.log(pageInfo)
+            setLoading(false);
+        }else{//검색결과가 1이상이라면?
+            const result=currentPosts.filter(data=>data.notice_target==checkPermission.role||data.notice_target=="ALL")
+            console.log(result)
+            setPageInfo(result)
+        }
+    }
+    const totalListNum = async () => {//토탈 목록 불러오기
+
+     
+
+        const response = await axios.get("/api/main/admin/AnnoTotal")
+        // const result=response.data.filter(data=>data.notice_target==checkPermission.role||data.notice_target=="ALL")
+        setTotal(response.data);
+        setLoading(false);
+      
+    }
+    useEffect(() => {
+        list()
+
+        totalListNum()
+    }, []);
+
+
+    useEffect(() => {
+
+        list()
+
+    }, [currentPage]);
+    useEffect(()=>{
+        setCurrentPage(1)
+        handlePageChange(1)
+        list()
+       console.log(searchValue)
+    },[searchValue])
+
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber); // 페이지 변경 시 현재 페이지 업데이트
+    };
+    function formatDateTime(timestamp) {
+        const date = new Date(timestamp);
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고 2자리로 포맷팅
+        const day = String(date.getDate()).padStart(2, '0'); // 일을 2자리로 포맷팅
+        const hours = String(date.getHours()).padStart(2, '0'); // 시간을 2자리로 포맷팅
+        const minutes = String(date.getMinutes()).padStart(2, '0'); // 분을 2자리로 포맷팅
+
+        const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
+        return formattedDateTime;
+    }
+   
+    const selectSearch=(e)=>{
+        
+        setSelect(e.target.value)
+    }
+  
+
+    
     return (
 
         <>
-               {loading ? <Loading /> : null}
-            <div className="page-wrapper" >
+            {loading ? <Loading /> : null}
+            <div className="page-wrapper">
 
                 <div className="page-breadcrumb">
                     <div className="row">
@@ -20,26 +101,29 @@ function EnAnnoList() {
                             <h4 className="page-title text-truncate text-dark font-weight-medium mb-1">
                                 공지 사항
                             </h4>
+
                         </div>
-
-
                     </div>
+
                 </div>
                 <div className="container-fluid">
+
                     <div className="row">
+
                         <div className="col-12">
 
                             <div className="card">
 
-                                <div className="card-body">
-                                    <div className="table-responsive">
-                                        <label style={{ display: 'flex' }}>
-                                            <span style={{ transform: 'translateY(5px)', padding: '7px 10px 0 0', width: '8%', color: 'rgb(42, 198, 97)' }}>Search:</span>
-                                            <input type="search" className="form-control form-control-sm" placeholder aria-controls="zero_config" style={{ width: '200px' }} />
-                                            <button style={{ marginLeft: '5px' }}>
-                                                <FormControlIcon />
-                                            </button>
-                                        </label>
+                                <div className="card-body"style={{height:"600px"}}>
+                                    <div className="table-responsive"style={{height:"450px"}}>
+                                        <Search setSearchValue={setSearchValue} setTotal={setTotal} select={select} style={{ color: "rgb(42, 198, 97)" }} categori={"notice"} />
+                                        <select onChange={selectSearch}>
+                                            
+                                            <option value="notice_title">제목</option>
+                                            <option value="notice_writer">작성자</option>
+
+                                        </select>
+                                      
                                         <table className="table">
                                             <thead>
                                                 <tr>
@@ -47,75 +131,42 @@ function EnAnnoList() {
                                                     <th scope="col">제목</th>
                                                     <th scope="col">작성자</th>
                                                     <th scope="col">등록일</th>
+                                                    <th scope="col">공개 대상</th>
+
                                                 </tr>
 
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td><Link to="/engineer/annoDetail">(필독)전체 공지사항입니다</Link></td>
-                                                    <td>Admin</td>
-                                                    <td>2023.08.27</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td><Link to="/user">[공지사항]리액트 너무 어렵습니다.</Link></td>
-                                                    <td>Admin</td>
-                                                    <td>2023.08.27</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td><Link to="/user">[공지사항]리액트 너무 어렵습니다.</Link></td>
-                                                    <td>Admin</td>
-                                                    <td>2023.08.27</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">4</th>
-                                                    <td><Link to="/user">[공지사항]리액트 너무 어렵습니다.</Link></td>
-                                                    <td>Admin</td>
-                                                    <td>2023.08.27</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">5</th>
-                                                    <td><Link to="/user">[공지사항]리액트 너무 어렵습니다.</Link></td>
-                                                    <td>Admin</td>
-                                                    <td>2023.08.27</td>
-                                                </tr>
 
+
+                                                {pageInfo && pageInfo.slice(0, -1).map((item, index) => (
+                                                    <tr key={index}>
+                                                        <th scope="row">{index + 1}</th>
+                                                        <td><Link to={`/admin/annoDetail`} state={{ item }} style={{padding:"0"}}>{item.notice_title}</Link></td>
+                                                        <td>{item.notice_writer ? item.notice_writer  : "admin"}</td>
+                                                        <td>{item.notice_regdate ? formatDateTime(item.notice_regdate) : ""}</td>
+                                                        <td>{item.notice_target=="ROLE_ENGINEER"?"엔지니어":null}
+                                                        {item.notice_target=="ALL"?"전체 공개":null}
+                                                        </td>
+                                                    </tr>
+                                                ))}
 
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div style={{ textAlign: 'center' }}>
-                                        <ul className="pagination paginationEn" >
-                                            <li className="page-item disabled">
-                                                <Link className="page-link" href="#" tabindex="-1">
-                                                    Prev
-                                                </Link>
-                                            </li>
-                                            <li className="page-item">
-                                                <a className="page-link" href="#">
-                                                    1
-                                                </a>
-                                            </li>
-                                            <li className="page-item">
-                                                <Link className="page-link" href="#">
-                                                    2
-                                                </Link>
-                                            </li>
-                                            <li className="page-item">
-                                                <a className="page-link" href="#">
-                                                    3
-                                                </a>
-                                            </li>
-                                            <li className="page-item">
-                                                <Link className="page-link" href="#">
-                                                    Next
-                                                </Link>
-                                            </li>
-                                        </ul>
+                                    {total != '' ? <PageNation 
+                                    
+                                        currentPage={currentPage}
+                                        totalPosts={total} // 전체 게시글 수를 전달
+                                        onPageChange={handlePageChange}
+                                        postsPerPage={postsPerPage}
+                                        
+                                        style={{
+                                            color: "rgb(42, 198, 97)",
+                                            backgroundColor: '#ffdcdb',
+                                            borderRadius: ' 35%'
+                                        }} /> : null}
 
-                                    </div>
                                 </div>
 
                             </div>
@@ -129,10 +180,11 @@ function EnAnnoList() {
             </div>
 
         </>
+
     )
 
 
 }
 
 
-export default EnAnnoList;
+export default EnAnnoList
