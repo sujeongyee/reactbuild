@@ -13,7 +13,6 @@ function UserApply({state}) {
 
 
 
-function UserApply({state}) {
 
   const navigate = useNavigate();
   const [allChecked, setAllChecked] = useState(false);
