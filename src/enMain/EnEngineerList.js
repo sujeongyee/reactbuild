@@ -12,7 +12,7 @@ function EnEngineerList() {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/engineer/engineerList').then((res) => {
+    axios.get('/api/main/engineer/engineerList').then((res) => {
       setList(res.data);
       console.log(res.data);
     })

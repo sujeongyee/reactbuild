@@ -11,7 +11,7 @@ function InspectionList() {
   const[list, setList] = useState([]);
 
   useEffect(()=>{
-    axios.get('/api/engineer/inspectionList').then((res)=>{
+    axios.get('/api/main/engineer/inspectionList').then((res)=>{
       setList(res.data);
       console.log(res.data);
     })
@@ -58,147 +58,24 @@ return(
                                             proName={workInfo.pro_name}
                                             serverName= {workInfo.server_name}
                                             engName={workInfo.eng_name}
+                                            serverId={workInfo.server_id}
 
                                             />
                                           </td>
                                           <td>{workInfo.work_division}</td>
                                           <td>{workInfo.pro_name}</td>
-                                          {/* <td>
-                                            <div className="d-flex no-block align-items-center">
-                                              <div className="me-3">
-                                                <img
-                                                  src="../img/widget-table-pic2.jpg"
-                                                  alt="engineer"
-                                                  className="rounded-circle insListImg"
-                                                  width="45"
-                                                  height="45"
-                                                />
-                                              </div>
-                                              <p className="insListP" style={{paddingLeft: "26px", margin: 0}}>{workInfo.eng_name}</p>
-                                            </div>
-                                          </td> */}
                                           <td>{workInfo.work_date}</td>
                                           <td>
                                           <button
                                             type="button"
                                             class="btn waves-effect waves-light btn-rounded btn-warning">
-                                            점검예정
+                                            {workInfo.work_status}
                                           </button>
                                           </td>
                                       </tr>
                                     ))}
                                       
-                                      {/* <tr>
-                                        <tr>
-                                          <th scope="row">2</th>
-                                          <td><Link to="#">ICT대학교 학생관리 시스템</Link></td>
-                                          <td>정기점검</td>
-                                          <td>
-                                            <div className="d-flex no-block align-items-center">
-                                              <div className="me-3">
-                                                <img
-                                                  src="../img/widget-table-pic2.jpg"
-                                                  alt="engineer"
-                                                  className="rounded-circle insListImg"
-                                                  width="45"
-                                                  height="45"
-                                                />
-                                              </div>
-                                              <p className="insListP" style={{paddingLeft: "10px"}}>KimJJangSu</p>
-                                            </div>
-                                          </td>
-                                          <td>2023.09.04</td>
-                                          <td>
-                                          <button
-                                            type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-warning">
-                                            점검예정
-                                          </button>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="row">3</th>
-                                          <td><Link to="#">중앙정보처리기술학원 학생관리</Link></td>
-                                          <td>정기점검</td>
-                                          <td>
-                                            <div className="d-flex no-block align-items-center">
-                                              <div className="me-3">
-                                                <img
-                                                  src="../img/widget-table-pic2.jpg"
-                                                  alt="user"
-                                                  className="rounded-circle insListImg"
-                                                  width="45"
-                                                  height="45"
-                                                />
-                                              </div>
-                                              <p className="insListP" style={{paddingLeft: "10px"}}>KimJJangSu</p>
-                                            </div>
-                                          </td>
-                                          <td>2023.09.06</td>
-                                          <td>
-                                          <button
-                                            type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-success">
-                                            점검중
-                                          </button>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="row">4</th>
-                                          <td><Link to="#">서강대학교 수강신청 시스템</Link></td>
-                                          <td>정기점검</td>
-                                          <td>
-                                            <div className="d-flex no-block align-items-center">
-                                              <div className="me-3">
-                                                <img
-                                                  src="../img/widget-table-pic2.jpg"
-                                                  alt="user"
-                                                  className="rounded-circle insListImg"
-                                                  width="45"
-                                                  height="45"
-                                                />
-                                              </div>
-                                              <p className="insListP" style={{paddingLeft: "10px"}}>KimJJangSu</p>
-                                            </div>
-                                          </td>
-                                          <td>2023.09.06</td>
-                                          <td>
-                                          <button
-                                            type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-success">
-                                            점검중
-                                          </button>
-                                          </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="row">5</th>
-                                          <td><Link to="#">서울대학교 수강신청 시스템</Link></td>
-                                          <td>긴급점검</td>
-                                          <td>
-                                            <div className="d-flex no-block align-items-center">
-                                              <div className="me-3">
-                                                <img
-                                                  src="../img/widget-table-pic2.jpg"
-                                                  alt="user"
-                                                  className="rounded-circle insListImg"
-                                                  width="45"
-                                                  height="45"
-                                                />
-                                              </div>
-                                              <p className="insListP" style={{paddingLeft: "10px"}}>KimJJangSu</p>
-                                            </div>
-                                          </td>
-                                          <td>2023.08.30</td>
-                                          <td>
-                                          <button
-                                            type="button"
-                                            class="btn waves-effect waves-light btn-rounded btn-danger">
-                                            점검중
-                                          </button>
-                                          </td>
-                                      </tr>
-                                
-                                    </tr> */}
+                                      
                                   </tbody>
                               </table>
                           </div>
