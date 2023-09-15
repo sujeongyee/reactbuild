@@ -229,29 +229,7 @@ function EnglProjectDetail() {
                   <th>작업내역</th>
                 </tr>
               </thead>
-              <tbody>
-                {list.map((data, key) => (
-                  <tr key={key}>
-                    <td>{data.server_name}</td>
-                    <td>{data.ip_address}</td>
-                    <td>{data.operating_system}</td>
-                    <td>{data.cpu}</td>
-                    <td>{data.ram} GB</td>
-                    <td>{data.disk_capacitygb} GB</td>
-                    <td>{data.eng_enid ? (
-                      data.eng_name // 데이터가 있으면
-                    ) : (
-                      <EnglTeamassign pro_pi={info.PRO_PI} pro_id={info.PRO_ID} server_id={data.server_id} check={false} />
-                    )}
-                    </td>
-                    <td>{data.eng_enid ? (
-                       <Link className='toworkinfobtn' to={{pathname: `/engineerleader/workinfo/${data.server_id}`}}><button>내역확인</button> </Link> // 데이터가 있으면
-                    ) : (
-                      'X'
-                    )}
-                    </td>
-                  </tr>
-                </thead>
+          
                 <tbody>
                   {list.map((data, key) => (
                     <tr key={key}>

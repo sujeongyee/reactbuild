@@ -6,7 +6,7 @@ import Loading from '../loding/Loding';
 
 function UserProList({state}) {
 
-
+    const [loading, setLoading] = useState(true);
   const[proList, setProList] = useState([]);
 
   //console.log(state);

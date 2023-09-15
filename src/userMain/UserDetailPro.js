@@ -8,7 +8,7 @@ function UserDetailPro() {
 
 
   const[proDetail, setProDetail] = useState([]);
-
+  const [loading, setLoading] = useState(true);
   const {pro_id} = useParams();
 
   useEffect(()=>{

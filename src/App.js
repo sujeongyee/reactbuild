@@ -107,7 +107,7 @@ function App() {
     if (checkPermission().role === "ROLE_USER") {
 
 
-
+        const cus_id=checkPermission().sub
 
       const response1 = await axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
       setInfo(response1.data)
