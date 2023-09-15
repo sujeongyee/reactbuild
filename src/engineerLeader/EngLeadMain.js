@@ -28,7 +28,7 @@ function EngLeadMain(props) {
   useEffect(() => {
     const leaderId = 'eng_1';
     setId('eng_1');
-    axios.get(`/engleader/main/${leaderId}`)
+    axios.get(`/api/main/engleader/main/${leaderId}`)
       .then(response => {
         const data2 = response.data;
         // console.log(data2);
@@ -94,7 +94,8 @@ function EngLeadMain(props) {
                   <div className="d-flex align-items-center">
                     <div>
                       <div className="d-inline-flex ">
-                        <h2 className=" mb-1 font-weight-medium change-color-engl">{vo.teamCount}명</h2>
+                        <h2 className=" mb-1 font-weight-medium change-color-engl">
+                          <Link className="movetoengl" to={'/engineerleader/engineerList'}> {vo.teamCount}명</Link></h2>
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">팀원수 </h6>
@@ -120,7 +121,8 @@ function EngLeadMain(props) {
                   <div className="d-flex ">
                     <div>
                       <div className="d-inline-flex ">
-                        <h2 className=" mb-1 font-weight-medium change-color-engl">{vo.projectCount}개</h2>
+                        <h2 className=" mb-1 font-weight-medium change-color-engl">
+                          <Link className="movetoengl" to={'/engineerleader/projectList'}>{vo.projectCount}개</Link></h2>
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">진행중인프로젝트 </h6>
@@ -223,7 +225,7 @@ function EngLeadMain(props) {
 
                               <td
                                 className="">
-                                {data.pro_startDate}
+                                {data.pro_startdate}
                               </td>
 
                             </tr>

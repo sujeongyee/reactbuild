@@ -18,7 +18,7 @@ function EnglClientDetail() {
 
   useEffect(() => {
 
-    axios.get(`/engleader/getClientInfo/${cus_id}`)
+    axios.get(`/api/main/engleader/getClientInfo/${cus_id}`)
       .then(response => {
         setList(response.data.list);
         setVo(response.data.vo);
@@ -35,7 +35,7 @@ function EnglClientDetail() {
     <>
       {loading ? <Loading /> : null}
       <div className="page-wrapper clientDetailpage-engl">
-        <div><h4 className="cdp-head" >클라이언트정보</h4></div>
+        <div><h4 className="cdp-head" style={{color:'#424242'}} >클라이언트정보</h4></div>
         <div className=" cardcusdetail">
           <div style={{}}>
             <table className="cdp-tb">
@@ -72,7 +72,7 @@ function EnglClientDetail() {
         </div>
 
         <div>
-        <h4 className="cdp-head2" >해당 클라이언트의 프로젝트 정보</h4>
+        <h4 className="cdp-head2" style={{color:'#424242'}} >해당 클라이언트의 프로젝트 정보</h4>
         </div>
         <div>
         <table className="cdp-tb2">
@@ -92,8 +92,8 @@ function EnglClientDetail() {
                     <tr key={key}>
                     <th scope="row">{key+1}</th>
                     <td><Link to={{pathname:`/engineerleader/projectDetail/${data.pro_id}`}}>{data.pro_name}</Link></td>
-                    <td>{data.pro_startDate}</td>
-                    <td>{data.pro_endDate}</td>
+                    <td>{data.pro_startdate}</td>
+                    <td>{data.pro_enddate}</td>
                     <td>{data.pro_status}</td>
                     <td>{data.pro_info}</td>
                     <td>{data.pro_pi}일</td>

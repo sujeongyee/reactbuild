@@ -18,7 +18,7 @@ function EnglEngineerList() {
   const itemsPerPage = 10; // 페이지당 아이템 수
   const leader_id = 'eng_1';
   useEffect(() => {
-    axios.get(`/engleader/getEngineerList/${leader_id}`)
+    axios.get(`/api/main/engleader/getEngineerList/${leader_id}`)
       .then(response => {
         setList(response.data);
         setFirst(response.data);
@@ -40,17 +40,19 @@ function EnglEngineerList() {
     const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
     
     const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명
+
+    console.log(first)
     console.log(searchWord +' 오긴 오니 '+ filter)
     // 데이터를 복사하여 필터링
     const filteredList = first.filter((item) => {
-      if (filter === "담당자이름") {
-        return item.cus_managet_name.includes(searchWord);
-      } else if (filter === "회사명") {
-        return item.cus_company_name.includes(searchWord);
+      if (filter === "이름") {
+        return item.eng_name.includes(searchWord);
+      } else if (filter === "아이디") {
+        return item.eng_enid.includes(searchWord);
       } else if (filter==="전체" && searchWord === "" ){
         return item
       } else if (filter==="전체"){
-        return item.cus_company_name.includes(searchWord) || item.cus_managet_name.includes(searchWord);
+        return item.eng_name.includes(searchWord) || item.eng_enid.includes(searchWord);
       }
       return true; 
     });
@@ -96,8 +98,8 @@ function EnglEngineerList() {
 
               <select style={{ display: 'inline-block' }} className="selectee">
                 <option className="selecteeop">전체</option>
-                <option className="selecteeop">회사명</option>
-                <option className="selecteeop">담당자이름</option>
+                <option className="selecteeop">이름</option>
+                <option className="selecteeop">아이디</option>
               </select>
             </div>
 
@@ -132,6 +134,7 @@ function EnglEngineerList() {
                 <thead>
                   <tr>
                     <th scope="col" style={{width:'10px'}}>NO</th>
+                    <th scope="col" >아이디</th>
                     <th scope="col" style={{width:'30px'}}>이름</th>
                     <th scope="col">직급</th>
                     <th scope="col">이메일</th>
@@ -143,6 +146,7 @@ function EnglEngineerList() {
                   {currentItems.map((list, key) => (
                     <tr key={key}>
                       <th scope="row" className="col1st">{(currentPage - 1) * itemsPerPage + key + 1}</th>
+                      <th>{list.eng_enid}</th>
                       <td><Link to={{ pathname: `/engineerleader/engDetail/${list.eng_enid}`}} style={{ padding: '0' }}>{list.eng_name}</Link></td>
                       <td>{list.eng_rank}</td>
                       <td>{list.eng_email}</td>

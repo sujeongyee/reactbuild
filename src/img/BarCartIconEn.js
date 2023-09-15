@@ -1,6 +1,8 @@
 import React from 'react';
 
-const BarCartIconEn = () => (
+const BarCartIconEn = (props) => {
+  var iconColor = props.name === '팀장' ? 'rgb(44, 117, 70)' : '#54b054';
+  return(
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -13,12 +15,13 @@ const BarCartIconEn = () => (
     strokeLinejoin="round"
     className="feather feather-bar-chart feather-icon"
     
-    color='#54b054'
+    color={iconColor}
   >
     <line x1="12" y1="20" x2="12" y2="10"></line>
     <line x1="18" y1="20" x2="18" y2="4"></line>
     <line x1="6" y1="20" x2="6" y2="16"></line>
   </svg>
-);
+  )
+  };
 
 export default BarCartIconEn;    

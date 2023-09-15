@@ -1,6 +1,7 @@
 import React from 'react';
 
-const BriefcaseIcon = () => {
+const BriefcaseIcon = (props) => {
+  var iconColor = props.name === '팀장' ? 'rgb(44, 117, 70)' : '#54b054';
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,7 +9,7 @@ const BriefcaseIcon = () => {
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#54b054"
+      stroke={iconColor}
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
