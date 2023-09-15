@@ -41,17 +41,18 @@ function MyPage(info) {
         document.querySelector(".myPageModal").style.width = "700px"
 
         setInput(true)
+       
     }
 
 
     async function saveChanges(e) {
-        console.log(profileImg)
+        console.log(profileImg.name)
 
         if (profileImg.size / 1000000 > 50) {
             alert("파일은 최대 50MB이하만 허용됩니다");
             return;
         }
-        if (profileImg) {
+        if (profileImg.name!=undefined) {
             const fileName = profileImg.name;
             const validExtensions = ['jpg', 'jpeg', 'png'];
             if (!fileName || !fileName.includes('.')) {
@@ -76,13 +77,24 @@ function MyPage(info) {
                 // setProfileImg(response.data)
                 console.log(response)
                 alert("변경완료되었습니다.")
+                 setInput(false)
                 e.stopPropagation();
+
                 window.location.reload()
             } else {
                 // 유효하지 않은 파일 확장자인 경우 사용자에게 알립니다.
                 alert('jpg, jpeg, png 파일만 업로드 가능합니다.');
                 // 선택한 파일을 초기화합니다.
             }
+        }else{
+            await axios.post('/api/main/updateInfo', formInputData)
+            document.body.style.overflow = 'unset';
+            setModalIsOpen(false)
+            setInput(false)
+            alert("수정완료") 
+            e.stopPropagation();
+
+            window.location.reload()
         }
 
 
@@ -114,9 +126,7 @@ function MyPage(info) {
             <button onClick={() => {
                 setModalIsOpen(true)
                 document.body.style.overflow = 'hidden';
-                return () => {
-                    document.body.style.overflow = 'unset';
-                };
+                
             }
             } style={{width:'100%',textAlign:'left',paddingLeft:'10px',color:'#85869b',fontSize:'15px',fontWeight:'700'}}>프로필 보기</button>
             <Modal
@@ -125,8 +135,10 @@ function MyPage(info) {
                 isOpen={mPagemodalIsOpen}
                 onRequestClose={() => {
                     setModalIsOpen(false)
-                    setTempImage(null)
+                    
                     setInput(false)
+                    
+                    document.body.style.overflow = 'unset';
                 }}
             >
                 <div className="detail_modal_container1">
@@ -187,7 +199,8 @@ function MyPage(info) {
 
                            {input?<button className="detail_modal_button_print" onClick={saveChanges} style={{ fontSize: "20px" }}>수정 완료</button>:<button className="detail_modal_button_print" onClick={upload} style={{ fontSize: "20px" }}>수정하기</button>} 
 
-                            <button className="detail_modal_button_close" onClick={() => setModalIsOpen(false)} style={{ fontSize: "20px" }} >닫기</button>
+                            <button className="detail_modal_button_close" onClick={() => {  document.body.style.overflow = 'unset';
+                            setModalIsOpen(false)}} style={{ fontSize: "20px" }} >닫기</button>
                         </div>
                     </div>
                 </div>

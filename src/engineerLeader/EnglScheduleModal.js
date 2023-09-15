@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import "../enMain/EnMain.css";
 import "../userMain/User.css";
+import Loading from '../loding/Loding';
 
 function EnglScheduleModal(){
-
+  const [loading, setLoading] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const customStyles = {
@@ -25,7 +26,7 @@ function EnglScheduleModal(){
 
   return (
     <>
-      
+              {loading ? <Loading /> : null}
       <Modal
         /* className="modal-content"
         overlayClassName="modal-overlay" */

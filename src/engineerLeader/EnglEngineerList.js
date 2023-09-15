@@ -6,53 +6,63 @@ import SearchIcon from "./SearchIcon";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "react-js-pagination";
+import Loading from '../loding/Loding';
 
 function EnglEngineerList() {
+
+  const [loading, setLoading] = useState(true);
+
   const [first, setFirst] = useState([]);
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10; // 페이지당 아이템 수
-  const leader_id = 'eng_1';
+  const leader_id = "eng_1";
   useEffect(() => {
-    axios.get(`/engleader/getEngineerList/${leader_id}`)
+
+    axios.get(`/api/main/engleader/getEngineerList/${leader_id}`)
       .then(response => {
+
         setList(response.data);
         setFirst(response.data);
+
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
-      })
+      });
   }, []);
-
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
 
   const handleSearch = (e) => {
-    
     const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
-    
+
     const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명
+
+
+    console.log(first)
     console.log(searchWord +' 오긴 오니 '+ filter)
     // 데이터를 복사하여 필터링
     const filteredList = first.filter((item) => {
-      if (filter === "담당자이름") {
-        return item.cus_managet_name.includes(searchWord);
-      } else if (filter === "회사명") {
-        return item.cus_company_name.includes(searchWord);
+      if (filter === "이름") {
+        return item.eng_name.includes(searchWord);
+      } else if (filter === "아이디") {
+        return item.eng_enid.includes(searchWord);
       } else if (filter==="전체" && searchWord === "" ){
         return item
       } else if (filter==="전체"){
-        return item.cus_company_name.includes(searchWord) || item.cus_managet_name.includes(searchWord);
+        return item.eng_name.includes(searchWord) || item.eng_enid.includes(searchWord);
+
       }
-      return true; 
+      return true;
     });
 
     // 필터링된 데이터를 업데이트
     setList(filteredList);
     setCurrentPage(1); // 페이지를 첫 번째 페이지로 리셋
-  }
+  };
   // 현재 페이지의 데이터 추출
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -60,6 +70,9 @@ function EnglEngineerList() {
 
   return (
     <>
+
+
+{loading ? <Loading /> : null}
     <div className="page-wrapper prolist-engl">
 
 <div className="container-fluid englpro-all" style={{ padding: '10px', marginLeft: '100px', marginTop: '50px' }}>
@@ -75,8 +88,11 @@ function EnglEngineerList() {
           <div className="customize-input right select-proengl">
 
             {/* <select style={{ display: 'inline-block' }}>
+
                   <option>프로젝트명</option>
                 </select> */}
+                  </div>
+
 
           </div>
 
@@ -88,8 +104,8 @@ function EnglEngineerList() {
 
               <select style={{ display: 'inline-block' }} className="selectee">
                 <option className="selecteeop">전체</option>
-                <option className="selecteeop">회사명</option>
-                <option className="selecteeop">담당자이름</option>
+                <option className="selecteeop">이름</option>
+                <option className="selecteeop">아이디</option>
               </select>
             </div>
 
@@ -124,6 +140,7 @@ function EnglEngineerList() {
                 <thead>
                   <tr>
                     <th scope="col" style={{width:'10px'}}>NO</th>
+                    <th scope="col" >아이디</th>
                     <th scope="col" style={{width:'30px'}}>이름</th>
                     <th scope="col">직급</th>
                     <th scope="col">이메일</th>
@@ -135,38 +152,74 @@ function EnglEngineerList() {
                   {currentItems.map((list, key) => (
                     <tr key={key}>
                       <th scope="row" className="col1st">{(currentPage - 1) * itemsPerPage + key + 1}</th>
+                      <th>{list.eng_enid}</th>
                       <td><Link to={{ pathname: `/engineerleader/engDetail/${list.eng_enid}`}} style={{ padding: '0' }}>{list.eng_name}</Link></td>
                       <td>{list.eng_rank}</td>
                       <td>{list.eng_email}</td>
                       <td>{list.eng_phone}</td>
                    
 
-                    </tr>
-                  ))}
 
-                </tbody>
-              </table>
+                <div className="card-body1 englpro-carbody">
+                  <div className="table-responsive">
+                    <div className="projectlist-engl-table">
+                      <table className="table englprolisttable englcuslist">
+                        <thead>
+                          <tr>
+                            <th scope="col" style={{ width: "10px" }}>
+                              NO
+                            </th>
+                            <th scope="col" style={{ width: "30px" }}>
+                              이름
+                            </th>
+                            <th scope="col">직급</th>
+                            <th scope="col">이메일</th>
+                            <th scope="col">전화번호</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {currentItems.map((list, key) => (
+                            <tr key={key}>
+                              <th scope="row" className="col1st">
+                                {(currentPage - 1) * itemsPerPage + key + 1}
+                              </th>
+                              <td>
+                                <Link
+                                  to={{
+                                    pathname: `/engineerleader/engDetail/${list.eng_enid}`,
+                                  }}
+                                  style={{ padding: "0" }}
+                                >
+                                  {list.eng_name}
+                                </Link>
+                              </td>
+                              <td>{list.eng_rank}</td>
+                              <td>{list.eng_email}</td>
+                              <td>{list.eng_phone}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div className="pagedivengl pagination-engl">
+                    <Pagination
+                      activePage={currentPage}
+                      itemsCountPerPage={itemsPerPage}
+                      totalItemsCount={list.length}
+                      pageRangeDisplayed={5}
+                      prevPageText={"prev"}
+                      nextPageText={"next"}
+                      onChange={handlePageChange}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div className="pagedivengl pagination-engl">
-            <Pagination
-              activePage={currentPage}
-              itemsCountPerPage={itemsPerPage}
-              totalItemsCount={list.length}
-              pageRangeDisplayed={5}
-              prevPageText={"prev"}
-              nextPageText={"next"}
-              onChange={handlePageChange}
-            />
-          </div>
-
         </div>
       </div>
-    </div>
-  </div>
-</div>
-</div>
       {/* <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">

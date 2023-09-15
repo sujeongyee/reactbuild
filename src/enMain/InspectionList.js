@@ -5,15 +5,36 @@ import FormControlIcon from "../img/FormControlIcon";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import EnServerDetailModal from "./EnServerDetailModal";
+import Loading from '../loding/Loding';
 
 function InspectionList() {
 
-  const[list, setList] = useState([]);
+  const [list, setList] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    axios
+      .get("/api/main/engineer/inspectionList")
+      .then((res) => {
+        setList(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  console.log(list);
+
+
 
   useEffect(()=>{
     axios.get('/api/main/engineer/inspectionList').then((res)=>{
       setList(res.data);
       console.log(res.data);
+
+      setLoading(false);
     })
     .catch((error)=>{
       console.log(error);
@@ -24,6 +45,7 @@ console.log(list);
 return(
  
   <>
+           {loading ? <Loading /> : null}
         <div className="container-fluid">
           <div className="row">
               <div className="col-12">
@@ -64,11 +86,62 @@ return(
                                           </td>
                                           <td>{workInfo.work_division}</td>
                                           <td>{workInfo.pro_name}</td>
+
                                           <td>{workInfo.work_date}</td>
+
+                                          {/* <td>
+
+                                            <div className="d-flex no-block align-items-center">
+                                              <div className="me-3">
+                                                <img
+                                                  src="../img/widget-table-pic2.jpg"
+                                                  alt="engineer"
+                                                  className="rounded-circle insListImg"
+                                                  width="45"
+                                                  height="45"
+                                                />
+                                              </div>
+                                              <p className="insListP" style={{paddingLeft: "26px", margin: 0}}>{workInfo.eng_name}</p>
+                                            </div>
+                                          </td> */}
+                          <td>{workInfo.work_date}</td>
+                          <td>
+                            <button
+                              type="button"
+                              class="btn waves-effect waves-light btn-rounded btn-warning"
+                            >
+                              점검예정
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+
+                      {/* <tr>
+                                        <tr>
+                                          <th scope="row">2</th>
+                                          <td><Link to="#">ICT대학교 학생관리 시스템</Link></td>
+                                          <td>정기점검</td>
+                                          <td>
+                                            <div className="d-flex no-block align-items-center">
+                                              <div className="me-3">
+                                                <img
+                                                  src="../img/widget-table-pic2.jpg"
+                                                  alt="engineer"
+                                                  className="rounded-circle insListImg"
+                                                  width="45"
+                                                  height="45"
+                                                />
+                                              </div>
+                                              <p className="insListP" style={{paddingLeft: "10px"}}>KimJJangSu</p>
+                                            </div>
+                                          </td>
+                                          <td>2023.09.04</td>
+
                                           <td>
                                           <button
                                             type="button"
                                             class="btn waves-effect waves-light btn-rounded btn-warning">
+
                                             {workInfo.work_status}
                                           </button>
                                           </td>
@@ -121,16 +194,14 @@ return(
                       </div>
 
                   </div>
+
               </div>
-
+            </div>
           </div>
-
         </div>
-  </>
-
-
-)
-
+      </div>
+    </>
+  );
 }
 
 export default InspectionList;
