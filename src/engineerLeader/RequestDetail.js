@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import "../enMain/EnMain.css";
-
 
 import { useEffect, useState } from 'react'
 import '../enMain/EnMain.css'
