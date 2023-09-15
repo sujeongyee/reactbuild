@@ -100,8 +100,12 @@ function App() {
 
 
   const Info = async () => {
-    if (checkPermission().role === "ROLE_ENGINEER") {
-      const cus_id = checkPermission().sub;
+
+    if (checkPermission() == null) {
+        return;
+    }
+    if (checkPermission().role === "ROLE_USER") {
+
 
 
 
@@ -218,9 +222,27 @@ function App() {
       </Route>
 
 
+
+
+            <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
+                <Route element={<HeaderFooterUs checkPermission={checkPermission()} state={info}/>}>
+                    <Route path='/user' element={<MainUser state={info} />} />
+                    <Route path='/user/list' element={< UserProList  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/apply' element={< UserApply  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/inQurylist' element={< UserInQurylist  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/inQurywrite' element={< UserInQuryWrite  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/inQuryDetail' element={< UserInQuryDetail  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/annoList' element={< UserAnnoList  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/annoDetail' element={<UserAnnoDetail  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/prodetail/:pro_id' element={<UserDetailPro  checkPermission={checkPermission()}/>} />
+                    <Route path="/user/projectDetailList" element={<UserProjectDetailList  checkPermission={checkPermission()}/>} />
+                    <Route path="/user/projectDetail" element={<UserProjectDetailModal  checkPermission={checkPermission()}/>} />
+                    <Route path="/user/projectDetail2" element={<UserProjectDetailModal2  checkPermission={checkPermission()}/>} />
+                </Route>
+                </Route>
+
       <Route element={<PrivateRouteAd checkPermission={checkPermission()} />} >
         <Route element={<HeaderFooterAd checkPermission={checkPermission()} />}>{/* 관리자 페이지; */}
-
           <Route path='/admin' element={<MainAdmin checkPermission={checkPermission()} />} />
           <Route path='/admin/noticeWrite' element={<NoticeWrite checkPermission={checkPermission()} />} />
           <Route path='/admin/projectdetail' element={< ProjectDetail checkPermission={checkPermission()} />} />
@@ -232,37 +254,9 @@ function App() {
           <Route path="/admin/projectList" element={<AdProjectList checkPermission={checkPermission()} />} />
           <Route path="/admin/engineerList" element={<AnEngineerList checkPermission={checkPermission()} />} />
 
-
-
-
         </Route>
       </Route>
 
-      <Route element={<PrivateRoute checkPermission={checkPermission()} />}>
-        <Route element={<HeaderFooterUs checkPermission={checkPermission()} />}>
-          <Route path="/user" element={<MainUser state={info} />} />
-          <Route path="/user/list" element={<UserProList />} />
-          <Route path="/user/apply" element={<UserApply />} />
-          <Route path="/user/inQurylist" element={<UserInQurylist />} />
-          <Route path="/user/inQurywrite" element={<UserInQuryWrite />} />
-          <Route path="/user/inQuryDetail" element={<UserInQuryDetail />} />
-          <Route path="/user/annoList" element={<UserAnnoList />} />
-          <Route path="/user/annoDetail" element={<UserAnnoDetail />} />
-          <Route path="/user/prodetail/:pro_id" element={<UserDetailPro />} />
-          <Route
-            path="/user/projectDetailList"
-            element={<UserProjectDetailList />}
-          />
-          <Route
-            path="/user/projectDetail"
-            element={<UserProjectDetailModal />}
-          />
-          <Route
-            path="/user/projectDetail2"
-            element={<UserProjectDetailModal2 />}
-          />
-        </Route>
-      </Route>
     </Routes>
   );
 }

@@ -7,8 +7,6 @@ import Comment from '../component/Comment';
 function AdminAnnoDetail({ checkPermission }) {
     const location = useLocation();
     const [DetailData,setDetailData]=useState(location.state.item)
- 
-    console.log(DetailData.notice_comment)
     const [update, setUpdte] = useState(false);
     const [form, setForm] = useState({
         notice_title: DetailData.notice_title,
@@ -43,7 +41,6 @@ function AdminAnnoDetail({ checkPermission }) {
         const file_num = DetailData.notice_num
 
         const response = await axios.get(`/api/main/getPoto?cus_id=${file_num}`)
-        console.log(response)
         if (response.data === '파일 없음') {
             return;
         } else {
@@ -110,7 +107,6 @@ function AdminAnnoDetail({ checkPermission }) {
 
         setFileUp(file)
     }
-    console.log(form)
     const deleteAnno = () => {
         console.log(file.file_num)
         const deleteA={notice_num:DetailData.notice_num,file_name:file.file_name,file_id:file.file_id}
@@ -189,7 +185,7 @@ function AdminAnnoDetail({ checkPermission }) {
 
 
                                     {DetailData.notice_comment == 'O' ?
-                                      <Comment style={{backgroundColor:"rgb(198, 73, 42)"}} pk={DetailData.notice_num}/>
+                                      <Comment style={{backgroundColor:"rgb(198, 73, 42)"}} pk={DetailData.notice_num} id={checkPermission.sub}/>
                                         : null}
 
                                  

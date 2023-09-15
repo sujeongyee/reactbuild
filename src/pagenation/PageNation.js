@@ -1,8 +1,7 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Loading from '../loding/Loding';
-import { Background, LoadingText } from '../loding/Styles';
+
 
 
 
@@ -10,6 +9,7 @@ import { Background, LoadingText } from '../loding/Styles';
 
 
 const PageNation = ({ currentPage, totalPosts,postsPerPage, onPageChange ,style}) => {
+    const first=useRef();
     const token = localStorage.getItem('token');
 
     const config = {
@@ -19,11 +19,10 @@ const PageNation = ({ currentPage, totalPosts,postsPerPage, onPageChange ,style}
     };
     const [pageNation, setPageNation] = useState({})
 
-
     
     useEffect(() => {
+      
         pageChange(1)
-
     }, [])
 
 
@@ -43,7 +42,6 @@ const PageNation = ({ currentPage, totalPosts,postsPerPage, onPageChange ,style}
         onPageChange(e);
     }
   
-    console.log(pageNation.pageList)
 
 // if (loading) {
 
@@ -62,7 +60,7 @@ return (
 
 
             <li className="page-item ">
-                <Link className="page-link" style={{color:style.color}}onClick={() => pageChange(1)}>
+                <Link className="page-link" style={{color:style.color}}onClick={() => pageChange(1)} ref={first} >
                     맨 앞
                 </Link>
             </li>
@@ -78,6 +76,7 @@ return (
                 pageNation.pageList.map((data, index) => (
                     <li className="page-item" key={index}>
                         <Link  style={{color:style.color}}
+                           
                             onClick={() => pageChange(data)}   className={data === currentPage ? 'active' : 'page-link'}
                             href="#"
                         >
