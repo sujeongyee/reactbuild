@@ -3,8 +3,12 @@ import Modal from "react-modal";
 // import "../enMain/EnMain.css";
 import "../userMain/User.css";
 import axios from "axios";
+import Loading from '../loding/Loding';
 
 function UserMyPageModal() {
+  const [loading, setLoading] = useState(true);
+
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [UserMyPage , setUserMyPage] = useState([]);
   const [file, setFile] = useState(null); // State to store the selected file
@@ -31,6 +35,8 @@ function UserMyPageModal() {
     axios.get("/api/client/UserMyPage")
       .then(response => setUserMyPage(response.data))
       .catch(error => console.log(error));
+
+      setLoading(false);
   }, []);
 
   const fileUpload = (file) => {
@@ -80,6 +86,7 @@ function UserMyPageModal() {
 
   return (
     <>
+             {loading ? <Loading /> : null}
       <button onClick={() => setModalIsOpen(true)}>회원정보수정</button>
       <Modal
         /* className="modal-content"

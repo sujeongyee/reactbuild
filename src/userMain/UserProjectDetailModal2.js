@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import "../enMain/EnMain.css";
 import "./User.css";
+import Loading from '../loding/Loding';
 
 function UserProjectDetailModal2({projectData}) {
+
+  const [loading, setLoading] = useState(true);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const customStyles = {
@@ -23,6 +27,7 @@ function UserProjectDetailModal2({projectData}) {
                                                                                       
   return (
     <>
+             {loading ? <Loading /> : null}
       <button onClick={() => setModalIsOpen(true)}>정기점검</button>
       <Modal
         /* className="modal-content"

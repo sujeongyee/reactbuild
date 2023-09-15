@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Loading from '../loding/Loding';
+
 
 function UserProList({state}) {
+
 
   const[proList, setProList] = useState([]);
 
@@ -23,6 +26,7 @@ function UserProList({state}) {
 
   return (
     <>
+             {loading ? <Loading /> : null}
       <div className="page-wrapper" >
 
         <div className="page-breadcrumb">

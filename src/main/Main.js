@@ -1,8 +1,13 @@
+
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom"
 import './Main.css';
 import './Body.css';
-import { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
+import { useEffect, useState } from "react";
 import Logout from "./Logout";
+import { Link as ScrollLink } from 'react-scroll';
+
+
 function Main() {
     const token = localStorage.getItem('token');
 
@@ -51,22 +56,35 @@ function Main() {
         TestFunction()
     }, [])
 
-    const Ref2 = useRef(null);
-    const Ref3 = useRef(null);
-    const Ref4 = useRef(null);
+    // const Ref2 = useRef(null);
+    // const Ref3 = useRef(null);
+    // const Ref4 = useRef(null);
 
-    const handleClick1 = () => {
-        Ref2.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-    const handleClick2 = () => {
-        Ref3.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-    const handleClick3 = () => {
-        Ref4.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-    const handleClick4 = () => {
-        // Ref5.current?.scrollIntoView({ behavior: 'smooth' });
-    }
+    // const handleClick1 = () => {
+    //     Ref2.current?.scrollIntoView({ behavior: 'smooth' });
+    // }
+    // const handleClick2 = () => {
+    //     Ref3.current?.scrollIntoView({ behavior: 'smooth' });
+    // }
+    // const handleClick3 = () => {
+    //     Ref4.current?.scrollIntoView({ behavior: 'smooth' });
+    // }
+    // const handleClick4 = () => {
+    //     // Ref5.current?.scrollIntoView({ behavior: 'smooth' });
+    // }
+    // const handleClickMenu = (e) => {
+    //   e.preventDefault();
+    //   if (e.target.classList.contains("infoHead")) {
+    //     const id = e.target.getAttribute("to");
+    //     document.querySelector(id).scrollIntoView({
+    //       behavior: "smooth",
+    //     });
+    //   }
+    // };
+
+
+
+
     return (
         <>
             <header>
@@ -76,10 +94,10 @@ function Main() {
                     <div className="HeaderCategoriBox">
                         <div className="HeaderCategori">
 
-                            <button onClick={handleClick1} value="Ref2">COMPANY</button>
-                            <button onClick={handleClick2} value="Ref3">BUSINESS</button>
-                            <button onClick={handleClick3} value="Ref4">SOLUTION</button>
-                            <button onClick={handleClick4} value="Ref5">CONTACT US</button>
+                        <ScrollLink to="Ref2" smooth={true}><button>COMPANY</button></ScrollLink>
+                        <ScrollLink to="Ref3" smooth={true}><button>BUSINESS</button></ScrollLink>
+                        <ScrollLink to="Ref4" smooth={true}><button>SOLUTION</button></ScrollLink>
+                        <ScrollLink to="Ref5" smooth={true}><button>CONTACT US</button></ScrollLink>
                         </div>
                     </div>
                     <div className="login_singup">
@@ -110,19 +128,34 @@ function Main() {
                     </button>
                 </section>
                 <div id="footer">
-                    <div className="footerLeft"><a href="#">회사 이름</a></div>
+             
+                      <div className="footerLeft">
+                        <a href="#">CLOUD O.J</a>
+                        <a href="#">110-35-33020</a>
+                        <a href="#">ojService@cloud.com</a>
+                        <a href="#">서울특별시 강남구 에스코빌딩 6층</a>
+                          <p>Copyrightⓒ 2023 CLOUDOJ All right reserved</p>
+                          <span>CLO</span>
+
+                      </div>
+            
                     <div className="footerMid">
-                        <ul className="midTop">
-                            <li><a href="#">이용약관</a></li>
-                            <li><a className="policy" href="#"/*  style="color: red;" */>운영정책</a></li>
-                            <li><a href="#">개인정보 처리 방침</a></li>
-                        </ul>
-                        <p className="midBot">주소</p>
+
+                           <h4>서비스 소개</h4>
+                           <a href="#">BUSINESS</a>
+                           <a href="#">COMPANY</a>
+                           <a href="#">SOLUTION</a>
+                           <a href="#">CONTACT US</a>
+        
+
                     </div>
                     <div className="footerRight">
-                        <a href="#" className="logo1"></a>
+                        <h4>서비스 정책</h4>
+                        <a href="#">이용 약관</a><br/>
+                        <a href="#">개인정보보호정책</a>
+{/*                     <a href="#" className="logo1"></a>
                         <a href="#" className="logo2"></a>
-                        <a href="#" className="logo3"></a>
+                        <a href="#" className="logo3"></a> */}
                     </div>
                 </div>
 

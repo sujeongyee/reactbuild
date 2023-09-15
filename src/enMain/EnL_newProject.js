@@ -7,15 +7,22 @@ import FormControlIcon from "../img/FormControlIcon";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
+import Loading from '../loding/Loding';
+
 function EnL_newProject() {
+  const [loading, setLoading] = useState(true);
+
+  
   const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
-      .get("/api/engineer/newList")
+      .get("/api/main/engineer/newList")
       .then((response) => {
         setData(response.data);
         console.log(response.data);
+
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -24,12 +31,13 @@ function EnL_newProject() {
 
   return (
     <>
+             {loading ? <Loading /> : null}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">
             <div className="col-7 align-self-center">
               <h3 className="page-title text-truncate text-dark font-weight-medium mb-1">
-                엔지니어 팀장(프로젝트 리스트)
+                엔지니어(프로젝트 리스트)
               </h3>
             </div>
             <div className="col-5 align-self-center"></div>
@@ -79,7 +87,9 @@ function EnL_newProject() {
                               <td>{index + 1}</td>
                               <td>
                                 <Link
-                                  to={`/engineer/newProjectDetail`}
+                                  to={{
+                                    pathname: `/engineer/newProjectDetail/${project.pro_id}`,
+                                  }}
                                   state={{ project }}
 
                                   // state={{
