@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 function EnglClientDetail() {
-
   const { cus_id } = useParams();
   const [list, setList] = useState([]);
   const [vo, setVo] = useState([]);
@@ -14,22 +13,25 @@ function EnglClientDetail() {
   // },[])
 
   useEffect(() => {
-
-    axios.get(`/engleader/getClientInfo/${cus_id}`)
-      .then(response => {
+    axios
+      .get(`/api/main/engleader/getClientInfo/${cus_id}`)
+      .then((response) => {
         setList(response.data.list);
         setVo(response.data.vo);
         console.log(list);
         console.log(vo);
       })
-      .catch(err => { console.log(err) })
-
-  }, [])
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>
       <div className="page-wrapper clientDetailpage-engl">
-        <div><h4 className="cdp-head" >클라이언트정보</h4></div>
+        <div>
+          <h4 className="cdp-head">클라이언트정보</h4>
+        </div>
         <div className=" cardcusdetail">
           <div style={{}}>
             <table className="cdp-tb">
@@ -46,61 +48,62 @@ function EnglClientDetail() {
                 </tr>
               </thead>
               <tbody>
-
-                <tr >
+                <tr>
                   <th scope="row">{vo.cus_company_name}</th>
                   <td>{vo.cus_boss}</td>
                   <td>{vo.cus_company_ph}</td>
                   <td>{vo.cus_postal_code}</td>
-                  <td>{vo.cus_address1 + ' ' + vo.cus_address2}</td>
+                  <td>{vo.cus_address1 + " " + vo.cus_address2}</td>
                   <td>{vo.cus_managet_name}</td>
                   <td>{vo.cus_email}</td>
                   <td>{vo.cus_phone_number}</td>
                 </tr>
-
-
               </tbody>
             </table>
-
           </div>
         </div>
 
         <div>
-        <h4 className="cdp-head2" >해당 클라이언트의 프로젝트 정보</h4>
+          <h4 className="cdp-head2">해당 클라이언트의 프로젝트 정보</h4>
         </div>
         <div>
-        <table className="cdp-tb2">
-              <thead>
-                <tr>
-                  <th scope="col">NO</th>
-                  <th scope="col">프로젝트명</th>
-                  <th scope="col">시작날짜</th>
-                  <th scope="col">종료날짜</th>
-                  <th scope="col">계약상태</th>
-                  <th scope="col">프로젝트정보</th>
-                  <th scope="col">정기점검일</th>
+          <table className="cdp-tb2">
+            <thead>
+              <tr>
+                <th scope="col">NO</th>
+                <th scope="col">프로젝트명</th>
+                <th scope="col">시작날짜</th>
+                <th scope="col">종료날짜</th>
+                <th scope="col">계약상태</th>
+                <th scope="col">프로젝트정보</th>
+                <th scope="col">정기점검일</th>
+              </tr>
+            </thead>
+            <tbody>
+              {list.map((data, key) => (
+                <tr key={key}>
+                  <th scope="row">{key + 1}</th>
+                  <td>
+                    <Link
+                      to={{
+                        pathname: `/engineerleader/projectDetail/${data.pro_id}`,
+                      }}
+                    >
+                      {data.pro_name}
+                    </Link>
+                  </td>
+                  <td>{data.pro_startDate}</td>
+                  <td>{data.pro_endDate}</td>
+                  <td>{data.pro_status}</td>
+                  <td>{data.pro_info}</td>
+                  <td>{data.pro_pi}일</td>
                 </tr>
-              </thead>
-              <tbody>
-                {list.map((data,key)=>(
-                    <tr key={key}>
-                    <th scope="row">{key+1}</th>
-                    <td><Link to={{pathname:`/engineerleader/projectDetail/${data.pro_id}`}}>{data.pro_name}</Link></td>
-                    <td>{data.pro_startDate}</td>
-                    <td>{data.pro_endDate}</td>
-                    <td>{data.pro_status}</td>
-                    <td>{data.pro_info}</td>
-                    <td>{data.pro_pi}일</td>
-                  </tr>
-                ))}
-                
-              </tbody>
-            </table>
-
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </>
-  )
-
+  );
 }
-export default EnglClientDetail
+export default EnglClientDetail;
