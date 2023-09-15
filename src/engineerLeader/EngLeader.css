@@ -546,8 +546,8 @@
 }
 
 .englprolisttable2{
-  margin: 0px 200px;
-
+  width: 1500px;
+  margin-left: 100px;
 }
 
 .movetoengl:hover {
@@ -556,3 +556,10 @@
 
 }
 
+.team-select-table a{
+  padding: 0;
+}
+
+.team-select-table a:hover {
+  color:rgb(181, 204, 189);;
+}

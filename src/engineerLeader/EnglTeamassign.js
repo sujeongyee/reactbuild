@@ -6,20 +6,30 @@ import "../enMain/EnMain.css";
 import './EngLeader.css';
 import axios from "axios";
 import Loading from '../loding/Loding';
+import { Link } from "react-router-dom";
 
 function EnglTeamassign(props) {
   //console.log(props.leaderid);
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-
+  const pro_pi = props.pro_pi;
   const pro_id = props.pro_id;
   const server_id = props.server_id;
+  console.log(pro_pi);
+
+  const leader_id = 'eng_1';
+
   useEffect(() => {
     // props.leaderid가 null이 아닌 경우에만 axios.post 요청을 보냅니다.
     if (pro_id !== null) {
 
-      axios.get(`/api/main/engleader/getTeamEngList/${pro_id}`)
+      axios.get('/api/main/engleader/getTeamEngList',{
+        params: {
+          leader_id: leader_id,
+          pro_pi: pro_pi
+        }
+      })
         .then(response => {
           setData(response.data);
           setLoading(false);
@@ -134,24 +144,16 @@ function EnglTeamassign(props) {
                 {data.map((list, key) => (
                   <tr key={key}>
                     <th scope="row">{key + 1}</th>
-                    <td>
-                      <div className="team-list-flex">
-                        {/* <div className="team-list">
-                        <img
-                          src="../img/widget-table-pic1.jpg"
-                          alt="user"
-                          className="rounded-circle"
-                          width="13"
-                          height="13"
-                        />
-                      </div> */}
+               
+                     
                         <div className="team-member-name">
                           <td>
-                            {list.eng_name}
+                            <Link to={`/engineerleader/engDetail/${list.eng_enid}`}>{list.eng_name}</Link>
+                            
                           </td>
                         </div>
-                      </div>
-                    </td>
+                      
+                    
                     <td>{list.eng_phone}</td>
 
                     <td><input type="hidden" value={list.eng_enid}></input> <input type="checkbox" className="eng-assign-check" /></td>

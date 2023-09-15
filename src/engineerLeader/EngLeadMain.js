@@ -219,7 +219,7 @@ function EngLeadMain(props) {
                               <td className="" style={{ padding: '6px' }}><Link className="engl-main-a" to={{
                                 pathname: `/engineerleader/requestDetail/${data.pro_id}`,
                                 state: {
-                                  id: id,                           
+                                  id: data.pro_id                           
                                 },
                               }} >{data.pro_name}</Link></td>
 

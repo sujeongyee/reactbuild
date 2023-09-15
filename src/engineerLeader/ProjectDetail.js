@@ -222,7 +222,7 @@ function EnglProjectDetail() {
                     <td>{data.eng_enid ? (
                       data.eng_name // 데이터가 있으면
                     ) : (
-                      <EnglTeamassign pro_id={info.PRO_ID} server_id={data.server_id} check={false} />
+                      <EnglTeamassign pro_pi={info.PRO_PI} pro_id={info.PRO_ID} server_id={data.server_id} check={false} />
                     )}
                     </td>
                     <td>{data.eng_enid ? (
