@@ -9,7 +9,7 @@ import Pagination from "react-js-pagination";
 import Loading from '../loding/Loding';
 
 
-function EnglClientList(){
+function EnglClientList(props){
   const [loading, setLoading] = useState(true);
 
   const [first,setFirst] = useState([]);
@@ -18,11 +18,13 @@ function EnglClientList(){
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10; // 페이지당 아이템 수
 
-  const leader_id = "eng_1";
+  
 
   useEffect(() => {
-
-    axios.get(`/api/main/engleader/getClient/${leader_id}`)
+    if (props.userId !== null) {
+    axios.get('/api/main/engleader/getClient',{
+      params:{userId:props.userId}
+    })
       .then(response => {
         console.log(response.data)
         setList(response.data);
@@ -30,7 +32,8 @@ function EnglClientList(){
 
         setLoading(false);
       })
-  }, [])
+    }
+  }, [props.userId])
 
 
   const handlePageChange = (page) => {

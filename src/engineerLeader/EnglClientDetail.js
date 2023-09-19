@@ -14,11 +14,6 @@ function EnglClientDetail() {
   const [vo, setVo] = useState([]);
 
 
-  // useEffect(()=>{
-  //   axios.get(`/engleader/getClientInfo/${cus_id}`)
-  //   .then(response => {setList(response.data)})
-  // },[])
-
   useEffect(() => {
 
 

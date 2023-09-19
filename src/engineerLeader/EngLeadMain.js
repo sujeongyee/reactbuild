@@ -6,43 +6,54 @@ import UsersIcon from "../img/UserIcon";
 
 import ChartComponent1 from "../userMain/ChartComponent1";
 
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import EnglChartComponent from "./EnglChartComponent";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+import { useEffect, useState } from "react"
+import axios from "axios"
+import EnglChartComponent from "./EnglChartComponent"
+import Loading from '../loding/Loding';
+
 
 function EngLeadMain(props) {
+
   const [loading, setLoading] = useState(true);
 
+
+
   const [vo, setVo] = useState([]);
-  //const [ivedinspectionList,setIvedinspectionList] = useState([]);
   const [list, setList] = useState([]);
   const [periodic, setPeriodic] = useState([]);
   const [disability, setDisability] = useState([]);
   const [maintenance, setMaintenance] = useState([]);
-  const [id, setId] = useState("");
+  const [userId, setUserId] = useState(props.userId);
+  console.log(props.userId)
   useEffect(() => {
-    const leaderId = "eng_1";
-    setId("eng_1");
-    axios.get(`/api/main/engleader/main/${leaderId}`).then((response) => {
-      const data2 = response.data;
-      // console.log(data2);
-      const receivedvo = data2.vo;
-      const receivedlist = data2.list;
-      const receivedperiodic = data2.periodic;
-      const receiveddisability = data2.disability;
-      const receivedmaintenance = data2.maintenance;
-      setVo(receivedvo);
-      //setIvedinspectionList(receivedinspectionList);
-      setList(receivedlist);
-      setPeriodic(receivedperiodic);
-      setDisability(receiveddisability);
-      setMaintenance(receivedmaintenance);
 
-      setLoading(false);
-    });
-  }, []);
+    const leaderId = 'eng_1';
+    setId('eng_1');
+    axios.get(`/api/main/engleader/main/${leaderId}`)
+      .then(response => {
+        const data2 = response.data;
+        // console.log(data2);
+        const receivedvo = data2.vo;
+        const receivedlist = data2.list;
+        const receivedperiodic = data2.periodic;
+        const receiveddisability = data2.disability;
+        const receivedmaintenance = data2.maintenance;
+        setVo(receivedvo);
+        //setIvedinspectionList(receivedinspectionList);
+        setList(receivedlist);
+        setPeriodic(receivedperiodic);
+        setDisability(receiveddisability);
+        setMaintenance(receivedmaintenance);
+
+
+        setLoading(false);
+      })
+  }, [])
+
+
+
 
   const data = {
     labels: ["신규계약", "계약종료"],
@@ -70,14 +81,64 @@ function EngLeadMain(props) {
     ],
   };
 
+  const [modalStates, setModalStates] = useState([]);
+  const [alarmModals, setAlarmModals] = useState([]);
+  useEffect(()=>{
+    axios.get('/api/main/alarm/getAlarmList',{
+      params:{user_id:props.userId}
+    })
+    .then(response =>{
+      const d = response.data
+      setAlarmModals(d);
+      setModalStates(d.map(() => true));
+    })
+  },[props.userId])
+
+  const openModal = (index) => {
+    // 해당 인덱스의 모달 상태를 열린 상태(true)로 설정
+    const updatedModalStates = [...modalStates];
+    updatedModalStates[index] = true;
+    setModalStates(updatedModalStates);
+  };
+  
+  const closeModal = (index) => {
+    // 해당 인덱스의 모달 상태를 닫힌 상태(false)로 설정
+    const updatedModalStates = [...modalStates];
+    updatedModalStates[index] = false;
+    setModalStates(updatedModalStates);
+  };
+
+  const customModalStyles = {
+    content: {
+      left: '94.5%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      borderRadius:'0.5em',
+      fontSize:'11px',
+      color:'black',
+      border:'2px solid #dfaaaa',
+      backgroundColor:'white',
+      width:'180px',
+      marginTop:'45px',
+      padding:'10px'
+      // 추가적인 스타일을 여기에 추가할 수 있습니다.
+    },
+  };
+
+
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   return (
     <>
-      <div className="page-wrapper">
+
+        {loading ? <Loading /> : null}
+      <div className="page-wrapper" >
+
         <div className="container-fluid">
           <div className="row l-main-pa">
-            <div className="col-sm-6 col-lg-3 engl-card">
+            <div className="engl-card">
               <div className="card border-end cardpd ">
                 <div className="card-body ">
                   <div className="d-flex align-items-center">
@@ -108,7 +169,7 @@ function EngLeadMain(props) {
               </div>
             </div>
 
-            <div className="col-sm-6 col-lg-3 engl-card">
+            <div className=" engl-card">
               <div className="card border-end cardpd">
                 <div className="card-body">
                   <div className="d-flex ">
@@ -137,7 +198,7 @@ function EngLeadMain(props) {
                 </div>
               </div>
             </div>
-            <div className="col-sm-6 col-lg-3 engl-card">
+            <div className="engl-card">
               <div className="card border-end cardpd">
                 <div className="card-body">
                   <div className="d-flex ">
@@ -164,7 +225,7 @@ function EngLeadMain(props) {
           </div>
 
           <div className="row row-here">
-            <div className="listsize reqsize" style={{ margin: "0 10px" }}>
+            <div className=" reqsize" style={{ margin: "0 10px" }}>
               <div
                 className="col-lg-3 engl-main-car"
                 style={{
@@ -248,18 +309,17 @@ function EngLeadMain(props) {
                                 </div>
                               </td>
 
-                              <td className="" style={{ padding: "6px" }}>
-                                <Link
-                                  className="engl-main-a"
-                                  to={{
-                                    pathname: `/engineerleader/requestDetail/${data.pro_id}`,
-                                    state: {
-                                      id: data.pro_id,
-                                    },
-                                  }}
-                                >
-                                  {data.pro_name}
-                                </Link>
+                              <td className="" style={{ padding: '6px' }}><Link className="engl-main-a" to={{
+                                pathname: `/engineerleader/requestDetail/${data.pro_id}`,
+                                state: {
+                                  id: data.pro_id                           
+                                },
+                              }} >{data.pro_name}</Link></td>
+
+                              <td
+                                className="">
+                                {data.pro_startdate}
+
                               </td>
 
                               <td className="">{data.pro_startdate}</td>
@@ -326,6 +386,7 @@ function EngLeadMain(props) {
           </div>
         </div>
       </div>
+      
     </>
   );
 }
