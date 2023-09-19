@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import "../enMain/EnMain.css";
 import "./User.css";
-import Loading from '../loding/Loding';
 
-function UserProjectDetailModal2({projectData}) {
-
-  const [loading, setLoading] = useState(true);
-
+function UserProjectDetailModal2({ projectDetailList }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const customStyles = {
@@ -24,10 +20,9 @@ function UserProjectDetailModal2({projectData}) {
       borderRadius: "15px",
     },
   };
-                                                                                      
+
   return (
     <>
-             {/* {loading ? <Loading /> : null} */}
       <button onClick={() => setModalIsOpen(true)}>정기점검</button>
       <Modal
         /* className="modal-content"
@@ -39,80 +34,56 @@ function UserProjectDetailModal2({projectData}) {
         <div className="detail_modal_container">
           <h2>작업 상세보기</h2>
           <div className="detail_modal_container_inner">
-          <table className="detail_modal_table">
+            <table className="detail_modal_table">
               <tr>
                 <th>프로젝트명</th>
-                <td>
-                  {projectData.pro_name}
-                </td>
+
+                <td>{projectDetailList.pro_name}</td>
               </tr>
               <tr>
                 <th>담당 엔지니어 팀</th>
-                <td>
-                {projectData.team_id}
-                </td>
+                <td>{projectDetailList.team_id}</td>
               </tr>
               <tr>
                 <th>담당 엔지니어 이름</th>
-                <td>
-                  {projectData.eng_name}
-                </td>
+                <td>{projectDetailList.eng_name}</td>
               </tr>
               <tr>
                 <th>담당 엔지니어 연락처</th>
-                <td>
-                 {projectData.eng_phone}
-                </td>
+                <td>{projectDetailList.eng_phone}</td>
               </tr>
               <tr>
                 <th>작업일자</th>
-                <td>
-                  {projectData.work_date}
-                </td>
+                <td>{projectDetailList.work_date}</td>
               </tr>
               <tr>
                 <th>작업분류</th>
-                <td>
-                  {projectData.work_division}
-                </td>
+                <td>{projectDetailList.work_division}</td>
               </tr>
               <tr>
                 <th>작업시간</th>
-                <td>
-                  {projectData.work_time}
-                </td>
+                <td>{projectDetailList.work_time}</td>
               </tr>
               <tr>
                 <th>CPU 사용량</th>
-                <td>
-                  {projectData.work_cpu}
-                </td>
+                <td>{projectDetailList.work_cpu}</td>
               </tr>
               <tr>
                 <th>RAM 사용량</th>
-                <td>
-                  {projectData.work_ram}
-                </td>
+                <td>{projectDetailList.work_ram}</td>
               </tr>
               <tr>
                 <th>HDD 사용량</th>
-                <td>
-                  {projectData.work_hdd}
-                </td>
+                <td>{projectDetailList.work_hdd}</td>
               </tr>
               <tr>
                 <th>상태</th>
-                <td>
-                  {projectData.work_status}
-                </td>
+                <td>{projectDetailList.work_status}</td>
               </tr>
-         
-   
+
               <tr>
-               <th>작업내용</th>
-                <td>
-                {projectData.work_note}
-                </td>
+                <th>작업내용</th>
+                <td>{projectDetailList.work_note}</td>
               </tr>
             </table>
             <div className="detail_modal_button">

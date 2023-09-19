@@ -19,7 +19,6 @@ function NoticeWrite({checkPermission}){
         setForm(copy)
 
     }
-    console.log(form)
     const [fileUp,setFileUp]=useState({})
     const fileUpload=(e)=>{
         const file=e.target.files[0];

@@ -4,19 +4,21 @@ import FolderPlusIcon from "../img/FolderPlusIcon";
 import FolderIcon from "../img/FolderIcon";
 import UsersIcon from "../img/UserIcon";
 
-
-
-import ChartComponent1 from "../userMain/ChartComponent1"
+import ChartComponent1 from "../userMain/ChartComponent1";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useEffect, useState } from "react"
 import axios from "axios"
 import EnglChartComponent from "./EnglChartComponent"
-import Modal from "react-modal";
+import Loading from '../loding/Loding';
 
 
 function EngLeadMain(props) {
+
+  const [loading, setLoading] = useState(true);
+
+
 
   const [vo, setVo] = useState([]);
   const [list, setList] = useState([]);
@@ -26,27 +28,31 @@ function EngLeadMain(props) {
   const [userId, setUserId] = useState(props.userId);
   console.log(props.userId)
   useEffect(() => {
-    // props.userId가 null이 아닌 경우에만 axios 요청을 보냅니다.
-    // if (props.userId !== undefined && props.userId != null && props.userId!=='') {
-      axios.get('/api/main/engleader/main',{
-        params: { userId: props.userId }
+
+    const leaderId = 'eng_1';
+    setId('eng_1');
+    axios.get(`/api/main/engleader/main/${leaderId}`)
+      .then(response => {
+        const data2 = response.data;
+        // console.log(data2);
+        const receivedvo = data2.vo;
+        const receivedlist = data2.list;
+        const receivedperiodic = data2.periodic;
+        const receiveddisability = data2.disability;
+        const receivedmaintenance = data2.maintenance;
+        setVo(receivedvo);
+        //setIvedinspectionList(receivedinspectionList);
+        setList(receivedlist);
+        setPeriodic(receivedperiodic);
+        setDisability(receiveddisability);
+        setMaintenance(receivedmaintenance);
+
+
+        setLoading(false);
       })
-        .then(response => {
-          const data2 = response.data;
-          const receivedvo = data2.vo;
-          const receivedlist = data2.list;
-          const receivedperiodic = data2.periodic;
-          const receiveddisability = data2.disability;
-          const receivedmaintenance = data2.maintenance;
-          setVo(receivedvo);
-          setList(receivedlist);
-          setPeriodic(receivedperiodic);
-          setDisability(receiveddisability);
-          setMaintenance(receivedmaintenance);
-        });
-    //}
-  }, [props.userId]); // props.userId가 변경될 때마다 useEffect를 실행합니다.
-  
+  }, [])
+
+
 
 
   const data = {
@@ -127,40 +133,8 @@ function EngLeadMain(props) {
   return (
     <>
 
-    
-      
-
+        {loading ? <Loading /> : null}
       <div className="page-wrapper" >
-
-      {alarmModals.map((data,index)=>{
-      const dateObject = new Date(data.alarm_date);
-      const formattedDate = `${dateObject.getFullYear()}/${String(dateObject.getMonth() + 1).padStart(2, '0')
-    }/${String(dateObject.getDate()).padStart(2, '0')} ${String(dateObject.getHours()).padStart(2, '0')
-    }:${String(dateObject.getMinutes()).padStart(2, '0')}`;
-      return(
-        <div key={index}>
-       
-        <Modal overlayClassName="alarm-overlay"
-        isOpen={modalStates[index]} 
-        onRequestClose={() => closeModal(index)} 
-        contentLabel="알람 모달"
-        style={{
-          content: {
-            top: `${(index + 1) * 85}px`, 
-            ...customModalStyles.content 
-          }
-        }}
-      >
-        <div className="alarm-modal">
-          <p style={{marginBottom:'5px'}}>{data.alarm_content}</p>
-          <p style={{marginBottom:'5px'}}>{formattedDate}</p>
-        </div>
-        
-        <button onClick={() => closeModal(index)} style={{float:'right'}}>닫기</button>
-      </Modal>
-      </div>
-      )
-    })}
 
         <div className="container-fluid">
           <div className="row l-main-pa">
@@ -171,9 +145,14 @@ function EngLeadMain(props) {
                     <div>
                       <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color-engl">
-
-                          <Link className="movetoengl" to={'/engineerleader/engineerList'}> {vo.teamCount}명</Link></h2>
-
+                          <Link
+                            className="movetoengl"
+                            to={"/engineerleader/engineerList"}
+                          >
+                            {" "}
+                            {vo.teamCount}명
+                          </Link>
+                        </h2>
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -197,9 +176,13 @@ function EngLeadMain(props) {
                     <div>
                       <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color-engl">
-
-                          <Link className="movetoengl" to={'/engineerleader/projectList'}>{vo.projectCount}개</Link></h2>
-
+                          <Link
+                            className="movetoengl"
+                            to={"/engineerleader/projectList"}
+                          >
+                            {vo.projectCount}개
+                          </Link>
+                        </h2>
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -329,7 +312,7 @@ function EngLeadMain(props) {
                               <td className="" style={{ padding: '6px' }}><Link className="engl-main-a" to={{
                                 pathname: `/engineerleader/requestDetail/${data.pro_id}`,
                                 state: {
-                                  id: data.pro_id
+                                  id: data.pro_id                           
                                 },
                               }} >{data.pro_name}</Link></td>
 
@@ -338,6 +321,8 @@ function EngLeadMain(props) {
                                 {data.pro_startdate}
 
                               </td>
+
+                              <td className="">{data.pro_startdate}</td>
 
                               <td className="">{data.pro_startDate}</td>
                             </tr>

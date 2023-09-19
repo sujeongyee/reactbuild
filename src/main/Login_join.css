@@ -165,14 +165,14 @@
     position: absolute;
     transform: scale(0);
     width: 400px;
-    height: 350px;
+    height: 31%;
 }
 
 #seachPw {
     position: absolute;
     transform: scale(0);
     width: 400px;
-    height: 350px;
+    height: 413px;
 }
 
 .lj_input-group .row .serEmail {
@@ -402,7 +402,14 @@ body {
     top: 15px;
     left: 15px;
 }
-
+.go_backRight {
+    position: absolute;
+    z-index: 99999;
+    color: rgb(253, 253, 253);
+    font-size: 20px;
+    bottom: 30px;
+    right: 15px;
+}
 .post-modal{
     position: absolute;
     top: 30%;
@@ -421,4 +428,8 @@ body {
 }
 .logOut-btn1:hover{
     color: red;
+}
+
+.pointerSingUp:hover{
+    color: #f24242!important;
 }

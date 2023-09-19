@@ -1,10 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { useInView } from "react-intersection-observer";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
+import SwiperCore, { EffectCoverflow, Navigation, Pagination ,Scrollbar  , A11y, Mousewheel} from "swiper";
+
+import Slider from "react-slick";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function MainInfo(){
 
+  SwiperCore.use([EffectCoverflow, Navigation, Pagination]);
+  
   const completionWord = 'O.J PROJECT SOLUTION'
 
   const [blogTitle, setBlogTitle] = useState('');
@@ -31,6 +40,30 @@ function MainInfo(){
   });
 
 
+  useEffect(() => {
+    AOS.init();
+  })
+
+  const generateAOSAttributes = (offset = 100, delay = 30, duration = 600) => ({
+    "data-aos": "fade-up",
+    "data-aos-offset": offset,
+    "data-aos-delay": delay,
+    "data-aos-duration": duration,
+    "data-aos-easing": "ease-in-out",
+    "data-aos-mirror": "true",
+    "data-aos-anchor-placement": "top-center",
+  });
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+
+
+
   return(
     <>
     
@@ -50,14 +83,14 @@ function MainInfo(){
                 </div>
                 <div className="info2">
                     <div className="info2Con"/* style="width: 980px; margin: 0 auto;" */>
-                        <div className="promotion"  id="Ref2">
+                        <div className="promotion"  id="Ref2" {...generateAOSAttributes(100, 50, 600)}>
 
                     
                             <p className="promotionCon">내 모든 프로젝트 내역을 한눈에 조회하고 한 곳에서 관리하세요.<br/> 
                             이제껏 경험 못 했던 쉽고 편리한 서버관리 서비스, <br/>
                             CLOUD O.J와 함께라면 당신의 일상이 새로워 질 거에요.</p>
                         </div>
-                        <div className="promotionTop" id="Ref3">
+                        <div className="promotionTop" id="Ref3" {...generateAOSAttributes(100, 50, 600)}>
                           <h3 className="promotionMain">O.J SOLUTION</h3>  
                             {/*   <p className="promotionsolution">내 프로젝트의 시작부터 성장까지,
                               O.J의 커리어 솔루션과 함께하세요.</p>  */}
@@ -95,7 +128,7 @@ function MainInfo(){
                    </div>
                 </div>
                 <div className="info3" id="Ref4">
-                    <div className="info3Con"/* style="width: 980px; margin: 0 auto;" */>
+                    <div className="info3Con"{...generateAOSAttributes(100, 50, 600)}>
                     <div className="info3_1">
 
                             <div className="info3Left">
@@ -112,7 +145,7 @@ function MainInfo(){
 
 
                         </div>
-                        <div className="info3_2">
+                        <div className="info3_2" {...generateAOSAttributes(100, 50, 600)}>
                         <div className="info3Right">
 
                             <h2>"CLOUD O.J로 나에게 딱 맞게,<br />
@@ -149,9 +182,10 @@ function MainInfo(){
                    </div>
                 </div>
 
-                <div className="info4" id="Ref5">
-                    <div className="info4Con"/* style="width: 980px; margin: 0 auto;" */>
+                <div className="info4" id="Ref5" {...generateAOSAttributes(100, 50, 600)}>
+                    <div className="info4Con">
                         <div className="contact">
+
                             <p className="contact-con">내 프로젝트의 시작부터     성장까지,
                               O.J의 서버관리 솔루션과 함께하세요</p>
                             <a href="" className="contact-btn">CONTACT US</a>

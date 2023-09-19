@@ -44,7 +44,7 @@ function HeaderFooterEnl(props) {
     localStorage.removeItem("token");
     alert("로그아웃 되었습니다😎");
     navigate("/");
-    window.location.reload();
+   
   };
 
 
@@ -363,7 +363,7 @@ function HeaderFooterEnl(props) {
                     <li class="sidebar-item">
                       <NavLink
                         className="sidebar-link "
-                        to="/engineer/annoList"
+                        to="/engineerleader/annoList"
                         style={({ isActive }) => (isActive ? ms : undefined)}
                       >
                         공지사항 보기
@@ -391,14 +391,14 @@ function HeaderFooterEnl(props) {
                     <li class="sidebar-item">
                       <NavLink
                         className="sidebar-link "
-                        to="/engineer/inQurylist"
+                        to="/engineerleader/inQurylist"
                         style={({ isActive }) => (isActive ? ms : undefined)}
                       >
                         문의사항 목록
                       </NavLink>
                       <NavLink
                         className="sidebar-link "
-                        to="/engineer/inQurywrite"
+                        to="/engineerleader/inQurywrite"
                         style={({ isActive }) => (isActive ? ms : undefined)}
                       >
                         문의사항 작성하기

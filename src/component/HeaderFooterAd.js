@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react"
+import { Fragment, useState } from "react"
 import { Link, NavLink, Navigate, Outlet, useNavigate } from "react-router-dom"
 import $ from 'jquery';
 import './HeaderFooter.css'
@@ -17,7 +17,6 @@ import Modal from 'react-modal';
 import LayersIcon from "../img/LayersIcon";
 import SmileIcon from "../img/SmileIcon";
 import axios from "axios";
-
 
 function HeaderFooterAd(props) {
 
@@ -39,12 +38,13 @@ function HeaderFooterAd(props) {
     localStorage.removeItem("token");
     alert("로그아웃 되었습니다😎");
     navigate("/");
-    window.location.reload();
+
   };
   const handleClick = (e) => {
     $(e.currentTarget).toggleClass("active")
     $(e.currentTarget).next().toggleClass("in")
   }
+
   const user_id = props.userId;
   const [alarmList, setAlarmList] = useState([]);
   const [firstAlarm, setFirstAlarm] = useState([]);
@@ -65,7 +65,7 @@ function HeaderFooterAd(props) {
 
   const getAllAlarm = (event) => {
     const click = document.getElementById('allorsome');
-    if(click.innerHTML === '모든 알람 보기'){
+    if (click.innerHTML === '모든 알람 보기') {
       if (user_id !== null) {
         axios.get('/api/main/alarm/getAllAlarm', {
           params: {
@@ -79,11 +79,11 @@ function HeaderFooterAd(props) {
           .catch(err => { alert('에러') })
       }
       click.innerHTML = '안 읽은 알람만 보기';
-    }else{
+    } else {
       setAlarmList(firstAlarm);
-      click.innerHTML='모든 알람 보기'
+      click.innerHTML = '모든 알람 보기'
     }
-    
+
   }
 
   const clickAlarmno = (alarmNum, event) => {
@@ -94,8 +94,6 @@ function HeaderFooterAd(props) {
       alert('알람을 확인 했습니다.')
     }
   }
-
-
   return (
 
 
@@ -105,7 +103,7 @@ function HeaderFooterAd(props) {
           <nav className="navbar top-navbar navbar-expand-lg navbar-light">
             <div className="navbar-header">
               <div className="navbar-brand">
-                <a href="index.html"> 관리자 페이지</a>
+                <p> 관리자 페이지</p>
               </div>
 
 
@@ -204,12 +202,12 @@ function HeaderFooterAd(props) {
 
                 <li className="sidebar-item">
 
-                  <a className='sidebar-link has-arrow ' onClick={handleClick} aria-expanded="false">
+                  <Link className='sidebar-link has-arrow ' onClick={handleClick} aria-expanded="false">
                     <LayersIcon />
                     <span className="hide-menu hide-list ">프로젝트 목록</span>
-                  </a>
+                  </Link>
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink className='sidebar-link ' to='/admin/projectList' style={({ isActive }) => isActive ? ms : undefined} >
                         프로젝트 리스트
                       </NavLink>
@@ -219,20 +217,19 @@ function HeaderFooterAd(props) {
 
                 </li>
                 <li className="sidebar-item">
-                  <a
+                  <Link
                     className="sidebar-link has-arrow"
-                    href="javascript:void(0)"
                     onClick={handleClick}
                     aria-expanded="false"
                   >
                     <SmileIcon />
                     <span className="hide-menu hide-list">회원 관리</span>
-                  </a>
+                  </Link>
                   <ul
                     aria-expanded="false"
                     className="collapse first-level base-level-line"
                   >
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink
                         className="sidebar-link "
                         to="/admin/engineerList"
@@ -254,12 +251,12 @@ function HeaderFooterAd(props) {
                   </ul>
                 </li>
                 <li className="sidebar-item">
-                  <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
+                  <Link className='sidebar-link has-arrow' onClick={handleClick} aria-expanded="false">
                     <BarChartIcon />
                     <span className="hide-menu hide-list" >공지사항</span>
-                  </a>
+                  </Link>
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink className='sidebar-link ' to='/admin/annoList' style={({ isActive }) => isActive ? ms : undefined} >
                         공지사항 보기
                       </NavLink>
@@ -279,12 +276,12 @@ function HeaderFooterAd(props) {
 
 
                 <li className="sidebar-item">
-                  <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
+                  <Link className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
                     <BoxIconEn />
                     <span className="hide-menu hide-list" >문의사항</span>
-                  </a>
+                  </Link>
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink className='sidebar-link ' to='/admin/inQurylist' style={({ isActive }) => isActive ? ms : undefined} >
                         문의사항 목록
                       </NavLink>

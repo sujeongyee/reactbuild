@@ -22,19 +22,16 @@ import MyPage from "./MyPage";
 
 
 
-function HeaderFooterUs({ checkPermission }) {
 
-  const [info, setInfo] = useState({})
-  const cus_id = checkPermission.sub
-
+function HeaderFooterUs({ checkPermission, state }) {
   const [bellModal, setbellModalIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsOpenAll, setModalIsOpenAll] = useState(false);
   const handleModal = () => {
 
-
     setbellModalIsOpen(false);
     setModalIsOpenAll(true)
+
 
   }
   const [poto, setPoto] = useState('')
@@ -48,29 +45,25 @@ function HeaderFooterUs({ checkPermission }) {
     color: 'white',
     fontSize: '16px'
   }
-
+  const cus_id = checkPermission.sub;
+  const [info, setInfo] = useState({})
   const handleClick = (e) => {
     $(e.currentTarget).toggleClass("active")
     $(e.currentTarget).next().toggleClass("in")
   }
-
   const navigate = useNavigate();
-
   const logout = () => {
+    navigate("/");
     localStorage.removeItem("token");
     alert("로그아웃 되었습니다😎");
-    navigate("/");
-    window.location.reload();
   };
-
-
   const getInfo = async () => {
 
     const response1 = await axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
-    setInfo(response1.data)
-    console.log(info)
-    const response = await axios.get(`/api/main/getPoto?cus_id=${info.cus_num}`)
 
+    const response = await axios.get(`/api/main/getPoto?cus_id=${response1.data.cus_num}`)
+
+    setInfo(response1.data)
     setPoto(response.data)
   }
 
@@ -99,7 +92,7 @@ function HeaderFooterUs({ checkPermission }) {
 
   const getAllAlarm = (event) => {
     const click = document.getElementById('allorsome');
-    if(click.innerHTML === '모든 알람 보기'){
+    if (click.innerHTML === '모든 알람 보기') {
       if (user_id !== null) {
         axios.get('/api/main/alarm/getAllAlarm', {
           params: {
@@ -113,11 +106,11 @@ function HeaderFooterUs({ checkPermission }) {
           .catch(err => { alert('에러') })
       }
       click.innerHTML = '안 읽은 알람만 보기';
-    }else{
+    } else {
       setAlarmList(firstAlarm);
-      click.innerHTML='모든 알람 보기'
+      click.innerHTML = '모든 알람 보기'
     }
-    
+
   }
 
   const clickAlarmno = (alarmNum, event) => {
@@ -129,20 +122,18 @@ function HeaderFooterUs({ checkPermission }) {
     }
   }
 
-
   return (
+
 
 
     <Fragment>
       <div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
-
         <div className="header">
           <nav className="navbar top-navbar navbar-expand-lg navbar-light">
             <div className="navbar-header">
               <div className="navbar-brand">
                 <a href="index.html"> {info.cus_company_name} </a>
               </div>
-
 
 
 
@@ -156,59 +147,6 @@ function HeaderFooterUs({ checkPermission }) {
                     </span>
                     <span style={{ backgroundColor: '#6776e1' }} className="badge text-bg-primary notify-no rounded-circle">5</span>
                   </button>
-                  <Modal className="bell-content" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}>
-                    <Link to="/user/annoDetail?num=1" className="bell-link" onClick={() => setbellModalIsOpen(false)}>
-
-                      <div className="bell-anno">
-                        <AirplayIcon />
-                      </div>
-                      <div className="bell-middle">
-                        <h5>공지사항</h5>
-                        <p>공지사항 내용</p>
-                        <span>날짜</span>
-                      </div>
-                    </Link>
-
-                    <Link to="/user/projectDetailList" className="bell-link" onClick={() => setbellModalIsOpen(false)}>
-
-                      <div className="bell-calendar">
-                        <CalendarIcon />
-                      </div>
-                      <div className="bell-middle">
-                        <h5>작업내역 확인</h5>
-                        <p> 내용</p>
-                        <span>날짜</span>
-                      </div>
-                    </Link>
-
-                    <Link to="/user/inQuryDetail" className="bell-link" onClick={() => setbellModalIsOpen(false)}>
-
-                      <div className="bell-message">
-                        <MessageSquareIcon />
-                      </div>
-                      <div className="bell-middle">
-                        <h5>문의사항</h5>
-                        <p>문의사항 답변 내용</p>
-                        <span>날짜</span>
-                      </div>
-                    </Link>
-
-                    <Link to="/user/projectDetailList" className="bell-link" onClick={() => setbellModalIsOpen(false)}>
-
-                      <div className="bell-calendar">
-                        <CalendarIcon />
-                      </div>
-                      <div className="bell-middle">
-                        <h5>작업내역 확인</h5>
-                        <p> 내용</p>
-                        <span>날짜</span>
-                      </div>
-                    </Link>
-
-                    <button style={{ margin: '0 auto', paddingTop: '13px' }} className="bell-more" onClick={handleModal}>
-                      <storng> 모든 알람 확인하기</storng>
-                    </button>
-                  </Modal>
                   <Modal className="bell-content" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}>
 
                     {alarmList.map((list, index) => {
@@ -280,7 +218,6 @@ function HeaderFooterUs({ checkPermission }) {
         </div>
         <aside className="left-sidebar" data-sidebarbg="skin6">
           <div className="scroll-sidebar ps-container ps-theme-default" data-sidebarbg="skin6" data-ps-id="49c8c710-23b9-874c-d968-f904306f1d70">
-
             <nav className="sidebar-nav">
               <ul id="sidebarnav" className="in">
                 <li className="sidebar-item selected">
@@ -296,7 +233,6 @@ function HeaderFooterUs({ checkPermission }) {
 
                 <li className="sidebar-item">
 
-
                   <a className='sidebar-link has-arrow ' onClick={handleClick} aria-expanded="false">
                     <FileTextIcon />
                     <span className="hide-menu hide-list ">프로젝트 목록 보기</span>
@@ -304,12 +240,10 @@ function HeaderFooterUs({ checkPermission }) {
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
                     <li class="sidebar-item">
                       <NavLink className='sidebar-link ' to='/user/list' style={({ isActive }) => isActive ? ms : undefined} >
-
                         목록보기
                       </NavLink>
                     </li>
                     <li class="sidebar-item">
-
                       <NavLink className='sidebar-link ' to='/user/apply' style={({ isActive }) => isActive ? ms : undefined} >
 
                         신청하기
@@ -332,7 +266,6 @@ function HeaderFooterUs({ checkPermission }) {
 
                     </li>
                   </ul>
-
 
                 </li>
 
@@ -365,7 +298,6 @@ function HeaderFooterUs({ checkPermission }) {
 
 
 
-
                 <li className="sidebar-item">
                   <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
                     <BoxIcon />
@@ -377,12 +309,10 @@ function HeaderFooterUs({ checkPermission }) {
                         문의사항 목록
                       </NavLink>
                       <NavLink className='sidebar-link ' to='/user/inQurywrite' style={({ isActive }) => isActive ? ms : undefined} >
-
                         문의사항 작성하기
                       </NavLink>
                     </li>
                   </ul>
-
 
                 </li>
               </ul>
@@ -396,7 +326,9 @@ function HeaderFooterUs({ checkPermission }) {
 
         <Outlet state={info} />
 
+
       </div>
+
     </Fragment>
 
 
