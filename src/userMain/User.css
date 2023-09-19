@@ -683,7 +683,7 @@ html body .font-weight-medium {
 }
 
 .detail_modal_container1 .detail_modal_table{
-    margin-left: 130px;
+    margin: 0 auto
 }
 .detail_modal_container1 .detail_modal_table th{
     text-align: left;
@@ -696,3 +696,7 @@ td .hide {
 
 }
 
+
+.card-bsy .col-md-4sy .custom-select{
+    width: 33%;
+}

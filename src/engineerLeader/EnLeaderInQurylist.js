@@ -9,7 +9,7 @@ import PageNation from "../pagenation/PageNation";
 import SearchIcon from "../engineerLeader/SearchIcon";
 import Pagination from "react-js-pagination";
 import { Row } from "react-bootstrap";
-function EnInQurylist({ checkPermission }) {
+function EnLeaderInQurylist({ checkPermission }) {
     const [loading, setLoading] = useState(true);
 
     const [first, setFirst] = useState([]);
@@ -22,11 +22,11 @@ function EnInQurylist({ checkPermission }) {
 
     const list = async () => {//현재 목록 불러오기
 
-        const response = await axios.get(`/api/main/csEngineerList?currentPage=${currentPage}&postsPerPage=${postsPerPage}&cs_writer=${checkPermission.sub}&role=${checkPermission.role}`)
+        const response = await axios.get(`/api/main/csEngineerLeaderList?currentPage=${currentPage}&postsPerPage=${postsPerPage}&cs_writer=${checkPermission.sub}&role=${checkPermission.role}`)
         setPageInfo(response.data);
         setFirst(response.data);
         setLoading(false);
-
+        console.log(response.data)
     }
 
     useEffect(() => {
@@ -194,4 +194,4 @@ function EnInQurylist({ checkPermission }) {
     );
 }
 
-export default EnInQurylist;
+export default EnLeaderInQurylist;

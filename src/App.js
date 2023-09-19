@@ -73,6 +73,11 @@ import EnglEngineerList from "./engineerLeader/EnglEngineerList";
 import EnglClientDetail from "./engineerLeader/EnglClientDetail";
 import EnglEngDetail from "./engineerLeader/EnglEngDetail";
 import EnglAllSchedule from "./engineerLeader/EnglAllSchedule";
+import EnLeaderAnnoDetail from "./engineerLeader/EnLeaderAnnoDetail";
+import EnLeaderAnnoList from "./engineerLeader/EnLeaderAnnoList";
+import EnLeaderInQurylist from "./engineerLeader/EnLeaderInQurylist";
+import EnLeaderInQuryWrite from "./engineerLeader/EnLeaderInQuryWrite";
+import EnLeaderInQuryDetail from "./engineerLeader/EnLeaderInQuryDetail";
 
 function App() {
 
@@ -215,7 +220,14 @@ function App() {
           <Route path='/engineerleader/engineerList' element={<EnglEngineerList />} />
           <Route path='/engineerleader/clientDetail/:cus_id' element={<EnglClientDetail />} />
           <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail/>} />
-
+          
+          {/* 백승용 추가 사항~!~!!~! */}
+          <Route path='/engineerleader/annoList' element={<EnLeaderAnnoList checkPermission={checkPermission()}/>} />
+          <Route path='/engineerleader/annoDetail' element={<EnLeaderAnnoDetail checkPermission={checkPermission()}/>} />
+          <Route path='/engineerleader/inQuryDetail' element={<EnLeaderInQuryDetail checkPermission={checkPermission()}/>} />
+          <Route path='/engineerleader/inQurylist' element={<EnLeaderInQurylist checkPermission={checkPermission()}/>} />
+          <Route path='/engineerleader/inQurywrite' element={<EnLeaderInQuryWrite checkPermission={checkPermission()}/>} />
+           {/* 여기까지!@~!!~~~@#!~ */}
           {/* <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngCalendar/>}/> */}
           <Route path='/engineerleader/allSchedule/:leader_id' element={<EnglAllSchedule leader_id={leader_id}/>}/>
         </Route>
@@ -224,11 +236,11 @@ function App() {
 
 
 
-            <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
+      <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
                 <Route element={<HeaderFooterUs checkPermission={checkPermission()} state={info}/>}>
                     <Route path='/user' element={<MainUser state={info} />} />
-                    <Route path='/user/list' element={< UserProList  checkPermission={checkPermission()}/>} />
-                    <Route path='/user/apply' element={< UserApply  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/list' element={< UserProList  checkPermission={checkPermission()} state={info}/>} />
+                    <Route path='/user/apply' element={< UserApply  checkPermission={checkPermission()} state={info}/>} />
                     <Route path='/user/inQurylist' element={< UserInQurylist  checkPermission={checkPermission()}/>} />
                     <Route path='/user/inQurywrite' element={< UserInQuryWrite  checkPermission={checkPermission()}/>} />
                     <Route path='/user/inQuryDetail' element={< UserInQuryDetail  checkPermission={checkPermission()}/>} />

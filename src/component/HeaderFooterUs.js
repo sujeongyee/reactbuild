@@ -24,7 +24,6 @@ import MyPage from "./MyPage";
 
 
 function HeaderFooterUs({ checkPermission, state }) {
-    console.log(checkPermission)
     const [bellModal, setbellModalIsOpen] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalIsOpenAll, setModalIsOpenAll] = useState(false);
@@ -53,19 +52,17 @@ function HeaderFooterUs({ checkPermission, state }) {
         $(e.currentTarget).next().toggleClass("in")
     }
     const navigate = useNavigate();
-
     const logout = () => {
+        navigate("/");
         localStorage.removeItem("token");
         alert("로그아웃 되었습니다😎");
-        navigate("/");
-        window.location.reload();
     };
     const getInfo = async () => {
 
         const response1 = await axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
-        
+
         const response = await axios.get(`/api/main/getPoto?cus_id=${response1.data.cus_num}`)
-        
+
         setInfo(response1.data)
         setPoto(response.data)
     }

@@ -2,9 +2,8 @@ import axios from "axios";
 import { valHooks } from "jquery";
 import { useCallback, useState } from "react"
 
-function Search({setSearchValue,style,categori,select,setTotal}){
-  
-  const [input , setInput] = useState("");
+function Search({setSearchValue,style,categori,select,order,writer}){
+  const [input1 , setInput] = useState("");
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -15,8 +14,8 @@ function Search({setSearchValue,style,categori,select,setTotal}){
 
   const handleClick =async () => {
    
-    if(input!=''){
-    const response = await axios.get(`/api/main/SearchInfo?table=${categori}&value=${input}&columm=${select}`)
+    if(input1!=''){
+    const response = await axios.get(`/api/main/SearchInfo?table=${categori}&value=${input1}&columm=${select}&order=${order}&cs_writer=${writer}`)
     const newArray=response.data.map((obj)=>{
         const newObj={};
         for(const key in obj){
@@ -29,7 +28,7 @@ function Search({setSearchValue,style,categori,select,setTotal}){
     setSearchValue(newArray)
     
    
-    setTotal(response.data[response.data.length-1].count)
+    // setTotal(response.data[response.data.length-1].count)
     
     }else{
       window.location.reload()
@@ -45,7 +44,7 @@ function Search({setSearchValue,style,categori,select,setTotal}){
     <>
        <label style={{ display: 'flex;' }}>
           <span style={{ transform: 'translateY(5px)', paddingRight: '10px', width: '40px' }}>Search:</span>
-           <input type="search" value={input} className="form-control form-control-sm"
+           <input type="search" value={input1} className="form-control form-control-sm"
             placeholder aria-controls="zero_config" style={{ width: '200px' }} onChange={handleChange}/>
             <input type="button" value={'검색하기'}style={{ background: 'white' ,color:style.color}} className="inqurylist-search" onClick={handleClick}/>
            

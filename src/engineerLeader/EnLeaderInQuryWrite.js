@@ -4,7 +4,7 @@ import { Form, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-function UserInQuryWrite({ checkPermission }) {
+function EnLeaderInQuryWrite({ checkPermission }) {
     const [pro,setPro]=useState(false)
     const [ser,setSer]=useState(false)
     const [getProject,setProject]=useState();
@@ -73,7 +73,7 @@ function UserInQuryWrite({ checkPermission }) {
                 const response = await axios.post('/api/main/user/quryeWrite', form)
                 if (response.data === '성공') {
                     alert('작성 완료 했습니다.')
-                    history("/engineer/inQuryList")
+                    history("/engineerleadear/inQuryList")
                 } else {
                     
                     alert('잘못된 접근 입니다.')
@@ -94,7 +94,7 @@ function UserInQuryWrite({ checkPermission }) {
                         <div className="col-12">
                             <div className="card">
                                 <h4 className="" style={{ padding: "40px 0 0 30px", fontWeight: 'bold', color: 'rgb(78, 89, 104)' }}>
-                                    <Link style={{ margin: "0 15px 0 0" }} to="/engineer/inQuryList" className="inq-back" >
+                                    <Link style={{ margin: "0 15px 0 0" }} to="/engineerleader/inQuryList" className="inq-back" >
                                         ← 문의 목록
                                     </Link><p>문의 사항</p></h4>
                                 
@@ -197,4 +197,4 @@ function UserInQuryWrite({ checkPermission }) {
 
 }
 
-export default UserInQuryWrite
+export default EnLeaderInQuryWrite

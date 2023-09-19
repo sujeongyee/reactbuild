@@ -7,7 +7,6 @@ import { useState } from "react";
 function MainUser(state) {
 
     
-    console.log(state)
   return (
     <>
 

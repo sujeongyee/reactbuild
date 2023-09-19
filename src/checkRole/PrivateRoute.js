@@ -5,10 +5,8 @@ import { Navigate, Outlet, Route} from 'react-router-dom';
 
 
 function PrivateRoute({  checkPermission}) {
-    
-
-
-    return checkPermission.role=="ROLE_USER" ? 
+   
+    return checkPermission&&checkPermission.role=="ROLE_USER" ? 
         
       <Outlet/>
      
