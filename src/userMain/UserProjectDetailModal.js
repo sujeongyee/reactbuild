@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Modal from "react-modal";
 import "../enMain/EnMain.css";
 import "./User.css";
@@ -8,6 +8,8 @@ import Loading from '../loding/Loding';
 function UserProjectDetailModal({projectDetailList}) {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const printableAreaRef = useRef(null);
 
   const customStyles = {
     content: {
@@ -25,6 +27,19 @@ function UserProjectDetailModal({projectDetailList}) {
     },
   };
 
+   //모달창 인쇄하기
+   const printPageArea = () => {
+    const printContent = printableAreaRef.current.innerHTML;
+    const originalContent = document.body.innerHTML;
+
+    document.body.innerHTML = printContent;
+    window.print();
+    window.location.reload();
+    document.body.innerHTML = originalContent;
+    console.log("인쇄 버튼 클릭됨");
+  };
+
+
   return (
     <>
 
@@ -36,7 +51,7 @@ function UserProjectDetailModal({projectDetailList}) {
         onRequestClose={() => setModalIsOpen(false)}
         style={customStyles}
       >
-        <div className="detail_modal_container">
+        <div className="detail_modal_container" ref={printableAreaRef}>
           <h2>작업 상세보기</h2>
           <div className="detail_modal_container_inner">
             <table className="detail_modal_table">
@@ -118,6 +133,7 @@ function UserProjectDetailModal({projectDetailList}) {
             <div className="detail_modal_button">
               <input
                 type="button"
+                onClick={printPageArea}
                 value="출력"
                 className="detail_modal_button_print"
               />
