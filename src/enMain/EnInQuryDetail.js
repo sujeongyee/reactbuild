@@ -11,7 +11,7 @@ function EnInQuryDetail() {
 
     return (
         <>
-          {loading ? <Loading /> : null}
+          {/* {loading ? <Loading /> : null} */}
             <div className="page-wrapper" >
 
             <div class="page-breadcrumb">

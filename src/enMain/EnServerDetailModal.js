@@ -106,7 +106,7 @@ function EnServerDetailModal(props, areaID) {
         style={customStyles}
       >
 
-                  {loading ? <Loading /> : null}
+                  {/* {loading ? <Loading /> : null} */}
         <div className="detail_modal_container" ref={printableAreaRef}  id={areaID} >
 
           <h2>서버 상세보기</h2>

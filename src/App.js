@@ -108,7 +108,7 @@ function App() {
 
 
         const cus_id=checkPermission().sub
-
+        console.log(cus_id+'---------------');
       const response1 = await axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
       setInfo(response1.data)
     }
@@ -227,8 +227,8 @@ function App() {
             <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
                 <Route element={<HeaderFooterUs checkPermission={checkPermission()} state={info}/>}>
                     <Route path='/user' element={<MainUser state={info} />} />
-                    <Route path='/user/list' element={< UserProList  checkPermission={checkPermission()}/>} />
-                    <Route path='/user/apply' element={< UserApply  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/list' element={< UserProList  checkPermission={checkPermission()} state={info}/>} />
+                    <Route path='/user/apply' element={< UserApply  checkPermission={checkPermission()} state={info}/>} />
                     <Route path='/user/inQurylist' element={< UserInQurylist  checkPermission={checkPermission()}/>} />
                     <Route path='/user/inQurywrite' element={< UserInQuryWrite  checkPermission={checkPermission()}/>} />
                     <Route path='/user/inQuryDetail' element={< UserInQuryDetail  checkPermission={checkPermission()}/>} />

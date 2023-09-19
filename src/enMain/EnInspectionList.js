@@ -20,7 +20,7 @@ function EnInspectionList() {
     return (
 
         <>
-                 {loading ? <Loading /> : null}
+                 {/* {loading ? <Loading /> : null} */}
             <div className="page-wrapper" >
              
               <div className="container-fluid">

@@ -59,7 +59,7 @@ function TestCalendar() {
           initialView="dayGridMonth"
           events={events}
         />
-         {loading ? <Loading /> : null}
+         {/* {loading ? <Loading /> : null} */}
         <Modal isOpen={isAddEventModalOpen} onRequestClose={closeAddEventModal}>
           <h2>일정 추가</h2>
           <input

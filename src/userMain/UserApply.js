@@ -11,7 +11,7 @@ function UserApply({state}) {
 
   const [loading, setLoading] = useState(true);
 
-
+  console.log(state);
 
 
   const navigate = useNavigate();
@@ -206,7 +206,7 @@ const handleApply = async (e) => {
   return (
 
     <>
-           {loading ? <Loading /> : null}
+           {/* {loading ? <Loading /> : null} */}
       <div className="page-wrapper" >
         <div className="page-breadcrumb">
           <div className="row">
