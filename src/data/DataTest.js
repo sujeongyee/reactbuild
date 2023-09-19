@@ -14,10 +14,18 @@ function DataTest() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/servers');
+        const response = await axios.get('/api/main/servers');
         const newServerData = response.data;
-
-        // 서버 데이터를 ID별로 그룹화
+        console.log(newServerData);
+        const servers = [
+          {
+              id: newServerData.id,
+              name: 'cpu 사용량',
+              cpuUsage:Math.floor(Math.random() * 30) +1,
+              memoryUsage:Math.floor(Math.random() * 41) + 50,
+              ramUsage:Math.floor(Math.random() * 41) + 50,
+            },
+          ]
         const groupedData = newServerData.reduce((acc, server) => {
           const { id } = server;
           if (!acc[id]) {
@@ -27,28 +35,28 @@ function DataTest() {
           return acc;
         }, {});
 
-        // 현재 시각을 생성
+        
         const currentTime = new Date().toLocaleTimeString();
 
-        // 현재 데이터를 이전 데이터와 결합
+        
         setHistoricalData((prevData) => {
-          // 이전 데이터 복사
+          
           const newData = { ...prevData };
 
-          // 새 데이터 추가 또는 업데이트
+          
           Object.keys(groupedData).forEach((id) => {
             if (!newData[id]) {
               newData[id] = [];
             }
-            // 현재 데이터에 시간 정보 추가
+            
             const newDataPoints = groupedData[id].map((server) => ({
               ...server,
               time: currentTime,
             }));
             newData[id] = [...newData[id], ...newDataPoints];
 
-            // 최대 10개의 데이터만 유지
-            newData[id] = newData[id].slice(-4);
+            
+            newData[id] = newData[id].slice(-5);
           });
 
           return newData;
@@ -60,38 +68,37 @@ function DataTest() {
       }
     };
 
-    fetchData(); // 초기 데이터 가져오기
+    fetchData(); 
 
     const interval = setInterval(() => {
-      fetchData(); // 3초마다 데이터 가져오기
-    }, 1000);
+      fetchData(); 
+    }, 1500);
 
     return () => {
-      clearInterval(interval); // 컴포넌트 언마운트 시 clearInterval 호출
+      clearInterval(interval); 
     };
   }, []);
 
-  // 각 서버 ID에 대한 차트 데이터 생성
   const chartDataByServer = Object.keys(historicalData).map((serverId) => {
     return {
-      labels: historicalData[serverId].map((server) => server.time), // 시간 정보를 레이블로 사용
+      labels: historicalData[serverId].map((server) => server.time), 
       datasets: [
         {
-          label: `CPU Usage (Server ${serverId})`,
+          label: `CPU 사용량`,
           data: historicalData[serverId].map((server) => server.cpuUsage),
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',
           borderWidth: 1,
         },
         {
-          label: `Memory Usage (Server ${serverId})`,
+          label: `메모리 사용량`,
           data: historicalData[serverId].map((server) => server.memoryUsage),
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
           borderColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 1,
         },
         {
-          label: `RAM Usage (Server ${serverId})`,
+          label: `RAM 사용량`,
           data: historicalData[serverId].map((server) => server.ramUsage),
           backgroundColor: 'rgba(255, 205, 86, 0.2)',
           borderColor: 'rgba(255, 205, 86, 1)',
@@ -101,30 +108,52 @@ function DataTest() {
     };
   });
 
-  // y축 스케일 설정
+
   const options = {
     scales: {
       y: {
         min: 0,
         max: 100,
         ticks: {
-          stepSize: 5, // y축 간격 조절
+          stepSize: 5, 
         },
         title: {
           display: true,
-          text: 'Usage (%)', // y축 라벨
+          text: '사용량(%)', 
         },
       },
     },
   };
 
-  // 각 서버 ID에 대한 차트를 렌더링
+  const changeServer = (event) => {
+    console.log('온다');
+ 
+    const serverCharts = document.querySelectorAll(".serverChart");
+    if(event.currentTarget.value === '서버선택'){
+      document.querySelector('.serverChart').style.display = 'none';
+      document.querySelector('.selecserver').style.display = '';
+      return;
+    }
+    document.querySelector('.selecserver').style.display = 'none';
+    setHistoricalData('');
+    serverCharts.forEach((chart) => {
+      chart.style.display = '';
+    });
+  }
+  
+
   return (
-    <div>
-      <h1>실시간 서버 확인</h1>
-      <div className="row">
+    <div className='eng-servernow'>
+      <h3 style={{marginBottom:'50px',display:'inline-block',color:'#525252'}}>실시간 서버 모니터링</h3> 
+      <select className='eng-serversel' style={{marginLeft:'20px'}} onChange={changeServer}>
+        <option>서버선택</option>
+        <option>서버1</option>
+        <option>서버2</option>
+      </select>
+      <p className='selecserver' style={{color:'#525252',marginTop:'100px',fontSize:'20px'}}>[서버를 선택해주세요]</p>
+      <div className="row serverChart" style={{display:'none',marginLeft:'120px'}}>
         {Object.keys(historicalData).map((serverId, index) => (
-          <div key={serverId} className='serverChart' style={{width:'33.3333%'}}>
+          <div key={serverId} className='serverChart' style={{ width: '48%', height: '200px',margin:'0 auto' }}>
             <Line data={chartDataByServer[index]} ref={(ref) => (chartRefs.current[serverId] = ref)} options={options} />
           </div>
         ))}

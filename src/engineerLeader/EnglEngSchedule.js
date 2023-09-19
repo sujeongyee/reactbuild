@@ -8,14 +8,21 @@ import Calendar from "@toast-ui/react-calendar";
 import "@toast-ui/calendar/dist/toastui-calendar.min.css"; // Calendar 스타일
 // 캘린더를 생성하기 위해 tui-calendar 객체와 스타일 코드 삽입
 
+import Loading from '../loding/Loding';
+
+
 function EnglEngSchedule() {
   const { eng_enid } = useParams();
 
-  useEffect(() => {
-    axios
-      .get(`/api/main/engleader/getEngInfo/${eng_enid}`)
-      .then((response) => console.log(response.data));
-  }, []);
+
+
+  useEffect(()=>{
+    axios.get(`/api/main/engleader/getEngInfo/${eng_enid}`)
+    .then(response => console.log(response.data))
+
+    setLoading(false);
+  },[])
+
 
   const schedules = [
     {
@@ -86,7 +93,11 @@ function EnglEngSchedule() {
 
   return (
     <>
-      <div className="page-wrapper englschedule">
+
+            {/* {loading ? <Loading /> : null} */}
+      <div className='page-wrapper englschedule'>
+
+
         <div>
           <h3>담당 서버 리스트</h3>
         </div>

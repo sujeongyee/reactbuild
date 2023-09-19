@@ -1,144 +1,233 @@
-import React, { useState } from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import Modal from "react-modal"; // react-modal import
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function Calendar() {
+import Calendar from '@toast-ui/react-calendar';
+import '@toast-ui/calendar/dist/toastui-calendar.min.css';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import moment from 'moment';
+
+import Modal from "react-modal";
+import '../engineerLeader/EngLeader.css';
+import { Link } from "react-router-dom";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
+function EnglEngDetail() {
   const [loading, setLoading] = useState(true);
 
-  const [events, setEvents] = useState([
-    // 초기 이벤트 데이터 배열
-    {
-      title: "점기점검",
-      date: "2023-09-01",
-      description: {
-        점검종류: "정기점검",
-        점검내용: "이러이런거 했습니다",
-        "프로젝트 명": "프로젝트 이름",
-      },
-    },
-    // 기존 이벤트 데이터 추가
-  ]);
 
-  const [isAddEventModalOpen, setIsAddEventModalOpen] = useState(false);
-  const [newEvent, setNewEvent] = useState({
-    title: "",
-    start: "",
-    end: "",
-    description: {
-      점검종류: "",
-      점검내용: "",
-      "프로젝트 명": "",
+  const [serverList, setServerList] = useState([]);
+  const [scheList, setScheList] = useState([]);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const initialCustomStyles = {
+    content: {
+      width: "250px",
+      top: "40%",
+      left: "83%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      maxHeight: "85%",
+      backgroundColor: "white",
+      overflow: 'none',
+      zIndex: 9999,
     },
-  });
-  //   Modal.setAppElement('#root'); // 모달의 루트 요소 설정
-  // 일정 추가 모달 열기
-  const openAddEventModal = () => {
-    setIsAddEventModalOpen(true);
+    overlay: {
+      backgroundColor: 'none'
+    }
   };
-  ////
-  // 일정 추가 모달 닫기
-  const closeAddEventModal = () => {
-    setIsAddEventModalOpen(false);
+  const [customStyles, setCustomStyles] = useState(initialCustomStyles);
+
+  const eng_enid = 'eng_2';
+
+  useEffect(() => {
+
+    axios.get(`/api/main/engleader/getEngInfo/${eng_enid}`)
+      .then(response => {
+        setServerList(response.data.serverList);
+        setScheList(response.data.scheList);
+        console.log(response.data)
+      });
+  }, [eng_enid]);
+
+  useEffect(() => {
+    // scheList가 변경될 때 events 업데이트
+    const updatedEvents = scheList.map(item => {
+      let color = "";
+
+      if (item.sche_name === "정기점검") {
+        color = "red";
+      } else if (item.sche_name === "장애대응") {
+        color = "yellow";
+      } else if (item.sche_name === "유지보수") {
+        color = "#b0cddb";
+      }
+
+      const startDate = moment(item.sche_startdate).format("YYYY-MM-DD");
+      const endDate = moment(item.sche_enddate).format("YYYY-MM-DD");
+
+      return {
+        title: item.sche_name,
+        start: item.sche_startdate,
+        end: item.sche_enddate,
+        color: color,
+        pro_name: item.pro_name,
+        server_name: item.server_name,
+        pro_id: item.pro_id,
+        sche_num: item.sche_num
+      };
+    });
+
+    setEvents(updatedEvents);
+  }, [scheList]);
+
+  const [events, setEvents] = useState([]);
+
+  const handleEventClick = (event) => {
+
+    setSelectedEvent(event.event);
+    console.log(event.event)
+
+    // 모달 스타일 업데이트
+    if (event.event.borderColor) {
+      const updatedStyles = {
+        ...initialCustomStyles,
+        content: {
+          ...initialCustomStyles.content,
+          borderTop: `3px solid ${event.event.borderColor}`,
+        },
+      };
+
+      setCustomStyles(updatedStyles);
+    }
+    setModalIsOpen(true);
+  };
+  const [scheNum,setScheNum] = useState([]);
+  const handleChangeSche = (event) => {
+    const parent = event.currentTarget.parentElement;
+    const sche_num = parent.firstChild.value;
+    const datePicker = event.currentTarget.nextSibling;
+    setStartDate(null);
+    setEndDate(null);
+    setScheNum(sche_num);
+    datePicker.style.display = 'block'
+  }
+
+  const [startDate, setStartDate] = useState(null); // 선택된 날짜 상태
+  const [endDate, setEndDate] = useState(null); // 선택된 날짜 상태
+  const handleDateChange1 = (date) => {
+    setStartDate(date); // 선택된 날짜를 업데이트합니다.
+  };
+  const handleDateChange2 = (date) => {
+    setEndDate(date); // 선택된 날짜를 업데이트합니다.
   };
 
-  // 새로운 일정 추가
-  const addEvent = () => {
-    setEvents([...events, newEvent]);
-    closeAddEventModal();
-  };
-  const Click = (e) => {
-    console.log(e);
-  };
+  const changeSche = (event) => {
+    
+    const currentDate = new Date(); 
+    if (startDate < currentDate) {
+      alert('시작 날짜는 오늘보다 이전일 수 없습니다.');
+    }else if (startDate && endDate && startDate > endDate) {
+      alert('시작 날짜는 종료 날짜보다 늦을 수 없습니다.');
+    } else {
+  
+      const isConfirmed = window.confirm('일정을 수정하시겠습니까?');
+
+      if (isConfirmed) {
+        const requestData = {
+          sche_startdate: startDate,
+          sche_enddate: endDate,
+          sche_num: scheNum,
+        };
+        axios.post('/api/main/engineer/editSchedule', requestData)
+        .then(response => {
+          console.log('일정 수정 요청이 성공했습니다.');
+          axios.get(`/api/main/engleader/getEngInfo/${eng_enid}`)
+          .then(response => {          
+          setScheList(response.data.scheList);
+          setModalIsOpen(false);
+       
+          });
+        })
+        .catch(error => {
+          console.error('일정 수정 요청이 실패했습니다.', error);   
+        });
+        
+      }
+
+    }
+
+
+  }
+
+  const cancelSche = (event) => {
+    document.querySelector('.editSchedule').style.display = 'none'
+    setStartDate(null);
+    setEndDate(null);
+  }
+
   return (
-    <div id="myCalender">
-      <h1>내 일정 확인</h1>
-      <button
-        onClick={openAddEventModal}
-        style={{ backgroundColor: "rgb(42, 198, 97)" }}
-      >
-        일정 추가
-      </button>
-      <FullCalendar
-        plugins={[dayGridPlugin]}
-        initialView="dayGridMonth"
-        events={events}
-        eventClick={Click}
-      />
+    <>
 
-      <Modal
-        className="modal-content"
-        overlayClassName="modal-overlay"
-        isOpen={isAddEventModalOpen}
-        onRequestClose={closeAddEventModal}
-      >
-        <h2>일정 추가</h2>
-        <input
-          type="text"
-          placeholder="제목"
-          value={newEvent.title}
-          onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="시작 날짜"
-          value={newEvent.start}
-          onChange={(e) => setNewEvent({ ...newEvent, start: e.target.value })}
-        />
-        <input
-          type="text"
-          placeholder="종료 날짜"
-          value={newEvent.end}
-          onChange={(e) => setNewEvent({ ...newEvent, end: e.target.value })}
-        />
-        {/* 추가 정보 입력 */}
-        <input
-          type="text"
-          placeholder="점검종류"
-          value={newEvent.description["점검종류"]}
-          onChange={(e) =>
-            setNewEvent({
-              ...newEvent,
-              description: {
-                ...newEvent.description,
-                점검종류: e.target.value,
-              },
-            })
-          }
-        />
-        <input
-          type="text"
-          placeholder="점검내용"
-          value={newEvent.description["점검내용"]}
-          onChange={(e) =>
-            setNewEvent({
-              ...newEvent,
-              description: {
-                ...newEvent.description,
-                점검내용: e.target.value,
-              },
-            })
-          }
-        />
-        <input
-          type="text"
-          placeholder="프로젝트 명"
-          value={newEvent.description["프로젝트 명"]}
-          onChange={(e) =>
-            setNewEvent({
-              ...newEvent,
-              description: {
-                ...newEvent.description,
-                "프로젝트 명": e.target.value,
-              },
-            })
-          }
-        />
-        {/* 추가 정보 입력 */}
-        <button onClick={addEvent}>추가</button>
-      </Modal>
-    </div>
+
+      <div id="myCalendar" className="englCalendar engCalendar">
+        <h3 style={{ color: '#746a60' }}>일정 확인</h3>
+        <div id="calendar" style={{ height: "800px" }}>
+          <FullCalendar
+            plugins={[dayGridPlugin]}
+            initialView="dayGridMonth"
+            events={events}
+            eventClick={(event) => handleEventClick(event)}
+          />
+          {selectedEvent && (
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={() => setModalIsOpen(false)}
+              style={{ ...customStyles, borderTop: `3px solid ${selectedEvent.color}` }}
+            >
+              <div className="sche_modal">
+                <input type="hidden" value={selectedEvent.extendedProps.sche_num}></input>
+                <p style={{ fontSize: '15px' }}>작업 종류 : {selectedEvent.title}</p>
+                <p style={{ fontSize: '15px' }}>프로젝트 이름 :
+                  <Link to={`/engineerleader/projectDetail/${selectedEvent.extendedProps.pro_id}`}>
+                    {selectedEvent.extendedProps.pro_name}
+                  </Link>
+                </p>
+                <p style={{ fontSize: '14px' }}>서버이름 : {selectedEvent.extendedProps.server_name} </p>
+                <p>{moment(selectedEvent.start).format("YYYY-MM-DD")} {selectedEvent.end ? `~ ${moment(selectedEvent.end).format("YYYY-MM-DD")}` : ''}</p>
+                <button className="change-sche" onClick={handleChangeSche} style={{ background: '#ffced7' }}>일정수정하기</button>
+                <div className="editSchedule" style={{ display: 'none' }}>
+                  <p>시작날짜</p>
+                  <DatePicker
+                    selected={startDate}
+                    onChange={handleDateChange1}
+                    dateFormat="yyyy-MM-dd"
+                    placeholderText="날짜를 선택하세요"
+                  />
+                  <button style={{ float: 'right', background: '#d9edf7' }} onClick={cancelSche} className="cancelSche">취소</button>
+                  <p style={{ marginTop: '5px' }}>종료날짜</p>
+                  <DatePicker
+                    selected={endDate}
+                    onChange={handleDateChange2}
+                    dateFormat="yyyy-MM-dd"
+                    placeholderText="날짜를 선택하세요"
+                  />
+                  <button style={{ float: 'right', background: '#d9edf7' }} onClick={changeSche}>수정</button>
+                </div>
+              </div>
+            </Modal>
+          )}
+        </div>
+      </div>
+
+
+    </>
   );
 }
 
-export default Calendar;
+export default EnglEngDetail;

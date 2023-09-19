@@ -92,7 +92,7 @@ function App() {
 
   const token = localStorage.getItem("token");
   const [info, setInfo] = useState({});
-
+  
   function checkPermission() {
     if (!token) {
       return null;
@@ -107,6 +107,7 @@ function App() {
     }
     return dec;
   }
+
 
   const Info = async () => {
     if (checkPermission() == null) {
@@ -134,7 +135,18 @@ function App() {
     Info();
   }, []);
 
-  const leader_id = "eng_1";
+
+  const token2 = localStorage.getItem("token");
+  const [userId,setUserId] = useState('');
+  useEffect(()=>{
+      
+      const permission = checkPermission(); 
+      if(permission!==null){
+        const id = permission.sub;
+        setUserId(id);
+      }
+  },[token2])
+
 
   return (
     <Routes>
@@ -223,17 +235,17 @@ function App() {
       {/* $ npm install react-js-pagination */}
 
       <Route element={<PrivateRouteEnl checkPermission={checkPermission()} />} >
-        < Route element={<HeaderFooterEnl checkPermission={checkPermission()} />}>
-          <Route path='/engineerleader' element={<EngLeadMain />} />
-          <Route path='/engineerleader/requestDetail/:pro_id' element={<RequestDetail />} />
-          <Route path='/engineerleader/projectList' element={<EnglProjectList />} />
-          <Route path='/engineerleader/projectDetail/:pro_id' element={<EnglProjectDetail />} />
-          <Route path='/engineerleader/workinfo/:server_id' element={<EnglWorkInfo />} />
-          <Route path='/engineerleader/clientList' element={<EnglClientList />} />
-          <Route path='/engineerleader/engineerList' element={<EnglEngineerList />} />
-          <Route path='/engineerleader/clientDetail/:cus_id' element={<EnglClientDetail />} />
-          <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail/>} />
-          
+        < Route element={<HeaderFooterEnl checkPermission={checkPermission()} userId={userId} />}>
+          <Route path='/engineerleader' element={<EngLeadMain userId={userId}/>} />
+          <Route path='/engineerleader/requestDetail/:pro_id' element={<RequestDetail userId={userId}/>} />
+          <Route path='/engineerleader/projectList' element={<EnglProjectList userId={userId}/>} />
+          <Route path='/engineerleader/projectDetail/:pro_id' element={<EnglProjectDetail userId={userId} />} />
+          <Route path='/engineerleader/workinfo/:server_id' element={<EnglWorkInfo userId={userId} />} />
+          <Route path='/engineerleader/clientList' element={<EnglClientList userId={userId}/>} />
+          <Route path='/engineerleader/engineerList' element={<EnglEngineerList userId={userId}/>} />
+          <Route path='/engineerleader/clientDetail/:cus_id' element={<EnglClientDetail userId={userId}/>} />
+          <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail/>}userId={userId} />
+          <Route path='/engineerleader/allSchedule' element={<EnglAllSchedule userId={userId}/>}/>         
           {/* 백승용 추가 사항~!~!!~! */}
           <Route path='/engineerleader/annoList' element={<EnLeaderAnnoList checkPermission={checkPermission()}/>} />
           <Route path='/engineerleader/annoDetail' element={<EnLeaderAnnoDetail checkPermission={checkPermission()}/>} />
@@ -243,7 +255,6 @@ function App() {
            {/* 여기까지!@~!!~~~@#!~ */}
 
           {/* <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngCalendar/>}/> */}
-          <Route path="/engineerleader/allSchedule/:leader_id" element={<EnglAllSchedule leader_id={leader_id} />}  />
         </Route>
       </Route>
 
@@ -278,7 +289,6 @@ function App() {
           <Route path="/admin/userList" element={<AdUserList checkPermission={checkPermission()} />}/>
           <Route  path="/admin/projectList" element={<AdProjectList checkPermission={checkPermission()} />}/>
           <Route  path="/admin/engineerList" element={<AdEngineerList checkPermission={checkPermission()} />}/>
-          /{" "}
           <Route path="/admin/adminProModal" element={<AdminproModal checkPermission={checkPermission()} />}/>
         </Route>
       </Route>

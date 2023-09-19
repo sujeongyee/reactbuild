@@ -16,6 +16,7 @@ import LogOutIcon from "../img/LogOutIcon";
 import Modal from 'react-modal';
 import TeamIcon from "../img/TeamIcon";
 import BriefcaseIcon from "../img/BriefcaseIcon";
+import axios from "axios";
 
 function HeaderFooterEn() {
     const [bellModal, setbellModalIsOpen] = useState(false);
@@ -42,6 +43,56 @@ function HeaderFooterEn() {
         $(e.currentTarget).toggleClass("active")
         $(e.currentTarget).next().toggleClass("in")
     }
+    const user_id = 'customer1';
+  const [alarmList, setAlarmList] = useState([]);
+  const [firstAlarm, setFirstAlarm] = useState([]);
+
+  useEffect(() => {
+    if (user_id !== '') {
+      axios.get('/api/main/alarm/getAlarmList', {
+        params: { user_id: user_id }
+      })
+        .then(response => {
+          setAlarmList(response.data)
+          setFirstAlarm(response.data)
+          console.log(alarmList)
+        })
+        .catch(err => { alert('에러') })
+    }
+  }, [user_id]);
+
+  const getAllAlarm = (event) => {
+    const click = document.getElementById('allorsome');
+    if(click.innerHTML === '모든 알람 보기'){
+      if (user_id !== null) {
+        axios.get('/api/main/alarm/getAllAlarm', {
+          params: {
+            user_id: user_id
+          }
+        })
+          .then(response => {
+            setAlarmList(response.data)
+            console.log(alarmList)
+          })
+          .catch(err => { alert('에러') })
+      }
+      click.innerHTML = '안 읽은 알람만 보기';
+    }else{
+      setAlarmList(firstAlarm);
+      click.innerHTML='모든 알람 보기'
+    }
+    
+  }
+  const clickAlarmno = (alarmNum, event) => {
+
+    if (event.currentTarget.innerHTML === '안읽음') {
+      event.currentTarget.innerHTML = '읽음'
+      axios.post(('/api/main/alarm/changeAlarm'), { alarmNum: alarmNum })
+      alert('알람을 확인 했습니다.')
+    }
+  }
+
+
     return (
 
 
@@ -67,50 +118,36 @@ function HeaderFooterEn() {
                                     <span style={{backgroundColor:'#2ac661'}}className="badge text-bg-primary notify-no rounded-circle">5</span>
                                 </button>
                                 <Modal className="bell-content" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}>
-                                    <Link to="#" className="bell-link">
-                                        <div className="bell-anno">
-                                            <AirplayIcon />
-                                        </div>
-                                        <div className="bell-middle">
-                                            <h5>공지사항</h5>
-                                            <p>공지사항 내용</p>
-                                            <span>날짜</span>
-                                        </div>
-                                    </Link>
-                                    <Link to="#" className="bell-link">
-                                        <div className="bell-calendar">
-                                            <CalendarIcon />
-                                        </div>
-                                        <div className="bell-middle">
-                                            <h5>일정확인</h5>
-                                            <p> 내용</p>
-                                            <span>날짜</span>
-                                        </div>
-                                    </Link>
-                                    <Link to="#" className="bell-link">
-                                        <div className="bell-message">
-                                            <MessageSquareIcon />
-                                        </div>
-                                        <div className="bell-middle">
-                                            <h5>문의사항</h5>
-                                            <p>문의사항 답변 내용</p>
-                                            <span>날짜</span>
-                                        </div>
-                                    </Link>
-                                    <Link to="#" className="bell-link">
-                                        <div className="bell-calendar">
-                                            <CalendarIcon />
-                                        </div>
-                                        <div className="bell-middle">
-                                            <h5>일정확인</h5>
-                                            <p> 내용</p>
-                                            <span>날짜</span>
-                                        </div>
-                                    </Link>
-                                    <Link to="#" className="bell-more">
-                                        <storng> 모든 알람 확인하기</storng>
-                                    </Link>
-                                </Modal>
+
+                    {alarmList.map((list, index) => {
+                      // Timestamp 문자열을 Date 객체로 파싱
+                      const dateObject = new Date(list.alarm_date);
+
+                      // Date 객체를 "yyyy/MM/dd HH:mm" 형식으로 변환
+                      const formattedDate = `${dateObject.getFullYear()}/${String(dateObject.getMonth() + 1).padStart(2, '0')
+                        }/${String(dateObject.getDate()).padStart(2, '0')} ${String(dateObject.getHours()).padStart(2, '0')
+                        }:${String(dateObject.getMinutes()).padStart(2, '0')}`;
+
+                      const backgroundColor = list.alarm_check_yn === 'Y' ? 'rgb(197 197 197 / 8%)' : '';
+
+                      return (
+                        <div className="bell-link" key={index} style={{ backgroundColor: backgroundColor }}>
+
+                          <div className="bell-middle alarm-list" style={{ backgroundColor: backgroundColor }}>
+                            {/* <h5>{list.alarm_TYPE}</h5> */}
+                            <p>{list.alarm_content}</p>
+                            <span>{formattedDate}</span>
+                            <span className="checkalarmbtn" style={{ marginLeft: '10px' }} onClick={(event) => clickAlarmno(list.alarm_num, event)}>{list.alarm_check_yn === 'Y' ? '읽음' : '안읽음'}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+
+                    <button className="bell-more all-alarm" onClick={getAllAlarm}>
+
+                      <storng id="allorsome"> 모든 알람 보기</storng>
+                    </button>
+                  </Modal>
                             </li>
                             <li className="nav-item dropdown">
 

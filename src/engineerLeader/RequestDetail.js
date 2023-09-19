@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
-import "../enMain/EnMain.css";
 
-import "../enMain/EnTeam.css";
-import axios from "axios";
-import "./EngLeader.css";
-import { useLocation, useParams } from "react-router-dom";
-import EnglTeamassign from "./EnglTeamassign";
+import { useEffect, useState } from 'react'
+import '../enMain/EnMain.css'
+
+import '../enMain/EnTeam.css';
+import axios from 'axios';
+import './EngLeader.css';
+import { useLocation, useParams } from 'react-router-dom';
+import EnglTeamassign from './EnglTeamassign';
+import Loading from '../loding/Loding';
+
 
 function RequestDetail() {
   const [loading, setLoading] = useState(true);
-
   const { pro_id } = useParams();
   const [info, setInfo] = useState([]);
   const [list, setList] = useState([]);
   useEffect(() => {
-    //console.log(pro_id);
+    axios.get(`/api/main/engleader/requestDetail/${pro_id}`)
+      .then(response => {
 
-    axios
-      .get(`/api/main/engleader/requestDetail/${pro_id}`)
-      .then((response) => {
         console.log(response);
         setInfo(response.data);
         setList(response.data.list);
@@ -31,18 +31,21 @@ function RequestDetail() {
   }, []);
 
   const assignEmer = () => {
-    const engid = "tnwjd2580";
-    const serverId = "21ff55ca-4c9d-11ee-acdc-8cb0e993c4ae";
-    axios
-      .post("/api/main/alarm/assignEmer", { engid: engid, serverId: serverId })
-      .catch((err) => {
-        alert("실패" + err);
-      });
-  };
+
+    const engid = 'tnwjd2580';
+    const serverId = '21ff55ca-4c9d-11ee-acdc-8cb0e993c4ae';
+    axios.post('/api/main/alarm/assignEmer', { engid: engid, serverId: serverId })
+      .catch(err => { alert('실패' + err) })
+  }
+
+
 
   return (
     <>
-      <div className="page-wrapper">
+
+           {/* {loading ? <Loading /> : null} */}
+      <div className="page-wrapper" >
+
         <div className="page-breadcrumb">
           <div className="row">
             <div className="col-7 align-self-center">
@@ -227,14 +230,8 @@ function RequestDetail() {
                     <td>{data.ram} GB</td>
                     <td>{data.disk_capacitygb} GB</td>
 
-                    <td>
-                      <EnglTeamassign
-                        pro_pi={info.PRO_PI}
-                        pro_id={info.PRO_ID}
-                        server_id={data.server_id}
-                        check={data.eng_enid == null ? false : true}
-                      />
-                    </td>
+                    <td><EnglTeamassign pro_pi={info.PRO_PI} pro_id={info.PRO_ID} server_id={data.server_id} check={data.eng_enid == null ? false : true} /></td>
+
                   </tr>
                 ))}
               </tbody>
