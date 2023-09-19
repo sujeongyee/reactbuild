@@ -26,7 +26,9 @@ function UserProjectDetailModal2({projectDetailList}) {
                                                                                       
   return (
     <>
-            
+
+             {/* {loading ? <Loading /> : null} */}
+
       <button onClick={() => setModalIsOpen(true)}>정기점검</button>
       <Modal
         /* className="modal-content"

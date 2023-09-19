@@ -27,7 +27,7 @@ function EnL_TeamassingmentModal() {
 
   return (
     <>
-             {loading ? <Loading /> : null}
+             {/* {loading ? <Loading /> : null} */}
              
       <button type="button" className="assingment-btn" onClick={() => setModalIsOpen(true)}>팀원배정</button>
       <Modal

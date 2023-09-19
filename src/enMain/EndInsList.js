@@ -12,7 +12,7 @@ function EndInsList() {
 
 return(
   <>      
-   {loading ? <Loading /> : null}
+   {/* {loading ? <Loading /> : null} */}
         <div className="container-fluid">
           <div className="row">
               <div className="col-12">

@@ -43,7 +43,6 @@ import ProjectDetail from "./adminMain/ProjectDetail";
 import AdUserList from "./adminMain/AdUserList";
 import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";
-import AnEngineerList from "./adminMain/AnEngineerList";
 
 import EnInspectionList from "./enMain/EnInspectionList";
 
@@ -73,7 +72,12 @@ import EnglEngineerList from "./engineerLeader/EnglEngineerList";
 import EnglClientDetail from "./engineerLeader/EnglClientDetail";
 import EnglEngDetail from "./engineerLeader/EnglEngDetail";
 import EnglAllSchedule from "./engineerLeader/EnglAllSchedule";
+
 import ProjectDetailChart from "./userMain/ProjectDetailChart";
+
+import AdEngineerList from "./adminMain/AdEngineerList";
+import InspectionList from "./enMain/InspectionList";
+
 
 function App() {
 
@@ -103,12 +107,12 @@ function App() {
   const Info = async () => {
 
     if (checkPermission() == null) {
-        return;
+      return;
     }
     if (checkPermission().role === "ROLE_USER") {
 
 
-        const cus_id=checkPermission().sub
+      const cus_id = checkPermission().sub
 
       const response1 = await axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
       setInfo(response1.data)
@@ -177,7 +181,7 @@ function App() {
 
           <Route
             path="/engineer/inspectionList"
-            element={<EnInspectionList checkPermission={checkPermission()} />}
+            element={<InspectionList checkPermission={checkPermission()} />}
           />
 
           <Route
@@ -215,13 +219,12 @@ function App() {
           <Route path='/engineerleader/clientList' element={<EnglClientList />} />
           <Route path='/engineerleader/engineerList' element={<EnglEngineerList />} />
           <Route path='/engineerleader/clientDetail/:cus_id' element={<EnglClientDetail />} />
-          <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail/>} />
+          <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail />} />
 
           {/* <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngCalendar/>}/> */}
-          <Route path='/engineerleader/allSchedule/:leader_id' element={<EnglAllSchedule leader_id={leader_id}/>}/>
+          <Route path='/engineerleader/allSchedule/:leader_id' element={<EnglAllSchedule leader_id={leader_id} />} />
         </Route>
       </Route>
-
 
 
 
@@ -243,6 +246,7 @@ function App() {
                 </Route>
                 </Route>
 
+
       <Route element={<PrivateRouteAd checkPermission={checkPermission()} />} >
         <Route element={<HeaderFooterAd checkPermission={checkPermission()} />}>{/* 관리자 페이지; */}
           <Route path='/admin' element={<MainAdmin checkPermission={checkPermission()} />} />
@@ -254,7 +258,7 @@ function App() {
           <Route path='/admin/annoDetail' element={<AdminAnnoDetail checkPermission={checkPermission()} />} />
           <Route path="/admin/userList" element={<AdUserList checkPermission={checkPermission()} />} />
           <Route path="/admin/projectList" element={<AdProjectList checkPermission={checkPermission()} />} />
-          <Route path="/admin/engineerList" element={<AnEngineerList checkPermission={checkPermission()} />} />
+          <Route path="/admin/engineerList" element={<AdEngineerList checkPermission={checkPermission()} />} />
 
         </Route>
       </Route>

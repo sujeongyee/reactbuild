@@ -95,7 +95,7 @@ function EnglEngSchedule() {
   return (
     <>
 
-            {loading ? <Loading /> : null}
+            {/* {loading ? <Loading /> : null} */}
       <div className='page-wrapper englschedule'>
 
 

@@ -132,7 +132,9 @@ function UserProjectDetailList({state}) {
   var currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
   return (
     <>
+
             {/* {loading ? <Loading /> : null} */}
+
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">

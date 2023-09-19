@@ -89,7 +89,7 @@ const handleFileChange = async(e) => {
 
   return (
     <>
-            {loading ? <Loading /> : null}
+            {/* {loading ? <Loading /> : null} */}
       <button onClick={() => setModalIsOpen(true)}>{props.engName}</button>
       <Modal
         /* className="modal-content"*/
@@ -144,11 +144,11 @@ const handleFileChange = async(e) => {
             </table>
             
             <div className="detail_modal_button">
-              <input
+              {/* <input
                 type="button"
                 value="수정"
                 className="detail_modal_button_print"
-               />
+               /> */}
               <input
                 type="button"
                 value="목록보기"
