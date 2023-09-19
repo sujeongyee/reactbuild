@@ -7,6 +7,9 @@ import { Background } from "../loding/Styles";
 
 function UserProList({state}) {
 
+
+   // const [loading, setLoading] = useState(true);
+
   const[proList, setProList] = useState([]);
   
   //페이지 리스트

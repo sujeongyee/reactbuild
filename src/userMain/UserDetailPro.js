@@ -4,18 +4,19 @@ import axios from "axios";
 import Loading from '../loding/Loding';
 
 
-function UserDetailPro() {
-
+function UserDetailPro({ detail: data } ) {
 
   const[proDetail, setProDetail] = useState([]);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
   const {pro_id} = useParams();
+
+  console.log(pro_id)
 
   useEffect(()=>{
     axios.get(`/api/main/user/prodetail/${pro_id}`).then((response)=>{
       setProDetail(response.data);
       console.log(response.data);
-      setLoading(false);
+     // setLoading(false);
       
     })
     .catch((error)=>{
@@ -27,7 +28,9 @@ function UserDetailPro() {
 
   return (
     <>
+
          {/* {loading ? <Loading /> : null} */}
+
       <div className="page-wrapper" >
 
         <div className="page-breadcrumb">

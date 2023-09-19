@@ -72,8 +72,12 @@ import EnglEngineerList from "./engineerLeader/EnglEngineerList";
 import EnglClientDetail from "./engineerLeader/EnglClientDetail";
 import EnglEngDetail from "./engineerLeader/EnglEngDetail";
 import EnglAllSchedule from "./engineerLeader/EnglAllSchedule";
+
+import ProjectDetailChart from "./userMain/ProjectDetailChart";
+
 import AdEngineerList from "./adminMain/AdEngineerList";
 import InspectionList from "./enMain/InspectionList";
+
 
 function App() {
 
@@ -224,22 +228,23 @@ function App() {
 
 
 
-      <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
-        <Route element={<HeaderFooterUs checkPermission={checkPermission()} state={info} />}>
-          <Route path='/user' element={<MainUser state={info} />} />
-          <Route path='/user/list' element={< UserProList checkPermission={checkPermission()} state={info} />} />
-          <Route path='/user/apply' element={< UserApply checkPermission={checkPermission()} state={info} />} />
-          <Route path='/user/inQurylist' element={< UserInQurylist checkPermission={checkPermission()} />} />
-          <Route path='/user/inQurywrite' element={< UserInQuryWrite checkPermission={checkPermission()} />} />
-          <Route path='/user/inQuryDetail' element={< UserInQuryDetail checkPermission={checkPermission()} />} />
-          <Route path='/user/annoList' element={< UserAnnoList checkPermission={checkPermission()} />} />
-          <Route path='/user/annoDetail' element={<UserAnnoDetail checkPermission={checkPermission()} />} />
-          <Route path='/user/prodetail/:pro_id' element={<UserDetailPro checkPermission={checkPermission()} />} />
-          <Route path="/user/projectDetailList" element={<UserProjectDetailList checkPermission={checkPermission()} />} />
-          <Route path="/user/projectDetail" element={<UserProjectDetailModal checkPermission={checkPermission()} />} />
-          <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 checkPermission={checkPermission()} />} />
-        </Route>
-      </Route>
+            <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
+                <Route element={<HeaderFooterUs checkPermission={checkPermission()} state={info}/>}>
+                    <Route path='/user' element={<MainUser checkPermission={checkPermission()}  state={info} />} />
+                    <Route path='/user/list' element={< UserProList  checkPermission={checkPermission()} state={info}/>} />
+                    <Route path='/user/apply' element={< UserApply  checkPermission={checkPermission()} state={info}/>} />
+                    <Route path='/user/inQurylist' element={< UserInQurylist  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/inQurywrite' element={< UserInQuryWrite  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/inQuryDetail' element={< UserInQuryDetail  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/annoList' element={< UserAnnoList  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/annoDetail' element={<UserAnnoDetail  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/prodetail/:pro_id' element={<UserDetailPro  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/projectDetailList' element={<UserProjectDetailList  checkPermission={checkPermission()} state={info}/>} />
+                  <Route path='/user/projectDetailChart/:pro_id/:server_id' element={<ProjectDetailChart  checkPermission={checkPermission()} state={info}/>} /> 
+                    <Route path="/user/projectDetail" element={<UserProjectDetailModal  checkPermission={checkPermission()}/>} />
+                    <Route path="/user/projectDetail2" element={<UserProjectDetailModal2  checkPermission={checkPermission()}/>} />
+                </Route>
+                </Route>
 
 
       <Route element={<PrivateRouteAd checkPermission={checkPermission()} />} >
