@@ -4,16 +4,13 @@ import "../enMain/EnMain.css";
 import "../userMain/User.css";
 import axios from "axios";
 
-
-import base64 from 'base-64';
-
-import Loading from '../loding/Loding';
+import base64 from "base-64";
 
 function EnEngineerMyPage(props) {
   const [loading, setLoading] = useState(true);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-    const token=localStorage.getItem("token");
+  const token = localStorage.getItem("token");
   const customStyles = {
     content: {
       top: "55%",
@@ -26,25 +23,19 @@ function EnEngineerMyPage(props) {
       maxHeight: "85%", // Adjust the height as needed
       overflow: "auto", // Enable scrolling if content overflows
       borderRadius: "15px",
-      backgroundColor: "#f9f9fd"
+      backgroundColor: "#f9f9fd",
     },
   };
   const fileInputRef = useRef(null);
-const changMyImg=async(e)=>{
+  const changMyImg = async (e) => {
     // e.preventDefault();
     fileInputRef.current.click();
-   
-}
-useEffect(()=>{
+  };
+  useEffect(() => {}, []);
+  const [tempImage, setTempImage] = useState(null);
 
-
-
-
-},[])
-const [tempImage, setTempImage] = useState(null);
-
-const [profileImg,setProfileImg]=useState('');
-const handleFileChange = async(e) => {
+  const [profileImg, setProfileImg] = useState("");
+  const handleFileChange = async (e) => {
     // 선택된 파일을 처리합니다.
 
     const selectedImage = e.target.files[0];
@@ -85,11 +76,10 @@ const handleFileChange = async(e) => {
     //       e.target.value = '';
     //     }
     //   }
-    };
+  };
 
   return (
     <>
-            {/* {loading ? <Loading /> : null} */}
       <button onClick={() => setModalIsOpen(true)}>{props.engName}</button>
       <Modal
         /* className="modal-content"*/
@@ -105,10 +95,20 @@ const handleFileChange = async(e) => {
               <tr>
                 <th>
                   <div className="me-3 circle-image" onClick={changMyImg}>
-                  {tempImage && <img src={tempImage} alt="Temporary Preview" 
-                      className="rounded-circle profileImage"/>}
-                     <div class="cross-icon"></div>
-                     <input type="file" ref={fileInputRef} style={{ display: 'none' }}onChange={handleFileChange} />
+                    {tempImage && (
+                      <img
+                        src={tempImage}
+                        alt="Temporary Preview"
+                        className="rounded-circle profileImage"
+                      />
+                    )}
+                    <div class="cross-icon"></div>
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      style={{ display: "none" }}
+                      onChange={handleFileChange}
+                    />
                   </div>
                 </th>
                 <td>
@@ -133,22 +133,22 @@ const handleFileChange = async(e) => {
                   <input type="text" value={props.engEmail} readOnly />
                 </td>
               </tr>
-              
+
               <tr>
                 <th>휴대전화번호</th>
                 <td>
                   <input type="text" value={props.engPhone} readOnly />
                 </td>
               </tr>
-
             </table>
-            
+
             <div className="detail_modal_button">
               {/* <input
                 type="button"
                 value="수정"
                 className="detail_modal_button_print"
                /> */}
+
               <input
                 type="button"
                 value="목록보기"
