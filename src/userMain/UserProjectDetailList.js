@@ -1,36 +1,47 @@
-import { Link } from "react-router-dom";
+
 import "../enMain/EnMain.css";
 import "./User.css";
-import "../enMain/EnCss.css";
 import UserProjectDetailModal from "./UserProjectDetailModal";
-import FormControlIcon from "../img/FormControlIcon";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import ProjectDetailChart from "./ProjectDetailChart";
-import Search from "./Search";
-import Loading from '../loding/Loding';
+import SearchIcon from "../engineerLeader/SearchIcon";
+import Pagination from "react-js-pagination";
 
 
-function UserProjectDetailList() {
-  const [loading, setLoading] = useState(true);
+
+function UserProjectDetailList({state}) {
+  //const [loading, setLoading] = useState(true);
 
   const [ProjectDetailList, setProjectDetailList] = useState([]);
-  const [searchValue , setSearchValue] = useState("");
+  console.log(state.cus_id)
   const [activeRow, setActiveRow] =useState(null);
   const wrapperRef = useRef(null);
   const [selectedServer, setSelectedServer] = useState(null);
 
 
 
+  const [list, setList] = useState([]);
+  const [first,setFirst] = useState([]);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // 페이지당 아이템 수
+
 
 
   useEffect(() => {
-    axios.get("/api/client/projectDetailList") // Spring Boot API 엔드포인트
-      .then(response =>
-        setProjectDetailList(response.data))
-      .catch(error => console.log(error))
-      setLoading(false);
-  }, []);
+    axios.get(`/api/main/user/projectDetailList/${state.cus_id}`) 
+      .then((response) => {
+        console.log("??" + response.data);
+        setList(response.data);
+        setFirst(response.data);
+        setProjectDetailList(response.data);
+        
+      })
+     
+      .catch((error )=> {console.log(error)})
+      //setLoading(false);
+  }, [state.cus_id]);
 
  /* const toggleDropDown = (e) => {
     console.log(e.currentTarget.nextElementSibling.querySelector('.hide'))
@@ -76,10 +87,54 @@ function UserProjectDetailList() {
     };
     getProjectDetailList(); // Call the function to fetch data
   }, []); */
-  
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handleSearch = (e) => {
+    const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
+
+    const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명
+    console.log(first)
+    console.log(searchWord +' 오긴 오니 '+ filter)
+    // 데이터를 복사하여 필터링
+    const filteredList = first.filter((item) => {
+      if (filter === "서버이름") {
+        return item.server_name.includes(searchWord);
+      } else if (filter === "서버종류") {
+        return item.work_division.includes(searchWord);
+      } else if (filter === "작업상태") {
+        return item.work_status.includes(searchWord);
+      } else if (filter === "담당엔지니어") {
+        return item.eng_name.includes(searchWord);
+      }   else if (filter === "전체" && searchWord === "") {
+        return item;
+      } else if (filter === "전체") {
+        console.log("전체고 검색어 있어");
+        return (
+          item.server_name.includes(searchWord) ||
+          item.work_division.includes(searchWord) ||
+          item.server_name.includes(searchWord) ||
+          item.eng_name.includes(searchWord)
+        );
+      }
+      return true; // 다른 옵션 선택시 모든 항목을 포함
+    });
+
+    // 필터링된 데이터를 업데이트
+    setList(filteredList);
+    setCurrentPage(1); // 페이지를 첫 번째 페이지로 리셋
+  };
+
+  // 현재 페이지의 데이터 추출
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  var currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
   return (
     <>
-             {/* {loading ? <Loading /> : null} */}
+
+            {/* {loading ? <Loading /> : null} */}
+
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">
@@ -105,7 +160,38 @@ function UserProjectDetailList() {
 
                         </div>
                       </div>
-                  <Search setSearchValue={setSearchValue}/>
+            
+                      <form className="search-engineer search-englg">
+
+
+                    <div className="customize-input right select-proengl">
+
+                      <select style={{ display: 'inline-block' }} className="selectee">
+                        <option className="selecteeop">전체</option>
+                        <option className="selecteeop">서버이름</option>
+                        <option className="selecteeop">서버종류</option>
+                        <option className="selecteeop">작업상태</option>
+                        <option className="selecteeop">담당엔지니어</option>
+                      </select>
+                    </div>
+
+                    <div className="customize-input right" style={{ marginLeft: '10px' }}>
+
+                      <input
+                        className="form-control custom-shadow custom-radius border-0 bg-white select-word-engl"
+                        type="search"
+                        placeholder="Search"
+                        aria-label="Search"
+                      />
+                    </div>
+                    <div className="customize-input left search-click-engl"
+                     style={{ marginLeft: '10px', marginRight: '5px' }}
+                      onClick={handleSearch}>
+                      <SearchIcon color="#9cbba6" />
+                    </div>
+                    <div></div>
+                    </form>
+                  </div>
 
 
                   <div className="table-responsive">
@@ -126,38 +212,25 @@ function UserProjectDetailList() {
                         </thead>
 
                         <tbody>
-                        {ProjectDetailList
-                            .map((item, index) => ({ ...item, index }))
-                            .filter((value) => {
-                              if (searchValue === "") {
-                                return true;
-                              } else if (
-                                value.server_name.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                value.work_division.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                value.eng_name.toLowerCase().includes(searchValue.toLowerCase())
-                              ) {
-                                return true;
-                              }
-                              return false;
-                            })
-                            .map((filteredItem, index) => (
+                        {currentItems
+                            .map((list, index) => (
                             <>
                              <tr key={index} onClick={() => toggleDropDown(index)}>
                            
-                              <th scope="row">{index + 1}</th>
+                              <th scope="row">  {(currentPage - 1) * itemsPerPage + index + 1}</th>
                               <td>
-                                <UserProjectDetailModal projectData={filteredItem}/>
+                                <UserProjectDetailModal projectDetailList={list}/>
                               </td>
-                              <td>{filteredItem.work_division}</td>
-                              <td>{filteredItem.work_date}</td>
+                              <td>{list.work_division}</td>
+                              <td>{list.work_date}</td>
                               <td>
                                 <button type="button" className="button-danger" style={ 
-                                                                filteredItem.work_status === '완료'
+                                                                list.work_status === '완료'
                                                                 ? { backgroundColor: '#00c870' }
                                                                 :
                                                                  { backgroundColor: '#ff0030' } 
                                                                }>
-                                {filteredItem.work_status}
+                                {list.work_status}
                                 </button>
                               </td>
                               <td className="border-top-0 px-2 py-4">
@@ -173,7 +246,7 @@ function UserProjectDetailList() {
                                   </div>
                                   <div>
                                     <h5 className="text-dark mb-0 font-16 font-weight-medium">
-                                      {filteredItem.eng_name}
+                                      {list.eng_name}
                                     </h5>
                          
                                   </div>
@@ -183,7 +256,7 @@ function UserProjectDetailList() {
                             {selectedServer === index && (
                                 <tr>
                                   <td colSpan="9" className={`trans ${activeRow === index ? '' : 'hide'}`} >
-                                  <ProjectDetailChart serverId={filteredItem.server_id} projectData={filteredItem} />
+                                  <ProjectDetailChart pro_id={list.pro_id} server_id={list.server_id} />
                                   </td>
                                 </tr>
                               )}
@@ -196,39 +269,24 @@ function UserProjectDetailList() {
 
                     </div>
                   </div>
-                  <ul className="pagination float-end list">
-                    <li className="page-item disabled">
-                      <Link className="page-link" href="#" tabindex="-1">
-                        Prev
-                      </Link>
-                    </li>
-                    <li className="page-item active">
-                      <Link className="page-link" href="#">
-                        1
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link className="page-link" href="#">
-                        2 <span className="sr-only">(current)</span>
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link className="page-link" href="#">
-                        3
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link className="page-link" href="#">
-                        Next
-                      </Link>
-                    </li>
-                  </ul>
+
+                  <div className="pagedivengl pagination-engl">
+                    <Pagination
+                      activePage={currentPage}
+                      itemsCountPerPage={itemsPerPage}
+                      totalItemsCount={list.length}
+                      pageRangeDisplayed={5}
+                      prevPageText={"prev"}
+                      nextPageText={"next"}
+                      onChange={handlePageChange}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+
     </>
   );
 }

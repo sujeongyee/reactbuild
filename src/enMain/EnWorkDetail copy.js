@@ -1,21 +1,157 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from "react";
+import "../enMain/EnMain.css";
+import "../userMain/User.css";
+import "../enMain/EnCss.css";
+import axios from "axios";
+import FileUpload from "./EnWorkDetailUpload";
 
-function FileUpload() {
-  const fileInputRef = useRef(null);
+import { Link } from "react-router-dom";
 
-  const handleFileInputClick = () => {
-    fileInputRef.current.click();
+import Loading from '../loding/Loding';
+
+
+function EnWorkDetail(handleFileUpload) {
+
+  const [loading, setLoading] = useState(true);
+  //스프링으로부터 데이터 받아오기(엔지니어 아이디별 프로젝트)
+  useEffect(() => {
+    axios.get("/api/main/engineer/workDetail").then((response) => {
+      setProjectData(response.data);
+      console.log(response.data);
+      setLoading(false);
+    });
+  }, []);
+
+  //작업일자 현재 날짜 설정하는 함수
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, "0");
+    const day = today.getDate().toString().padStart(2, "0");
+
+    const formattedDate = `${year}-${month}-${day}`;
+    setCurrentDate(formattedDate);
+  }, []);
+
+  //프로젝트 선택시 해당 프로젝트에 속한 서버만 불러오기
+  const [projectData, setProjectData] = useState({
+    eSPIWlist: [],
+    serverList: [],
+  });
+  const [filteredServer, setFilteredServer] = useState([]);
+
+  const changeProjectSelect = (selectedProject) => {
+    const filteredServer = projectData.serverList.filter(
+      (server) => server.pro_id === selectedProject
+    );
+    setFilteredServer(filteredServer);
   };
 
-  const handleFileChange = (e) => {
-    const selectedFiles = Array.from(e.target.files);
-    // 이제 selectedFiles 배열에 선택한 파일들이 들어 있습니다.
+  // 작업상세내역서 공통부분 등록폼 전달
+  const [workDetail, setWorkDetail] = useState({
+    eng_enid: "",
+    pro_id: "",
+    server_id: "",
+    work_date: "",
+    work_division: "",
+    work_time: "",
+    work_note: "",
+    work_estimate: "",
+  });
+
+  //각 서버별 작업상세내역서 배열로 등록
+  const [cpuInputValues, setCpuInputValues] = useState([]);
+  const [ramInputValues, setRamInputValues] = useState([]);
+  const [hddInputValues, setHddInputValues] = useState([]);
+  const [statusInputValues, setStatusInputValues] = useState([]);
+  const [selectedCheckTypes, setSelectedCheckTypes] = useState({});
+
+  const handleInputChange = (e, index, field) => {
+    const newValue = e.target.value;
+
+    switch (field) {
+      case "cpu":
+        setCpuInputValues((prevInputValues) => {
+          const updatedInputValues = [...prevInputValues];
+          updatedInputValues[index] = newValue;
+          return updatedInputValues;
+        });
+        break;
+      case "ram":
+        setRamInputValues((prevInputValues) => {
+          const updatedInputValues = [...prevInputValues];
+          updatedInputValues[index] = newValue;
+          return updatedInputValues;
+        });
+        break;
+      case "hdd":
+        setHddInputValues((prevInputValues) => {
+          const updatedInputValues = [...prevInputValues];
+          updatedInputValues[index] = newValue;
+          return updatedInputValues;
+        });
+        break;
+      case "status":
+        setStatusInputValues((prevInputValues) => {
+          const updatedInputValues = [...prevInputValues];
+          updatedInputValues[index] = newValue;
+          return updatedInputValues;
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
+  //점검 radio 버튼 기능
+  const handleCheckTypeChange = (serverId, checkType) => {
+    setSelectedCheckTypes((prevSelectedCheckTypes) => ({
+      ...prevSelectedCheckTypes,
+      [serverId]: checkType,
+    }));
+  };
+
+  const logSubmit = async (e) => {
+    e.preventDefault();
+
+    //filter를 통해서 정기점검, 긴급점검만 배열로 만드는 거 추가했음
+    const workInfoVO = filteredServer
+      .filter(
+        (server, index) =>
+          cpuInputValues[index] !== "" &&
+          ramInputValues[index] !== "" &&
+          hddInputValues[index] !== "" &&
+          statusInputValues[index] !== "" &&
+          (selectedCheckTypes[server.server_id] === "정기점검" ||
+            selectedCheckTypes[server.server_id] === "긴급점검")
+      )
+      .map((server, index) => ({
+        eng_enid: server.eng_enid,
+        pro_id: server.pro_id,
+        server_id: server.server_id,
+        work_date: currentDate,
+        work_division: selectedCheckTypes[server.server_id] || "",
+        work_time: workDetail.work_time || "",
+        work_cpu: cpuInputValues[index] || "",
+        work_ram: ramInputValues[index] || "",
+        work_hdd: hddInputValues[index] || "",
+        work_status: statusInputValues[index] || "",
+        work_note: workDetail.work_note || "",
+        work_estimate: workDetail.work_estimate || null,
+      }));
+
+    const response = await axios
+      .post("/api/main/engineer/workDetail", workInfoVO)
+      .then((response) => {
+        console.log("완료", response.data);
+      });
   };
 
   return (
-
     <>
-             {/* {loading ? <Loading /> : null} */}
+             {loading ? <Loading /> : null}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">
@@ -352,8 +488,7 @@ function FileUpload() {
         </div>
       </div>
     </>
-
   );
 }
 
-export default FileUpload;
+export default EnWorkDetail;

@@ -9,7 +9,7 @@ import Loading from '../loding/Loding';
 function UserApply({state}) {
 
 
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
 
   console.log(state);
 
@@ -188,7 +188,7 @@ const handleApply = async (e) => {
         
         navigate('/user/list');
 
-        setLoading(false);
+        //setLoading(false);
   
       } else {
         // 요청이 실패한 경우
@@ -206,7 +206,9 @@ const handleApply = async (e) => {
   return (
 
     <>
+
            {/* {loading ? <Loading /> : null} */}
+
       <div className="page-wrapper" >
         <div className="page-breadcrumb">
           <div className="row">

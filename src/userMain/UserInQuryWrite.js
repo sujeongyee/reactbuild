@@ -25,6 +25,7 @@ function UserInQuryWrite({checkPermission}){
         const file=e.target.files[0];
 
         setFileUp(file)
+        console.log(fileUp);
     }
 
     const history = useNavigate ();
@@ -42,6 +43,7 @@ function UserInQuryWrite({checkPermission}){
                 let formData=new FormData();
                 formData.append("file_data",fileUp);
                 formData.append("userId",AdminId);
+                
 
                 await axios.post('/api/main/admin/noticeWrite', form)
                 const response = await axios.post('/api/main/cloudUpload', formData)
