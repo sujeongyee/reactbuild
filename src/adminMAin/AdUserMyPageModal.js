@@ -6,7 +6,7 @@ import axios from "axios";
 
 function AdUserMyPageModal(props) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [AdUserMyPage , setAdUserMyPage] = useState([]);
+  const [AdUserMyPage, setAdUserMyPage] = useState([]);
   const [file, setFile] = useState(null); // State to store the selected file
 
 
@@ -28,21 +28,21 @@ function AdUserMyPageModal(props) {
 
 
   useEffect(() => {
-    if(modalIsOpen){
-      console.log('여기'+props.cusCompantName)
-      axios.post('/api/main/client/AdUserMyPage',{serverId:props.serverId})
-      .then(response => {
-        setAdUserMyPage(response.AdUserMyPage);
-        console.log(response.data);
-        
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
+    if (modalIsOpen) {
+      console.log('여기' + props.cusCompantName)
+      axios.post('/api/main/client/AdUserMyPage', { serverId: props.serverId })
+        .then(response => {
+          setAdUserMyPage(response.AdUserMyPage);
+          console.log(response.data);
+
+        })
+        .catch((error) => {
+          console.log(error)
+        })
 
     }
-  },[modalIsOpen]);    
-    
+  }, [modalIsOpen]);
+
   const openModal = () => {
     setModalIsOpen(true);
   }
@@ -54,50 +54,50 @@ function AdUserMyPageModal(props) {
   //     .catch(error => console.log(error));
   // }, []);
 
-  const fileUpload = (file) => {
-    const url = 'http://localhost:8888/api/client/imgupload';
-    const formData = new FormData();
-    formData.append('file', file);
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data'
+  // const fileUpload = (file) => {
+  //   const url = 'http://localhost:8888/api/client/imgupload';
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+  //   const config = {
+  //     headers: {
+  //       'content-type': 'multipart/form-data'
+  //     }
+  //   }
+  //   return axios.post(url, formData, config);
+  // }
+
+  // const handleUpload = (e) => {
+  //   e.preventDefault();
+  //   if (File) {
+  //     fileUpload(file).then((response) => {
+  //       console.log(response.data);
+  //     });
+  //   }
+  // }
+
+  // const handleFileChange = (e) => {
+  //   const selectedFile = e.target.files[0];
+  //   setFile(selectedFile); // Update the file state
+  // };
+
+  /* export async function getMyPage() {
+    const response = await fetch(
+      "http://ec2-3-35-91-109.ap-northeast-2.compute.amazonaws.com:8888/api/client/UserMyPage",
+      {
+        method: "GET",
+        headers: {
+          "content-type": "application/json",
+          Authorization: token,
+        },
       }
+    );
+  
+    if (!response.ok) {
+      throw new Error("마이페이지 정보를 불러오는데 실패했습니다");
     }
-    return axios.post(url, formData, config);
-  }
-
-  const handleUpload = (e) => {
-    e.preventDefault();
-    if (File) {
-      fileUpload(file).then((response) => {
-        console.log(response.data);
-      });
-    }
-  }
-
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    setFile(selectedFile); // Update the file state
-  };
-
-/* export async function getMyPage() {
-  const response = await fetch(
-    "http://ec2-3-35-91-109.ap-northeast-2.compute.amazonaws.com:8888/api/client/UserMyPage",
-    {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        Authorization: token,
-      },
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error("마이페이지 정보를 불러오는데 실패했습니다");
-  }
-  const body = await response.json();
-  return body;
-} */
+    const body = await response.json();
+    return body;
+  } */
 
   return (
     <>
@@ -110,10 +110,10 @@ function AdUserMyPageModal(props) {
         style={customStyles}
       >
         <div className="detail_modal_container">
-          <h2>마이페이지</h2>
+          <h2>상세정보</h2>
           <div className="detail_modal_container_inner">
-            <table className="detail_modal_table" style={{margin: 'auto'}}>
-            <tr>
+            <table className="detail_modal_table" style={{ margin: 'auto' }}>
+              {/* <tr>
                 <th>
                   <div className="me-3">
                     <img
@@ -124,80 +124,80 @@ function AdUserMyPageModal(props) {
                       height="150"
                     />
                   </div>
-                  <form onSubmit={handleUpload}>
+                   <form onSubmit={handleUpload}>
                     <h1>File Upload</h1>
                     <input type="file" onChange={handleFileChange} name="file" />
                     <button type="submit">Upload</button>
-                  </form>
+                  </form> 
                 </th>
                 <td>
                   <input type="text" value="백스이" readOnly />
                 </td>
-              </tr>
+              </tr> */}
               <tr>
                 <th>회사명</th>
                 <td>
-                  <input type="text" value={props.cus_company_name} readOnly />
+                  <input type="text" value={props.cusCompantName} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>대표명</th>
                 <td>
-                  <input type="text" value="유현주" readOnly />
+                  <input type="text" value={props.cusBoss} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>사업자등록번호</th>
                 <td>
-                  <input type="text" value="211-12-12345" readOnly />
+                  <input type="text" value={props.cusBusinessId} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>회사 연락처</th>
                 <td>
-                  <input type="text" value="02-123-4567" readOnly />
+                  <input type="text" value={props.cusCompany_ph} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>회사 주소</th>
                 <td>
-                  <input type="text" value="서울시 강남구 역삼동 " readOnly />
+                  <input type="text" value={props.cusAdd1 + props.cusAdd2} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>담당자 이름</th>
                 <td>
-                  <input type="text" value="이땡땡" readOnly />
+                  <input type="text" value={props.cusManagetName} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>담당자 이메일</th>
                 <td>
-                  <input type="text" value="jooosoft123@naver.com" readOnly />
+                  <input type="text" value={props.cusEmail} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>담당자 연락처</th>
                 <td>
-                  <input type="text" value="010-1234-5678" readOnly />
-                </td>
-              </tr>
-              <tr>
-                <th>계약 시작일</th>
-                <td>
-                  <input type="text" value="2023.05.08" readOnly />
-                </td>
-              </tr>
-              <tr>
-                <th>계약 만료일</th>
-                <td>
-                  <input type="text" value="2023.05.08" readOnly />
+                  <input type="text" value={props.cusPhoneNumber} readOnly />
                 </td>
               </tr>
               <tr>
                 <th>계약상태</th>
                 <td>
-                  <input type="text" value="계약중" readOnly />
+                  <input type="text" value={props.proStatus} readOnly />
+                </td>
+              </tr>
+              <tr>
+                <th>계약 시작일</th>
+                <td>
+                  <input type="text" value={props.proStartdate} readOnly />
+                </td>
+              </tr>
+              <tr>
+                <th>계약 만료일</th>
+                <td>
+                  <input type="text" value={props.proEnddate} readOnly />
                 </td>
               </tr>
             </table>

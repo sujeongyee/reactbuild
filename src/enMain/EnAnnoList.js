@@ -11,40 +11,41 @@ function EnAnnoList({ checkPermission }) {
     const [loading, setLoading] = useState(true);
 
     const [searchValue, setSearchValue] = useState([])
-    const [select,setSelect]=useState("notice_title")
+    const [select, setSelect] = useState("notice_title")
     const [total, setTotal] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [pageInfo, setPageInfo] = useState([])
     const postsPerPage = 10;
-    const startIndex=(currentPage-1)*postsPerPage;
-    const endIndex= startIndex + postsPerPage;
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
     const currentPosts = searchValue.slice(startIndex, endIndex);
-    
+
     const list = async () => {//현재 목록 불러오기
 
-        if(searchValue.length==0){
+        if (searchValue.length == 0) {
 
             const response = await axios.get(`/api/main/AnnoList?currentPage=${currentPage}&postsPerPage=${postsPerPage}&role=${checkPermission.role}`)
-          
-           
+
+
             setPageInfo(response.data)
             console.log(pageInfo)
-            setLoading(false);
-        }else{//검색결과가 1이상이라면?
-            const result=currentPosts.filter(data=>data.notice_target==checkPermission.role||data.notice_target=="ALL")
-            console.log(result)
-            setPageInfo(result)
+            setLoading(false);  
+        } else {//검색결과가 1이상이라면?
+         
+            const filteredList = searchValue.filter((item) => item.notice_target === "ROLE_ENGINEER"||item.notice_target=="ALL" );
+            console.log(filteredList)
+            setTotal(filteredList.length)
+           
+            setPageInfo(filteredList.slice(startIndex, endIndex))
         }
     }
     const totalListNum = async () => {//토탈 목록 불러오기
-
-     
-
-        const response = await axios.get("/api/main/admin/AnnoTotal")
-        // const result=response.data.filter(data=>data.notice_target==checkPermission.role||data.notice_target=="ALL")
-        setTotal(response.data);
-        setLoading(false);
+       
+            const response = await axios.get(`/api/main/admin/AnnoTotal?role=${checkPermission.role}`)
+            setTotal(response.data);
+            setLoading(false);
       
+
     }
     useEffect(() => {
         list()
@@ -58,12 +59,13 @@ function EnAnnoList({ checkPermission }) {
         list()
 
     }, [currentPage]);
-    useEffect(()=>{
+
+
+    useEffect(() => {
         setCurrentPage(1)
         handlePageChange(1)
         list()
-       console.log(searchValue)
-    },[searchValue])
+    }, [searchValue])
 
 
     const handlePageChange = (pageNumber) => {
@@ -81,18 +83,18 @@ function EnAnnoList({ checkPermission }) {
         const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
         return formattedDateTime;
     }
-   
-    const selectSearch=(e)=>{
-        
+
+    const selectSearch = (e) => {
+
         setSelect(e.target.value)
     }
-  
 
-    
+
+
     return (
 
         <>
-            {loading ? <Loading /> : null}
+            {/* {loading ? <Loading /> : null} */}
             <div className="page-wrapper">
 
                 <div className="page-breadcrumb">
@@ -114,16 +116,16 @@ function EnAnnoList({ checkPermission }) {
 
                             <div className="card">
 
-                                <div className="card-body"style={{height:"600px"}}>
-                                    <div className="table-responsive"style={{height:"450px"}}>
-                                        <Search setSearchValue={setSearchValue} setTotal={setTotal} select={select} style={{ color: "rgb(42, 198, 97)" }} categori={"notice"} />
+                                <div className="card-body" style={{ height: "650px" }}>
+                                    <div className="table-responsive" style={{ height: "500px" }}>
+                                        <Search  order={"notice_regdate"} setSearchValue={setSearchValue} setTotal={setTotal} select={select} style={{ color: "rgb(42, 198, 97)" }} categori={"notice"}/>
                                         <select onChange={selectSearch}>
-                                            
+
                                             <option value="notice_title">제목</option>
                                             <option value="notice_writer">작성자</option>
 
                                         </select>
-                                      
+
                                         <table className="table">
                                             <thead>
                                                 <tr>
@@ -139,14 +141,14 @@ function EnAnnoList({ checkPermission }) {
                                             <tbody>
 
 
-                                                {pageInfo && pageInfo.slice(0, -1).map((item, index) => (
+                                                {pageInfo && pageInfo.map((item, index) => (
                                                     <tr key={index}>
-                                                        <th scope="row">{index + 1}</th>
-                                                        <td><Link to={`/admin/annoDetail`} state={{ item }} style={{padding:"0"}}>{item.notice_title}</Link></td>
-                                                        <td>{item.notice_writer ? item.notice_writer  : "admin"}</td>
-                                                        <td>{item.notice_regdate ? formatDateTime(item.notice_regdate) : ""}</td>
-                                                        <td>{item.notice_target=="ROLE_ENGINEER"?"엔지니어":null}
-                                                        {item.notice_target=="ALL"?"전체 공개":null}
+                                                        <th scope="row" style={{width:"10%"}} >{((currentPage - 1) * postsPerPage)+index + 1}</th>
+                                                        <td><Link to={`/engineer/annoDetail`} state={{ item }} style={{ padding: "0",width:"40%" }}>{item.notice_title}</Link></td>
+                                                        <td style={{width:"15%"}}>{item.notice_writer ? item.notice_writer : "admin"}</td>
+                                                        <td style={{width:"20%"}}>{item.notice_regdate ? formatDateTime(item.notice_regdate) : ""}</td>
+                                                        <td style={{width:"10%"}}>{item.notice_target == "ROLE_ENGINEER" ? "엔지니어" : null}
+                                                            {item.notice_target == "ALL" ? "전체 공개" : null}
                                                         </td>
                                                     </tr>
                                                 ))}
@@ -154,13 +156,13 @@ function EnAnnoList({ checkPermission }) {
                                             </tbody>
                                         </table>
                                     </div>
-                                    {total != '' ? <PageNation 
-                                    
+                                    {total != '' ? <PageNation
+
                                         currentPage={currentPage}
                                         totalPosts={total} // 전체 게시글 수를 전달
                                         onPageChange={handlePageChange}
                                         postsPerPage={postsPerPage}
-                                        
+
                                         style={{
                                             color: "rgb(42, 198, 97)",
                                             backgroundColor: '#ffdcdb',

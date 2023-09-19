@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "react-js-pagination";
 import Loading from '../loding/Loding';
+import './EngLeader.css';
 
-function EnglProjectList() {
+function EnglProjectList(props) {
 
   const [loading, setLoading] = useState(true);
 
@@ -17,20 +18,23 @@ function EnglProjectList() {
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10; // 페이지당 아이템 수
+  
 
-  const leader_id = "eng_1";
-
+  
   useEffect(() => {
-
-    axios.get(`/api/main/engleader/getAllPro/${leader_id}`)
+    if (props.userId !== null) {
+    axios.get('/api/main/engleader/getAllPro',{
+      params : {userId:props.userId}
+    })
       .then(response => {
-        console.log(response.data)
-        setList(response.data);
-        setFirst(response.data);
+        const data = response.data;
+        setList(data);
+        setFirst(data);
 
         setLoading(false);
       })
-  }, [])
+    }
+  }, [props.userId])
 
 
   const handlePageChange = (page) => {
@@ -70,9 +74,13 @@ function EnglProjectList() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   var currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
 
+  const customStyle = {
+    color:'#4e645a',
+  }
+
   return (
     <>
-             {loading ? <Loading /> : null}
+      
       <div className="page-wrapper prolist-engl">
         <div
           className="container-fluid englpro-all"
@@ -176,6 +184,7 @@ function EnglProjectList() {
                       prevPageText={"prev"}
                       nextPageText={"next"}
                       onChange={handlePageChange}
+                      style={customStyle}
                     />
                   </div>
                 </div>

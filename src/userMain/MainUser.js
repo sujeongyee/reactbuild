@@ -28,6 +28,7 @@ function MainUser({state}) {
 
     const[mainProjectList , setMainProjectList] = useState([]);
     
+
     console.log(state);
     //const [ivedinspectionList,setIvedinspectionList] = useState([]);
     const [vo, setVo] = useState([]);
@@ -72,6 +73,7 @@ function MainUser({state}) {
     }
 
     console.log(mainProjectList)
+
   return (
     <>
 

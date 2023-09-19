@@ -422,12 +422,12 @@ border-bottom: 0.1px solid #e1edff;
   
   .bell-content {
     /* 모달 내부 컨텐츠 스타일링 */
-
-   
+    height: auto;
+    max-height: 360px;
+    overflow: auto; 
     border-radius: 8px;
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
     width: auto;
-    height: auto;
     margin-top: 82px; /* 상단 여백 추가 */
     margin-right: 50px; /* 오른쪽 여백 추가 */
     animation: fadeInUpTop .4s;
@@ -467,14 +467,15 @@ border-bottom: 0.1px solid #e1edff;
 .bell-link{
     display: flex;
     height: auto;
-    border-bottom: 0.1px solid #e1edff;
+    border-bottom: 0.1px solid #e3ebe2;
     padding: 8px;
     text-decoration: none;
 }
-.bell-link:hover{
-    background-color: #f1edf1;
+.bell-link:hover,.bell-link:focus{
+    background-color: #edf1ed;
     /* opacity: 0.7; */
     text-decoration: none;
+    color: rgb(43, 42, 42);
 }
 .bell-more{
     display: flex;
@@ -528,4 +529,36 @@ border-bottom: 0.1px solid #e1edff;
     margin-top: 4px;
     font-size: 12px;
 
+}
+
+.all-alarm {
+  margin: 0 auto;
+  padding:10px 0 10px 0;
+}
+
+.all-alarm:hover , .all-alarm:focus {
+ 
+  color: #889b85;
+}
+
+.checkalarmbtn:hover { 
+  cursor: pointer;
+}
+
+.eng-servernow {
+  height: 600px;
+}
+
+.eng-serversel {
+  width: auto;
+  height: 28px;
+  padding: 5px;
+  border: 2px solid #708f81;
+  border-radius: 0.5em;
+  outline: none;
+  color: rgb(88, 88, 88);
+}
+
+.eng-serversel:focus {
+  outline: none;
 }

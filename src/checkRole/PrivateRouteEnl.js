@@ -7,7 +7,7 @@ function PrivateRouteEnl({checkPermission}) {
     
 
 
-    return checkPermission.role=="ROLE_ENGLEADER" ? 
+    return checkPermission&&checkPermission.role=="ROLE_ENGLEADER" ? 
         
       <Outlet/>
      

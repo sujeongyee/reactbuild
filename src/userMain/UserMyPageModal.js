@@ -3,16 +3,13 @@ import Modal from "react-modal";
 // import "../enMain/EnMain.css";
 import "../userMain/User.css";
 import axios from "axios";
-import Loading from '../loding/Loding';
 
 function UserMyPageModal() {
   const [loading, setLoading] = useState(true);
 
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [UserMyPage , setUserMyPage] = useState([]);
+  const [UserMyPage, setUserMyPage] = useState([]);
   const [file, setFile] = useState(null); // State to store the selected file
-
 
   const customStyles = {
     content: {
@@ -30,26 +27,26 @@ function UserMyPageModal() {
     },
   };
 
-
   useEffect(() => {
-    axios.get("/api/client/UserMyPage")
-      .then(response => setUserMyPage(response.data))
-      .catch(error => console.log(error));
+    axios
+      .get("/api/client/UserMyPage")
+      .then((response) => setUserMyPage(response.data))
+      .catch((error) => console.log(error));
 
-      setLoading(false);
+    setLoading(false);
   }, []);
 
   const fileUpload = (file) => {
-    const url = 'http://localhost:8888/api/client/imgupload';
+    const url = "http://localhost:8888/api/client/imgupload";
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
     const config = {
       headers: {
-        'content-type': 'multipart/form-data'
-      }
-    }
+        "content-type": "multipart/form-data",
+      },
+    };
     return axios.post(url, formData, config);
-  }
+  };
 
   const handleUpload = (e) => {
     e.preventDefault();
@@ -58,14 +55,14 @@ function UserMyPageModal() {
         console.log(response.data);
       });
     }
-  }
+  };
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile); // Update the file state
   };
 
-/* export async function getMyPage() {
+  /* export async function getMyPage() {
   const response = await fetch(
     "http://ec2-3-35-91-109.ap-northeast-2.compute.amazonaws.com:8888/api/client/UserMyPage",
     {
@@ -86,7 +83,6 @@ function UserMyPageModal() {
 
   return (
     <>
-             {loading ? <Loading /> : null}
       <button onClick={() => setModalIsOpen(true)}>회원정보수정</button>
       <Modal
         /* className="modal-content"
@@ -98,8 +94,8 @@ function UserMyPageModal() {
         <div className="detail_modal_container">
           <h2>마이페이지</h2>
           <div className="detail_modal_container_inner">
-            <table className="detail_modal_table" style={{margin: 'auto'}}>
-            <tr>
+            <table className="detail_modal_table" style={{ margin: "auto" }}>
+              <tr>
                 <th>
                   <div className="me-3">
                     <img
@@ -112,7 +108,11 @@ function UserMyPageModal() {
                   </div>
                   <form onSubmit={handleUpload}>
                     <h1>File Upload</h1>
-                    <input type="file" onChange={handleFileChange} name="file" />
+                    <input
+                      type="file"
+                      onChange={handleFileChange}
+                      name="file"
+                    />
                     <button type="submit">Upload</button>
                   </form>
                 </th>

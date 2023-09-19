@@ -6,16 +6,12 @@ import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import EnglTeamassign from "../engineerLeader/EnglTeamassign";
 
-import Loading from '../loding/Loding';
-
 function EnL_newProjectDetail() {
   //쿼리파라미터 값
 
   const { pro_id } = useParams();
 
   const [loading, setLoading] = useState(true);
-
-
 
   const location = useLocation();
   const [list, setList] = useState([]);
@@ -33,13 +29,12 @@ function EnL_newProjectDetail() {
         setList(response.data.list);
       })
       .catch((err) => {
-        console.log("친구야 어디갔니" + err);
+        console.log("에러" + err);
       });
   }, []);
 
   return (
     <>
-             {loading ? <Loading /> : null}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">

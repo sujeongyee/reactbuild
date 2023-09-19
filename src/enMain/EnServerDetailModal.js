@@ -19,8 +19,6 @@ function EnServerDetailModal(props, areaID) {
 
 
 
-
-
   useEffect(()=>{
     if(modalIsOpen){
       console.log('여기'+props.serverName)
@@ -106,7 +104,7 @@ function EnServerDetailModal(props, areaID) {
         style={customStyles}
       >
 
-                  {loading ? <Loading /> : null}
+                  {/* {loading ? <Loading /> : null} */}
         <div className="detail_modal_container" ref={printableAreaRef}  id={areaID} >
 
           <h2>서버 상세보기</h2>
@@ -172,20 +170,24 @@ function EnServerDetailModal(props, areaID) {
                   <th>RAM사용량</th>
                   <th>HDD사용량</th>
                   <th>상태</th>
+                  <th>견적서</th>
                 </tr>
               </thead>
               <thead>
                 {data.list &&
                   data.list.map((workInfo2, index) => (
+                    // let formattedDate = new Date(workInfo2.work_date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+                    
                     <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{workInfo2.work_division}</td>
-                      <td>{workInfo2.work_date}</td>
+                      <td>{props.workDate}</td>
                       <td>{props.engName}</td>
                       <td>{workInfo2.work_cpu}</td>
                       <td>{workInfo2.work_ram}</td>
                       <td>{workInfo2.work_hdd}</td>
                       <td>{workInfo2.work_status}</td>
+                      <td>?</td>
                     </tr>
                   ))}
               </thead>

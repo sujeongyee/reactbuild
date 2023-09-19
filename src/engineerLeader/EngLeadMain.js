@@ -4,9 +4,7 @@ import FolderPlusIcon from "../img/FolderPlusIcon";
 import FolderIcon from "../img/FolderIcon";
 import UsersIcon from "../img/UserIcon";
 
-
-
-import ChartComponent1 from "../userMain/ChartComponent1"
+import ChartComponent1 from "../userMain/ChartComponent1";
 
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
@@ -23,12 +21,12 @@ function EngLeadMain(props) {
 
 
   const [vo, setVo] = useState([]);
-  //const [ivedinspectionList,setIvedinspectionList] = useState([]);
   const [list, setList] = useState([]);
   const [periodic, setPeriodic] = useState([]);
   const [disability, setDisability] = useState([]);
   const [maintenance, setMaintenance] = useState([]);
-  const [id, setId] = useState("");
+  const [userId, setUserId] = useState(props.userId);
+  console.log(props.userId)
   useEffect(() => {
 
     const leaderId = 'eng_1';
@@ -83,6 +81,53 @@ function EngLeadMain(props) {
     ],
   };
 
+  const [modalStates, setModalStates] = useState([]);
+  const [alarmModals, setAlarmModals] = useState([]);
+  useEffect(()=>{
+    axios.get('/api/main/alarm/getAlarmList',{
+      params:{user_id:props.userId}
+    })
+    .then(response =>{
+      const d = response.data
+      setAlarmModals(d);
+      setModalStates(d.map(() => true));
+    })
+  },[props.userId])
+
+  const openModal = (index) => {
+    // 해당 인덱스의 모달 상태를 열린 상태(true)로 설정
+    const updatedModalStates = [...modalStates];
+    updatedModalStates[index] = true;
+    setModalStates(updatedModalStates);
+  };
+  
+  const closeModal = (index) => {
+    // 해당 인덱스의 모달 상태를 닫힌 상태(false)로 설정
+    const updatedModalStates = [...modalStates];
+    updatedModalStates[index] = false;
+    setModalStates(updatedModalStates);
+  };
+
+  const customModalStyles = {
+    content: {
+      left: '94.5%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      borderRadius:'0.5em',
+      fontSize:'11px',
+      color:'black',
+      border:'2px solid #dfaaaa',
+      backgroundColor:'white',
+      width:'180px',
+      marginTop:'45px',
+      padding:'10px'
+      // 추가적인 스타일을 여기에 추가할 수 있습니다.
+    },
+  };
+
+
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   return (
@@ -93,16 +138,21 @@ function EngLeadMain(props) {
 
         <div className="container-fluid">
           <div className="row l-main-pa">
-            <div className="col-sm-6 col-lg-3 engl-card">
+            <div className="engl-card">
               <div className="card border-end cardpd ">
                 <div className="card-body ">
                   <div className="d-flex align-items-center">
                     <div>
                       <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color-engl">
-
-                          <Link className="movetoengl" to={'/engineerleader/engineerList'}> {vo.teamCount}명</Link></h2>
-
+                          <Link
+                            className="movetoengl"
+                            to={"/engineerleader/engineerList"}
+                          >
+                            {" "}
+                            {vo.teamCount}명
+                          </Link>
+                        </h2>
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -119,16 +169,20 @@ function EngLeadMain(props) {
               </div>
             </div>
 
-            <div className="col-sm-6 col-lg-3 engl-card">
+            <div className=" engl-card">
               <div className="card border-end cardpd">
                 <div className="card-body">
                   <div className="d-flex ">
                     <div>
                       <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color-engl">
-
-                          <Link className="movetoengl" to={'/engineerleader/projectList'}>{vo.projectCount}개</Link></h2>
-
+                          <Link
+                            className="movetoengl"
+                            to={"/engineerleader/projectList"}
+                          >
+                            {vo.projectCount}개
+                          </Link>
+                        </h2>
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -144,7 +198,7 @@ function EngLeadMain(props) {
                 </div>
               </div>
             </div>
-            <div className="col-sm-6 col-lg-3 engl-card">
+            <div className="engl-card">
               <div className="card border-end cardpd">
                 <div className="card-body">
                   <div className="d-flex ">
@@ -171,7 +225,7 @@ function EngLeadMain(props) {
           </div>
 
           <div className="row row-here">
-            <div className="listsize reqsize" style={{ margin: "0 10px" }}>
+            <div className=" reqsize" style={{ margin: "0 10px" }}>
               <div
                 className="col-lg-3 engl-main-car"
                 style={{
@@ -268,6 +322,8 @@ function EngLeadMain(props) {
 
                               </td>
 
+                              <td className="">{data.pro_startdate}</td>
+
                               <td className="">{data.pro_startDate}</td>
                             </tr>
                           ))}
@@ -330,6 +386,7 @@ function EngLeadMain(props) {
           </div>
         </div>
       </div>
+      
     </>
   );
 }
