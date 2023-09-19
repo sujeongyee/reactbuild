@@ -9,14 +9,20 @@ import UserMyPageModal from "../userMain/UserMyPageModal";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AdUserMyPageModal from "./AdUserMyPageModal";
+import Pagination from "react-js-pagination";
+import SearchIcon from "../engineerLeader/SearchIcon";
 
 function AdUserList() {
 
+  const [first, setFirst] = useState([]);
   const [list, setList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 정보 저장
+  const itemsPerPage = 10; // 페이지당 아이템 수
 
   useEffect(() => {
     axios.get('/api/main/admin/customerList').then((res) => {
       setList(res.data);
+      setFirst(res.data);
       console.log(res.data);
     })
       .catch((error) => {
@@ -24,6 +30,47 @@ function AdUserList() {
       });
   }, []);
   console.log(list);
+
+
+  const handlePageChange = (page) => { // 페이지 핸들링
+    setCurrentPage(page);
+  };
+
+  const handleSearch = (e) => { //search 버튼을 눌렀을때의 이벤트
+
+    const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
+
+    const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명(옵션값)
+
+    // 데이터를 복사하여 필터링
+    const filteredList = first.filter((item) => { //검색시작
+      if (filter === "회사명") {
+        return item.cus_company_name.includes(searchWord);
+      } else if (filter === "담당자") {
+        return item.cus_managet_name.includes(searchWord);
+      } else if (filter === "계약상태") {
+        return item.pro_status.includes(searchWord);
+      } else if (filter === "전체" && searchWord === "") {
+        return item;
+      } else if (filter === "전체") {
+        return (
+          item.cus_company_name.includes(searchWord)
+          || item.cus_managet_name.includes(searchWord)
+          || item.pro_status.includes(searchWord)
+        );
+      }
+      return true;
+    });
+
+    // 필터링된 데이터를 업데이트
+    setList(filteredList);
+    setCurrentPage(1); // 페이지를 첫 번째 페이지로 리셋
+  }; // 검색끝
+
+  const indexOfLastItem = currentPage * itemsPerPage; //마지막 페이지 계산
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  var currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
+
 
 
   return (
@@ -49,32 +96,42 @@ function AdUserList() {
                     <div className="col-5 align-self-center">
                       <div className="customize-input float-end">
                         <Link className="nav-link" href="javascript:void(0)">
-                          <form className="search-engineer">
-                            <div >
-                              <div className="customize-input right">
-                                <input
-                                  className="form-control custom-shadow custom-radius border-0 bg-white"
-                                  type="search"
-                                  placeholder="검색하기"
-                                  aria-label="Search"
-                                />
-                              </div>
-                              <div className="customize-input left">
-                                <FormControlIcon />
-                              </div>
-                            </div>
-                          </form>
+                        <form className="search-engineer search-englg"   style={{position:'absolute', top:'0px', right: '100px', margin: '0 5px'}}>
+                        <div className="customize-input right select-proengl">
+
+                          <select style={{ display: 'inline-block', borderColor: '#ed7272'}} className="selectee">
+                            <option className="selecteeop">전체</option>
+                            <option className="selecteeop">회사명</option>
+                            <option className="selecteeop">담당자</option>
+                            <option className="selecteeop">계약상태</option>
+                          </select>
+                        </div>
+
+                        <div className="customize-input right" style={{ marginLeft: '10px' }}>
+
+                          <input
+                            className="form-control custom-shadow custom-radius border-0 bg-white select-word-engl"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                            style={{borderColor: '#ed7272'}}
+                          />
+                        </div>
+                        <div className="customize-input left search-click-eng" style={{ marginLeft: '10px', marginRight: '5px' }} onClick={handleSearch}>
+                          <SearchIcon color="#ed7272" />
+                        </div>
+                        </form>
                         </Link>
                       </div>
                     </div>
                   </label>
-                  <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '65px', marginBottom: '10px' }}>
+                  {/* <div style={{ display: 'flex', justifyContent: 'flex-end', marginRight: '65px', marginBottom: '10px' }}>
                     <select style={{ padding: '3px', borderRadius: '5px', color:'#777'}}>
                       <option>계약신청</option>
                       <option>계약중</option>
                       <option>계약만료</option>
                     </select>
-                  </div>
+                  </div> */}
                   <div className="table-responsive">
                     <div className="project-table">
                       <table className="adUserTable" style={{width: '1170px'}}>
@@ -89,14 +146,27 @@ function AdUserList() {
                           </tr>
                         </thead>
                         <tbody>
-                          {list.map((customer, index) => (
+                          {currentItems.map((customer, index) => (
                           <tr>
-                            <th scope="row">{index+1}</th>
+                            <th scope="row">{(currentPage - 1) * itemsPerPage + index + 1}</th>
                             <td>
                               <div className="d-flex no-block">
                                 <div className="me-3" style={{ width: '80%' }}>
                                   <AdUserMyPageModal 
-                                  cusCompantName={customer.cus_company_name}/>
+                                  cusCompantName={customer.cus_company_name}
+                                  cusBoss = {customer.cus_boss}
+                                  cusBusinessId = {customer.cus_business_id}
+                                  cusCompany_ph = {customer.cus_company_ph}
+                                  cusAdd1 = {customer.cus_address1}
+                                  cusAdd2 = {customer.cus_address2}
+                                  cusManagetName = {customer.cus_managet_name}
+                                  cusEmail = {customer.cus_email}
+                                  cusPhoneNumber = {customer.cus_phone_number}
+                                  proStartdate = {customer.pro_startdate}
+                                  proEnddate = {customer.pro_enddate}
+                                  proStatus = {customer.pro_status}
+                                  
+                                  />
                                   </div>
                               </div>
                             </td>
@@ -105,7 +175,7 @@ function AdUserList() {
                             <td>{customer.cus_email}</td>
                             <td>
                               <button type="button" class="button-success">
-                                contract
+                              {customer.pro_status}
                               </button>
                             </td>
                           </tr>
@@ -114,36 +184,17 @@ function AdUserList() {
                       </table>
                     </div>
                   </div>
-                  <div style={{ textAlign: 'center' }}>
-                    <ul className="pagination list">
-                      <li className="page-item disabled">
-                        <Link className="page-link" href="#" tabindex="-1">
-                          Prev
-                        </Link>
-
-                      </li>
-                      <li className="page-item active">
-                        <Link className="page-link" href="#">
-                          1
-                        </Link>
-                      </li>
-                      <li className="page-item">
-                        <Link className="page-link" href="#">
-                          2 <span className="sr-only">(current)</span>
-                        </Link>
-                      </li>
-                      <li className="page-item">
-                        <Link className="page-link" href="#">
-                          3
-                        </Link>
-                      </li>
-                      <li className="page-item">
-                        <Link className="page-link" href="#">
-                          Next
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
+                  <div className="pagedivengl pagination-admin">
+                  <Pagination
+                    activePage={currentPage}
+                    itemsCountPerPage={itemsPerPage}
+                    totalItemsCount={list.length}
+                    pageRangeDisplayed={5}
+                    prevPageText={"prev"}
+                    nextPageText={"next"}
+                    onChange={handlePageChange}
+                  />
+                </div>
                 </div>
               </div>
             </div>

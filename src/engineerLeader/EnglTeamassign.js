@@ -117,7 +117,7 @@ function EnglTeamassign(props) {
   return (
     <>
 
-             {loading ? <Loading /> : null}
+             {/* {loading ? <Loading /> : null} */}
       {props.check === true ? <button type="button" className="assingment-btn ok-bbtn">팀원배정완료</button> : <button type="button" className="assingment-btn" onClick={()=>setModalIsOpen(true)}>팀원배정</button>}
 
       <input type="hidden" className={server_id}></input>

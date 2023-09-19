@@ -45,7 +45,7 @@ function Timer() {
 
   return (
     <div>
-               {loading ? <Loading /> : null}
+               {/* {loading ? <Loading /> : null} */}
       <p>경과 시간: {seconds} 초</p>
       <button onClick={startTimer}>시작</button>
       <button onClick={stopTimer}>기록</button>

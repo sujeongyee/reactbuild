@@ -47,7 +47,7 @@ function EnglProjectDetail() {
     <>
 
 
-{loading ? <Loading /> : null}  
+{/* {loading ? <Loading /> : null}   */}
       <div className="page-wrapper engl-all-proli" >
 
         <div className="page-breadcrumb">
