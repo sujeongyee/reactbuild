@@ -241,6 +241,7 @@ function App() {
         </Route>
       </Route>
 
+
       <Route element={<PrivateRouteAd checkPermission={checkPermission()} />} >
         <Route element={<HeaderFooterAd checkPermission={checkPermission()} />}>{/* 관리자 페이지; */}
           <Route path='/admin' element={<MainAdmin checkPermission={checkPermission()} />} />
