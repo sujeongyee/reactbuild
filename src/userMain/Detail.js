@@ -9,7 +9,7 @@ function Detail(){
 
   return(
     <>
-             {loading ? <Loading /> : null}
+             {/* {loading ? <Loading /> : null} */}
     <div class="detail_modal_container">
     <h2>작업 상세보기</h2>
     <div class="detail_modal_container_inner">

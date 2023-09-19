@@ -6,31 +6,77 @@ import EnEngineerMyPage from "./EnEngineerMyPageModal";
 import FormControlIcon from "../img/FormControlIcon";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Pagination from "react-js-pagination"
 import Loading from '../loding/Loding';
+import SearchIcon from "../engineerLeader/SearchIcon";
 
 function EnEngineerList() {
 
   const [loading, setLoading] = useState(true);
 
+  const [first, setFirst] = useState([]);
   const [list, setList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 정보 저장
+  const itemsPerPage = 10; // 페이지당 아이템 수
+
 
   useEffect(() => {
     axios.get('/api/main/engineer/engineerList').then((res) => {
       setList(res.data);
       console.log(res.data);
-
       setLoading(false);
+      setFirst(res.data);
     })
-
       .catch((error) => {
         console.log(error);
       });
   }, []);
   console.log(list);
 
+
+  const handlePageChange = (page) => { // 페이지 핸들링
+    setCurrentPage(page);
+  };
+
+  const handleSearch = (e) => { //search 버튼을 눌렀을때의 이벤트
+
+    const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
+
+    const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명(옵션값)
+
+    // 데이터를 복사하여 필터링
+    const filteredList = first.filter((item) => { //검색시작
+      if (filter === "이름") {
+        return item.eng_name.includes(searchWord);
+      } else if (filter === "직급") {
+        return item.eng_rank.includes(searchWord);
+      } else if (filter === "전체" && searchWord === "") {
+        return item;
+      } else if (filter === "전체") {
+        return (
+          item.eng_name.includes(searchWord) || item.eng_rank.includes(searchWord)
+        );
+      }
+      return true;
+  });
+
+  // 필터링된 데이터를 업데이트
+  setList(filteredList);
+  setCurrentPage(1); // 페이지를 첫 번째 페이지로 리셋
+}; // 검색끝
+
+  const indexOfLastItem = currentPage * itemsPerPage; //마지막 페이지 계산
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage; 
+  var currentItems = list.slice(indexOfFirstItem, indexOfLastItem);
+
+
+
+
+
+
   return (
     <>
-            {loading ? <Loading /> : null}
+            {/* {loading ? <Loading /> : null} */}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">
@@ -46,7 +92,7 @@ function EnEngineerList() {
             <div className="col-12">
               <div className="card1">
                 <div className="card-body1">
-                  <label style={{ display: "flex" }}>
+                  {/* <label style={{ display: "flex" }}>
                     <input
                       type="search"
                       className="form-control form-control-sm"
@@ -57,7 +103,36 @@ function EnEngineerList() {
                     <button style={{ marginLeft: "5px" }}>
                       <FormControlIcon />
                     </button>
-                  </label>
+                  </label> */}
+                  
+                    <form className="search-engineer search-englg" style={{position:'absolute', top:'0px', right: '100px', margin: '0 5px', marginBottom:'20px' }}>
+
+
+                      <div className="customize-input right select-proengl">
+
+                        <select style={{ display: 'inline-block' }} className="selectee">
+                          <option className="selecteeop">전체</option>
+                          <option className="selecteeop">이름</option>
+                          <option className="selecteeop">직급</option>
+                        </select>
+                      </div>
+
+                      <div className="customize-input right" style={{ marginLeft: '10px' }}>
+
+                        <input
+                          className="form-control custom-shadow custom-radius border-0 bg-white select-word-engl"
+                          type="search"
+                          placeholder="Search"
+                          aria-label="Search"
+                        />
+                      </div>
+                    <div className="customize-input left search-click-eng" style={{ marginLeft: '10px', marginRight: '5px' }} onClick={handleSearch}> 
+                      <SearchIcon color="#9cbba6" />
+                    </div>
+                  </form>
+
+
+
                   <div className="table-responsive">
                     <div className="project-table">
                       <table className="table">
@@ -73,9 +148,9 @@ function EnEngineerList() {
                           </tr>
                         </thead>
                         <tbody>
-                          {list.map((engineer, index) => (
+                          {currentItems.map((engineer, index) => (
                             <tr key={index}>
-                              <th scope="row">{index + 1}</th>
+                              <th scope="row">{(currentPage - 1) * itemsPerPage + index + 1}</th>
                               <td>
                                 <div className="d-flex no-block align-items-center">
                                   <div className="me-3">
@@ -110,7 +185,7 @@ function EnEngineerList() {
                       </table>
                     </div>
                   </div>
-                  <div style={{ textAlign: "center" }}>
+                  {/* <div style={{ textAlign: "center" }}>
                     <ul className="pagination paginationEn">
                       <li className="page-item disabled">
                         <Link className="page-link" href="#" tabindex="-1">
@@ -138,6 +213,17 @@ function EnEngineerList() {
                         </Link>
                       </li>
                     </ul>
+                  </div> */}
+                  <div className="pagedivengl pagination-engl">
+                    <Pagination
+                        activePage={currentPage}
+                        itemsCountPerPage={itemsPerPage}
+                        totalItemsCount={list.length}
+                        pageRangeDisplayed={5}
+                        prevPageText={"prev"}
+                        nextPageText={"next"}
+                        onChange={handlePageChange}
+                      />
                   </div>
                 </div>
               </div>

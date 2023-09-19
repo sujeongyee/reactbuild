@@ -86,7 +86,7 @@ function UserMyPageModal() {
 
   return (
     <>
-             {loading ? <Loading /> : null}
+             {/* {loading ? <Loading /> : null} */}
       <button onClick={() => setModalIsOpen(true)}>회원정보수정</button>
       <Modal
         /* className="modal-content"

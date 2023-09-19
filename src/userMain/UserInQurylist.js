@@ -6,7 +6,7 @@ function UserInQurylist() {
   const [loading, setLoading] = useState(true);
     return (
         <>
-                 {loading ? <Loading /> : null}
+                 {/* {loading ? <Loading /> : null} */}
             <div className="page-wrapper">
             <div className="page-breadcrumb">
                     <div className="row">

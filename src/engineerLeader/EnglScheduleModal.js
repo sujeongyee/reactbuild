@@ -26,7 +26,7 @@ function EnglScheduleModal(){
 
   return (
     <>
-              {loading ? <Loading /> : null}
+              {/* {loading ? <Loading /> : null} */}
       <Modal
         /* className="modal-content"
         overlayClassName="modal-overlay" */

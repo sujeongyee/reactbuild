@@ -69,7 +69,7 @@ function EnglEngineerList() {
   return (
     <>
 
-{loading ? <Loading /> : null}
+{/* {loading ? <Loading /> : null} */}
     <div className="page-wrapper prolist-engl">
 
 <div className="container-fluid englpro-all" style={{ padding: '10px', marginLeft: '100px', marginTop: '50px' }}>

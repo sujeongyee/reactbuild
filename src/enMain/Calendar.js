@@ -71,7 +71,7 @@ function Calendar() {
         eventClick={Click}
       />
 
-      {loading ? <Loading /> : null}
+      {/* {loading ? <Loading /> : null} */}
         <Modal  className="modal-content" overlayClassName="modal-overlay"
 
         isOpen={isAddEventModalOpen}
