@@ -6,13 +6,9 @@ import SearchIcon from "./SearchIcon";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "react-js-pagination";
-import Loading from '../loding/Loding';
 
 function EnglProjectList() {
-
-  const [loading, setLoading] = useState(true);
-
-  const [first,setFirst] = useState([]);
+  const [first, setFirst] = useState([]);
 
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,17 +17,12 @@ function EnglProjectList() {
   const leader_id = "eng_1";
 
   useEffect(() => {
-
-    axios.get(`/api/main/engleader/getAllPro/${leader_id}`)
-      .then(response => {
-        console.log(response.data)
-        setList(response.data);
-        setFirst(response.data);
-
-        setLoading(false);
-      })
-  }, [])
-
+    axios.get(`/api/main/engleader/getAllPro/${leader_id}`).then((response) => {
+      console.log(response.data);
+      setList(response.data);
+      setFirst(response.data);
+    });
+  }, []);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -72,7 +63,6 @@ function EnglProjectList() {
 
   return (
     <>
-             {loading ? <Loading /> : null}
       <div className="page-wrapper prolist-engl">
         <div
           className="container-fluid englpro-all"

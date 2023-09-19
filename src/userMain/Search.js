@@ -46,7 +46,7 @@ function Search({setSearchValue,style,categori,select,order,writer}){
           <span style={{ transform: 'translateY(5px)', paddingRight: '10px', width: '40px' }}>Search:</span>
            <input type="search" value={input1} className="form-control form-control-sm"
             placeholder aria-controls="zero_config" style={{ width: '200px' }} onChange={handleChange}/>
-            <input type="button" value={'검색하기'}style={{ background: 'white' ,color:style.color}} className="inqurylist-search" onClick={handleClick}/>
+            <input type="button" value={'검색하기'}style={{ background: 'white', color:'black'}} className="inqurylist-search" onClick={handleClick}/>
            
         </label>
 

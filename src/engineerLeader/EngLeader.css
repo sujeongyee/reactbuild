@@ -489,6 +489,7 @@
 
 .ReactModal__Overlay {
   background-color: none;
+  z-index: 10;
 }
 
 .sche_modal {

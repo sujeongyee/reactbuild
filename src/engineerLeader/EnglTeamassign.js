@@ -4,7 +4,6 @@ import "../enMain/EnMain.css";
 // import "../enMain/EnTeam.css";
 import "./EngLeader.css";
 import axios from "axios";
-import Loading from '../loding/Loding';
 import { Link } from "react-router-dom";
 
 function EnglTeamassign(props) {
@@ -17,22 +16,20 @@ function EnglTeamassign(props) {
   const server_id = props.server_id;
   console.log(pro_pi);
 
-  const leader_id = 'eng_1';
+  const leader_id = "eng_1";
 
   useEffect(() => {
     // props.leaderid가 null이 아닌 경우에만 axios.post 요청을 보냅니다.
     if (pro_id !== null) {
+      axios
+        .get("/api/main/engleader/getTeamEngList", {
+          params: {
+            leader_id: leader_id,
+            pro_pi: pro_pi,
+          },
+        })
 
-
-      axios.get('/api/main/engleader/getTeamEngList',{
-        params: {
-          leader_id: leader_id,
-          pro_pi: pro_pi
-        }
-      })
-
-        .then(response => {
-
+        .then((response) => {
           setData(response.data);
           setLoading(false);
         })
@@ -84,10 +81,13 @@ function EnglTeamassign(props) {
 
     var eng_enid = checkedEng.previousElementSibling.value;
 
-
-    axios.post('/api/main/engleader/assignEng', { eng_enid: eng_enid, pro_id: pro_id, server_id: server_id })
-      .then(response => {
-
+    axios
+      .post("/api/main/engleader/assignEng", {
+        eng_enid: eng_enid,
+        pro_id: pro_id,
+        server_id: server_id,
+      })
+      .then((response) => {
         console.log(response);
         if (response.data === "ok") {
           setModalIsOpen(false);
@@ -116,9 +116,19 @@ function EnglTeamassign(props) {
 
   return (
     <>
-
-             {loading ? <Loading /> : null}
-      {props.check === true ? <button type="button" className="assingment-btn ok-bbtn">팀원배정완료</button> : <button type="button" className="assingment-btn" onClick={()=>setModalIsOpen(true)}>팀원배정</button>}
+      {props.check === true ? (
+        <button type="button" className="assingment-btn ok-bbtn">
+          팀원배정완료
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="assingment-btn"
+          onClick={() => setModalIsOpen(true)}
+        >
+          팀원배정
+        </button>
+      )}
 
       <input type="hidden" className={server_id}></input>
 
@@ -146,18 +156,15 @@ function EnglTeamassign(props) {
                 {data.map((list, key) => (
                   <tr key={key}>
                     <th scope="row">{key + 1}</th>
-               
-                     
-                        <div className="team-member-name">
 
-                          <td>
-                            <Link to={`/engineerleader/engDetail/${list.eng_enid}`}>{list.eng_name}</Link>
-                            
-                          </td>
+                    <div className="team-member-name">
+                      <td>
+                        <Link to={`/engineerleader/engDetail/${list.eng_enid}`}>
+                          {list.eng_name}
+                        </Link>
+                      </td>
+                    </div>
 
-                        </div>
-                      
-                    
                     <td>{list.eng_phone}</td>
 
                     <td>
