@@ -12,16 +12,10 @@ import Loading from '../loding/Loding';
 
 function RequestDetail() {
   const [loading, setLoading] = useState(true);
-
-
   const { pro_id } = useParams();
   const [info, setInfo] = useState([]);
   const [list, setList] = useState([]);
   useEffect(() => {
-
-    //console.log(pro_id);
-
-
     axios.get(`/api/main/engleader/requestDetail/${pro_id}`)
       .then(response => {
 
@@ -49,7 +43,7 @@ function RequestDetail() {
   return (
     <>
 
-           {loading ? <Loading /> : null}
+           {/* {loading ? <Loading /> : null} */}
       <div className="page-wrapper" >
 
         <div className="page-breadcrumb">

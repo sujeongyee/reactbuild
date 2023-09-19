@@ -89,7 +89,7 @@ const handleFileChange = async(e) => {
 
   return (
     <>
-            {loading ? <Loading /> : null}
+            {/* {loading ? <Loading /> : null} */}
       <button onClick={() => setModalIsOpen(true)}>{props.engName}</button>
       <Modal
         /* className="modal-content"*/

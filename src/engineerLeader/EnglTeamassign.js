@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 function EnglTeamassign(props) {
   //console.log(props.leaderid);
 
-  const [loading, setLoading] = useState(true);
+
   const [data, setData] = useState([]);
   const pro_pi = props.pro_pi;
   const pro_id = props.pro_id;
@@ -34,7 +34,7 @@ function EnglTeamassign(props) {
         .then(response => {
 
           setData(response.data);
-          setLoading(false);
+
         })
         .catch((error) => {
           // 요청에 대한 오류 처리를 수행합니다.
@@ -117,7 +117,6 @@ function EnglTeamassign(props) {
   return (
     <>
 
-             {loading ? <Loading /> : null}
       {props.check === true ? <button type="button" className="assingment-btn ok-bbtn">팀원배정완료</button> : <button type="button" className="assingment-btn" onClick={()=>setModalIsOpen(true)}>팀원배정</button>}
 
       <input type="hidden" className={server_id}></input>

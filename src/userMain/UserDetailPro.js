@@ -27,7 +27,7 @@ function UserDetailPro() {
 
   return (
     <>
-         {loading ? <Loading /> : null}
+         {/* {loading ? <Loading /> : null} */}
       <div className="page-wrapper" >
 
         <div className="page-breadcrumb">
@@ -68,7 +68,7 @@ function UserDetailPro() {
                     프로젝트 정기점검 날짜 : <span>{proDetail?.[0]?.pro_pi}</span>
                     </div>
                     <div className="pro-info">
-                    담당 엔지니어 : <span>{proDetail?.[0]?.pro_status == '진행 중' ? proDetail?.[0]?.eng_name : '배정 미정'}</span>
+                    담당 팀 : <span>{proDetail?.[0]?.pro_status == '진행 중' ? proDetail?.[0]?.eng_name : '배정 미정'}</span>
                     </div>
 
                     </div>
@@ -116,7 +116,7 @@ function UserDetailPro() {
                         {proDetail.map((project,index) => (
 
                           <tr key={index}>
-                          <th scope="row">{index}</th>
+                          <th scope="row">{index+1}</th>
                           <td class="user-servername">{project.server_name}</td>
                           <td class="user-ipadress">{project.ip_address}</td>
                           <td class="user-oprationsystem">{project.operating_system}</td>

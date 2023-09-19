@@ -1,7 +1,7 @@
 
-import { Fragment, useState , useEffect} from "react"
+import { Fragment, useState, useEffect } from "react"
 
-import { Link, NavLink, Outlet , useNavigate} from "react-router-dom"
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
 import $ from 'jquery';
 import './HeaderFooter.css'
 
@@ -25,7 +25,6 @@ import axios from "axios";
 
 
 function HeaderFooterEnl(props) {
-  console.log(props.name);
   const [bellModal, setbellModalIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const ms = {
@@ -38,7 +37,7 @@ function HeaderFooterEnl(props) {
     color: 'white',
     fontSize: '16px'
   }
- 
+
   const navigate = useNavigate();
 
   const logout = () => {
@@ -55,20 +54,75 @@ function HeaderFooterEnl(props) {
   }
 
   const [alarmList, setAlarmList] = useState([]);
-
+  const [firstAlarm, setFirstAlarm] = useState([]);
+  const user_id = props.userId;
+  const[userId, setUserId] = useState('');
+  const[leaderName, setLeaderName] = useState('');
   useEffect(() => {
-    const user_id = 'admin'
-    axios.get(`/api/main/alarm/getAlarmList/${user_id}`)
+    if (user_id !== '') {
+      axios.get('/api/main/alarm/getAlarmList', {
+        params: { user_id: user_id }
+      })
       .then(response => {
         setAlarmList(response.data)
+        setFirstAlarm(response.data)
         console.log(alarmList)
       })
       .catch(err => { alert('에러') })
+    }
+  }, [user_id]);
+  
+  useEffect(() => {
+    if (user_id !== '') {
+      console.log('실행실행실행',user_id)
+      axios.get('/api/main/engleader/info', {
+        params: { user_id: user_id }
+      })
+      .then(response => {
+        const leaderName = response.data.CUS_MANAGET_NAME;
+        setLeaderName(leaderName);
+      })
+      .catch(err => {
+        alert('에러' + err)
+      })
+    }
+  }, [user_id])
+   
 
 
-  }, []);
+  const getAllAlarm = (event) => {
+    const click = document.getElementById('allorsome');
+    if(click.innerHTML === '모든 알람 보기'){
+      if (user_id !== null) {
+        axios.get('/api/main/alarm/getAllAlarm', {
+          params: {
+            user_id: user_id
+          }
+        })
+          .then(response => {
+            setAlarmList(response.data)
+            console.log(alarmList)
+          })
+          .catch(err => { alert('에러') })
+      }
+      click.innerHTML = '안 읽은 알람만 보기';
+    }else{
+      setAlarmList(firstAlarm);
+      click.innerHTML='모든 알람 보기'
+    }
+    
+  }
 
-  const leader_id = 'eng_1';
+
+
+  const clickAlarmno = (alarmNum, event) => {
+
+    if (event.currentTarget.innerHTML === '안읽음') {
+      event.currentTarget.innerHTML = '읽음'
+      axios.post(('/api/main/alarm/changeAlarm'), { alarmNum: alarmNum })
+      alert('알람을 확인 했습니다.')
+    }
+  }
 
 
   return (
@@ -80,7 +134,7 @@ function HeaderFooterEnl(props) {
           <nav className="navbar top-navbar navbar-expand-lg navbar-light">
             <div className="navbar-header">
               <div className="navbar-brand">
-              <Link to="/engineerleader" style={{color:'black'}}>기술지원 2팀 </Link> 
+                <Link to="/engineerleader" style={{ color: 'black' }}>기술지원 2팀 </Link>
               </div>
             </div>
             <div
@@ -105,7 +159,7 @@ function HeaderFooterEnl(props) {
                       style={{ backgroundColor: "rgb(44, 117, 70)" }}
                       className="badge text-bg-primary notify-no rounded-circle"
                     >
-                      5
+                      {firstAlarm.length}
                     </span>
                   </button>
 
@@ -113,29 +167,32 @@ function HeaderFooterEnl(props) {
 
                     {alarmList.map((list, index) => {
                       // Timestamp 문자열을 Date 객체로 파싱
-                      const dateObject = new Date(list.alarm_DATE); 
+                      const dateObject = new Date(list.alarm_date);
 
                       // Date 객체를 "yyyy/MM/dd HH:mm" 형식으로 변환
                       const formattedDate = `${dateObject.getFullYear()}/${String(dateObject.getMonth() + 1).padStart(2, '0')
                         }/${String(dateObject.getDate()).padStart(2, '0')} ${String(dateObject.getHours()).padStart(2, '0')
                         }:${String(dateObject.getMinutes()).padStart(2, '0')}`;
 
+                      const backgroundColor = list.alarm_check_yn === 'Y' ? 'rgb(197 197 197 / 8%)' : '';
+
                       return (
-                        <Link to="#" className="bell-link" key={index}>
-                          
-                          <div className="bell-middle alarm-list">
-                            <h5>{list.alarm_TYPE}</h5>
-                            <p>{list.alarm_CONTENT}</p>
+                        <div className="bell-link" key={index} style={{ backgroundColor: backgroundColor }}>
+
+                          <div className="bell-middle alarm-list" style={{ backgroundColor: backgroundColor }}>
+                            {/* <h5>{list.alarm_TYPE}</h5> */}
+                            <p>{list.alarm_content}</p>
                             <span>{formattedDate}</span>
+                            <span className="checkalarmbtn" style={{ marginLeft: '10px' }} onClick={(event) => clickAlarmno(list.alarm_num, event)}>{list.alarm_check_yn === 'Y' ? '읽음' : '안읽음'}</span>
                           </div>
-                        </Link>
+                        </div>
                       );
                     })}
 
-                    <Link to="#" className="bell-more all-alarm">
+                    <button className="bell-more all-alarm" onClick={getAllAlarm}>
 
-                      <storng> 모든 알람 확인하기</storng>
-                    </Link>
+                      <storng id="allorsome"> 모든 알람 보기</storng>
+                    </button>
                   </Modal>
                 </li>
                 <li className="nav-item dropdown">
@@ -160,7 +217,7 @@ function HeaderFooterEnl(props) {
                         className="text-dark"
                         style={{ fontWeight: 700, fontSize: "15px" }}
                       >
-                        [팀장]박수정
+                        [팀장]{leaderName}
                       </span>
                       <Down />
                     </span>
@@ -244,7 +301,7 @@ function HeaderFooterEnl(props) {
                     </li>
                     <li class="sidebar-item">
 
-                      <NavLink className='sidebar-link ' to={{ pathname: `/engineerleader/allSchedule/${leader_id}`}} style={({ isActive }) => isActive ? ms : undefined} >
+                      <NavLink className='sidebar-link ' to={{ pathname: '/engineerleader/allSchedule' }} style={({ isActive }) => isActive ? ms : undefined} >
 
                         팀원 일정보기
                       </NavLink>

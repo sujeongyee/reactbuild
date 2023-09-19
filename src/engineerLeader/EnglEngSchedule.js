@@ -15,7 +15,6 @@ function EnglEngSchedule() {
   const { eng_enid } = useParams();
 
 
-  const {eng_enid} = useParams();
 
   useEffect(()=>{
     axios.get(`/api/main/engleader/getEngInfo/${eng_enid}`)
@@ -95,7 +94,7 @@ function EnglEngSchedule() {
   return (
     <>
 
-            {loading ? <Loading /> : null}
+            {/* {loading ? <Loading /> : null} */}
       <div className='page-wrapper englschedule'>
 
 

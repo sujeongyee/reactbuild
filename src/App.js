@@ -81,7 +81,7 @@ function App() {
 
   const token = localStorage.getItem("token");
   const [info, setInfo] = useState({});
-
+  
   function checkPermission() {
 
     if (!token) {
@@ -98,7 +98,7 @@ function App() {
     return dec;
   }
 
-
+  
   const Info = async () => {
 
     if (checkPermission() == null) {
@@ -111,8 +111,9 @@ function App() {
 
       const response1 = await axios.get(`/api/main/getInfo?cus_id=${cus_id}`)
       setInfo(response1.data)
+      return;
     }
-    return;
+    
 
   }
 
@@ -121,6 +122,17 @@ function App() {
   useEffect(() => {
     Info();
   }, []);
+
+  const token2 = localStorage.getItem("token");
+  const [userId,setUserId] = useState('');
+  useEffect(()=>{
+      
+      const permission = checkPermission(); 
+      if(permission!==null){
+        const id = permission.sub;
+        setUserId(id);
+      }
+  },[token2])
 
   const leader_id = 'eng_1';
 
@@ -205,30 +217,28 @@ function App() {
       </Route>
       {/* $ npm install react-js-pagination */}
       <Route element={<PrivateRouteEnl checkPermission={checkPermission()} />} >
-        < Route element={<HeaderFooterEnl checkPermission={checkPermission()} />}>
-          <Route path='/engineerleader' element={<EngLeadMain />} />
-          <Route path='/engineerleader/requestDetail/:pro_id' element={<RequestDetail />} />
-          <Route path='/engineerleader/projectList' element={<EnglProjectList />} />
-          <Route path='/engineerleader/projectDetail/:pro_id' element={<EnglProjectDetail />} />
-          <Route path='/engineerleader/workinfo/:server_id' element={<EnglWorkInfo />} />
-          <Route path='/engineerleader/clientList' element={<EnglClientList />} />
-          <Route path='/engineerleader/engineerList' element={<EnglEngineerList />} />
-          <Route path='/engineerleader/clientDetail/:cus_id' element={<EnglClientDetail />} />
-          <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail/>} />
-
-          {/* <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngCalendar/>}/> */}
-          <Route path='/engineerleader/allSchedule/:leader_id' element={<EnglAllSchedule leader_id={leader_id}/>}/>
+        < Route element={<HeaderFooterEnl checkPermission={checkPermission()} userId={userId} />}>
+          <Route path='/engineerleader' element={<EngLeadMain userId={userId}/>} />
+          <Route path='/engineerleader/requestDetail/:pro_id' element={<RequestDetail userId={userId}/>} />
+          <Route path='/engineerleader/projectList' element={<EnglProjectList userId={userId}/>} />
+          <Route path='/engineerleader/projectDetail/:pro_id' element={<EnglProjectDetail userId={userId} />} />
+          <Route path='/engineerleader/workinfo/:server_id' element={<EnglWorkInfo userId={userId} />} />
+          <Route path='/engineerleader/clientList' element={<EnglClientList userId={userId}/>} />
+          <Route path='/engineerleader/engineerList' element={<EnglEngineerList userId={userId}/>} />
+          <Route path='/engineerleader/clientDetail/:cus_id' element={<EnglClientDetail userId={userId}/>} />
+          <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail/>}userId={userId} />
+          <Route path='/engineerleader/allSchedule' element={<EnglAllSchedule userId={userId}/>}/>
         </Route>
       </Route>
 
 
 
 
-            <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
+      <Route element={<PrivateRoute checkPermission={checkPermission()} />}  >
                 <Route element={<HeaderFooterUs checkPermission={checkPermission()} state={info}/>}>
                     <Route path='/user' element={<MainUser state={info} />} />
-                    <Route path='/user/list' element={< UserProList  checkPermission={checkPermission()}/>} />
-                    <Route path='/user/apply' element={< UserApply  checkPermission={checkPermission()}/>} />
+                    <Route path='/user/list' element={< UserProList  checkPermission={checkPermission()} state={info}/>} />
+                    <Route path='/user/apply' element={< UserApply  checkPermission={checkPermission()} state={info}/>} />
                     <Route path='/user/inQurylist' element={< UserInQurylist  checkPermission={checkPermission()}/>} />
                     <Route path='/user/inQurywrite' element={< UserInQuryWrite  checkPermission={checkPermission()}/>} />
                     <Route path='/user/inQuryDetail' element={< UserInQuryDetail  checkPermission={checkPermission()}/>} />

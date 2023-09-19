@@ -26,7 +26,7 @@ function UserProList({state}) {
 
   return (
     <>
-             {loading ? <Loading /> : null}
+             {/* {loading ? <Loading /> : null} */}
       <div className="page-wrapper" >
 
         <div className="page-breadcrumb">
@@ -68,7 +68,7 @@ function UserProList({state}) {
                         {proList.map((project,index) => (
 
                           <tr key={project.pro_id}>
-                          <th scope="row">{index}</th>
+                          <th scope="row">{index+1}</th>
                           <td class="user-proname"><Link to={{pathname: `/user/prodetail/${project.pro_id}` }}>{project.pro_name}</Link></td>
                           <td>{project.pro_status}</td>
                           <td>{project.pro_startdate}</td>

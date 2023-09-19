@@ -10,15 +10,10 @@ import Loading from '../loding/Loding';
 
 function EnglProjectDetail() {
   const [loading, setLoading] = useState(true);
-
-
-
   const { pro_id } = useParams();
   const [info, setInfo] = useState([]);
   const [list, setList] = useState([]);
   useEffect(() => {
-
-
     axios.get(`/api/main/engleader/projectDetail/${pro_id}`)
       .then(response => {
 
@@ -47,7 +42,7 @@ function EnglProjectDetail() {
     <>
 
 
-{loading ? <Loading /> : null}  
+{/* {loading ? <Loading /> : null}   */}
       <div className="page-wrapper engl-all-proli" >
 
         <div className="page-breadcrumb">
@@ -244,6 +239,7 @@ function EnglProjectDetail() {
                           data.eng_name // 데이터가 있으면
                         ) : (
                           <EnglTeamassign
+                            pro_pi={info.PRO_PI}
                             pro_id={info.PRO_ID}
                             server_id={data.server_id}
                             check={false}

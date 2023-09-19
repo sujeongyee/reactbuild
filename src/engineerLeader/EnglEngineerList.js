@@ -8,7 +8,7 @@ import axios from "axios";
 import Pagination from "react-js-pagination";
 import Loading from '../loding/Loding';
 
-function EnglEngineerList() {
+function EnglEngineerList(props) {
 
   const [loading, setLoading] = useState(true);
 
@@ -16,9 +16,12 @@ function EnglEngineerList() {
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10; // 페이지당 아이템 수
-  const leader_id = 'eng_1';
+  
   useEffect(() => {
-    axios.get(`/api/main/engleader/getEngineerList/${leader_id}`)
+    if (props.userId !== null) {
+    axios.get('/api/main/engleader/getEngineerList',{
+      params:{userId:props.userId}
+    })
       .then(response => {
         setList(response.data);
         setFirst(response.data);
@@ -28,7 +31,8 @@ function EnglEngineerList() {
       .catch((error) => {
         console.log(error);
       })
-  }, []);
+    }
+  }, [props.userId]);
 
 
   const handlePageChange = (page) => {
@@ -68,8 +72,8 @@ function EnglEngineerList() {
 
   return (
     <>
-
-{loading ? <Loading /> : null}
+{/* 
+{loading ? <Loading /> : null} */}
     <div className="page-wrapper prolist-engl">
 
 <div className="container-fluid englpro-all" style={{ padding: '10px', marginLeft: '100px', marginTop: '50px' }}>

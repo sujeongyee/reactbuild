@@ -10,8 +10,7 @@ import Modal from "react-modal";
 import './EngLeader.css';
 import { Link } from "react-router-dom";
 
-function EnglEngDetail() {
-  const { leader_id } = useParams();
+function EnglAllSchedule(props) {
   
   const [scheList, setScheList] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -34,19 +33,23 @@ function EnglEngDetail() {
     },
     overlay: {
       backgroundColor: 'none'
-    }
+    } 
   };
   const [customStyles, setCustomStyles] = useState(initialCustomStyles);
 
 
 
   useEffect(() => {
-    axios.get(`/api/main/engleader/getAllSche/${leader_id}`)
+    if (props.userId !== null) {
+    axios.get('/api/main/engleader/getAllSche',{
+      params:{userId:props.userId}
+    })
       .then(response => {
         setScheList(response.data);
         console.log(response.data)
       });
-  }, [leader_id]);
+    }
+  }, [props.userId]);
   
   const [events, setEvents] = useState([]);
   
@@ -149,4 +152,4 @@ function EnglEngDetail() {
   );
 }
 
-export default EnglEngDetail;
+export default EnglAllSchedule;

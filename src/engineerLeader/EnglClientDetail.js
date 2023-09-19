@@ -14,11 +14,6 @@ function EnglClientDetail() {
   const [vo, setVo] = useState([]);
 
 
-  // useEffect(()=>{
-  //   axios.get(`/engleader/getClientInfo/${cus_id}`)
-  //   .then(response => {setList(response.data)})
-  // },[])
-
   useEffect(() => {
 
 
@@ -39,7 +34,7 @@ function EnglClientDetail() {
 
   return (
     <>
-      {loading ? <Loading /> : null}
+      {/* {loading ? <Loading /> : null} */}
       <div className="page-wrapper clientDetailpage-engl">
 
         <div><h4 className="cdp-head" style={{color:'#424242'}} >클라이언트정보</h4></div>

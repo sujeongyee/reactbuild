@@ -79,7 +79,7 @@ function UserProjectDetailList() {
   
   return (
     <>
-             {loading ? <Loading /> : null}
+             {/* {loading ? <Loading /> : null} */}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">
@@ -105,7 +105,7 @@ function UserProjectDetailList() {
 
                         </div>
                       </div>
-                  <Search setSearchValue={setSearchValue}/>
+                  <Search setSearchValue={setSearchValue} style={{color:'black'}}/>
 
 
                   <div className="table-responsive">
