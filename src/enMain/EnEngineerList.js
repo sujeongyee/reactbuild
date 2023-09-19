@@ -6,21 +6,21 @@ import EnEngineerMyPage from "./EnEngineerMyPageModal";
 import FormControlIcon from "../img/FormControlIcon";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Loading from '../loding/Loding';
 
 function EnEngineerList() {
-
   const [loading, setLoading] = useState(true);
 
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/main/engineer/engineerList').then((res) => {
-      setList(res.data);
-      console.log(res.data);
+    axios
+      .get("/api/main/engineer/engineerList")
+      .then((res) => {
+        setList(res.data);
+        console.log(res.data);
 
-      setLoading(false);
-    })
+        setLoading(false);
+      })
 
       .catch((error) => {
         console.log(error);
@@ -30,7 +30,6 @@ function EnEngineerList() {
 
   return (
     <>
-            {loading ? <Loading /> : null}
       <div className="page-wrapper">
         <div className="page-breadcrumb">
           <div className="row">

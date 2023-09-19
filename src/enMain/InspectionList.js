@@ -5,22 +5,21 @@ import FormControlIcon from "../img/FormControlIcon";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import EnServerDetailModal from "./EnServerDetailModal";
-import Loading from '../loding/Loding';
 
 function InspectionList() {
-
   const [list, setList] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
-    axios.get('/api/main/engineer/inspectionList').then((res) => {
-      setList(res.data);
-      console.log(res.data);
+    axios
+      .get("/api/main/engineer/inspectionList")
+      .then((res) => {
+        setList(res.data);
+        console.log(res.data);
 
-      setLoading(false);
-    })
+        setLoading(false);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -28,17 +27,23 @@ function InspectionList() {
   console.log(list);
 
   return (
-
     <>
-      {loading ? <Loading /> : null}
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
             <div className="card">
               <div className="card-body">
                 <div className="searchBox">
-                  <label style={{ display: 'flex;', justifyContent: 'flex-end' }}>
-                    <input type="search" className="form-control form-control-sm" placeholder="검색" aria-controls="zero_config" style={{ width: '200px' }} />
+                  <label
+                    style={{ display: "flex;", justifyContent: "flex-end" }}
+                  >
+                    <input
+                      type="search"
+                      className="form-control form-control-sm"
+                      placeholder="검색"
+                      aria-controls="zero_config"
+                      style={{ width: "200px" }}
+                    />
                     <div className="searchIcon">
                       <FormControlIcon />
                     </div>
@@ -47,7 +52,13 @@ function InspectionList() {
                 <div className="table-responsive">
                   <table className="insListTable">
                     <thead>
-                      <tr style={{ textAlign: "center", borderBottom: "2px solid #cdcdcd", borderTop: "2px solid #cdcdcd" }}>
+                      <tr
+                        style={{
+                          textAlign: "center",
+                          borderBottom: "2px solid #cdcdcd",
+                          borderTop: "2px solid #cdcdcd",
+                        }}
+                      >
                         <th scope="col">번호</th>
                         <th scope="col">서버</th>
                         <th scope="col">점검종류</th>
@@ -66,7 +77,6 @@ function InspectionList() {
                               serverName={workInfo.server_name}
                               engName={workInfo.eng_name}
                               serverId={workInfo.server_id}
-
                             />
                           </td>
                           <td>{workInfo.work_division}</td>
@@ -75,19 +85,18 @@ function InspectionList() {
                           <td>
                             <button
                               type="button"
-                              class="btn waves-effect waves-light btn-rounded btn-warning">
+                              class="btn waves-effect waves-light btn-rounded btn-warning"
+                            >
                               {workInfo.work_status}
                             </button>
                           </td>
                         </tr>
                       ))}
-
-
                     </tbody>
                   </table>
                 </div>
-                <div style={{ textAlign: 'center', marginTop: '30px' }}>
-                  <ul className="pagination" >
+                <div style={{ textAlign: "center", marginTop: "30px" }}>
+                  <ul className="pagination">
                     <li className="page-item disabled">
                       <a className="page-link" href="#" tabindex="-1">
                         Prev
@@ -126,18 +135,12 @@ function InspectionList() {
                   </ul>
                 </div>
               </div>
-
             </div>
           </div>
-
         </div>
-
       </div>
     </>
-
-
-  )
-
+  );
 }
 
 export default InspectionList;

@@ -3,10 +3,8 @@ import Modal from "react-modal";
 import "../enMain/EnMain.css";
 import "./User.css";
 import axios from "axios";
-import Loading from '../loding/Loding';
 
-function UserProjectDetailModal({projectData}) {
-
+function UserProjectDetailModal({ projectData }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const customStyles = {
@@ -27,8 +25,9 @@ function UserProjectDetailModal({projectData}) {
 
   return (
     <>
-
-      <button onClick={() => setModalIsOpen(true)}>{projectData.server_name}</button>
+      <button onClick={() => setModalIsOpen(true)}>
+        {projectData.server_name}
+      </button>
       <Modal
         /* className="modal-content"
         overlayClassName="modal-overlay" */
@@ -42,79 +41,54 @@ function UserProjectDetailModal({projectData}) {
             <table className="detail_modal_table">
               <tr>
                 <th>프로젝트명</th>
-                <td>
-                  {projectData.pro_name}
-                </td>
+                <td>{projectData.pro_name}</td>
               </tr>
               <tr>
                 <th>담당 엔지니어 팀</th>
-                <td>
-                {projectData.team_id}
-                </td>
+                <td>{projectData.team_id}</td>
               </tr>
               <tr>
                 <th>담당 엔지니어 이름</th>
-                <td>
-                  {projectData.eng_name}
-                </td>
+                <td>{projectData.eng_name}</td>
               </tr>
               <tr>
                 <th>담당 엔지니어 연락처</th>
-                <td>
-                 {projectData.eng_phone}
-                </td>
+                <td>{projectData.eng_phone}</td>
               </tr>
               <tr>
                 <th>작업일자</th>
-                <td>
-                  {projectData.work_date}
-                </td>
+                <td>{projectData.work_date}</td>
               </tr>
               <tr>
                 <th>작업분류</th>
-                <td>
-                  {projectData.work_division}
-                </td>
+                <td>{projectData.work_division}</td>
               </tr>
               <tr>
                 <th>작업시간</th>
-                <td>
-                  {projectData.work_time}
-                </td>
+                <td>{projectData.work_time}</td>
               </tr>
               <tr>
                 <th>CPU 사용량</th>
-                <td>
-                  {projectData.work_cpu}
-                </td>
+                <td>{projectData.work_cpu}</td>
               </tr>
               <tr>
                 <th>RAM 사용량</th>
-                <td>
-                  {projectData.work_ram}
-                </td>
+                <td>{projectData.work_ram}</td>
               </tr>
               <tr>
                 <th>HDD 사용량</th>
-                <td>
-                  {projectData.work_hdd}
-                </td>
+                <td>{projectData.work_hdd}</td>
               </tr>
               <tr>
                 <th>상태</th>
-                <td>
-                  {projectData.work_status}
-                </td>
+                <td>{projectData.work_status}</td>
               </tr>
-           
 
               <tr>
                 <th>작업내용</th>
-                <td>
-                   {projectData.work_note}
-                </td>
+                <td>{projectData.work_note}</td>
               </tr>
-              </table>
+            </table>
             <div className="detail_modal_button">
               <input
                 type="button"
