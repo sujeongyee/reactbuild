@@ -35,7 +35,7 @@ function HeaderFooterEn() {
         localStorage.removeItem("token");
         alert("로그아웃 되었습니다😎");
         navigate("/");
-        window.location.reload();
+        
       };
 
     const handleClick = (e) => {
@@ -130,10 +130,7 @@ function HeaderFooterEn() {
                                         <div><ProfileIcon /></div>
                                         <span>프로필 보기</span>
                                     </Link>
-                                    <Link to="#" className="contentIcon">
-                                        <div><SettingsIcon /></div>
-                                        <span>회원정보 수정</span>
-                                    </Link>
+                                   
                                     <Link to="#"onClick={logout}  className="contentIcon">
                                         <div><LogOutIcon /></div>
                                         <span>로그아웃</span>

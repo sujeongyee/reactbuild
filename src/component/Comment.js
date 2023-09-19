@@ -32,10 +32,16 @@ function Comment({style,pk,id}) {
   }
   const handleCreateComment = async () => {
     // 새 댓글 생성 함수
-    const com={  com_writer: id,  com_content: comments, notice_num: pk}
-    const response = await axios.post('/api/main/CreateComments',com)
-    setGetCom(response.data)
-    setComments('');
+    if(comments!=''){
+
+        const com={  com_writer: id,  com_content: comments, notice_num: pk}
+        const response = await axios.post('/api/main/CreateComments',com)
+        setGetCom(response.data)
+        setComments('');
+    }else{
+        alert("댓글을 입력해주세요")
+        return
+    }
 };
 //기존 댓글 불러오기
 useEffect(()=>{
@@ -110,7 +116,6 @@ const ct=getCom.map((item,index)=>(
                            
 
 ))
-console.log(getCom)
 
 
   return (

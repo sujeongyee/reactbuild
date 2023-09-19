@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Comment from '../component/Comment';
 // import '../enMain/EnMain.css'
 // import './User.css'
-function UserInQuryDetail({ checkPermission }) {
+function EnLeaderInQuryDetail({ checkPermission }) {
     const location = useLocation();
     const [DetailData, setDetailData] = useState(location.state.item)
     const [update, setUpdte] = useState(false);
@@ -152,7 +152,7 @@ function UserInQuryDetail({ checkPermission }) {
                             <div className="card">
                                 <div className="card-body" style={{ padding: '30px 70px 0 100px', height: '100%', width: "100%" }} >
                                     <div className='row'>
-                                        <Link to="/user/inQuryList" className="inq-back" style={{ width: "50%" }}>
+                                        <Link to="/engineer/inQuryList" className="inq-back" style={{ width: "50%" }}>
                                             ← 문의 목록
                                         </Link>
                                        {checkPermission.sub==DetailData.cs_writer? 
@@ -160,23 +160,17 @@ function UserInQuryDetail({ checkPermission }) {
                                             <button className="boardD" style={{ display: "inline", fontSize: "20px", marginBottom: "15px", marginLeft: "30px" }} onClick={deleteAnno}>글 삭제</button>
                                         </div>:null} 
                                     </div>
-                                    <h1 className="css-148cvwt edhjjyh1 inq-title">
-                                    
-                                        {DetailData.cs_title}
-                                        
-                                    <h3 style={{position:'absolute', top:"70px",right:"100px"}}>{DetailData.cs_type}</h3>
-                                    </h1>
+                                    <h1 className="css-148cvwt edhjjyh1 inq-title">{DetailData.cs_title}</h1>
                                     <div className="list-flex">
-                                        <div style={{ width: "10%" }}>
+                                        <div style={{ width: "20%" }}>
                                             <span className='inq-writer'>작성자</span>
                                             <span className='inq-writer2'>{DetailData.cs_writer}</span>
                                         </div>
-                                        <div style={{ width: "20%" }}>
+                                        <div style={{ width: "30%" }}>
                                             <span className='inq-writer'>등록일자</span>
                                             <span className='inq-writer2'>{formatDateTime(DetailData.cs_regdate)}</span>
                                         </div>
-                                      
-                                        {checkPermission.role == 'ROLE_ADMIN' || checkPermission.role == 'ROLE_ENGINEER' ?
+                                        {checkPermission.role == 'ROLE_ADMIN' || checkPermission.role == 'ROLE_ENGINEER' &&checkPermission.sub!=DetailData.cs_writer?
                                             <div style={{ width: "50%", textAlign: "right", marginRight: "50px" }}>
                                                 <button style={{ fontSize: "20px", marginRight: '10px' }} className='answerValue' onClick={answerValue}>답변 여부 등록하기</button>
                                                 <select style={{ fontSize: "20px" }} onChange={(e) => setAnswer(e.target.value)}>
@@ -192,7 +186,6 @@ function UserInQuryDetail({ checkPermission }) {
                                         </p>
                                     </article>
 
-
                                     <div style={{ width: "100%", textAlign: 'left' ,marginBottom:"40px"}}>
                                         <p style={{ display: "inline", fontSize: "20px", marginBottom: "15px" }}>첨부 파일 : </p>
 
@@ -203,7 +196,9 @@ function UserInQuryDetail({ checkPermission }) {
                                         }
                                     </div>
 
-                                    <Comment style={{ backgroundColor: "#8971ea" }} pk={DetailData.cs_num} id={checkPermission.sub} />
+
+
+                                    <Comment style={{ backgroundColor: "rgb(42, 198, 97)" }} pk={DetailData.cs_num} id={checkPermission.sub} />
                                 </div>
 
                             </div>
@@ -236,4 +231,4 @@ function UserInQuryDetail({ checkPermission }) {
     )
 }
 
-export default UserInQuryDetail
+export default EnLeaderInQuryDetail

@@ -38,7 +38,7 @@ function HeaderFooterAd(props) {
         localStorage.removeItem("token");
         alert("로그아웃 되었습니다😎");
         navigate("/");
-        window.location.reload();
+        
       };
     const handleClick = (e) => {
         $(e.currentTarget).toggleClass("active")
@@ -53,7 +53,7 @@ function HeaderFooterAd(props) {
                 <nav className="navbar top-navbar navbar-expand-lg navbar-light">
                     <div className="navbar-header">
                         <div className="navbar-brand">
-                            <a href="index.html"> 관리자 페이지</a>
+                            <p> 관리자 페이지</p>
                         </div>
 
 
@@ -166,12 +166,12 @@ function HeaderFooterAd(props) {
 
                             <li className="sidebar-item">
 
-                                <a className='sidebar-link has-arrow ' onClick={handleClick} aria-expanded="false">
+                                <Link className='sidebar-link has-arrow ' onClick={handleClick} aria-expanded="false">
                                     <LayersIcon />
                                     <span className="hide-menu hide-list ">프로젝트 목록</span>
-                                </a>
+                                </Link>
                                 <ul aria-expanded="false" className="collapse first-level base-level-line">
-                                    <li class="sidebar-item">
+                                    <li className="sidebar-item">
                                         <NavLink className='sidebar-link ' to='/admin/projectList' style={({ isActive }) => isActive ? ms : undefined} >
                                             프로젝트 리스트
                                         </NavLink>
@@ -181,20 +181,19 @@ function HeaderFooterAd(props) {
 
                             </li>
                             <li className="sidebar-item">
-                                <a
+                                <Link
                                     className="sidebar-link has-arrow"
-                                    href="javascript:void(0)"
                                     onClick={handleClick}
                                     aria-expanded="false"
                                 >
                                     <SmileIcon />
                                     <span className="hide-menu hide-list">회원 관리</span>
-                                </a>
+                                </Link>
                                 <ul
                                     aria-expanded="false"
                                     className="collapse first-level base-level-line"
                                 >
-                                    <li class="sidebar-item">
+                                    <li className="sidebar-item">
                                         <NavLink
                                             className="sidebar-link "
                                             to="/admin/engineerList"
@@ -216,12 +215,12 @@ function HeaderFooterAd(props) {
                                 </ul>
                             </li>
                             <li className="sidebar-item">
-                                <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
+                                <Link className='sidebar-link has-arrow'  onClick={handleClick} aria-expanded="false">
                                     <BarChartIcon />
                                     <span className="hide-menu hide-list" >공지사항</span>
-                                </a>
+                                </Link>
                                 <ul aria-expanded="false" className="collapse first-level base-level-line">
-                                    <li class="sidebar-item">
+                                    <li className="sidebar-item">
                                         <NavLink className='sidebar-link ' to='/admin/annoList' style={({ isActive }) => isActive ? ms : undefined} >
                                             공지사항 보기
                                         </NavLink>
@@ -241,12 +240,12 @@ function HeaderFooterAd(props) {
 
 
                             <li className="sidebar-item">
-                                <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
+                                <Link className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
                                     <BoxIconEn />
                                     <span className="hide-menu hide-list" >문의사항</span>
-                                </a>
+                                </Link>
                                 <ul aria-expanded="false" className="collapse first-level base-level-line">
-                                    <li class="sidebar-item">
+                                    <li className="sidebar-item">
                                         <NavLink className='sidebar-link ' to='/admin/inQurylist' style={({ isActive }) => isActive ? ms : undefined} >
                                             문의사항 목록
                                         </NavLink>

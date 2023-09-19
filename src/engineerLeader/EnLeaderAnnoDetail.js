@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Comment from '../component/Comment';
 // import '../enMain/EnMain.css'
 // import './User.css'
-function EnAnnoDetail({ checkPermission }) {
+function EnLeaderAnnoDetail({ checkPermission }) {
     console.log(checkPermission)
     const location = useLocation();
     const [DetailData,setDetailData]=useState(location.state.item)
@@ -129,7 +129,7 @@ function EnAnnoDetail({ checkPermission }) {
                             <div className="card">
                                 <div className="card-body" style={{ padding: '50px 70px 0 100px', height: '100%' }} >
                                     <div className='row'>
-                                        <Link to="/engineer/annoList" className="inq-back" style={{ width: "50%" }}>
+                                        <Link to="/engineerleader/annoList" className="inq-back" style={{ width: "50%" }}>
                                             ← 공지 목록
                                         </Link>
                                        {checkPermission.sub==DetailData.notice_writer?<div style={{ width: "50%", textAlign: 'right', paddingLeft: "30px", display: "inline", paddingRight: "50px" }}>
@@ -221,4 +221,4 @@ function EnAnnoDetail({ checkPermission }) {
     )
 }
 
-export default EnAnnoDetail
+export default EnLeaderAnnoDetail

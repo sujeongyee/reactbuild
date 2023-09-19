@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "./Timeline.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import UserProjectDetailModal2 from "./UserProjectDetailModal2";
 import axios from "axios";
 
 
 
-function ProjectDetailChart({ serverId,projectData}) {
+function ProjectDetailChart({ pro_id , server_id }) {
 
-
-
+  useEffect(() => {
+    if (!pro_id) {
+      console.error('pro_id is undefined');
+      return;
+    }
+  
+    // Rest of the useEffect
+  }, []);
+  
 
   // VARIABLES
   const elH = document.querySelectorAll(".timeline li > div");
@@ -37,19 +44,29 @@ function ProjectDetailChart({ serverId,projectData}) {
     }
   }
   const [ProjectDetailList, setProjectDetailList] = useState([]);
-  const serverData = ProjectDetailList.filter(
-    (item) => item.server_id === serverId
-  );
+
   useEffect(() => {
     const getProjectDetailList = async () => {
       try {
-        const response = await axios.get("/api/main/client/projectDetailChart");
+        const response = await axios.get(`/api/main/user/projectDetailChart/${pro_id}/${server_id}`);
+
         setProjectDetailList(response.data);
         console.log(response.data);
       } catch (error) {
-        console.log("Error", error);
+        if (error.response) {
+           // The request was made and the server responded with a status code
+           console.log('Data:', error.response.data);
+           console.log('Status:', error.response.status);
+           console.log('Headers:', error.response.headers);
+        } else if (error.request) {
+           // The request was made but no response was received
+           console.log('Request:', error.request);
+        } else {
+           // Something happened in setting up the request and triggered an error
+           console.log('Error:', error.message);
+        }
       }
-    };
+      }
     getProjectDetailList(); // Call the function to fetch data
   }, []);
 
@@ -58,12 +75,11 @@ function ProjectDetailChart({ serverId,projectData}) {
 
       <section className="timeline">
         <ol>
-          {ProjectDetailList.map((item, index) => (
+          {ProjectDetailList.map((list, index) => (
             <li key={index}>
               <div>
-                <time>{item.work_date}</time>
-                {/* Render other details as needed */}
-                <UserProjectDetailModal2 projectData={item} />
+                <time>{list.work_date}</time>
+                <UserProjectDetailModal2 projectDetailList={list} />
               </div>
             </li>
           ))}

@@ -36,7 +36,13 @@ function Logout() {
           role: "ROLE_ADMIN",
         },
       });
-    }
+    }else if (dec.role == "ROLE_ENGLEADER") {
+        history("/engineerleader", {
+          state: {
+            role: "ROLE_ENGLEADER",
+          },
+        });
+      }
   };
   return (
     <>
