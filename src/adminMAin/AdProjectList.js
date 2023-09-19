@@ -7,6 +7,7 @@ import "../enMain/EnMain.css";
 import "../userMain/User.css";
 import "../enMain/EnCss.css";
 import "./Admin.css"
+
 import AdProDetailModal from "./AdProDetailModal";
 
 function AdProjectList() {
@@ -29,6 +30,7 @@ function AdProjectList() {
 
     // 데이터를 복사하여 필터링
     const filteredList = first.filter((item) => { //검색시작
+
       if (filter === "프로젝트명") {
         return item.por_name.includes(searchWord);
       } else if (filter === "회사명") {
@@ -131,6 +133,7 @@ function AdProjectList() {
                           </tr>
                         </thead>
                         <tbody>
+                              
                         {currentItems.map((project,index) => (
 
                           <tr key={project.pro_id}>
@@ -151,10 +154,12 @@ function AdProjectList() {
 
                           ) 
                          )}
+
                         </tbody>
                       </table>
                     </div>
                   </div>
+
                   <div style={{ textAlign: 'center'}}>
                      <div className="pagedivengl pagination-admin">
                       <Pagination

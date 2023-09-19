@@ -5,6 +5,7 @@ import AdProDetailInsModal from "./AdProDetailInsModal";
 
 
 
+
 function AdProDetailModal(props) {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -49,7 +50,6 @@ function AdProDetailModal(props) {
     setModalIsOpen(false);
   }
 
-  console.log(props);
 
   return(
    <> 
@@ -145,6 +145,7 @@ function AdProDetailModal(props) {
                     <th scope="col">서버 상태</th>
                     <th scope="col">배정 엔지니어</th>
                     <th scope="col"></th>
+
                   </tr>
 
                 </thead>

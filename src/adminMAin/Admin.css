@@ -371,7 +371,8 @@ html body .font-weight-medium {
 .pagination-admin .active a:hover, 
 .pagination-admin .active span, 
 .pagination-admin .active span:focus, 
-.pagination-admin .active span:hover {
+.pagination-admin .active span:hover
+ {
   z-index: 2;
   color: #fff;
   cursor: default;
