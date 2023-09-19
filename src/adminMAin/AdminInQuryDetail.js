@@ -39,7 +39,7 @@ function AdminInQuryDetail({ checkPermission }) {
         link.click()
     }
     const getFile = async () => {
-        const file_num = DetailData.notice_num
+        const file_num = DetailData.cs_num
 
         const response = await axios.get(`/api/main/getPoto?cus_id=${file_num}`)
         if (response.data === '파일 없음') {
@@ -179,6 +179,15 @@ function AdminInQuryDetail({ checkPermission }) {
                                         <p style={{ textAlign: "left" }}>{update ? <textarea name="notice_content" onChange={noticeChange} style={{ width: "100%", height: "200px" }} value={form.cs_content} placeholder={DetailData.cs_content == '' ? "내용 없음" : DetailData.cs_content} /> : DetailData.cs_content}
                                         </p>
                                     </article>
+                                    <div style={{ width: "100%", textAlign: 'left' ,marginBottom:"40px"}}>
+                                        <p style={{ display: "inline", fontSize: "20px", marginBottom: "15px" }}>첨부 파일 : </p>
+
+                                        {file.file_name != null ? <button onClick={down} className="fileDown" style={{ color: 'black' }}>{file.file_name}</button> :
+
+                                            update ? <input type="file" onChange={fileUpload} style={{ display: "inline" }} /> : <button>파일이 없습니다</button>
+
+                                        }
+                                    </div>
 
 
 

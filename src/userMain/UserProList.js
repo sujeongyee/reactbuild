@@ -76,7 +76,9 @@ function UserProList({ state }) {
 
   return (
     <>
+
       <div className="page-wrapper">
+
         <div className="page-breadcrumb">
           <div className="row">
             <div className="col-7 align-self-center">
@@ -188,7 +190,7 @@ function UserProList({ state }) {
                   </div>
                   <div style={{ textAlign: "center" }}>
                     {/* <ul className="pagination" >
->>>>>>> 58d9319a06af2f70a6737240ed990847c63eda83
+
                       <li className="page-item disabled">
                         <Link className="page-link" href="#" tabindex="-1">
                           Prev

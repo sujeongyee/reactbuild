@@ -7,7 +7,7 @@ import { Navigate, Outlet, Route} from 'react-router-dom';
 function PrivateRouteAd({checkPermission}) {
     
 
-    return checkPermission.role=="ROLE_ADMIN" ? 
+    return checkPermission&&checkPermission.role=="ROLE_ADMIN" ? 
         
       <Outlet/>
      
