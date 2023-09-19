@@ -6,7 +6,7 @@ import Loading from '../loding/Loding';
 
 function UserProList({state}) {
 
-    const [loading, setLoading] = useState(true);
+   // const [loading, setLoading] = useState(true);
   const[proList, setProList] = useState([]);
 
   //console.log(state);
@@ -26,7 +26,7 @@ function UserProList({state}) {
 
   return (
     <>
-             {loading ? <Loading /> : null}
+             {/* {loading ? <Loading /> : null} */}
       <div className="page-wrapper" >
 
         <div className="page-breadcrumb">
