@@ -71,7 +71,7 @@ function EnglClientList(){
 
   return (
     <>
-         {loading ? <Loading /> : null}
+         {/* {loading ? <Loading /> : null} */}
       <div className="page-wrapper prolist-engl">
         <div
           className="container-fluid englpro-all"

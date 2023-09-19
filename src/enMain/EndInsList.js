@@ -236,7 +236,157 @@ function EndInsList() {
                     </li>
                   </ul>
                 </div>
+                <p className="insListP" style={{ paddingLeft: "10px" }}>
+                  KimJJangSu
+                </p>
               </div>
+
+              <td>2023.05.06</td>
+              <td>2023.05.07</td>
+
+              <tr>
+                <th scope="row">2</th>
+                <td>
+                  <Link to="#">ICT대학교 학생관리 시스템</Link>
+                </td>
+                <td>정기점검</td>
+                <td>
+                  <div className="d-flex no-block align-items-center">
+                    <div className="me-3">
+                      <img
+                        src="../img/widget-table-pic2.jpg"
+                        alt="engineer"
+                        className="rounded-circle insListImg"
+                        width="45"
+                        height="45"
+                        style={{ filter: "grayscale(100%)" }}
+                      />
+                    </div>
+                    <p className="insListP" style={{ paddingLeft: "10px" }}>
+                      KimJJangSu
+                    </p>
+                  </div>
+                </td>
+                <td>2023.05.04</td>
+                <td>2023.05.05</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>
+                  <Link to="#">중앙정보처리기술학원 강사관리</Link>
+                </td>
+                <td>정기점검</td>
+                <td>
+                  <div className="d-flex no-block align-items-center">
+                    <div className="me-3">
+                      <img
+                        src="../img/widget-table-pic2.jpg"
+                        alt="user"
+                        className="rounded-circle insListImg"
+                        width="45"
+                        height="45"
+                        style={{ filter: "grayscale(100%)" }}
+                      />
+                    </div>
+                    <p className="insListP" style={{ paddingLeft: "10px" }}>
+                      KimJJangSu
+                    </p>
+                  </div>
+                </td>
+                <td>2023.06.28</td>
+                <td>2023.07.01</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>
+                  <Link to="#">인하대학교 수강신청 시스템</Link>
+                </td>
+                <td>정기점검</td>
+                <td>
+                  <div className="d-flex no-block align-items-center">
+                    <div className="me-3">
+                      <img
+                        src="../img/widget-table-pic2.jpg"
+                        alt="user"
+                        className="rounded-circle insListImg"
+                        width="45"
+                        height="45"
+                        style={{ filter: "grayscale(100%)" }}
+                      />
+                    </div>
+                    <p className="insListP" style={{ paddingLeft: "10px" }}>
+                      KimJJangSu
+                    </p>
+                  </div>
+                </td>
+                <td>2023.07.10</td>
+                <td>2023.07.14</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>
+                  <Link to="#">서경대학교 수강신청 시스템</Link>
+                </td>
+                <td>긴급점검</td>
+                <td>
+                  <div className="d-flex no-block align-items-center">
+                    <div className="me-3">
+                      <img
+                        src="../img/widget-table-pic2.jpg"
+                        alt="user"
+                        className="rounded-circle insListImg"
+                        width="45"
+                        height="45"
+                        style={{ filter: "grayscale(100%)" }}
+                      />
+                    </div>
+                    <p className="insListP" style={{ paddingLeft: "10px" }}>
+                      KimJJangSu
+                    </p>
+                  </div>
+                </td>
+                <td>2023.07.30</td>
+                <td>2023.07.31</td>
+              </tr>
+            </div>
+            <div style={{ textAlign: "center", marginTop: "30px" }}>
+              <ul className="pagination">
+                <li className="page-item disabled">
+                  <a className="page-link" href="#" tabindex="-1">
+                    Prev
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    1
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    2 <span className="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    3
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    4
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    5
+                  </a>
+                </li>
+                <li className="page-item">
+                  <a className="page-link" href="#">
+                    Next
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

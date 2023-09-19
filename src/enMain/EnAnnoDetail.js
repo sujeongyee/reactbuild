@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 import Comment from "../component/Comment";
 import { useState } from "react";
 function EnAnnoDetail() {
-  const [loading, setLoading] = useState(true);
-
   return (
     <>
       <div className="page-wrapper">

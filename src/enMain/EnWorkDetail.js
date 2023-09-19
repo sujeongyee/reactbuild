@@ -128,44 +128,7 @@ function EnWorkDetail({ checkPermission }) {
     }));
   };
 
-  // const logSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const response = await axios
-  //     .post("/api/main/engineer/workDetail", workInfoVO)
-  //     .then((response) => {
-  //       console.log("완료", response.data);
-  //     });
-  // };
-
   const [fileList, setFileList] = useState([]);
-
-  // setFileList(newFiles);
-
-  // const selectFile = (e) => {
-  //   const selectedFiles = e.target.files[0]; // 선택한 파일들의 목록을 받습니다.
-  //   console.log(selectedFiles);
-  //   const newFiles = [...fileList]; // 현재 fileList를 복제하여 변경할 파일 목록을 만듭니다.
-
-  //   for (let i = 0; i < selectedFiles.length; i++) {
-  //     const fileSize = Math.floor(selectedFiles[i].size / 1024 / 1024);
-  //     if (fileSize > 10) {
-  //       alert("10MB 이하의 파일로 업로드해 주세요.");
-  //       return false;
-  //     }
-  //     // 선택한 파일을 새 파일 목록에 추가합니다.
-  //     newFiles.push(selectedFiles[i]);
-  //   }
-
-  //   // 변경된 파일 목록을 설정합니다.
-  //   setFileList(newFiles);
-  // };
-
-  // const addFile = () => {
-  //   const newFiles = [...fileList];
-  //   newFiles.push("");
-  //   setFileList([...fileList]);
-  // };
 
   const addFile = (e) => {
     setFileList([...fileList, ""]);
@@ -214,19 +177,6 @@ function EnWorkDetail({ checkPermission }) {
     } catch (error) {
       console.error("파일 업로드 및 작업 상세 내역 제출 오류:", error);
     }
-    // else {
-    //   const response = await axios.post(
-    //     "/api/main/engineer/workDetail",
-    //     workInfoVO
-    //   );
-
-    //   if (response.data === "성공") {
-    //     alert("작성 완료 했습니다.");
-    //     history("/engineer/inspectionList");
-    //   } else {
-    //     alert("잘못된 접근 입니다.");
-    //   }
-    // }
   };
 
   return (

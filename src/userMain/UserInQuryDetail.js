@@ -12,6 +12,7 @@ function UserInQuryDetail() {
         <div class="page-breadcrumb">
           <div class="row">
             {/* <div class="col-7 align-self-center">
+
                         <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">엔지니어</h3>
                         <div class="d-flex align-items-center">
                             <nav aria-label="breadcrumb">

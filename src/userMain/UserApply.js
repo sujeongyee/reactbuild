@@ -195,8 +195,6 @@ function UserApply({ state }) {
         alert("등록되었습니다");
 
         navigate("/user/list");
-
-        setLoading(false);
       } else {
         // 요청이 실패한 경우
         alert("등록되지 않았습니다. 다시 확인해주시기 바랍니다");

@@ -22,6 +22,7 @@ function UserInQuryWrite({ checkPermission }) {
     const file = e.target.files[0];
 
     setFileUp(file);
+    console.log(fileUp);
   };
 
   const history = useNavigate();
@@ -33,7 +34,6 @@ function UserInQuryWrite({ checkPermission }) {
         const fileExtension = fileName.split(".").pop().toLowerCase();
         if (validExtensions.includes(fileExtension)) {
           const AdminId = checkPermission.sub;
-          console.log(AdminId);
           let formData = new FormData();
           formData.append("file_data", fileUp);
           formData.append("userId", AdminId);

@@ -143,11 +143,12 @@ function EnEngineerMyPage(props) {
             </table>
 
             <div className="detail_modal_button">
-              <input
+              {/* <input
                 type="button"
                 value="수정"
                 className="detail_modal_button_print"
-              />
+               /> */}
+
               <input
                 type="button"
                 value="목록보기"

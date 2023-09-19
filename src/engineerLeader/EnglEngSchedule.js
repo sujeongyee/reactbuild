@@ -11,14 +11,10 @@ import "@toast-ui/calendar/dist/toastui-calendar.min.css"; // Calendar 스타일
 function EnglEngSchedule() {
   const { eng_enid } = useParams();
 
-  const { eng_enid } = useParams();
-
   useEffect(() => {
     axios
       .get(`/api/main/engleader/getEngInfo/${eng_enid}`)
       .then((response) => console.log(response.data));
-
-    setLoading(false);
   }, []);
 
   const schedules = [

@@ -4,18 +4,19 @@ import axios from "axios";
 import Loading from '../loding/Loding';
 
 
-function UserDetailPro() {
-
+function UserDetailPro({ detail: data } ) {
 
   const[proDetail, setProDetail] = useState([]);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
   const {pro_id} = useParams();
+
+  console.log(pro_id)
 
   useEffect(()=>{
     axios.get(`/api/main/user/prodetail/${pro_id}`).then((response)=>{
       setProDetail(response.data);
       console.log(response.data);
-      setLoading(false);
+     // setLoading(false);
       
     })
     .catch((error)=>{
@@ -27,7 +28,9 @@ function UserDetailPro() {
 
   return (
     <>
-         {loading ? <Loading /> : null}
+
+         {/* {loading ? <Loading /> : null} */}
+
       <div className="page-wrapper" >
 
         <div className="page-breadcrumb">
@@ -68,7 +71,7 @@ function UserDetailPro() {
                     프로젝트 정기점검 날짜 : <span>{proDetail?.[0]?.pro_pi}</span>
                     </div>
                     <div className="pro-info">
-                    담당 엔지니어 : <span>{proDetail?.[0]?.pro_status == '진행 중' ? proDetail?.[0]?.eng_name : '배정 미정'}</span>
+                    담당 엔지니어팀 : <span>{proDetail?.[0]?.pro_status == '진행 중' ? proDetail?.[0]?.team_id : '배정 미정'}</span>
                     </div>
 
                     </div>
@@ -107,6 +110,7 @@ function UserDetailPro() {
                           <th scope="col">RAM</th>
                           <th scope="col">디스크 용량</th>
                           <th scope="col">서버 상태</th>
+                          <th scope="col">담당 엔지니어</th>
                           <th scope="col" style={{width: "20px"}}></th>
                         </tr>
 
@@ -116,7 +120,7 @@ function UserDetailPro() {
                         {proDetail.map((project,index) => (
 
                           <tr key={index}>
-                          <th scope="row">{index}</th>
+                          <th scope="row">{index+1}</th>
                           <td class="user-servername">{project.server_name}</td>
                           <td class="user-ipadress">{project.ip_address}</td>
                           <td class="user-oprationsystem">{project.operating_system}</td>
@@ -124,6 +128,7 @@ function UserDetailPro() {
                           <td>{project.ram}</td>
                           <td>{project.disk_capacitygb}</td>
                           <td>{project.server_status}</td>
+                          <td>{project.eng_name}</td>
                           <td>
                             <button className="emergency" style={{padding: "0", width: "80px", height: "20px"}}>
                               <Link to="/user/projectDetailList" className="linkto" style={{fontSize: "xx-small", padding: 0}}>긴급요청</Link>

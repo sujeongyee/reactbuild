@@ -43,7 +43,6 @@ import ProjectDetail from "./adminMain/ProjectDetail";
 import AdUserList from "./adminMain/AdUserList";
 import AdProjectList from "./adminMain/AdProjectList";
 import EnWorkDetail from "./enMain/EnWorkDetail";
-import AnEngineerList from "./adminMain/AnEngineerList";
 
 import EnInspectionList from "./enMain/EnInspectionList";
 
@@ -75,6 +74,11 @@ import EnglEngDetail from "./engineerLeader/EnglEngDetail";
 import EnglAllSchedule from "./engineerLeader/EnglAllSchedule";
 import AdminproModal from "./adminMain/AdminproModal";
 
+import ProjectDetailChart from "./userMain/ProjectDetailChart";
+
+import AdEngineerList from "./adminMain/AdEngineerList";
+import InspectionList from "./enMain/InspectionList";
+
 function App() {
   const location = useLocation();
 
@@ -102,7 +106,6 @@ function App() {
     }
     if (checkPermission().role === "ROLE_USER") {
       const cus_id = checkPermission().sub;
-
       const response1 = await axios.get(`/api/main/getInfo?cus_id=${cus_id}`);
       setInfo(response1.data);
     }
@@ -183,7 +186,7 @@ function App() {
 
           <Route
             path="/engineer/inspectionList"
-            element={<EnInspectionList checkPermission={checkPermission()} />}
+            element={<InspectionList checkPermission={checkPermission()} />}
           />
 
           <Route
@@ -210,6 +213,7 @@ function App() {
         </Route>
       </Route>
       {/* $ npm install react-js-pagination */}
+
       <Route element={<PrivateRouteEnl checkPermission={checkPermission()} />}>
         <Route
           element={<HeaderFooterEnl checkPermission={checkPermission()} />}
@@ -361,7 +365,7 @@ function App() {
           />
           <Route
             path="/admin/engineerList"
-            element={<AnEngineerList checkPermission={checkPermission()} />}
+            element={<AdEngineerList checkPermission={checkPermission()} />}
           />
           /{" "}
           <Route

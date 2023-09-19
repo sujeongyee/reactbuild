@@ -434,3 +434,33 @@ html body .font-weight-medium {
   position: relative;
   color: #fff;
 } */
+.boardD:hover {
+  color: #5f78f3 !important;
+}
+
+.pagination-admin .active a,
+.pagination-admin .active a:focus,
+.pagination-admin .active a:hover,
+.pagination-admin .active span,
+.pagination-admin .active span:focus,
+.pagination-admin .active span:hover {
+  z-index: 2;
+  color: #fff;
+  cursor: default;
+  background-color: #ed7272;
+  border-color: #ed7272;
+  border-radius: 0.2em;
+}
+
+.pagination-admin > .pagination > .disabled > a,
+.pagination-admin > .pagination > .disabled > a:focus,
+.pagination-admin > .pagination > .disabled > a:hover,
+.pagination-admin > .pagination > .disabled > span,
+.pagination-admin > .pagination > .disabled > span:focus,
+.pagination-admin > .pagination > .disabled > span:hover,
+.pagination-admin > .pagination > li > a {
+  color: #ed7272;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}

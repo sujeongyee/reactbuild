@@ -1,13 +1,65 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Pagination from "react-js-pagination";
+import SearchIcon from "../engineerLeader/SearchIcon";
+import { Background } from "../loding/Styles";
 
 function UserProList({ state }) {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+
   const [proList, setProList] = useState([]);
 
-  //console.log(state);
-  console.log(state.cus_id);
+  //페이지 리스트
+  // const [list, setList] = useState([]); //
+  const [first, setFirst] = useState([]); //처음으로 불러온 response값 저장
+
+  //검색
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 정보 저장
+  const itemsPerPage = 10; // 페이지당 아이템 수
+
+  const handlePageChange = (page) => {
+    // 페이지 핸들링
+    setCurrentPage(page);
+  };
+
+  //search 버튼을 눌렀을때의 이벤트
+  const handleSearch = (e) => {
+    const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
+    const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명(옵션값)
+
+    // 데이터를 복사하여 필터링
+    const filteredList = first.filter((item) => {
+      //검색시작
+      if (filter === "프로젝트명") {
+        return item.pro_name.includes(searchWord);
+      } else if (filter === "계약상태") {
+        return item.pro_status.includes(searchWord);
+      } else if (filter === "계약시작일") {
+        return item.pro_startdate.includes(searchWord);
+      } else if (filter === "정기점검일") {
+        return item.pro_pi.includes(searchWord);
+      } else if (filter === "전체" && searchWord === "") {
+        return item;
+      } else if (filter === "전체") {
+        return (
+          item.pro_name.includes(searchWord) ||
+          item.pro_status.includes(searchWord) ||
+          item.pro_startdate.includes(searchWord) ||
+          item.pro_pi.includes(searchWord)
+        );
+      }
+      return true;
+    });
+
+    // 필터링된 데이터를 업데이트
+    setProList(filteredList); //list
+    setCurrentPage(1); // 페이지를 첫 번째 페이지로 리셋
+  }; // 검색끝
+
+  const indexOfLastItem = currentPage * itemsPerPage; //마지막 페이지 계산
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  var currentItems = proList.slice(indexOfFirstItem, indexOfLastItem); //list
 
   useEffect(() => {
     axios
@@ -21,7 +73,6 @@ function UserProList({ state }) {
         console.log(error);
       });
   }, [state.cus_id]);
-  //console.log(proList);
 
   return (
     <>
@@ -38,29 +89,40 @@ function UserProList({ state }) {
             <div className="col-6">
               <div className="card">
                 <div className="card-body">
-                  <label style={{ display: "flex;" }}>
-                    <span
-                      style={{
-                        transform: "translateY(5px)",
-                        paddingRight: "10px",
-                        width: "40px",
-                      }}
+                  <label
+                    style={{
+                      display: "flex",
+                      justifyContent: "right",
+                      marginBottom: "50px",
+                    }}
+                  >
+                    <div
+                      className="customize-input right select-proengl"
+                      style={{ marginRight: "30px" }}
                     >
-                      Search:
-                    </span>
+                      <select
+                        style={{ display: "inline-block" }}
+                        className="selectee"
+                      >
+                        <option className="selecteeop">전체</option>
+                        <option className="selecteeop">프로젝트명</option>
+                        <option className="selecteeop">계약상태</option>
+                        <option className="selecteeop">계약시작일</option>
+                        <option className="selecteeop">정기점검일</option>
+                      </select>
+                    </div>
                     <input
                       type="search"
                       className="form-control form-control-sm"
-                      placeholder
+                      placeholder="검색하기"
                       aria-controls="zero_config"
-                      style={{ width: "200px" }}
+                      style={{ width: "150px", marginRight: "10px" }}
                     />
-                    <input
-                      type="button"
-                      value={"검색하기"}
-                      className="inqurylist-search"
-                    />
+                    <div className="search-click-engl" onClick={handleSearch}>
+                      <SearchIcon color="#9cbba6" />
+                    </div>
                   </label>
+
                   <div className="table-responsive">
                     <table className="table">
                       <thead>
@@ -73,9 +135,11 @@ function UserProList({ state }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {proList.map((project, index) => (
+                        {currentItems.map((project, index) => (
                           <tr key={project.pro_id}>
-                            <th scope="row">{index}</th>
+                            <th scope="row">
+                              {(currentPage - 1) * itemsPerPage + index + 1}
+                            </th>
                             <td class="user-proname">
                               <Link
                                 to={{
@@ -123,7 +187,8 @@ function UserProList({ state }) {
                     </table>
                   </div>
                   <div style={{ textAlign: "center" }}>
-                    <ul className="pagination">
+                    {/* <ul className="pagination" >
+>>>>>>> 58d9319a06af2f70a6737240ed990847c63eda83
                       <li className="page-item disabled">
                         <Link className="page-link" href="#" tabindex="-1">
                           Prev
@@ -149,7 +214,18 @@ function UserProList({ state }) {
                           Next
                         </Link>
                       </li>
-                    </ul>
+                    </ul> */}
+                    <div className="pagedivengl pagination-engl">
+                      <Pagination
+                        activePage={currentPage}
+                        itemsCountPerPage={itemsPerPage}
+                        totalItemsCount={proList.length} //list
+                        pageRangeDisplayed={5}
+                        prevPageText={"prev"}
+                        nextPageText={"next"}
+                        onChange={handlePageChange}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

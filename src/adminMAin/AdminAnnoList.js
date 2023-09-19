@@ -168,6 +168,84 @@ function AdminAnnoList({ checkPermission }) {
           </div>
         </div>
       </div>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12">
+            <div className="card">
+              <div className="card-body" style={{ height: "600px" }}>
+                <div className="table-responsive" style={{ height: "450px" }}>
+                  <Search
+                    setSearchValue={setSearchValue}
+                    setTotal={setTotal}
+                    select={select}
+                    style={{ color: "rgb(198, 73, 42)" }}
+                    categori={"notice"}
+                  />
+                  <select onChange={selectSearch}>
+                    <option value="notice_title">제목</option>
+                    <option value="notice_writer">작성자</option>
+                  </select>
+                  <Link to="/admin/noticeWrite" className="write">
+                    <span style={{ background: "rgb(198, 73, 42)" }}>
+                      공지사항 작성
+                    </span>
+                  </Link>
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">NO</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">등록일</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {pageInfo &&
+                        pageInfo.slice(0, -1).map((item, index) => (
+                          <tr key={index}>
+                            <th scope="row">{index + 1}</th>
+                            <td>
+                              <Link
+                                to={`/admin/annoDetail`}
+                                state={{ item }}
+                                style={{ padding: "0" }}
+                              >
+                                {item.notice_title}
+                              </Link>
+                            </td>
+                            <td>
+                              {item.notice_writer
+                                ? item.notice_writer
+                                : "admin"}
+                            </td>
+                            <td>
+                              {item.notice_regdate
+                                ? formatDateTime(item.notice_regdate)
+                                : ""}
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
+                {total != "" ? (
+                  <PageNation
+                    currentPage={currentPage}
+                    totalPosts={total} // 전체 게시글 수를 전달
+                    onPageChange={handlePageChange}
+                    postsPerPage={postsPerPage}
+                    style={{
+                      color: "#d9534f",
+                      backgroundColor: "#ffdcdb",
+                      borderRadius: " 35%",
+                    }}
+                  />
+                ) : null}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

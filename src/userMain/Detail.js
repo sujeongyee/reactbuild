@@ -1,10 +1,7 @@
-import { Link } from "react-router-dom";
 import "../enMain/EnMain.css";
 import "./User.css";
 
 function Detail() {
-  const [loading, setLoading] = useState(true);
-
   return (
     <>
       <div class="detail_modal_container">

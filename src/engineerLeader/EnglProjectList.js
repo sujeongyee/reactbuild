@@ -8,8 +8,6 @@ import axios from "axios";
 import Pagination from "react-js-pagination";
 
 function EnglProjectList() {
-  const [loading, setLoading] = useState(true);
-
   const [first, setFirst] = useState([]);
 
   const [list, setList] = useState([]);
@@ -23,8 +21,6 @@ function EnglProjectList() {
       console.log(response.data);
       setList(response.data);
       setFirst(response.data);
-
-      setLoading(false);
     });
   }, []);
 
