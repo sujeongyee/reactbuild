@@ -8,6 +8,7 @@ import UsersIcon from "../img/UserIcon";
 
 import ChartComponent1 from "../userMain/ChartComponent1"
 
+
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useEffect, useState } from "react"
@@ -24,7 +25,7 @@ function EngLeadMain(props) {
   const [disability, setDisability] = useState([]);
   const [maintenance, setMaintenance] = useState([]);
   const [userId, setUserId] = useState(props.userId);
-  console.log(props.userId)
+  console.log(props.userId);
   useEffect(() => {
     // props.userId가 null이 아닌 경우에만 axios 요청을 보냅니다.
     // if (props.userId !== undefined && props.userId != null && props.userId!=='') {
@@ -46,8 +47,6 @@ function EngLeadMain(props) {
         });
     //}
   }, [props.userId]); // props.userId가 변경될 때마다 useEffect를 실행합니다.
-  
-
 
   const data = {
     labels: ["신규계약", "계약종료"],
@@ -77,16 +76,17 @@ function EngLeadMain(props) {
 
   const [modalStates, setModalStates] = useState([]);
   const [alarmModals, setAlarmModals] = useState([]);
-  useEffect(()=>{
-    axios.get('/api/main/alarm/getAlarmList',{
-      params:{user_id:props.userId}
-    })
-    .then(response =>{
-      const d = response.data
-      setAlarmModals(d);
-      setModalStates(d.map(() => true));
-    })
-  },[props.userId])
+  useEffect(() => {
+    axios
+      .get("/api/main/alarm/getAlarmList", {
+        params: { user_id: props.userId },
+      })
+      .then((response) => {
+        const d = response.data;
+        setAlarmModals(d);
+        setModalStates(d.map(() => true));
+      });
+  }, [props.userId]);
 
   const openModal = (index) => {
     // 해당 인덱스의 모달 상태를 열린 상태(true)로 설정
@@ -94,7 +94,7 @@ function EngLeadMain(props) {
     updatedModalStates[index] = true;
     setModalStates(updatedModalStates);
   };
-  
+
   const closeModal = (index) => {
     // 해당 인덱스의 모달 상태를 닫힌 상태(false)로 설정
     const updatedModalStates = [...modalStates];
@@ -104,31 +104,27 @@ function EngLeadMain(props) {
 
   const customModalStyles = {
     content: {
-      left: '94.5%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      borderRadius:'0.5em',
-      fontSize:'11px',
-      color:'black',
-      border:'2px solid #dfaaaa',
-      backgroundColor:'white',
-      width:'180px',
-      marginTop:'45px',
-      padding:'10px'
+      left: "94.5%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "0.5em",
+      fontSize: "11px",
+      color: "black",
+      border: "2px solid #dfaaaa",
+      backgroundColor: "white",
+      width: "180px",
+      marginTop: "45px",
+      padding: "10px",
       // 추가적인 스타일을 여기에 추가할 수 있습니다.
     },
   };
-
 
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   return (
     <>
-
-    
-      
 
       <div className="page-wrapper" >
 
@@ -326,6 +322,7 @@ function EngLeadMain(props) {
                                 </div>
                               </td>
 
+
                               <td className="" style={{ padding: '6px' }}><Link className="engl-main-a" to={{
                                 pathname: `/engineerleader/requestDetail/${data.pro_id}`,
                                 state: {
@@ -336,7 +333,6 @@ function EngLeadMain(props) {
                               <td
                                 className="">
                                 {data.pro_startdate}
-
                               </td>
 
                               <td className="">{data.pro_startDate}</td>
@@ -401,7 +397,6 @@ function EngLeadMain(props) {
           </div>
         </div>
       </div>
-      
     </>
   );
 }

@@ -10,7 +10,7 @@ import EnglTeamassign from './EnglTeamassign';
 import Loading from '../loding/Loding';
 
 
-function RequestDetail() {
+function RequestDetail(props) {
   const [loading, setLoading] = useState(true);
   const { pro_id } = useParams();
   const [info, setInfo] = useState([]);
@@ -29,6 +29,7 @@ function RequestDetail() {
         console.log(err);
       });
   }, []);
+  
 
   const assignEmer = () => {
 
@@ -230,7 +231,7 @@ function RequestDetail() {
                     <td>{data.ram} GB</td>
                     <td>{data.disk_capacitygb} GB</td>
 
-                    <td><EnglTeamassign pro_pi={info.PRO_PI} pro_id={info.PRO_ID} server_id={data.server_id} check={data.eng_enid == null ? false : true} /></td>
+                    <td><EnglTeamassign leader_id={props.userId} pro_pi={info.PRO_PI} pro_id={info.PRO_ID} server_id={data.server_id} check={data.eng_enid == null ? false : true} /></td>
 
                   </tr>
                 ))}

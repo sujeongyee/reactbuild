@@ -343,6 +343,9 @@ function Login_join(props) {
                             role: 'ROLE_USER'
                         }
                     });
+                    
+                        window.location.reload();
+                    
                 } else if (dec.role === 'ROLE_ENGINEER') {
 
                     history('/engineer', {
@@ -350,18 +353,21 @@ function Login_join(props) {
                             role: 'ROLE_ENGINEER'
                         }
                     });
+                    window.location.reload();
                 } else if (dec.role === 'ROLE_ADMIN') {
                     history('/admin', {
                         state: {
                             role: 'ROLE_ADMIN'
                         }
                     });
+                    window.location.reload();
                 } else if (dec.role === "ROLE_ENGLEADER") {
                     history('/engineerleader', {
                         state: {
                             role: 'ROLE_ENGLEADER'
                         }
                     });
+                    window.location.reload();
                 }
             } else {
                 // 로그인 실패한 경우

@@ -2,21 +2,21 @@ import { Link, useLocation, useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from '../loding/Loding';
+import UserInsRequestModal from "./UserInsRequestModal";
 
 
-function UserDetailPro({ detail: data } ) {
+function UserDetailPro() {
+
 
   const[proDetail, setProDetail] = useState([]);
-  //const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const {pro_id} = useParams();
-
-  console.log(pro_id)
 
   useEffect(()=>{
     axios.get(`/api/main/user/prodetail/${pro_id}`).then((response)=>{
       setProDetail(response.data);
       console.log(response.data);
-     // setLoading(false);
+     setLoading(false);
       
     })
     .catch((error)=>{
@@ -28,9 +28,7 @@ function UserDetailPro({ detail: data } ) {
 
   return (
     <>
-
          {/* {loading ? <Loading /> : null} */}
-
       <div className="page-wrapper" >
 
         <div className="page-breadcrumb">
@@ -68,10 +66,10 @@ function UserDetailPro({ detail: data } ) {
                     프로젝트 정보 :  <span>{proDetail?.[0]?.pro_info}</span>
                     </div>
                     <div className="pro-info">
-                    프로젝트 정기점검 날짜 : <span>{proDetail?.[0]?.pro_pi}</span>
+                    프로젝트 정기점검 날짜 : <span>매월 {proDetail?.[0]?.pro_pi}일</span>
                     </div>
                     <div className="pro-info">
-                    담당 엔지니어팀 : <span>{proDetail?.[0]?.pro_status == '진행 중' ? proDetail?.[0]?.team_id : '배정 미정'}</span>
+                    담당 엔지니어팀 : <span>{proDetail?.[0]?.pro_status != '승인대기중' ? proDetail?.[0]?.team_id : '배정 전'}</span>
                     </div>
 
                     </div>
@@ -101,7 +99,7 @@ function UserDetailPro({ detail: data } ) {
               <div className="table-responsive">
                     <table className="table">
                       <thead>
-                        <tr>
+                        <tr style={{textAlign: 'center'}}>
                           <th scope="col">No</th>
                           <th scope="col">서버이름</th>
                           <th scope="col">IP주소</th>
@@ -121,20 +119,21 @@ function UserDetailPro({ detail: data } ) {
 
                           <tr key={index}>
                           <th scope="row">{index+1}</th>
-                          <td class="user-servername">{project.server_name}</td>
-                          <td class="user-ipadress">{project.ip_address}</td>
-                          <td class="user-oprationsystem">{project.operating_system}</td>
-                          <td>{project.cpu}</td>
-                          <td>{project.ram}</td>
-                          <td>{project.disk_capacitygb}</td>
-                          <td>{project.server_status}</td>
-                          <td>{project.eng_name}</td>
-                          <td>
-                            <button className="emergency" style={{padding: "0", width: "80px", height: "20px"}}>
-                              <Link to="/user/projectDetailList" className="linkto" style={{fontSize: "xx-small", padding: 0}}>긴급요청</Link>
-                            </button>
-                            <button className="server-btn" style={{padding: "0", width: "80px", height: "20px"}}> 
-                              <Link to="/user/projectDetailList" className="linkto" style={{fontSize: "xx-small", padding: 0}}>점검내역</Link>
+                          <td class="user-servername"  style={{textAlign: 'center'}}>{project.server_name}</td>
+                          <td class="user-ipadress"  style={{textAlign: 'center'}}>{project.ip_address}</td>
+                          <td class="user-oprationsystem"  style={{textAlign: 'center'}}>{project.operating_system}</td>
+                          <td  style={{textAlign: 'center'}}>{project.cpu}</td>
+                          <td  style={{textAlign: 'center'}}>{project.ram}</td>
+                          <td  style={{textAlign: 'center'}}>{project.disk_capacitygb}</td>
+                          <td  style={{textAlign: 'center'}}>{project.server_status}</td>  
+                          <td  style={{textAlign: 'center'}}>{project.eng_name!=null ? project.eng_name : '배정전'}</td>
+                          <td style={{display: 'inline-block', width: '120px'}}>
+                            <UserInsRequestModal
+                              server_id={project.server_id}
+                              cus_id={project.cus_id}
+                            />
+                            <button className="" style={{backgroundColor: 'rgb(118 180 255)', fontSize: '10px', padding: '5px', marginLeft: '10px'}}> 
+                              <Link to="/user/projectDetailList" className="linkto" style={{fontSize: "xx-small", padding: 0, color: '#fff'}}>점검내역</Link>
                             </button>
                           </td>
                           </tr>

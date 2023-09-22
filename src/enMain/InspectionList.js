@@ -107,6 +107,7 @@ function InspectionList({checkPermission}) {
                     </div>
                   </label> */}
 
+
                   <form className="search-engineer search-englg"  style={{position:'absolute', top:'0px', right: '100px', margin: '0 5px'}}> 
 
 
@@ -195,6 +196,7 @@ function InspectionList({checkPermission}) {
                     nextPageText={"next"}
                     onChange={handlePageChange}
                   />
+
                 </div>
 
               </div>

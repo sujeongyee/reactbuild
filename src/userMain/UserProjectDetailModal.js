@@ -128,4 +128,4 @@ function UserProjectDetailModal({ projectDetailList }) {
   );
 }
 
-export default UserProjectDetailModal; 
+export default UserProjectDetailModal;
