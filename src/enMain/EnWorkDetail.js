@@ -4,6 +4,7 @@ import "../userMain/User.css";
 import "../enMain/EnCss.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { fi } from 'date-fns/locale';
 
 function EnWorkDetail({ checkPermission }) {
   const eng_enid = checkPermission.sub;
@@ -35,9 +36,10 @@ function EnWorkDetail({ checkPermission }) {
   });
   const [filteredServer, setFilteredServer] = useState([]);
 
+
   const changeProjectSelect = (selectedProject) => {
     const filteredServer = projectData.serverList.filter(
-      (server) => server.pro_id === selectedProject
+      (server) => server.pro_id === selectedProject && server.eng_enid === eng_enid
     );
     setFilteredServer(filteredServer);
   };
@@ -57,7 +59,11 @@ function EnWorkDetail({ checkPermission }) {
   const [selectedCheckTypes, setSelectedCheckTypes] = useState({});
 
   const handleInputChange = (e, index, field) => {
-    const newValue = e.target.value;
+    let newValue = e.target.value;
+    // cpu, ram, hdd 사용량 기재 2자리까지만 입력 가능하도록 설정
+    newValue = newValue.replace(/[^0-9]/g, "");
+    newValue = newValue.slice(0,2);
+    
 
     switch (field) {
       case "cpu":
@@ -81,15 +87,34 @@ function EnWorkDetail({ checkPermission }) {
           return updatedInputValues;
         });
         break;
-      case "status":
-        setStatusInputValues((prevInputValues) => {
-          const updatedInputValues = [...prevInputValues];
-          updatedInputValues[index] = newValue;
-          return updatedInputValues;
-        });
-        break;
+      
       default:
         break;
+    }
+  };
+  //이상유무 체크박스
+  const handleInputChange2 = (e, index) => {
+    const newValue = e.target.value;
+    setStatusInputValues((prevInputValues) => {
+      const updatedInputValues = [...prevInputValues];
+      updatedInputValues[index] = newValue;
+      return updatedInputValues;
+    });
+  }
+
+  const isTimeValid = (time) => {
+    // 정규 표현식을 사용하여 시간 형식을 검사합니다.
+    const timeRegex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+    return timeRegex.test(time);
+  };
+
+  const handleTimeInputChange = (e) => {
+    const newValue = e.target.value;
+    if (isTimeValid(newValue) || newValue === "") {
+      setWorkDetail({
+        ...workDetail,
+        work_time: newValue,
+      });
     }
   };
 
@@ -115,9 +140,9 @@ function EnWorkDetail({ checkPermission }) {
       work_cpu: cpuInputValues[index] || "",
       work_ram: ramInputValues[index] || "",
       work_hdd: hddInputValues[index] || "",
-      work_status: statusInputValues[index] || "",
+      work_status: '점검완료',
       work_note: workDetail.work_note || "",
-      work_estimate: workDetail.work_estimate || null,
+      work_estimate: workDetail.work_estimate[index] || null,
     }));
 
   //점검 radio 버튼 기능
@@ -155,8 +180,15 @@ function EnWorkDetail({ checkPermission }) {
         formData.append("file_data", selectedFile);
       });
       formData.append("userId", eng_enid);
-      console.log(formData);
-      await axios.post("/api/main/engineer/workDetail", workInfoVO); //여기까지 전달됨
+
+      formData.forEach((value, key) => {
+        console.log(key + " " + value);
+      });
+      if(file.length !== 0) {
+      //작업내역
+      await axios.post("/api/main/engineer/workDetail", workInfoVO); 
+
+      //작업내역서 첨부파일
       const response = await axios.post(
         "/api/main/cloudMultiUpload",
         formData,
@@ -166,18 +198,60 @@ function EnWorkDetail({ checkPermission }) {
           },
           data: formData,
         }
-      );
-
+      ) 
       if (response.data === file.length) {
         alert("작성 완료 했습니다.");
         history("/engineer/inspectionList");
       } else {
         alert("잘못된 접근 입니다.");
       }
+    
+      } else {
+        await axios.post("/api/main/engineer/workDetail", workInfoVO);
+        alert("작성 완료 했습니다.");
+        history("/engineer/inspectionList");
+      }
+
     } catch (error) {
       console.error("파일 업로드 및 작업 상세 내역 제출 오류:", error);
     }
   };
+
+  // 엔지니어 점검전 상태 변경 버튼 기능 추가 
+  const [updateStatus, setUpdateStatus] = useState({
+      workStatus: '',
+      server_id: '',
+  });
+  
+  console.log(filteredServer);
+  
+  
+  const handleWorkStatusChange = (server_id, workStatus) => {
+     // 서버의 server_id를 추출
+        
+    try {
+      console.log(server_id)
+      console.log(workStatus)
+      if (workStatus === '점검예정') {
+        setUpdateStatus({workStatus:'점검예정', server_id: server_id});
+        console.log(updateStatus);
+      } else if (workStatus === '점검시작') {
+        setUpdateStatus({workStatus:'점검시작', server_id: server_id});
+        console.log(updateStatus);
+      }
+
+
+      // 서버로 상태값을 보냅니다.
+      axios.post("/api/main/engineer/updateWorkStatus", updateStatus);
+      
+      alert(`작업상태가 ${workStatus}으로 변경되었습니다.`)
+    } catch (error) {
+      // 오류 처리
+      console.error("서버 연결중 " + error);
+    }
+  };
+
+  
 
   return (
     <>
@@ -249,7 +323,10 @@ function EnWorkDetail({ checkPermission }) {
                             type="text"
                             className="form-control"
                             name="eng_name"
-                            value={setWorkDetail.eng_name}
+                            value={projectData.eSPIWlist[0] &&
+                            projectData.eSPIWlist[0].eng_name
+                              ? projectData.eSPIWlist[0].eng_name
+                              : ""}
                             placeholder="담당자명"
                           ></input>
                         </div>
@@ -298,13 +375,8 @@ function EnWorkDetail({ checkPermission }) {
                             className="form-control"
                             name="work_time"
                             value={setWorkDetail.work_time}
-                            onChange={(e) => {
-                              setWorkDetail({
-                                ...workDetail,
-                                work_time: e.target.value,
-                              });
-                            }}
-                            placeholder="점검 시간 기입 유효성설정 필요해보임 시간형식으로"
+                            onChange={handleTimeInputChange}
+                            placeholder="점검 시간 기입 (예: hh:mm)"
                           />
                           {/* <input type="time"></input> */}
                         </div>
@@ -316,10 +388,11 @@ function EnWorkDetail({ checkPermission }) {
                         <tr>
                           <th scope="col">NO</th>
                           <th scope="col">서버명</th>
-                          <th scope="col">CPU 사용량</th>
-                          <th scope="col">RAM 사용량</th>
-                          <th scope="col">서버 HDD 사용량</th>
+                          <th scope="col">CPU 사용량(%)</th>
+                          <th scope="col">RAM 사용량(%)</th>
+                          <th scope="col">HDD/SSD 사용량(%)</th>
                           <th scope="col">작업 분류</th>
+                          <th scope="col">작업 상태</th>
                           <th scope="col">이상 유무</th>
                         </tr>
                       </thead>
@@ -343,7 +416,7 @@ function EnWorkDetail({ checkPermission }) {
                                   onChange={(e) =>
                                     handleInputChange(e, index, "cpu")
                                   }
-                                  placeholder="제한걸기"
+                                  placeholder="정수를 입력하세요"
                                 ></input>
                               </td>
                               <td className="usage">
@@ -354,7 +427,7 @@ function EnWorkDetail({ checkPermission }) {
                                   onChange={(e) =>
                                     handleInputChange(e, index, "ram")
                                   }
-                                  placeholder="사용량 기입"
+                                  placeholder="정수를 입력하세요"
                                 ></input>
                               </td>
                               <td className="usage">
@@ -365,7 +438,7 @@ function EnWorkDetail({ checkPermission }) {
                                   onChange={(e) =>
                                     handleInputChange(e, index, "hdd")
                                   }
-                                  placeholder="사용량 기입"
+                                  placeholder="정수를 입력하세요"
                                 ></input>
                               </td>
                               <td>
@@ -422,6 +495,27 @@ function EnWorkDetail({ checkPermission }) {
                                 </label>
                               </td>
                               <td>
+
+                              <button
+                                    type="submit"
+                                    name={`work_status-${server.server_id}`}
+                                    className="button-writer left"
+                                    data-server-id={server.server_id}
+                                    onClick={() => handleWorkStatusChange(server.server_id, '점검예정')}
+                                    >
+                                    점검예정
+                              </button>
+                              <button
+                                    type="button"
+                                    name={`work_status-${server.server_id}`}
+                                    className="button-writer left"
+                                    data-server-id={server.server_id}
+                                    onClick={() => handleWorkStatusChange(server.server_id, '점검시작')}
+                                    >
+                                    점검시작
+                              </button>
+                            </td>
+                              {/* <td>
                                 <label>
                                   <input
                                     type="checkbox"
@@ -429,7 +523,7 @@ function EnWorkDetail({ checkPermission }) {
                                     value="유"
                                     checked={statusInputValues[index] === "유"}
                                     onChange={(e) =>
-                                      handleInputChange(e, index, "status")
+                                      handleInputChange2(e, index)
                                     }
                                   />
                                   유
@@ -441,12 +535,12 @@ function EnWorkDetail({ checkPermission }) {
                                     value="무"
                                     checked={statusInputValues[index] === "무"}
                                     onChange={(e) =>
-                                      handleInputChange(e, index, "status")
+                                      handleInputChange2(e, index)
                                     }
                                   />
                                   무
                                 </label>
-                              </td>
+                              </td> */}
                             </tr>
                           ))}
                       </tbody>
@@ -530,12 +624,13 @@ function EnWorkDetail({ checkPermission }) {
                     <div className="form-actions">
                       <div className="text-end button-wrap">
                         <button
-                          type="submit"
+                          type="button"
                           className="button-writer left"
                           onClick={submit}
                         >
                           작성하기
                         </button>
+
                       </div>
                     </div>
                   </div>
