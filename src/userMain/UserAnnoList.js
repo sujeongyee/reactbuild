@@ -20,6 +20,8 @@ function UserAnnoList({ checkPermission }) {
     const endIndex = startIndex + postsPerPage;
     const currentPosts = searchValue.slice(startIndex, endIndex);
 
+    
+
     const list = async () => {//현재 목록 불러오기
 
         if (searchValue.length == 0) {
@@ -117,13 +119,13 @@ function UserAnnoList({ checkPermission }) {
 
                                 <div className="card-body" style={{ height: "650px" }}>
                                     <div className="table-responsive" style={{ height: "500px" }}>
-                                        <Search  order={"notice_regdate"} setSearchValue={setSearchValue} setTotal={setTotal} select={select} style={{ color: "rgb(117, 116, 234)" }} categori={"notice"}/>
                                         <select onChange={selectSearch}>
 
                                             <option value="notice_title">제목</option>
                                             <option value="notice_writer">작성자</option>
 
                                         </select>
+                                        <Search  order={"notice_regdate"} setSearchValue={setSearchValue} setTotal={setTotal} select={select} style={{ color: "rgb(117, 116, 234)" }} categori={"notice"}/>
 
                                         <table className="table">
                                             <thead>

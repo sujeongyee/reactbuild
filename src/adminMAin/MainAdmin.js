@@ -10,14 +10,47 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function MainAdmin() {
-  const [newProjectList, setNewProjectList] = useState([]);
+  const [newPL, setnewPL] = useState([]);
+  const [vo , setVO] = useState([]);
+  const [contracts , setContracts] = useState([]);
+  const [expiration,setExpiration] = useState([]);
+
+  const [periodic, setPeriodic] = useState([0]);
+  const [emergency, setEmergency] = useState([0]);
+  const [approval, setApproval] = useState([0]);
+  const [complete, setComplete] = useState([0]);
 
   useEffect(() => {
     axios.get("/api/main/admin").then((response) => {
+      const data2 = response.data;
+      const receivedvo = data2.vo;
+      const receivednewPL = data2.newPL;
+      const receivedcontracts= data2.contracts;
+      const receivedexpiration = data2.expiration;
+
+      const receivedperiodic = data2.periodic;
+      const receivedemergency= data2.emergency;
+      const receivedapproval = data2.approval;
+      const receivedcomplete = data2.complete;
+
+
+
       console.log(response.data);
-      setNewProjectList(response.data);
-      console.log(newProjectList);
-    });
+      setVO(receivedvo);
+      setnewPL(receivednewPL);
+      setContracts(receivedcontracts);
+      setExpiration(receivedexpiration);
+
+      setPeriodic(receivedperiodic);
+      setEmergency(receivedemergency);
+      setApproval(receivedapproval);
+      setComplete(receivedcomplete);
+      console.log(receivedperiodic)
+    })
+
+    .catch(error => {
+      console.error("API 요청 오류:", error);
+  });
   }, []);
 
   return (
@@ -32,7 +65,7 @@ function MainAdmin() {
                     <div>
                       <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color">
-                          236명
+                          {vo.total_CUS_ID_COUNT}명
                         </h2>
                       </div>
 
@@ -41,7 +74,7 @@ function MainAdmin() {
                       </h6>
                     </div>
                     <div className="ms-auto mt-md-3 mt-lg-0">
-                      a
+                      
                       <span className="opacity-7 text-muted">
                         <UserIcon />
                       </span>
@@ -58,7 +91,7 @@ function MainAdmin() {
                     <div>
                       <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color">
-                          230개
+                          {vo.total_PRO_NAME_COUNT}개
                         </h2>
                       </div>
 
@@ -82,7 +115,7 @@ function MainAdmin() {
                     <div>
                       <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color">
-                          4개
+                          {vo.pro_STATUS_WAITING_COUNT}개
                         </h2>
                       </div>
 
@@ -106,7 +139,7 @@ function MainAdmin() {
                     <div>
                       <div className="d-inline-flex ">
                         <h2 className=" mb-1 font-weight-medium change-color">
-                          200명
+                          {vo.total_ENG_ENID_COUNT}명
                         </h2>
                       </div>
 
@@ -134,7 +167,12 @@ function MainAdmin() {
                     id="chart-area"
                     className="col-lg-6 col-md-12" /* style={{ width: '466px', height: '350px' }} */
                   >
-                    <PieChartComponent />
+                    <PieChartComponent 
+                        periodic={periodic}
+                        emergency={emergency}
+                        approval={approval}
+                        complete={complete}
+                      />
                   </div>
                 </div>
               </div>
@@ -144,7 +182,10 @@ function MainAdmin() {
                 <div className="card-body">
                   <h4 className="card-title">월 별 계약 수 </h4>
                   <div id="chart-area2" className="col-lg-6 col-md-12">
-                    <LineChart />
+                    <LineChart 
+                      contracts={contracts}
+                      expiration={expiration}
+                      />
                   </div>
                 </div>
               </div>
@@ -194,12 +235,14 @@ function MainAdmin() {
                       <thead>
                         <tr className="border-0">
                           <th className="border-0 font-14 font-weight-medium text-muted">
+                            회사명
+                          </th>
+                          <th className="border-0 font-14 font-weight-medium text-muted">
                             클라이언트
                           </th>
                           <th className="border-0 font-14 font-weight-medium text-muted px-2">
                             프로젝트명
                           </th>
-
                           <th className="border-0 font-14 font-weight-medium text-muted text-center">
                             계약시작일
                           </th>
@@ -209,8 +252,12 @@ function MainAdmin() {
                         </tr>
                       </thead>
                       <tbody>
-                        {newProjectList.map((clientInfo, index) => (
+
+                        {newPL.map((clientInfo, index) => (
                           <tr key={clientInfo.pro_id}>
+                            <td className="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
+                              {clientInfo.cus_company_name}
+                            </td>
                             <td className="border-top-0 px-2 py-4">
                               <div className="d-flex no-block ">
                                 <div className="">

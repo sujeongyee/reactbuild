@@ -16,7 +16,7 @@ function UserDetailPro() {
     axios.get(`/api/main/user/prodetail/${pro_id}`).then((response)=>{
       setProDetail(response.data);
       console.log(response.data);
-      setLoading(false);
+     setLoading(false);
       
     })
     .catch((error)=>{

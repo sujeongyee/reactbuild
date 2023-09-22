@@ -326,7 +326,7 @@ function UserApply({ state }) {
                           <div className="form-group mb-3">
                             <input
                               type="text"
-                              class="form-control"
+                              className="form-control"
                               placeholder="(우편번호)"
                               value={state.cus_postal_code}
                             />
@@ -382,7 +382,7 @@ function UserApply({ state }) {
                         <div className="col-md-2">
                           <div className="form-group mb-3">
                             <div className="infoUser">
-                              계약 시작일 지정 <p>(계약은 1년 단위 입니다)</p>
+                              계약 시작일 지정 <p style={{textAlign: "left"}}>(계약은 1년 단위 입니다)</p>
                             </div>
                           </div>
                         </div>
@@ -396,7 +396,7 @@ function UserApply({ state }) {
                                 value={proInfo.pro_startdate}
                                 onChange={handleChangePro}
                               />
-                              <p>시작일은 오늘 이후로의 날짜로 지정해주세요.</p>
+                              <p style={{textAlign: "left"}}>시작일은 오늘 이후로의 날짜로 지정해주세요.</p>
                             </div>
                           </div>
                         </div>
@@ -416,7 +416,7 @@ function UserApply({ state }) {
                                 onChange={handleChangePro}
                               >
                                 {day.map((day, index) => (
-                                  <option>{day}</option>
+                                  <option key={index}>{day}</option>
                                 ))}
                               </select>
                               <p>일</p>
@@ -496,7 +496,7 @@ function UserApply({ state }) {
 
                         </div> */}
                         {serverFields.map((server, index) => (
-                          <div className="row all-server" key={index}>
+                          <div className="row all-server" style={{margin:"10px"}} key={index}>
                             <div className="col-md-8 all-server-info">
                               <div>
                                 <p className="sever-n">서버 {index + 1}</p>
@@ -624,7 +624,7 @@ function UserApply({ state }) {
                             />
                             <label
                               className="custom-control-label"
-                              for="customCheck1"
+                              htmlFor="customCheck1"
                             >
                               {" "}
                               기업 회원 가입 전체 약관에 동의합니다.{" "}
@@ -641,7 +641,7 @@ function UserApply({ state }) {
                             />
                             <label
                               className="custom-control-label"
-                              for="customCheck1"
+                              htmlFor="customCheck1"
                             >
                               {" "}
                               기업 회원 가입 약관에 동의합니다.{" "}
@@ -659,7 +659,7 @@ function UserApply({ state }) {
                             />
                             <label
                               className="custom-control-label"
-                              for="customCheck1"
+                              htmlFor="customCheck1"
                             >
                               {" "}
                               기업 정보 및 이용에 동의합니다.

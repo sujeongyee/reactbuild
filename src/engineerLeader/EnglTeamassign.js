@@ -4,20 +4,17 @@ import "../enMain/EnMain.css";
 // import "../enMain/EnTeam.css";
 import "./EngLeader.css";
 import axios from "axios";
-import Loading from '../loding/Loding';
 import { Link } from "react-router-dom";
 
 function EnglTeamassign(props) {
-  //console.log(props.leaderid);
-
-
   const [data, setData] = useState([]);
   const pro_pi = props.pro_pi;
   const pro_id = props.pro_id;
   const server_id = props.server_id;
+  const leader_id = props.leader_id;
   console.log(pro_pi);
 
-  const leader_id = 'engL1';
+  console.log(leader_id);
 
   useEffect(() => {
     // props.leaderid가 null이 아닌 경우에만 axios.post 요청을 보냅니다.

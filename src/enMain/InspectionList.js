@@ -166,6 +166,7 @@ function InspectionList() {
                           <th scope="col">프로젝트명</th>
                           <th scope="col">점검일자</th>
                           <th scope="col">현재상태</th>
+                          <th scope="col">작업상태</th>
                         </tr>
                       </thead>
                       <tbody className="insListTableTBody">
@@ -194,6 +195,9 @@ function InspectionList() {
                               >
                                 {workInfo.server_status}
                               </button>
+                            </td>
+                            <td>
+                              {workInfo.work_status}
                             </td>
                           </tr>
                         ))}

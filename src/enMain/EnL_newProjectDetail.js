@@ -11,8 +11,6 @@ function EnL_newProjectDetail() {
 
   const { pro_id } = useParams();
 
-  const [loading, setLoading] = useState(true);
-
   const location = useLocation();
   const [list, setList] = useState([]);
   // console.log(location);
@@ -139,37 +137,14 @@ function EnL_newProjectDetail() {
                         <div>
                           <div className="form-group">
                             <p className="infoUser-answer">
-                              {location.state.project.pro_startDate} -{" "}
-                              {location.state.project.pro_endDate}
+                              {location.state.project.pro_startdate} -{" "}
+                              {location.state.project.pro_enddate}
                             </p>
                           </div>
                         </div>
                       </div>
 
-                      <div className="row">
-                        <div className="col-md-2">
-                          <div className="form-group mb-3">
-                            <div className="infoUser">관리대상 OS</div>
-                          </div>
-                        </div>
-                        <div className="col-md-4">
-                          <div className="form-group mb-3">
-                            <p className="infoUser-answer">서버불러와야됑</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-md-2">
-                          <div className="form-group mb-3">
-                            <div className="infoUser">대표 IP</div>
-                          </div>
-                        </div>
-                        <div className="col-md-4">
-                          <div className="form-group mb-3">
-                            <p className="infoUser-answer">서버불러오기</p>
-                          </div>
-                        </div>
-                      </div>
+                      
                       <div className="row">
                         <div className="col-md-2">
                           <div className="form-group mb-3">
@@ -212,20 +187,7 @@ function EnL_newProjectDetail() {
                           </div>
                         </div>
 
-                        <div className="row">
-                          <div className="col-md-2">
-                            <div className="form-group mb-3">
-                              <div className="infoUser">서버 이름</div>
-                            </div>
-                          </div>
-                          <div className="col-md-4">
-                            <div className="form-group mb-3">
-                              <p className="infoUser-answer">
-                                서버이름 나열하기
-                              </p>
-                            </div>
-                          </div>
-                        </div>
+                       
                       </div>
                     </div>
                   </div>
@@ -238,7 +200,7 @@ function EnL_newProjectDetail() {
           <div className="col-12">
             <div
               className="server-tab ser-tab1"
-              style={{ marginTop: "-120px" }}
+              style={{ marginTop: "-170px" }}
             >
               <table className="ser-tab">
                 <thead>
@@ -249,7 +211,7 @@ function EnL_newProjectDetail() {
                     <th>cpu정보</th>
                     <th>ram용량</th>
                     <th>디스크용량</th>
-                    <th>담당엔지니어</th>
+                   
                   </tr>
                 </thead>
                 <tbody>
@@ -261,17 +223,7 @@ function EnL_newProjectDetail() {
                       <td>{data.cpu}</td>
                       <td>{data.ram} GB</td>
                       <td>{data.disk_capacitygb} GB</td>
-                      <td>
-                        {data.eng_enid ? (
-                          data.eng_name // 데이터가 있으면
-                        ) : (
-                          <EnglTeamassign
-                            pro_id={location.state.project.pro_id}
-                            server_id={data.server_id}
-                            check={false}
-                          />
-                        )}
-                      </td>
+                      
                     </tr>
                   ))}
                 </tbody>

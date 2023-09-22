@@ -6,9 +6,9 @@ import './EngLeader.css';
 import { Link, useParams } from 'react-router-dom';
 import EnglTeamassign from './EnglTeamassign';
 import './EngLeader.css';
-import Loading from '../loding/Loding';
 
-function EnglProjectDetail() {
+function EnglProjectDetail(props) {
+  
   const [loading, setLoading] = useState(true);
   const { pro_id } = useParams();
   const [info, setInfo] = useState([]);
@@ -28,15 +28,14 @@ function EnglProjectDetail() {
       });
   }, []);
 
-  const assignEmer = () => {
+    
+    const assignEmer = () => {
 
     const engid = 'tnwjd2580';
     const serverId = '21ff55ca-4c9d-11ee-acdc-8cb0e993c4ae';
     axios.post('/api/main/alarm/assignEmer', { engid: engid, serverId: serverId })
       .catch(err => { alert('실패' + err) })
   }
-
-
 
   return (
     <>
@@ -239,6 +238,8 @@ function EnglProjectDetail() {
                           data.eng_name // 데이터가 있으면
                         ) : (
                           <EnglTeamassign
+                            // leader_id={info.PRO_REP}
+                            leader_id={props.userId}
                             pro_pi={info.PRO_PI}
                             pro_id={info.PRO_ID}
                             server_id={data.server_id}
@@ -246,6 +247,7 @@ function EnglProjectDetail() {
                           />
                         )}
                       </td>
+                        
                       <td>
                         {data.eng_enid ? (
                           <Link

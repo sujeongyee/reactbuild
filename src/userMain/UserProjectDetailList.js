@@ -10,11 +10,10 @@ import Pagination from "react-js-pagination";
 
 
 
-function UserProjectDetailList({state}) {
+function UserProjectDetailList({info}) {
   //const [loading, setLoading] = useState(true);
-
+    console.log(info)
   const [ProjectDetailList, setProjectDetailList] = useState([]);
-  console.log(state.cus_id)
   const [activeRow, setActiveRow] =useState(null);
   const wrapperRef = useRef(null);
   const [selectedServer, setSelectedServer] = useState(null);
@@ -30,7 +29,7 @@ function UserProjectDetailList({state}) {
 
 
   useEffect(() => {
-    axios.get(`/api/main/user/projectDetailList/${state.cus_id}`) 
+    axios.get(`/api/main/user/projectDetailList/${info.cus_id}`) 
       .then((response) => {
         console.log("??" + response.data);
         setList(response.data);
@@ -41,7 +40,7 @@ function UserProjectDetailList({state}) {
      
       .catch((error )=> {console.log(error)})
       //setLoading(false);
-  }, [state.cus_id]);
+  }, [info.cus_id]);
 
  /* const toggleDropDown = (e) => {
     console.log(e.currentTarget.nextElementSibling.querySelector('.hide'))
@@ -92,7 +91,7 @@ function UserProjectDetailList({state}) {
   };
 
   const handleSearch = (e) => {
-    const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
+    const searchWord = document.querySelector(".select-word-pro").value; //검색 단어
 
     const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명
     console.log(first)
@@ -161,10 +160,10 @@ function UserProjectDetailList({state}) {
                         </div>
                       </div>
             
-                      <form className="search-engineer search-englg">
+                      <form className="search-project search-pro">
 
 
-                    <div className="customize-input right select-proengl">
+                    <div className="customize-input right select-pro">
 
                       <select style={{ display: 'inline-block' }} className="selectee">
                         <option className="selecteeop">전체</option>
@@ -178,16 +177,16 @@ function UserProjectDetailList({state}) {
                     <div className="customize-input right" style={{ marginLeft: '10px' }}>
 
                       <input
-                        className="form-control custom-shadow custom-radius border-0 bg-white select-word-engl"
+                        className="form-control custom-shadow custom-radius border-0 bg-white select-word-pro"
                         type="search"
                         placeholder="Search"
                         aria-label="Search"
                       />
                     </div>
-                    <div className="customize-input left search-click-engl"
+                    <div className="customize-input left search-click-pro"
                      style={{ marginLeft: '10px', marginRight: '5px' }}
                       onClick={handleSearch}>
-                      <SearchIcon color="#9cbba6" />
+                      <SearchIcon color="#8971ea" />
                     </div>
                     <div></div>
                     </form>
@@ -270,7 +269,7 @@ function UserProjectDetailList({state}) {
                     </div>
                   </div>
 
-                  <div className="pagedivengl pagination-engl">
+                  <div className="pagedivengl pagination-pro">
                     <Pagination
                       activePage={currentPage}
                       itemsCountPerPage={itemsPerPage}

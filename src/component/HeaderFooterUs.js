@@ -24,6 +24,7 @@ import MyPage from "./MyPage";
 
 
 function HeaderFooterUs({ checkPermission, state }) {
+    console.log(checkPermission)
   const [bellModal, setbellModalIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalIsOpenAll, setModalIsOpenAll] = useState(false);
@@ -56,6 +57,7 @@ function HeaderFooterUs({ checkPermission, state }) {
     navigate("/");
     localStorage.removeItem("token");
     alert("로그아웃 되었습니다😎");
+    window.location.reload()
   };
   const getInfo = async () => {
 
@@ -238,12 +240,12 @@ function HeaderFooterUs({ checkPermission, state }) {
                     <span className="hide-menu hide-list ">프로젝트 목록 보기</span>
                   </a>
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink className='sidebar-link ' to='/user/list' style={({ isActive }) => isActive ? ms : undefined} >
                         목록보기
                       </NavLink>
                     </li>
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink className='sidebar-link ' to='/user/apply' style={({ isActive }) => isActive ? ms : undefined} >
 
                         신청하기
@@ -254,12 +256,12 @@ function HeaderFooterUs({ checkPermission, state }) {
 
                 </li>
                 <li className="sidebar-item">
-                  <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
+                  <Link className='sidebar-link has-arrow' onClick={handleClick} aria-expanded="false">
                     <BarChartIcon />
                     <span className="hide-menu hide-list" >공지사항</span>
-                  </a>
+                  </Link>
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink className='sidebar-link ' to='/user/annoList' style={({ isActive }) => isActive ? ms : undefined} >
                         공지사항 보기
                       </NavLink>
@@ -270,20 +272,20 @@ function HeaderFooterUs({ checkPermission, state }) {
                 </li>
 
                 <li className="sidebar-item">
-                  <a
+                  <Link
                     className="sidebar-link has-arrow"
-                    href="javascript:void(0)"
+                    
                     onClick={handleClick}
                     aria-expanded="false"
                   >
                     <ServerIcon />
                     <span className="hide-menu hide-list">작업 내역</span>
-                  </a>
+                  </Link>
                   <ul
                     aria-expanded="false"
                     className="collapse first-level base-level-line"
                   >
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink
                         className="sidebar-link "
                         to="/user/projectDetailList"
@@ -299,12 +301,12 @@ function HeaderFooterUs({ checkPermission, state }) {
 
 
                 <li className="sidebar-item">
-                  <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
+                  <Link className='sidebar-link has-arrow'  onClick={handleClick} aria-expanded="false">
                     <BoxIcon />
                     <span className="hide-menu hide-list" >문의사항</span>
-                  </a>
+                  </Link>
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink className='sidebar-link ' to='/user/inQurylist' style={({ isActive }) => isActive ? ms : undefined} >
                         문의사항 목록
                       </NavLink>
