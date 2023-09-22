@@ -69,6 +69,7 @@ function UserDetailPro({ detail: data } ) {
                     </div>
                     <div className="pro-info">
                     프로젝트 정기점검 날짜 : <span>{proDetail?.[0]?.pro_pi}</span>
+  
                     </div>
                     <div className="pro-info">
                     담당 엔지니어팀 : <span>{proDetail?.[0]?.pro_status == '진행 중' ? proDetail?.[0]?.team_id : '배정 미정'}</span>

@@ -7,6 +7,7 @@ const ChartComponent1 = ({ periodic, disability, maintenance, mainProjectList })
   console.log(mainProjectList);
   const uniqueCategories = [...new Set(mainProjectList.map(item => item.pro_name))];
 
+  
   useEffect(() => {
     const container = containerRef.current;
     
@@ -15,20 +16,20 @@ const ChartComponent1 = ({ periodic, disability, maintenance, mainProjectList })
       series: [
         {
           name: '정기점검',
-          data: periodic.length !== 0 ? periodic : [0, 0, 0,0],
+          data: periodic.length !== 0 ? periodic : [0, 0, 0, 0],
         },
         {
           name: '장애대응',
           data: disability.length !== 0 ? disability : [0, 0, 0 ,0],
         },
         {
-          name: '긴급출동',
+          name: '기타등등',
           data: maintenance.length !== 0 ? maintenance : [0, 0, 0 ,0],
         },
       ],
     };
     const options = {
-      chart: { title: '', width: 900, height: 400 },
+      chart: { title: '', width: 1100, height: 400 },
     };
 
     const chart = new Chart.columnChart(container, data, options);
@@ -37,7 +38,7 @@ const ChartComponent1 = ({ periodic, disability, maintenance, mainProjectList })
       // Component cleanup: destroy the chart
       chart.destroy();
     };
-  }, [periodic, disability, maintenance]);
+  }, [periodic, disability, maintenance, mainProjectList]);
 
   return <div ref={containerRef} id="chart-area" />;
 };
