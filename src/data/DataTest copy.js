@@ -6,25 +6,18 @@ import Chart from 'chart.js/auto';
 
 Chart.register(CategoryScale);
 
-function DataTest({id}) {
+function DataTest() {
   const [serverData, setServerData] = useState([]);
   const [historicalData, setHistoricalData] = useState({});
   const chartRefs = useRef({});
-  const [getSer,setGerSer]=useState([])
-  const getServer=async()=>{
-      const idGet={"id":id};
-      const response = await axios.post("/api/main/engineer/getServer",idGet)
-      setGerSer(response.data)
-    }
-    console.log(getSer)
+
   useEffect(() => {
-    getServer()
     const fetchData = async () => {
       try {
         const response = await axios.get('/api/main/servers');
         const newServerData = response.data;
-        console.log(newServerData)
-        /* const servers = [
+        console.log(newServerData);
+        const servers = [
           {
               id: newServerData.id,
               name: 'cpu 사용량',
@@ -32,7 +25,7 @@ function DataTest({id}) {
               memoryUsage:Math.floor(Math.random() * 41) + 50,
               ramUsage:Math.floor(Math.random() * 41) + 50,
             },
-          ] */
+          ]
         const groupedData = newServerData.reduce((acc, server) => {
           const { id } = server;
           if (!acc[id]) {
@@ -96,38 +89,26 @@ function DataTest({id}) {
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',
           borderWidth: 1,
-        }
-      ],
-    };
-  });
-  const chartDataByServer1 = Object.keys(historicalData).map((serverId) => {
-    return {
-      labels: historicalData[serverId].map((server) => server.time), 
-      datasets: [
+        },
         {
           label: `메모리 사용량`,
           data: historicalData[serverId].map((server) => server.memoryUsage),
-          backgroundColor: '#3788d8',
-          borderColor: '#3788d8',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 1,
-        }
-      ],
-    };
-  });
-  const chartDataByServer2 = Object.keys(historicalData).map((serverId) => {
-    return {
-      labels: historicalData[serverId].map((server) => server.time), 
-      datasets: [
+        },
         {
-          label: `램 사용량`,
+          label: `RAM 사용량`,
           data: historicalData[serverId].map((server) => server.ramUsage),
-          backgroundColor: 'rgb(42, 198, 97)',
-          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'rgba(255, 205, 86, 0.2)',
+          borderColor: 'rgba(255, 205, 86, 1)',
           borderWidth: 1,
-        }
+        },
       ],
     };
   });
+
+
   const options = {
     scales: {
       y: {
@@ -145,6 +126,7 @@ function DataTest({id}) {
   };
 
   const changeServer = (event) => {
+    console.log('온다');
  
     const serverCharts = document.querySelectorAll(".serverChart");
     if(event.currentTarget.value === '서버선택'){
@@ -165,27 +147,14 @@ function DataTest({id}) {
       <h3 style={{marginBottom:'50px',display:'inline-block',color:'#525252'}}>실시간 서버 모니터링</h3> 
       <select className='eng-serversel' style={{marginLeft:'20px'}} onChange={changeServer}>
         <option>서버선택</option>
-       
-         {getSer &&
-    getSer.map((item, index) => (
-      <option key={index}>{item.server_name}</option>
-    ))}
+        <option>서버1</option>
+        <option>서버2</option>
       </select>
       <p className='selecserver' style={{color:'#525252',marginTop:'100px',fontSize:'20px'}}>[서버를 선택해주세요]</p>
-      <div className="row serverChart" style={{display:'none',width:"100%"}}>
+      <div className="row serverChart" style={{display:'none',marginLeft:'120px'}}>
         {Object.keys(historicalData).map((serverId, index) => (
-          <div key={serverId} className='serverChart' style={{height: '300px',width:"33%"}}>
+          <div key={serverId} className='serverChart' style={{ width: '48%', height: '200px',margin:'0 auto' }}>
             <Line data={chartDataByServer[index]} ref={(ref) => (chartRefs.current[serverId] = ref)} options={options} />
-          </div>
-        ))}
-         {Object.keys(historicalData).map((serverId, index) => (
-          <div key={serverId} className='serverChart' style={{height: '300px',width:"33%"}}>
-            <Line data={chartDataByServer1[index]} ref={(ref) => (chartRefs.current[serverId] = ref)} options={options} />
-          </div>
-        ))}
-         {Object.keys(historicalData).map((serverId, index) => (
-          <div key={serverId} className='serverChart' style={{ height: '300px',width:"33%"}}>
-            <Line data={chartDataByServer2[index]} ref={(ref) => (chartRefs.current[serverId] = ref)} options={options} />
           </div>
         ))}
       </div>

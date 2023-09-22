@@ -10,11 +10,10 @@ import Pagination from "react-js-pagination";
 
 
 
-function UserProjectDetailList({state}) {
+function UserProjectDetailList({info}) {
   //const [loading, setLoading] = useState(true);
-
+    console.log(info)
   const [ProjectDetailList, setProjectDetailList] = useState([]);
-  console.log(state.cus_id)
   const [activeRow, setActiveRow] =useState(null);
   const wrapperRef = useRef(null);
   const [selectedServer, setSelectedServer] = useState(null);
@@ -30,7 +29,7 @@ function UserProjectDetailList({state}) {
 
 
   useEffect(() => {
-    axios.get(`/api/main/user/projectDetailList/${state.cus_id}`) 
+    axios.get(`/api/main/user/projectDetailList/${info.cus_id}`) 
       .then((response) => {
         console.log("??" + response.data);
         setList(response.data);
@@ -41,7 +40,7 @@ function UserProjectDetailList({state}) {
      
       .catch((error )=> {console.log(error)})
       //setLoading(false);
-  }, [state.cus_id]);
+  }, [info.cus_id]);
 
  /* const toggleDropDown = (e) => {
     console.log(e.currentTarget.nextElementSibling.querySelector('.hide'))

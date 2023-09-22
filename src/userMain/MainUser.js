@@ -23,7 +23,7 @@ import { Link } from "react-router-dom";
 
 function MainUser({state}) {
 
-
+    
     SwiperCore.use([EffectCoverflow, Navigation, Pagination]);
 
     const[mainProjectList , setMainProjectList] = useState([]);
@@ -148,7 +148,7 @@ function MainUser({state}) {
       </Swiper>
       ): (
         <p>등록된 프로젝트가 없습니다<br/>
-          <Link to="/user/apply">포로젝트 등록하러가기</Link>
+          <Link to="/user/apply">프로젝트 등록하러가기</Link>
         </p>
         
       )}

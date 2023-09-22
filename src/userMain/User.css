@@ -554,9 +554,9 @@ html body .font-weight-medium {
 }
 
 .all-server-info {
-  margin: 30px;
+
   border: 0.5px solid rgb(218, 217, 218);
-  margin-left: 140px;
+  margin: 0 auto;
   width: 770px;
   padding: 15px;
 }
@@ -701,6 +701,7 @@ td .hide {
     width: 33%;
 }
 
+
 /* 셀렉트 */
 
 
@@ -824,4 +825,10 @@ td .hide {
   border-radius: 0.2em;
   
 }
+
+
+.pagination-cus li a, .pagination-cus .disabled a,
+ .pagination-cus li a, .pagination-cus li span, .pagination-cus li span{
+    color:#4662ec
+ }
 

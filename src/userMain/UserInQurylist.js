@@ -7,58 +7,34 @@ import Search from '../userMain/Search'
 import Loading from '../loding/Loding';
 import Pagination from "react-js-pagination";
 import PageNation from "../pagenation/PageNation";
+import SearchIcon from "../engineerLeader/SearchIcon";
 function UserInQurylist({ checkPermission }) {
     const [loading, setLoading] = useState(true);
 
-    const [searchValue, setSearchValue] = useState([])
-    const [select, setSelect] = useState("cs_title")
-    const [total, setTotal] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
+    const [first, setFirst] = useState([]);
     const [pageInfo, setPageInfo] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 10;
-    const startIndex = (currentPage - 1) * postsPerPage;
-    const endIndex = startIndex + postsPerPage;
-    const currentPosts = searchValue.slice(startIndex, endIndex);
+
 
 
     const list = async () => {//현재 목록 불러오기
 
-        if (searchValue.length == 0) {
 
             const response = await axios.get(`/api/main/csUserList?currentPage=${currentPage}&postsPerPage=${postsPerPage}&cs_writer=${checkPermission.sub}`)
             setPageInfo(response.data);
-
+            setFirst(response.data);
             setLoading(false);
-        } else {//검색결과가 1이상이라면?
-            setTotal(searchValue.length)
-             console.log(currentPosts)
-            setPageInfo(currentPosts)
-        }
+        
     }
-    const totalListNum = async () => {//토탈 목록 불러오기
 
-
-
-        const response = await axios.get("/api/main/admin/csUserTotal?cs_writer="+checkPermission.sub)
-        setTotal(response.data);
-        setLoading(false);
-
-    }
     useEffect(() => {
         list()
 
-        totalListNum()
+       
     }, []);
-    useEffect(() => {
 
-        list()
 
-    }, [currentPage]);
-    useEffect(() => {
-        setCurrentPage(1)
-        handlePageChange(1)
-        list()
-    }, [searchValue])
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber); // 페이지 변경 시 현재 페이지 업데이트
@@ -76,10 +52,32 @@ function UserInQurylist({ checkPermission }) {
         return formattedDateTime;
     }
 
-    const selectSearch = (e) => {
+    const handleSearch = (e) => {
+        const searchWord = document.querySelector(".select-word-engl").value;
+        const filter = document.querySelector(".selectee").value;
+        console.log(filter)
+        const filteredList = first.filter((item) => {
+            if (filter === "제목") {
+                return item.cs_title.includes(searchWord);
+            } else if (filter === "작성자") {
+                return item.cs_writer.includes(searchWord);
+            } else if (filter === "문의 종류") {
+                return item.cs_type.includes(searchWord);
+            } else if (searchWord === "") {
+                return item
+            } else if (filter === "전체") {
+                return item.cs_title.includes(searchWord) || item.cs_type.includes(searchWord) || item.cs_writer.includes(searchWord);
+            }
+            return true;
+        });
+        setPageInfo(filteredList);
+        setCurrentPage(1);
 
-        setSelect(e.target.value)
-    }
+    }   
+
+    const startIndex = (currentPage - 1) * postsPerPage;
+    const endIndex = startIndex + postsPerPage;
+    const currentPosts = pageInfo.slice(startIndex, endIndex);
     return (
         <>
             {/* {loading ? <Loading /> : null} */}
@@ -99,20 +97,26 @@ function UserInQurylist({ checkPermission }) {
                             <div className="card">
                                 <div className="card-body" style={{height:"600px"}}>
                                     <div className="table-responsive" style={{height:"450px"}}>
-                                        <Search setSearchValue={setSearchValue} 
-                                        setTotal={setTotal} 
-                                        order={"cs_regdate"} 
-                                        select={select} 
-                                        style={{ color: "#8971ea" }} 
-                                        categori={"cs"} 
-                                        writer={checkPermission.sub}/>
-                                        <select onChange={selectSearch}>
-
-                                            <option value="cs_title">제목</option>
-                                            <option value="cs_writer">작성자</option>
-                                            <option value="cs_type">문의종류</option>
-                                            <option value="cs_answer_yn">답변여부</option>
+                                    <select style={{ display: 'inline-block', width: '100px',border:"1px solid rgb(149 164 235)" }} className="selectee">
+                                            <option value="전체">전체</option>
+                                            <option value="제목">제목</option>
+                                            <option value="작성자">작성자</option>
+                                            <option value="문의 종류">문의 종류</option>
+                                            <option value="답변여부">답변여부</option>
                                         </select>
+                                        <div className="customize-input right" style={{ marginLeft: '10px', width: '150px', display: "inline-block" }}>
+
+                                            <input
+                                                style={{border:"1px solid rgb(149 164 235)"}}
+                                                className="form-control custom-shadow custom-radius border-0 bg-white select-word-engl"
+                                                type="search"
+                                                placeholder="Search"
+                                                aria-label="Search"
+                                            />
+                                        </div>
+                                        <div className="customize-input left search-click-engl" style={{ display: "inline-block", marginLeft: '10px', marginRight: '5px' }} onClick={handleSearch}>
+                                            <SearchIcon color="#4662ec" />
+                                        </div>
                                         <table className="table">
                                             <thead>
                                                 <tr>
@@ -125,7 +129,7 @@ function UserInQurylist({ checkPermission }) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {pageInfo && pageInfo.map((item, index) => (
+                                            {currentPosts.map((item, index) => (
                                                     <tr key={index}>
                                                         <th style={{width:"10%"}} scope="row">{index + 1}</th>
                                                         <td style={{width:"40%"}}><Link to={`/user/inQuryDetail`} state={{ item }} style={{padding:"0"}} >{item.cs_title}</Link></td>
@@ -138,18 +142,17 @@ function UserInQurylist({ checkPermission }) {
                                             </tbody>
                                         </table>
                                     </div>
-                                    {total != '' ? <PageNation 
-                                    
-                                        currentPage={currentPage}
-                                        totalPosts={total} // 전체 게시글 수를 전달
-                                        onPageChange={handlePageChange}
-                                        postsPerPage={postsPerPage}
-                                        
-                                        style={{
-                                            color: "#8971ea",
-                                            backgroundColor: '#ffdcdb',
-                                            borderRadius: ' 35%'
-                                        }} /> : null}
+                                    <div  className="pagedivengl pagination-cus">
+                                        <Pagination
+                                            activePage={currentPage}
+                                            itemsCountPerPage={postsPerPage}
+                                            totalItemsCount={list.length}
+                                            pageRangeDisplayed={5}
+                                            prevPageText={"prev"}
+                                            nextPageText={"next"}
+                                            onChange={handlePageChange}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>

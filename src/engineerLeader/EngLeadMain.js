@@ -26,10 +26,12 @@ function EngLeadMain(props) {
   const [userId, setUserId] = useState(props.userId);
   console.log(props.userId)
   useEffect(() => {
+
     // props.userId가 null이 아닌 경우에만 axios 요청을 보냅니다.
     // if (props.userId !== undefined && props.userId != null && props.userId!=='') {
       axios.get('/api/main/engleader/main',{
         params: { userId: props.userId }
+
       })
         .then(response => {
           const data2 = response.data;
