@@ -1,21 +1,25 @@
-import React from 'react';
-
+import React, { useEffect, useRef } from 'react';
 import Chart from 'tui-chart'; // tui-chart의 모듈을 가져옴
 import 'tui-chart/dist/tui-chart.css';
 
-class LineChart extends React.Component {
-    componentDidMount() {
-        const container = document.getElementById('chart-area2'); // 차트를 렌더링할 DOM 요소 선택
+
+const LineChart = ({ contracts, expiration}) => {
+
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+ 
+        const container = containerRef.current; 
         const data = {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+            categories: ['May', 'June', 'July', 'Aug', 'Sep'],
     series: [
       {
         name: '계약건수',
-        data: [10, 15, 13, 17, 20],
+        data: contracts,
       },
       {
         name: '만료건수',
-        data: [5, 7, 8, 10, 15],
+        data: expiration,
       },
     ],
         };
@@ -28,11 +32,14 @@ class LineChart extends React.Component {
           };
 
         const chart = new Chart.lineChart(container, data, options); // tui-chart 인스턴스 생성
-    }
-
-    render() {
-        return <div id="chart-area" />;
-    }
+        return () => {
+          // 컴포넌트 언마운트 시에 필요한 정리 작업 수행
+          chart.destroy();
+        };
+      }, [contracts, expiration]);
+    
+        return <div id="chart-area2" ref={containerRef}/>;
+    
 }
 
 

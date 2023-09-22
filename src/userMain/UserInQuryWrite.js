@@ -187,12 +187,12 @@ function UserInQuryWrite({ checkPermission }) {
                                         <div className="row">
                                             <div className="col-md-2sy">
                                                 <div className="form-group mb-3">
-                                                    <div style={{ textAlign: 'center;' }}>공지내용</div>
+                                                    <div style={{ textAlign: 'center;' }}>문의내용</div>
                                                 </div>
                                             </div>
                                             <div className="col-md-4sy">
                                                 <div className="form-group mb-3">
-                                                    <textarea className="form-control" onChange={noticeChange} name="cs_content" value={form.cs_content} placeholder="공지내용" style={{ height: '300px' }}></textarea>
+                                                    <textarea className="form-control" onChange={noticeChange} name="cs_content" value={form.cs_content} placeholder="문의내용" style={{ height: '300px' }}></textarea>
                                                 </div>
                                             </div>
                                         </div>

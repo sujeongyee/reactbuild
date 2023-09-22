@@ -32,9 +32,9 @@ function MainUser({state}) {
     console.log(state);
     //const [ivedinspectionList,setIvedinspectionList] = useState([]);
     const [vo, setVo] = useState([]);
-    const [periodic, setPeriodic] = useState([]);
-    const [disability, setDisability] = useState([]);
-    const [maintenance, setMaintenance] = useState([]);
+    const [periodic, setPeriodic] = useState([0]);
+    const [disability, setDisability] = useState([0]);
+    const [maintenance, setMaintenance] = useState([0]);
 
     useEffect(()=>{
       axios.get(`/api/main/user/${state.cus_id}`).then((response)=>{
@@ -44,9 +44,9 @@ function MainUser({state}) {
         const receivedvo = data.vo|| [];
         const receivemainProjectList = data.mainProjectList|| [];
 
-        const receivedperiodic = data.periodic|| [];
-        const receiveddisability = data.disability|| [];
-        const receivedmaintenance = data.maintenance|| [];
+        const receivedperiodic = data.periodic;
+        const receiveddisability = data.disability;
+        const receivedmaintenance = data.maintenance;
 
         setVo(receivedvo);
         setMainProjectList(receivemainProjectList);
