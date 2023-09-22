@@ -235,12 +235,14 @@ function MainAdmin() {
                       <thead>
                         <tr className="border-0">
                           <th className="border-0 font-14 font-weight-medium text-muted">
+                            회사명
+                          </th>
+                          <th className="border-0 font-14 font-weight-medium text-muted">
                             클라이언트
                           </th>
                           <th className="border-0 font-14 font-weight-medium text-muted px-2">
                             프로젝트명
                           </th>
-
                           <th className="border-0 font-14 font-weight-medium text-muted text-center">
                             계약시작일
                           </th>
@@ -250,8 +252,12 @@ function MainAdmin() {
                         </tr>
                       </thead>
                       <tbody>
+
                         {newPL.map((clientInfo, index) => (
                           <tr key={clientInfo.pro_id}>
+                            <td className="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
+                              {clientInfo.cus_company_name}
+                            </td>
                             <td className="border-top-0 px-2 py-4">
                               <div className="d-flex no-block ">
                                 <div className="">

@@ -7,14 +7,16 @@ import FormControlIcon from "../img/FormControlIcon";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-function EnL_newProject() {
+function EnL_newProject({ checkPermission }) {
+  const eng_enid = checkPermission.sub;
   const [loading, setLoading] = useState(true);
 
   const [data, setData] = useState([]);
+  console.log(data);
 
   useEffect(() => {
     axios
-      .get("/api/main/engineer/newList")
+      .get(`/api/main/engineer/newList/${eng_enid}`)
       .then((response) => {
         setData(response.data);
 
