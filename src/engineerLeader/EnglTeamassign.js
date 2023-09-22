@@ -17,7 +17,7 @@ function EnglTeamassign(props) {
   const server_id = props.server_id;
   console.log(pro_pi);
 
-  const leader_id = 'eng_1';
+  const leader_id = 'engL1';
 
   useEffect(() => {
     // props.leaderid가 null이 아닌 경우에만 axios.post 요청을 보냅니다.

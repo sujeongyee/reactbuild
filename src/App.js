@@ -79,6 +79,8 @@ import EnLeaderInQurylist from "./engineerLeader/EnLeaderInQurylist";
 import EnLeaderInQuryWrite from "./engineerLeader/EnLeaderInQuryWrite";
 import EnLeaderInQuryDetail from "./engineerLeader/EnLeaderInQuryDetail";
 
+import EnglInsRequestList from "./engineerLeader/EnglInsRequestList";
+
 import AdminproModal from "./adminMain/AdminproModal";
 
 
@@ -245,7 +247,9 @@ function App() {
           <Route path='/engineerleader/engineerList' element={<EnglEngineerList userId={userId}/>} />
           <Route path='/engineerleader/clientDetail/:cus_id' element={<EnglClientDetail userId={userId}/>} />
           <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail/>}userId={userId} />
-          <Route path='/engineerleader/allSchedule' element={<EnglAllSchedule userId={userId}/>}/>         
+          <Route path='/engineerleader/allSchedule' element={<EnglAllSchedule userId={userId}/>}/>  
+          {/* 이예지 점검 요청 목록 추가 */}
+          <Route path='/engineerleader/insRequestList' element={<EnglInsRequestList userId={userId}/>} />       
           {/* 백승용 추가 사항~!~!!~! */}
           <Route path='/engineerleader/annoList' element={<EnLeaderAnnoList checkPermission={checkPermission()}/>} />
           <Route path='/engineerleader/annoDetail' element={<EnLeaderAnnoDetail checkPermission={checkPermission()}/>} />

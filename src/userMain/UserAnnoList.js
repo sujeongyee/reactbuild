@@ -93,7 +93,7 @@ function UserAnnoList({ checkPermission }) {
     return (
 
         <>
-            {loading ? <Loading /> : null}
+            {/* {loading ? <Loading /> : null} */}
             <div className="page-wrapper">
 
                 <div className="page-breadcrumb">
