@@ -554,9 +554,9 @@ html body .font-weight-medium {
 }
 
 .all-server-info {
-  margin: 30px;
+
   border: 0.5px solid rgb(218, 217, 218);
-  margin-left: 140px;
+  margin: 0 auto;
   width: 770px;
   padding: 15px;
 }
@@ -700,3 +700,7 @@ td .hide {
 .card-bsy .col-md-4sy .custom-select{
     width: 33%;
 }
+.pagination-cus li a, .pagination-cus .disabled a,
+ .pagination-cus li a, .pagination-cus li span, .pagination-cus li span{
+    color:#4662ec
+ }

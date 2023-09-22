@@ -30,7 +30,7 @@ function EngLeadMain(props) {
   useEffect(() => {
 
     const leaderId = 'eng_1';
-    setId('eng_1');
+    setUserId('eng_1');
     axios.get(`/api/main/engleader/main/${leaderId}`)
       .then(response => {
         const data2 = response.data;
