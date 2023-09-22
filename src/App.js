@@ -120,12 +120,13 @@ function App() {
     }
     if (checkPermission().role === "ROLE_ENGINEER") {
       const eng_id = checkPermission().sub;
-
-      const response2 = await axios.get(
-        `/api/main/getInfoEng?eng_id=${eng_id}`
-      );
-
+      const response2 = await axios.get(`/api/main/getInfoEng?eng_id=${eng_id}`);
       setInfo(response2.data);
+    }
+    if (checkPermission().role === "ROLE_ENGLEADER") {
+      const engL_id = checkPermission().sub;
+      //const response3 = await axios.get(`/api/main/getInfoEngL?engL_id=${engL_id}`);
+      //setInfo(response3.data);
     }
 
     return;
@@ -239,7 +240,7 @@ function App() {
           <Route path='/engineerleader' element={<EngLeadMain userId={userId}/>} />
           <Route path='/engineerleader/requestDetail/:pro_id' element={<RequestDetail userId={userId}/>} />
           <Route path='/engineerleader/projectList' element={<EnglProjectList userId={userId}/>} />
-          <Route path='/engineerleader/projectDetail/:pro_id' element={<EnglProjectDetail userId={userId} />} />
+          <Route path='/engineerleader/projectDetail/:pro_id' checkPermission={checkPermission()} element={<EnglProjectDetail userId={userId} />} />
           <Route path='/engineerleader/workinfo/:server_id' element={<EnglWorkInfo userId={userId} />} />
           <Route path='/engineerleader/clientList' element={<EnglClientList userId={userId}/>} />
           <Route path='/engineerleader/engineerList' element={<EnglEngineerList userId={userId}/>} />
@@ -270,7 +271,7 @@ function App() {
           <Route path="/user/annoList" element={<UserAnnoList checkPermission={checkPermission()} />}/>
           <Route path="/user/annoDetail" element={<UserAnnoDetail checkPermission={checkPermission()} />}/>
           <Route path="/user/prodetail/:pro_id" element={<UserDetailPro checkPermission={checkPermission()} />}/>
-          <Route path="/user/projectDetailList" element={ <UserProjectDetailList checkPermission={checkPermission()} /> } />
+          <Route path="/user/projectDetailList" element={ <UserProjectDetailList checkPermission={checkPermission()} state={info} /> } />
           <Route path="/user/projectDetail"  element={ <UserProjectDetailModal checkPermission={checkPermission()} />}/>
           <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 checkPermission={checkPermission()} />}/>
         </Route>

@@ -8,6 +8,15 @@ function AdminproModal(props) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [teamLeader, setTeamLeader] = useState([]);
   const [teamMember, setTeamMember] = useState([]);
+  const [isSubMenuVisible, setSubMenuVisible] = useState(false);
+
+  const handleMouseEnter = (e) => {
+    setSubMenuVisible(false);
+  };
+
+  const handleMouseLeave = (e) => {
+    setSubMenuVisible(true);
+  };
 
   const customStyles = {
     content: {
@@ -35,7 +44,7 @@ function AdminproModal(props) {
 
   function submit() {
     axios
-      .post("/api/main/admin/inputTeamNum", formData, {
+      .post("/api/main/admin/inputTeamNum", inputData, {
         headers: {
           "Content-Type": "application/json", // 또는 다른 올바른 Content-Type
         },
@@ -43,21 +52,34 @@ function AdminproModal(props) {
       .then((response) => {
         alert("팀 배정 완료");
         setModalIsOpen(false);
+        // formData.forEach((value, key) => {
+        //   console.log("작성완료"+key, value);
+        // });
+        console.log(inputData);
       })
       .catch((err) => {
         console.log("에러발생" + err);
       });
   }
 
+  const [inputData, setInputData] = useState({pro_id: '', team_num: ''})
   const formData = new FormData();
-  formData.append("pro_id", pro_id);
+  //formData.append("pro_id", pro_id);
 
   function handleCheckboxChange(e) {
     const checkboxValue = e.target.value;
-    console.log(checkboxValue);
+    
     if (e.target.checked) {
-      formData.append("team_num", checkboxValue);
-    }
+     // formData.append("team_num", checkboxValue);
+      setInputData({pro_id: pro_id, team_num: checkboxValue, pro_status: '엔지니어 배정중'})
+      //console.log("체크된 값:", checkboxValue);
+    } //else {
+     // formData.delete("team_num");
+      //console.log("체크 해제된 값:", checkboxValue);
+   // }
+  //  // formData.forEach((value, key) => {
+  //     console.log(key, value);
+  //   });
   }
 
   return (
@@ -79,16 +101,24 @@ function AdminproModal(props) {
             <ul className="ver-menu">
               {teamLeader &&
                 teamLeader.map((team) => (
-                  <li key={team.team_num}>
+                  <li
+                    key={team.team_num}
+                    className="ver-mid"
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
                     <input
                       type="checkbox"
                       value={team.team_num}
                       onChange={handleCheckboxChange}
                     />
                     <span>{team.team_id}</span>
-                    <span>{team.eng_name}</span>
+                    <span>팀장 {team.eng_name}</span>
 
-                    <ul className="ver-sub" key={team.team_num}>
+                    <ul
+                      className={`ver-sub ${isSubMenuVisible ? "visible" : ""}`}
+                      key={team.team_num}
+                    >
                       {teamMember
                         .filter((member) => member.team_num === team.team_num)
                         .map((filteredMember) => (
@@ -96,11 +126,9 @@ function AdminproModal(props) {
                             <span>{filteredMember.eng_name}</span>
                           </li>
                         ))}
-                      ;
                     </ul>
                   </li>
                 ))}
-              ;
             </ul>
           </div>
 
