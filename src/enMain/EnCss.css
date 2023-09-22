@@ -247,4 +247,14 @@
   transition: all 0.5s ease;
 }
 
+.workDetailDownLoadList{
+  width: 80%;
 
+}
+
+.workDetailDownLoadList th, .workDetailDownLoadList td {
+  padding: 10px;
+  /* padding-right: 20px; */
+  border: 1px solid #d3d7da;
+  text-align: center;
+}

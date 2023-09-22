@@ -460,7 +460,7 @@ html body .font-weight-medium {
 .pagination-admin > .pagination > .disabled > span:hover,
 .pagination-admin > .pagination > li > a {
   color: #ed7272;
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
   background-color: #fff;
   border-color: #ddd;
 }

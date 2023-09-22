@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react"
+import { Fragment, useEffect, useState } from "react"
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom"
 import $ from 'jquery';
 import './HeaderFooter.css'
@@ -18,7 +18,7 @@ import TeamIcon from "../img/TeamIcon";
 import BriefcaseIcon from "../img/BriefcaseIcon";
 import axios from "axios";
 
-function HeaderFooterEn() {
+function HeaderFooterEn({checkPermission}) {
     const [bellModal, setbellModalIsOpen] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const ms = {
@@ -31,6 +31,22 @@ function HeaderFooterEn() {
         fontSize: '16px'
     }
     const navigate = useNavigate();
+
+    const eng_id = checkPermission.sub;
+    const [info, setInfo] = useState({})
+    const getInfo = async () => {
+
+      const response1 = await axios.get(`/api/main/getInfoEng?eng_id=${eng_id}`)
+  
+     
+      setInfo(response1.data)
+    }
+
+    useEffect(() => {
+      getInfo()
+    }, [])
+  
+    console.log(info);
 
     const logout = () => {
         localStorage.removeItem("token");
@@ -102,7 +118,7 @@ function HeaderFooterEn() {
                 <nav className="navbar top-navbar navbar-expand-lg navbar-light">
                     <div className="navbar-header">
                         <div className="navbar-brand">
-                            <a href="index.html"> 기술지원 A팀 </a>
+                            <a href="index.html"> {info.team_id} </a>
                         </div>
 
 
@@ -154,11 +170,11 @@ function HeaderFooterEn() {
 
 
                                 <button className="nav-link dropdown-toggle" onClick={() => setModalIsOpen(true)} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="../img/baek.jpg" alt="user" className="rounded-circle" width="50" height="50" />
+                                    <img src="https://project-buket.s3.amazonaws.com/profile.jpg" alt="user" className="rounded-circle" width="50" height="50" />
 
                                     <span className="ms-2 d-none d-lg-inline-block">
                                         <span></span>
-                                        <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>[대리]백승용</span>
+                                        <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>{info.eng_name}</span>
                                         <Down />
                                     </span>
                                 </button>

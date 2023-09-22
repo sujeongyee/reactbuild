@@ -16,8 +16,8 @@ function formatDate(dateString) {
   // 맨 뒤의 "." 제거
   return formattedDate.replace(/\.$/, '');
 }
-function InspectionList({checkPermission}) {
-  const eng_enid = checkPermission.sub;
+function InspectionList() {
+
   const [first, setFirst] = useState([]);
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 정보 저장
@@ -26,11 +26,10 @@ function InspectionList({checkPermission}) {
 
 
   useEffect(() => {
-    axios.get(`/api/main/engineer/inspectionList/${eng_enid}`).then((res) => {
-      setList(res.data.inspectionList);
-      setFirst(res.data.inspectionList);
+    axios.get('/api/main/engineer/inspectionList').then((res) => {
+      setList(res.data);
+      setFirst(res.data);
       setLoading(false);
-      console.log(res.data);
     })
       .catch((error) => {
         console.log(error);
@@ -137,7 +136,7 @@ function InspectionList({checkPermission}) {
 
                 </div>
                 <div className="table-responsive">
-                  <table className="insListTable" style={{margin: '0 auto', width: '100%'}}>
+                  <table className="insListTable" style={{margin: '0 auto', width: '80%'}}>
                     <thead>
                       <tr style={{ textAlign: "center", borderBottom: "2px solid #cdcdcd", borderTop: "2px solid #cdcdcd" }}>
                         <th scope="col">번호</th>
@@ -145,8 +144,7 @@ function InspectionList({checkPermission}) {
                         <th scope="col">점검종류</th>
                         <th scope="col">프로젝트명</th>
                         <th scope="col">점검일자</th>
-                        <th scope="col">서버상태</th>
-                        <th scope="col">작업상태</th>
+                        <th scope="col">현재상태</th>
                       </tr>
                     </thead>
                     <tbody className="insListTableTBody">
@@ -176,7 +174,6 @@ function InspectionList({checkPermission}) {
                                 {workInfo.server_status}
                             </button>
                           </td>
-                          <td>{workInfo.work_status}</td>
                         </tr>
                       ))}
 
