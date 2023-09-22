@@ -22,8 +22,8 @@ function EnglTeamassign(props) {
 
 
       axios.get('/api/main/engleader/getTeamEngList',{
-        params: {
-          leader_id: leader_id,
+         params: {
+          leader_id: props.userId,
           pro_pi: pro_pi
         }
       })
@@ -37,7 +37,7 @@ function EnglTeamassign(props) {
           // 요청에 대한 오류 처리를 수행합니다.
         });
     }
-  }, [props.leaderid]);
+  }, [props.userId]);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -114,7 +114,7 @@ function EnglTeamassign(props) {
   return (
     <>
 
-      {props.check === true ? <button type="button" className="assingment-btn ok-bbtn">팀원배정완료</button> : <button type="button" className="assingment-btn" onClick={()=>setModalIsOpen(true)}>팀원배정</button>}
+      {props.check === true ? <button type="button" className="assingment-btn ok-bbtn" style={{backgroundColor:'rgb(101 98 98)'}}>팀원배정완료</button> : <button type="button" className="assingment-btn" onClick={()=>setModalIsOpen(true)}>팀원배정</button>}
 
       <input type="hidden" className={server_id}></input>
 

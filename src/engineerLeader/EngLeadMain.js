@@ -8,7 +8,6 @@ import UsersIcon from "../img/UserIcon";
 
 import ChartComponent1 from "../userMain/ChartComponent1"
 
-
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { useEffect, useState } from "react"
@@ -47,7 +46,6 @@ function EngLeadMain(props) {
         });
     //}
   }, [props.userId]); // props.userId가 변경될 때마다 useEffect를 실행합니다.
-
   const data = {
     labels: ["신규계약", "계약종료"],
     datasets: [
@@ -89,14 +87,14 @@ function EngLeadMain(props) {
   }, [props.userId]);
 
   const openModal = (index) => {
-    // 해당 인덱스의 모달 상태를 열린 상태(true)로 설정
+ 
     const updatedModalStates = [...modalStates];
     updatedModalStates[index] = true;
     setModalStates(updatedModalStates);
   };
 
   const closeModal = (index) => {
-    // 해당 인덱스의 모달 상태를 닫힌 상태(false)로 설정
+  
     const updatedModalStates = [...modalStates];
     updatedModalStates[index] = false;
     setModalStates(updatedModalStates);
@@ -104,19 +102,24 @@ function EngLeadMain(props) {
 
   const customModalStyles = {
     content: {
-      left: "94.5%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      borderRadius: "0.5em",
-      fontSize: "11px",
-      color: "black",
-      border: "2px solid #dfaaaa",
-      backgroundColor: "white",
-      width: "180px",
-      marginTop: "45px",
-      padding: "10px",
+      left: '90%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      borderRadius:'0.5em',
+      fontSize:'11px',
+      color:'black',
+      border:'1px solid #dfaaaa',
+      backgroundColor:'white',
+      width:'180px',
+      marginTop:'45px',
+      padding:'10px',
+      Animation:'move',
+      animationName: 'move',
+      animationDuration: '4s',
+      animationIterationCount: 'infinite',
+      webkitAnimation: 'move 1.5s',
+      
       // 추가적인 스타일을 여기에 추가할 수 있습니다.
     },
   };
@@ -142,7 +145,7 @@ function EngLeadMain(props) {
         contentLabel="알람 모달"
         style={{
           content: {
-            top: `${(index + 1) * 85}px`, 
+            top: `${(index + 1) * 80}px`, 
             ...customModalStyles.content 
           }
         }}

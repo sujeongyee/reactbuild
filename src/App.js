@@ -168,9 +168,7 @@ function App() {
       <Route element={<PrivateRouteEn checkPermission={checkPermission()} />}>
         <Route
           element={
-
-            <HeaderFooterEn checkPermission={checkPermission()} state={info}  userId={userId}/>
-
+            <HeaderFooterEn checkPermission={checkPermission()} state={info} userId={userId} />
           }
         >
           {/* 엔지니어 페이지 */}
@@ -280,16 +278,16 @@ function App() {
           <Route path="/user/annoList" element={<UserAnnoList checkPermission={checkPermission()} />}/>
           <Route path="/user/annoDetail" element={<UserAnnoDetail checkPermission={checkPermission()} />}/>
           <Route path="/user/prodetail/:pro_id" element={<UserDetailPro checkPermission={checkPermission()} />}/>
-          <Route path="/user/projectDetailList" element={ <UserProjectDetailList checkPermission={checkPermission()} state={info}/> } />
+          <Route path="/user/projectDetailList" element={ <UserProjectDetailList checkPermission={checkPermission()} state={info} /> } />
           <Route path="/user/projectDetail"  element={ <UserProjectDetailModal checkPermission={checkPermission()} />}/>
           <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 checkPermission={checkPermission()} />}/>
         </Route>
       </Route>
 
       <Route element={<PrivateRouteAd checkPermission={checkPermission()} />}>
-        <Route element={<HeaderFooterAd checkPermission={checkPermission()}  userId={userId}/>}>
+        <Route element={<HeaderFooterAd checkPermission={checkPermission()} userId={userId} />}>
           {/* 관리자 페이지; */}
-          <Route  path="/admin" element={<MainAdmin checkPermission={checkPermission()}  userId={userId}/>} />
+          <Route  path="/admin" element={<MainAdmin checkPermission={checkPermission()} userId={userId}/>} />
           <Route path="/admin/noticeWrite" element={<NoticeWrite checkPermission={checkPermission()} />} />
           <Route path="/admin/projectDetail/:pro_id" element={<ProjectDetail checkPermission={checkPermission()} />}/>
           <Route path="/admin/inQurylist" element={<AdminInQurylist checkPermission={checkPermission()} />}/>
