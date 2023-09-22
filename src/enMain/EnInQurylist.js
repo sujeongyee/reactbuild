@@ -161,12 +161,12 @@ function EnInQurylist({ checkPermission }) {
                                             <tbody>
                                                 {currentPosts.map((item, index) => (
                                                     <tr key={index}>
-                                                        <th scope="row">{index + 1}</th>
-                                                        <td><Link to={`/engineer/inQuryDetail`} state={{ item }} style={{ padding: "0" }} >{item.cs_title}</Link></td>
-                                                        <td>{item.cs_writer}</td>
-                                                        <td>{formatDateTime(item.cs_regdate)}</td>
-                                                        <td>{item.cs_type}</td>
-                                                        <td>{item.cs_answer_yn}</td>
+                                                        <th style={{width:"10%"}} scope="row">{index + 1}</th>
+                                                        <td style={{width:"40%"}}><Link to={`/engineer/inQuryDetail`} state={{ item }} style={{ padding: "0" }} >{item.cs_title}</Link></td>
+                                                        <td style={{width:""}}>{item.cs_writer}</td>
+                                                        <td style={{width:""}}>{formatDateTime(item.cs_regdate)}</td>
+                                                        <td style={{width:""}}>{item.cs_type}</td>
+                                                        <td style={{width:""}}>{item.cs_answer_yn}</td>
                                                     </tr>
                                                 ))}
                                             </tbody>
