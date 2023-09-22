@@ -119,6 +119,7 @@ function AdminInQuryDetail({ checkPermission }) {
 
     //답변 업데이트
     const answerValue=()=>{
+        console.log(answer)
         axios.get("/api/main/csUpdate?cs_answer_yn="+answer+"&cs_num="+DetailData.cs_num)
         .then(response=>{
             alert(response.data)
@@ -167,9 +168,9 @@ function AdminInQuryDetail({ checkPermission }) {
                                         {checkPermission.role=='ROLE_ADMIN'||checkPermission.role=='ROLE_ENGINEER'?
                                         <div style={{width:"50%" , textAlign:"right",marginRight:"50px"}}>
                                             <button style={{fontSize:"20px",marginRight:'10px'}} className='answerValue' onClick={answerValue}>답변 여부 등록하기</button>
-                                            <select style={{fontSize:"20px"}} onChange={(e)=>setAnswer(e.target.value)}>
-                                                <option value="O">O</option>
-                                                <option value="X">X</option>
+                                            <select style={{fontSize:"20px"}} onChange={(e)=>{ setAnswer(e.target.value)}}>
+                                                <option value="Y">Y</option>
+                                                <option value="N">N</option>
                                             </select>
                                         </div>:null}
                                     </div>

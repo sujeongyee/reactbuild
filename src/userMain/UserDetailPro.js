@@ -7,7 +7,7 @@ import Loading from '../loding/Loding';
 function UserDetailPro({ detail: data } ) {
 
   const[proDetail, setProDetail] = useState([]);
-  //const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const {pro_id} = useParams();
 
   console.log(pro_id)
@@ -16,7 +16,7 @@ function UserDetailPro({ detail: data } ) {
     axios.get(`/api/main/user/prodetail/${pro_id}`).then((response)=>{
       setProDetail(response.data);
       console.log(response.data);
-     // setLoading(false);
+     setLoading(false);
       
     })
     .catch((error)=>{
@@ -29,7 +29,7 @@ function UserDetailPro({ detail: data } ) {
   return (
     <>
 
-         {/* {loading ? <Loading /> : null} */}
+         {loading ? <Loading /> : null}
 
       <div className="page-wrapper" >
 
@@ -69,6 +69,7 @@ function UserDetailPro({ detail: data } ) {
                     </div>
                     <div className="pro-info">
                     프로젝트 정기점검 날짜 : <span>{proDetail?.[0]?.pro_pi}</span>
+  
                     </div>
                     <div className="pro-info">
                     담당 엔지니어팀 : <span>{proDetail?.[0]?.pro_status == '진행 중' ? proDetail?.[0]?.team_id : '배정 미정'}</span>

@@ -7,12 +7,12 @@ import EnCalendar from "./EnCalendar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
-import List from "./List"
 import Calendar from "./Calendar"
 import Loading from '../loding/Loding';
+import DataTest from '../data/DataTest';
 
 
-function EnMain() {
+function EnMain({checkPermission}) {
   const [loading, setLoading] = useState(true);
 
 
@@ -35,7 +35,7 @@ function EnMain() {
 
             </b>
           </div>
-          {isToggled ? <Calendar /> : <List />}
+          {isToggled ? <Calendar /> : <DataTest id={checkPermission.sub}/>}
         </div>
       </div>
 

@@ -99,7 +99,7 @@ function UserProList({ state }) {
                     }}
                   >
                     <div
-                      className="customize-input right select-proengl"
+                      className="customize-input right select-pro"
                       style={{ marginRight: "30px" }}
                     >
                       <select
@@ -115,13 +115,13 @@ function UserProList({ state }) {
                     </div>
                     <input
                       type="search"
-                      className="form-control form-control-sm"
+                      className="form-control form-control-sm select-word-pro"
                       placeholder="검색하기"
                       aria-controls="zero_config"
                       style={{ width: "150px", marginRight: "10px" }}
                     />
-                    <div className="search-click-engl" onClick={handleSearch}>
-                      <SearchIcon color="#9cbba6" />
+                    <div className="search-click-pro" onClick={handleSearch}>
+                      <SearchIcon color="#8971ea" />
                     </div>
                   </label>
 
@@ -217,7 +217,7 @@ function UserProList({ state }) {
                         </Link>
                       </li>
                     </ul> */}
-                    <div className="pagedivengl pagination-engl">
+                    <div className="pagedivengl pagination-pro">
                       <Pagination
                         activePage={currentPage}
                         itemsCountPerPage={itemsPerPage}

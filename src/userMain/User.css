@@ -554,9 +554,9 @@ html body .font-weight-medium {
 }
 
 .all-server-info {
-  margin: 30px;
+
   border: 0.5px solid rgb(218, 217, 218);
-  margin-left: 140px;
+  margin: 0 auto;
   width: 770px;
   padding: 15px;
 }
@@ -700,3 +700,135 @@ td .hide {
 .card-bsy .col-md-4sy .custom-select{
     width: 33%;
 }
+
+
+/* 셀렉트 */
+
+
+.userpro-btn {
+  float: right;
+}
+
+.select-proengl{
+  width:100px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+
+
+.selectee { 
+  
+  width: 120px;
+  height: 34px;
+  border-radius: 0.5rem; 
+  border: 1px solid #8971ea;
+  font-size: 13px;
+  padding: 5px;
+}
+
+.select-proeng{
+  display: inline-block;
+  padding-left: 900px;
+  padding-top: 0px;
+}
+
+.selectee:focus {
+  border: 1px solid #8971ea;
+  outline: none;
+  
+}
+
+.search-pro{
+  margin-top: 20px;
+  display: flex;
+  float: right;
+}
+
+
+.selecteeop:hover {
+  background-color: transparent; /* 마우스 오버 시 배경색을 투명으로 설정 */
+  color: initial; /* 기본 텍스트 색상으로 설정 */
+  
+}
+
+.pagination-pro {
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+
+.pagedivengl {
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.select-word-pro {
+  border: 1px solid #8971ea;
+}
+
+.select-word-pro:focus {
+  border-color: #8971ea;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px #8971ea;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 4px #8971ea;
+}
+
+.search-click-pro {
+  cursor: pointer;
+}
+
+/* .pagination > li > a {
+  color: #94c9b1;
+}
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+  color: #ffffff;
+  background-color: #94c9b1;
+  border-color: #ddd;
+}
+
+.pagination>.active>a{
+  color: #fff;
+  cursor: default;
+  background-color: #94c9b1;
+} */
+
+
+.pagination-pro li a,.pagination-pro .disabled a, .pagination-pro li a, .pagination-pro li span, .pagination-pro li span {
+  color: #8971ea;
+  padding: 8px 13px 8px 13px;
+  margin-right: 3px;
+}
+
+.pagination-pro li a:focus, .pagination-pro li a:hover, .pagination-pro li span:focus, .pagination-pro li span:hover {
+  color: #fafafa;
+  background-color: #8971ea;
+  border-color: #ddd;
+  border-radius: 0.2em;
+}
+
+
+.pagination-pro >ul> li > a {
+  color: #8971ea;
+}
+.pagination-pro .active a,
+ .pagination-pro .active a:focus, .pagination-pro .active a:hover,
+  .pagination-pro .active span, .pagination-pro .active span:focus,
+   .pagination-pro .active span:hover,.pagination-pro .disabled>a:focus {
+  z-index: 2;
+  color: #fff;
+  cursor: default;
+  background-color: #8971ea;
+  border-color: #8971ea;
+  border-radius: 0.2em;
+  
+}
+
+
+.pagination-cus li a, .pagination-cus .disabled a,
+ .pagination-cus li a, .pagination-cus li span, .pagination-cus li span{
+    color:#4662ec
+ }
+

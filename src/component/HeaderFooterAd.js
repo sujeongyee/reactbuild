@@ -1,7 +1,8 @@
-import { Fragment, useState, useEffect } from "react";
-import { Link, NavLink, Navigate, Outlet, useNavigate } from "react-router-dom";
-import $ from "jquery";
-import "./HeaderFooter.css";
+
+import { Fragment, useEffect, useState } from "react"
+import { Link, NavLink, Navigate, Outlet, useNavigate } from "react-router-dom"
+import $ from 'jquery';
+import './HeaderFooter.css'
 import BellIcon from "../img/BellIcon";
 import Down from "../img/ChevronDownIcon";
 import HomeIcon from "../img/HomeIcon";
