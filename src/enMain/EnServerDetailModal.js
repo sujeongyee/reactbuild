@@ -6,6 +6,8 @@ import "../userMain/User.css";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
 import Loading from '../loding/Loding';
+import WorkDetailDownload from "./WorkDetailDownLoad";
+import WorkDetailDownLoad from "./WorkDetailDownLoad";
 
 function EnServerDetailModal(props, areaID) {
 
@@ -23,7 +25,6 @@ function EnServerDetailModal(props, areaID) {
     if(modalIsOpen){
       console.log('여기'+props.serverName)
       console.log('이건 가니'+ props.serverId )
-      //axios.post('/api/main/engineer/inspectionList2',{serverName:props.serverName})
       axios.post('/api/main/engineer/inspectionList2',{serverId:props.serverId})
       .then(response => {
         setData(response.data);
@@ -76,23 +77,6 @@ function EnServerDetailModal(props, areaID) {
     setModalIsOpen(false);
   }
 
-
-  // const printArea = () => {
-  //   if (!isPrinting) {
-  //     setInitBody(document.body.innerHTML);
-  //     document.body.innerHTML = idPrintRef.current.innerHTML;
-  //     setIsPrinting(true);
-
-  //     // window.print()를 호출하여 인쇄 다이얼로그를 열어준다
-  //     window.print();
-
-  //     // window.print() 호출 이후 인쇄 다이얼로그가 나타나고 닫히는 시점을 감지하여 복구 작업을 수행한다
-  //     window.onafterprint = () => {
-  //       document.body.innerHTML = initBody;
-  //       setIsPrinting(false);
-  //     };
-  //   }
-  // };
 
   return (
     <>
@@ -187,7 +171,11 @@ function EnServerDetailModal(props, areaID) {
                       <td>{workInfo2.work_ram}</td>
                       <td>{workInfo2.work_hdd}</td>
                       <td>{workInfo2.work_status}</td>
-                      <td>?</td>
+                      <td>
+                        <input type="button" style={{border:'none', backgroundColor:'white', color:'#4949b3'}}/>
+                        <WorkDetailDownLoad
+                        workNum = {workInfo2.work_num}/>
+                      </td>
                     </tr>
                   ))}
               </thead>
