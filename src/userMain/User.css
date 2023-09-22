@@ -683,7 +683,7 @@ html body .font-weight-medium {
 }
 
 .detail_modal_container1 .detail_modal_table{
-    margin: 0 auto
+    margin-left: 130px;
 }
 .detail_modal_container1 .detail_modal_table th{
     text-align: left;
@@ -696,9 +696,31 @@ td .hide {
 
 }
 
+.pagination-user .active a, 
+.pagination-user .active a:focus, 
+.pagination-user .active a:hover, 
+.pagination-user .active span, 
+.pagination-user .active span:focus, 
+.pagination-user .active span:hover
+ {
+  z-index: 2;
+  color: #fff;
+  cursor: default;
+  background-color: #958dff;
+  border-color: #958dff;
+  border-radius: 0.2em;
+}
 
-.card-bsy .col-md-4sy .custom-select{
-    width: 33%;
+.pagination-user>.pagination>.disabled>a, 
+.pagination-user>.pagination>.disabled>a:focus, 
+.pagination-user>.pagination>.disabled>a:hover, 
+.pagination-user>.pagination>.disabled>span, 
+.pagination-user>.pagination>.disabled>span:focus, 
+.pagination-user>.pagination>.disabled>span:hover,
+.pagination-user>.pagination> li > a {
+  color: #958dff;
+  background-color: #fff;
+  border-color: #ddd;
 }
 
 
@@ -831,4 +853,5 @@ td .hide {
  .pagination-cus li a, .pagination-cus li span, .pagination-cus li span{
     color:#4662ec
  }
+
 

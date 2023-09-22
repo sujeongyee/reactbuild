@@ -31,19 +31,19 @@ function AdProjectList() {
     // 데이터를 복사하여 필터링
     const filteredList = first.filter((item) => { //검색시작
 
-      if (filter === "프로젝트명") {
-        return item.por_name.includes(searchWord);
-      } else if (filter === "회사명") {
+      if (filter === "프로젝트명" || item.pro_name!=null) {
+        return item.pro_name.includes(searchWord);
+      } else if (filter === "회사명" || item.cus_company_name!=null) {
         return item.cus_company_name.includes(searchWord);
-      } else if (filter === "담당자") {
+      } else if (filter === "담당자" || item.pro_rep!=null) {
         return item.pro_rep.includes(searchWord);
-      } else if (filter === "계약시작일") {
+      } else if (filter === "계약시작일" || item.pro_startdate!=null) {
         return item.pro_startdate.includes(searchWord);
-      } else if (filter === "계약종료일") {
+      } else if (filter === "계약종료일" || item.pro_enddate!=null) {
         return item.pro_enddate.includes(searchWord);
-      } else if (filter === "정기점검일") {
+      } else if (filter === "정기점검일" || item.pro_pi!=null) {
         return item.pro_pi.includes(searchWord);
-      } else if (filter === "계약상태") {
+      } else if (filter === "계약상태" || item.pro_status!=null) {
         return item.pro_status.includes(searchWord);
       } else if (filter === "전체" && searchWord === "") {
         return item;
@@ -58,7 +58,7 @@ function AdProjectList() {
           item.pro_pi.includes(searchWord) 
         );
       }
-      return true;
+      //return true;
     });
 
     // 필터링된 데이터를 업데이트
@@ -75,6 +75,7 @@ function AdProjectList() {
     axios.get('/api/main/admin/projectList').then((response)=>{
       setProList(response.data);
       console.log(response.data);
+      setFirst(response.data);
     })
     .catch((error)=>{
       console.log(error);
@@ -104,6 +105,7 @@ function AdProjectList() {
                   <div className="customize-input right select-proengl" style={{marginRight: '30px'}}>
                     <select style={{ display: 'inline-block', border: '1px solid rgb(255 186 186)'}} className="selectee">
                       <option className="selecteeop">전체</option>
+                      <option className="selecteeop">프로젝트명</option>
                       <option className="selecteeop">회사명</option>
                       <option className="selecteeop">계약시작일</option>
                       <option className="selecteeop">계약종료일</option>
@@ -111,7 +113,7 @@ function AdProjectList() {
                       <option className="selecteeop">계약상태</option>
                     </select>
                   </div>
-                    <input type="search" className="form-control form-control-sm" placeholder="검색하기" aria-controls="zero_config" style={{ width: '150px', marginRight: '10px', border: '1px solid rgb(255 186 186)' }} />
+                    <input type="search" className="form-control form-control-sm select-word-engl" placeholder="검색하기" aria-controls="zero_config" style={{ width: '150px', marginRight: '10px', border: '1px solid rgb(255 186 186)' }} />
                     <div className="search-click-engl" onClick={handleSearch}> 
                       <SearchIcon color="rgb(255 186 186)" />
                     </div>
