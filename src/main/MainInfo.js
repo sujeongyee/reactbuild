@@ -188,7 +188,7 @@ function MainInfo(){
 
                             <p className="contact-con">내 프로젝트의 시작부터     성장까지,
                               O.J의 서버관리 솔루션과 함께하세요</p>
-                            <a href="" className="contact-btn">CONTACT US</a>
+                            <Link to="/login_join" className="contact-btn">CONTACT US</Link>
                         </div>
                    </div>
                 </div>
