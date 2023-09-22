@@ -163,34 +163,37 @@ function HeaderFooterEnl(props) {
                     </span>
                   </button>
 
-                  <Modal className="bell-content" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}>
+                  <Modal className="bell-content alarm-modaal" overlayClassName="bell-overlay" isOpen={bellModal} onRequestClose={() => setbellModalIsOpen(false)}>
+                    {alarmList.length > 0 ? (
+                      alarmList.map((list, index) => {
+                        // Timestamp 문자열을 Date 객체로 파싱
+                        const dateObject = new Date(list.alarm_date);
 
-                    {alarmList.map((list, index) => {
-                      // Timestamp 문자열을 Date 객체로 파싱
-                      const dateObject = new Date(list.alarm_date);
+                        // Date 객체를 "yyyy/MM/dd HH:mm" 형식으로 변환
+                        const formattedDate = `${dateObject.getFullYear()}/${String(dateObject.getMonth() + 1).padStart(2, '0')
+                          }/${String(dateObject.getDate()).padStart(2, '0')} ${String(dateObject.getHours()).padStart(2, '0')
+                          }:${String(dateObject.getMinutes()).padStart(2, '0')}`;
 
-                      // Date 객체를 "yyyy/MM/dd HH:mm" 형식으로 변환
-                      const formattedDate = `${dateObject.getFullYear()}/${String(dateObject.getMonth() + 1).padStart(2, '0')
-                        }/${String(dateObject.getDate()).padStart(2, '0')} ${String(dateObject.getHours()).padStart(2, '0')
-                        }:${String(dateObject.getMinutes()).padStart(2, '0')}`;
+                        const backgroundColor = list.alarm_check_yn === 'Y' ? 'rgb(197 197 197 / 8%)' : '';
 
-                      const backgroundColor = list.alarm_check_yn === 'Y' ? 'rgb(197 197 197 / 8%)' : '';
-
-                      return (
-                        <div className="bell-link" key={index} style={{ backgroundColor: backgroundColor }}>
-
-                          <div className="bell-middle alarm-list" style={{ backgroundColor: backgroundColor }}>
-                            {/* <h5>{list.alarm_TYPE}</h5> */}
-                            <p>{list.alarm_content}</p>
-                            <span>{formattedDate}</span>
-                            <span className="checkalarmbtn" style={{ marginLeft: '10px' }} onClick={(event) => clickAlarmno(list.alarm_num, event)}>{list.alarm_check_yn === 'Y' ? '읽음' : '안읽음'}</span>
+                        return (
+                          <div className="bell-link" key={index} style={{ backgroundColor: backgroundColor }}>
+                            <div className="bell-middle alarm-list" style={{ backgroundColor: backgroundColor }}>
+                              {/* <h5>{list.alarm_TYPE}</h5> */}
+                              <p>{list.alarm_content}</p>
+                              <span>{formattedDate}</span>
+                              <span className="checkalarmbtn" style={{ marginLeft: '10px' }} onClick={(event) => clickAlarmno(list.alarm_num, event)}>{list.alarm_check_yn === 'Y' ? '읽음' : '안읽음'}</span>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })
+                    ) : (
+                      <div className="no-alarm-message">
+                        <span>미확인 알람이 없습니다.</span>
+                      </div>
+                    )}
 
                     <button className="bell-more all-alarm" onClick={getAllAlarm}>
-
                       <storng id="allorsome"> 모든 알람 보기</storng>
                     </button>
                   </Modal>
@@ -223,12 +226,12 @@ function HeaderFooterEnl(props) {
                     </span>
                   </button>
                   <Modal
-                    className="modal-content"
+                    className="modal-content modalenglheader"
                     overlayClassName="modal-overlay"
                     isOpen={modalIsOpen}
                     onRequestClose={() => setModalIsOpen(false)}
                   >
-                    <Link to="#" className="contentIcon">
+                    {/* <Link to="#" className="contentIcon">
                       <div>
                         <ProfileIcon />
                       </div>
@@ -239,7 +242,7 @@ function HeaderFooterEnl(props) {
                         <SettingsIcon />
                       </div>
                       <span>회원정보 수정</span>
-                    </Link>
+                    </Link> */}
 
                     <Link to="#" onClick={logout} className="contentIcon">
                       <div><LogOutIcon /></div>

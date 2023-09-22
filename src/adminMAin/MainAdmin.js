@@ -209,6 +209,50 @@ function MainAdmin() {
                         </tr>
                       </thead>
                       <tbody>
+
+                        {newProjectList.length === 0 ? (
+                          <tr>
+                            <td colSpan="4" className="text-center">
+                              <p style={{margin:'50px'}}>새로 요청된 프로젝트가 없습니다.</p>
+                            </td>
+                          </tr>
+                        ) : (
+                          newProjectList.map((clientInfo, index) => (
+                            <tr key={clientInfo.pro_id}>
+                              <td className="border-top-0 px-2 py-4">
+                              <div className="d-flex no-block ">
+                                <div className="">
+                                  <h5 className="text-dark mb-0 font-16 font-weight-medium">
+                                    {clientInfo.cus_managet_name}
+                                  </h5>
+                                  <span className="text-muted font-14">
+                                    {clientInfo.cus_email}
+                                  </span>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="border-top-0 text-muted px-2 py-4 font-14 projectname">
+                              <span>
+                                <Link
+                                  to={{
+                                    pathname: `/admin/projectDetail/${clientInfo.pro_id}`,
+                                  }}
+                                >
+                                  {clientInfo.pro_name}
+                                </Link>
+                              </span>{" "}
+                            </td>
+
+                            <td className="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
+                              {clientInfo.pro_startDate}
+                            </td>
+                            <td className="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
+                              {clientInfo.pro_status}
+                            </td>
+                            </tr>
+                          ))
+                        )}
+
                         {newProjectList.map((clientInfo, index) => (
                           <tr key={clientInfo.pro_id}>
                             <td className="border-top-0 px-2 py-4">
