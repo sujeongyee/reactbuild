@@ -562,3 +562,21 @@ border-bottom: 0.1px solid #e1edff;
 .eng-serversel:focus {
   outline: none;
 }
+
+.alarm-modaal {
+  min-width: 165px;
+  padding: 10px;
+}
+
+.no-alarm-message > span{
+  color: black;
+  font-size: 13px;
+}
+
+.modalenglheader {
+  height: auto;
+}
+
+.alarm-list p {
+  text-align: left;
+}
