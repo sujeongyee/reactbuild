@@ -19,7 +19,6 @@ import Modal from "react-modal";
 
 function EngLeadMain(props) {
 
-
   const [vo, setVo] = useState([]);
   const [list, setList] = useState([]);
   const [periodic, setPeriodic] = useState([]);
@@ -48,7 +47,6 @@ function EngLeadMain(props) {
         });
     //}
   }, [props.userId]); // props.userId가 변경될 때마다 useEffect를 실행합니다.
-
 
   const data = {
     labels: ["신규계약", "계약종료"],
@@ -127,6 +125,7 @@ function EngLeadMain(props) {
 
   return (
     <>
+
       <div className="page-wrapper" >
 
       {alarmModals.map((data,index)=>{

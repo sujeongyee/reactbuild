@@ -18,31 +18,50 @@ import TeamIcon from "../img/TeamIcon";
 import BriefcaseIcon from "../img/BriefcaseIcon";
 import axios from "axios";
 
-function HeaderFooterEn() {
-  const [bellModal, setbellModalIsOpen] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const ms = {
-    textDecoration: "none",
-    borderRadius: " 0 60px 60px 0",
-    background: "#2ac661",
-    transition: "ease-out .2s",
-    height: "36px",
-    color: "white",
-    fontSize: "16px",
-  };
-  const navigate = useNavigate();
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    alert("로그아웃 되었습니다😎");
-    navigate("/");
-  };
+function HeaderFooterEn({checkPermission}) {
+    const [bellModal, setbellModalIsOpen] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const ms = {
+        textDecoration: 'none',
+        borderRadius: ' 0 60px 60px 0',
+        background: '#2ac661',
+        transition: 'ease-out .2s',
+        height: '36px',
+        color: 'white',
+        fontSize: '16px'
+    }
+    const navigate = useNavigate();
 
-  const handleClick = (e) => {
-    $(e.currentTarget).toggleClass("active");
-    $(e.currentTarget).next().toggleClass("in");
-  };
-  const user_id = "customer1";
+    const eng_id = checkPermission.sub;
+    const [info, setInfo] = useState({})
+    const getInfo = async () => {
+
+      const response1 = await axios.get(`/api/main/getInfoEng?eng_id=${eng_id}`)
+  
+     
+      setInfo(response1.data)
+    }
+
+    useEffect(() => {
+      getInfo()
+    }, [])
+  
+    console.log(info);
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        alert("로그아웃 되었습니다😎");
+        navigate("/");
+        
+      };
+
+    const handleClick = (e) => {
+        $(e.currentTarget).toggleClass("active")
+        $(e.currentTarget).next().toggleClass("in")
+    }
+    const user_id = 'customer1';
+
   const [alarmList, setAlarmList] = useState([]);
   const [firstAlarm, setFirstAlarm] = useState([]);
 
@@ -93,6 +112,7 @@ function HeaderFooterEn() {
       axios.post("/api/main/alarm/changeAlarm", { alarmNum: alarmNum });
       alert("알람을 확인 했습니다.");
     }
+
   };
 
   return (
@@ -145,6 +165,7 @@ function HeaderFooterEn() {
                     isOpen={bellModal}
                     onRequestClose={() => setbellModalIsOpen(false)}
                   >
+
                     {alarmList.map((list, index) => {
                       // Timestamp 문자열을 Date 객체로 파싱
                       const dateObject = new Date(list.alarm_date);
@@ -199,56 +220,43 @@ function HeaderFooterEn() {
                       <storng id="allorsome"> 모든 알람 보기</storng>
                     </button>
                   </Modal>
-                </li>
-                <li className="nav-item dropdown">
-                  <button
-                    className="nav-link dropdown-toggle"
-                    onClick={() => setModalIsOpen(true)}
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <img
-                      src="../img/baek.jpg"
-                      alt="user"
-                      className="rounded-circle"
-                      width="50"
-                      height="50"
-                    />
 
-                    <span className="ms-2 d-none d-lg-inline-block">
-                      <span></span>
-                      <span
-                        className="text-dark"
-                        style={{ fontWeight: 700, fontSize: "15px" }}
-                      >
-                        [대리]백승용
-                      </span>
-                      <Down />
-                    </span>
-                  </button>
-                  <Modal
-                    className="modal-content"
-                    overlayClassName="modal-overlay"
-                    isOpen={modalIsOpen}
-                    onRequestClose={() => setModalIsOpen(false)}
-                  >
-                    <Link to="#" className="contentIcon">
-                      <div>
-                        <ProfileIcon />
-                      </div>
-                      <span>프로필 보기</span>
-                    </Link>
+                            </li>
+                            <li className="nav-item dropdown">
 
-                    <Link to="#" onClick={logout} className="contentIcon">
-                      <div>
-                        <LogOutIcon />
-                      </div>
-                      <span>로그아웃</span>
-                    </Link>
-                  </Modal>
-                </li>
-              </ul>
+
+
+                                <button className="nav-link dropdown-toggle" onClick={() => setModalIsOpen(true)} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="https://project-buket.s3.amazonaws.com/profile.jpg" alt="user" className="rounded-circle" width="50" height="50" />
+
+                                    <span className="ms-2 d-none d-lg-inline-block">
+                                        <span></span>
+                                        <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>{info.eng_name}</span>
+                                        <Down />
+                                    </span>
+                                </button>
+                                <Modal className="modal-content" overlayClassName="modal-overlay" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+                                    <Link to="#" className="contentIcon">
+                                        <div><ProfileIcon /></div>
+                                        <span>프로필 보기</span>
+                                    </Link>
+                                   
+                                    <Link to="#"onClick={logout}  className="contentIcon">
+                                        <div><LogOutIcon /></div>
+                                        <span>로그아웃</span>
+                                    </Link>
+
+                                </Modal>
+
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </nav>
+
+
+
             </div>
           </nav>
         </div>
