@@ -24,7 +24,7 @@ function EngLeadMain(props) {
   const [disability, setDisability] = useState([]);
   const [maintenance, setMaintenance] = useState([]);
   const [userId, setUserId] = useState(props.userId);
-  console.log(props.userId)
+  console.log(props.userId);
   useEffect(() => {
     // props.userId가 null이 아닌 경우에만 axios 요청을 보냅니다.
     // if (props.userId !== undefined && props.userId != null && props.userId!=='') {
@@ -46,9 +46,6 @@ function EngLeadMain(props) {
         });
     //}
   }, [props.userId]); // props.userId가 변경될 때마다 useEffect를 실행합니다.
-  
-
-
   const data = {
     labels: ["신규계약", "계약종료"],
     datasets: [
@@ -77,16 +74,17 @@ function EngLeadMain(props) {
 
   const [modalStates, setModalStates] = useState([]);
   const [alarmModals, setAlarmModals] = useState([]);
-  useEffect(()=>{
-    axios.get('/api/main/alarm/getAlarmList',{
-      params:{user_id:props.userId}
-    })
-    .then(response =>{
-      const d = response.data
-      setAlarmModals(d);
-      setModalStates(d.map(() => true));
-    })
-  },[props.userId])
+  useEffect(() => {
+    axios
+      .get("/api/main/alarm/getAlarmList", {
+        params: { user_id: props.userId },
+      })
+      .then((response) => {
+        const d = response.data;
+        setAlarmModals(d);
+        setModalStates(d.map(() => true));
+      });
+  }, [props.userId]);
 
   const openModal = (index) => {
  
@@ -94,7 +92,7 @@ function EngLeadMain(props) {
     updatedModalStates[index] = true;
     setModalStates(updatedModalStates);
   };
-  
+
   const closeModal = (index) => {
   
     const updatedModalStates = [...modalStates];
@@ -126,14 +124,10 @@ function EngLeadMain(props) {
     },
   };
 
-
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   return (
     <>
-
-    
-      
 
       <div className="page-wrapper" >
 
@@ -331,6 +325,7 @@ function EngLeadMain(props) {
                                 </div>
                               </td>
 
+
                               <td className="" style={{ padding: '6px' }}><Link className="engl-main-a" to={{
                                 pathname: `/engineerleader/requestDetail/${data.pro_id}`,
                                 state: {
@@ -341,7 +336,6 @@ function EngLeadMain(props) {
                               <td
                                 className="">
                                 {data.pro_startdate}
-
                               </td>
 
                               <td className="">{data.pro_startDate}</td>
@@ -406,7 +400,6 @@ function EngLeadMain(props) {
           </div>
         </div>
       </div>
-      
     </>
   );
 }

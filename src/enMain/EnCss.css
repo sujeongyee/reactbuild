@@ -136,7 +136,7 @@
 .project-select {
   font-size: 15px;
   margin-top: 3px;
-  width: 200px;
+  width: 350px;
   height: 30px;
 }
 
@@ -247,4 +247,14 @@
   transition: all 0.5s ease;
 }
 
+.workDetailDownLoadList{
+  width: 80%;
 
+}
+
+.workDetailDownLoadList th, .workDetailDownLoadList td {
+  padding: 10px;
+  /* padding-right: 20px; */
+  border: 1px solid #d3d7da;
+  text-align: center;
+}

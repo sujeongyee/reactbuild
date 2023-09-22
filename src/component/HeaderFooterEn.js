@@ -156,15 +156,14 @@ function HeaderFooterEn(props) {
 
 
 
-                  <button className="nav-link dropdown-toggle" onClick={() => setModalIsOpen(true)} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="../img/baek.jpg" alt="user" className="rounded-circle" width="50" height="50" />
-
-                    <span className="ms-2 d-none d-lg-inline-block">
-                      <span></span>
-                      <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>[대리]백승용</span>
-                      <Down />
-                    </span>
-                  </button>
+                 <button className="nav-link dropdown-toggle" onClick={() => setModalIsOpen(true)} data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <img src="https://project-buket.s3.amazonaws.com/profile.jpg" alt="user" className="rounded-circle" width="50" height="50" />
+                           <span className="ms-2 d-none d-lg-inline-block">
+                                        <span></span>
+                                        <span className="text-dark" style={{ fontWeight: 700, fontSize: '15px' }}>{user_id}</span>
+                                        <Down />
+                                    </span>
+                                </button>
                   <Modal className="modal-content" overlayClassName="modal-overlay" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
                     <Link to="#" className="contentIcon">
                       <div><ProfileIcon /></div>

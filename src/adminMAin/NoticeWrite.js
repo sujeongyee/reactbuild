@@ -91,19 +91,19 @@ function NoticeWrite({checkPermission}){
                                                 <div className="row">
                                                     <div className="col-md-2sy">
                                                         <div className="form-group mb-3">
-                                                          <div style={{textAlign: 'center;'}}>제목</div>
+                                                          <div style={{textAlign: 'center'}}>제목</div>
                                                         </div>
                                                     </div>
                                                     <div className="col-md-4sy">
                                                         <div className="form-group mb-3">
-                                                            <input type="text" onChange={noticeChange} name="notice_title" value={form.notice_title}valusclassName="form-control" placeholder="제목을 입력하세요" />
+                                                            <input type="text" onChange={noticeChange} name="notice_title" value={form.notice_title} className="form-control" placeholder="제목을 입력하세요" />
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="row">
                                                   <div className="col-md-2sy">
                                                       <div className="form-group mb-3">
-                                                        <div style={{textAlign: 'center;'}}>작성자명</div>
+                                                        <div style={{textAlign: 'center'}}>작성자명</div>
                                                       </div>
                                                   </div>
                                                   <div className="col-md-4sy">
@@ -121,12 +121,12 @@ function NoticeWrite({checkPermission}){
                                                 <div  className="row"style={{width:"50%"}}>
                                                 <div className="col-md-2sy" style={{width:"50%"}}>
                                                     <div className="form-group mb-3">
-                                                      <div style={{textAlign: 'center;'}}>공지대상</div>
+                                                      <div style={{textAlign: 'center'}}>공지대상</div>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-4sy" style={{width:"50%"}}>
                                                    <div className="form-group mb-3">
-                                                      <select onChange={noticeChange} name="notice_target" value={form.notice_target} class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">           
+                                                      <select onChange={noticeChange} style={{width:"100%"}} name="notice_target" value={form.notice_target} className="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">           
                                                       <option value="ALL">전체</option>
                                                       <option value="ROLE_ENGINEER">엔지니어</option>
                                                       <option value="ROLE_USER">유저</option>
@@ -137,12 +137,12 @@ function NoticeWrite({checkPermission}){
                                                 <div className="row" style={{width:"50%"}}>
                                                 <div className="col-md-2sy" style={{width:"50%"}}>
                                                     <div className="form-group mb-3"/* style={{ padding:"0"}} */>
-                                                      <div style={{textAlign: 'center', }} >댓글여부</div>
+                                                      <div style={{textAlign: 'center'}} >댓글여부</div>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-4sy"style={{width:"50%"}}>
-                                                   <div className="form-group mb-3">
-                                                      <select onChange={noticeChange} name="notice_comment" value={form.notice_comment}class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">           
+                                                <div className="col-md-4sy"style={{width:"48%"}}>
+                                                   <div className="form-group mb-3"  >
+                                                      <select onChange={noticeChange} name="notice_comment" style={{width:"100%"}}value={form.notice_comment}className="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">           
                                                       <option value="O">O</option>
                                                       <option value="X">X</option>
                                                       </select>  
@@ -156,7 +156,7 @@ function NoticeWrite({checkPermission}){
                                               <div className="row">
                                                 <div className="col-md-2sy">
                                                     <div className="form-group mb-3">
-                                                      <div style={{textAlign: 'center;'}}>공지내용</div>
+                                                      <div style={{textAlign: 'center'}}>공지내용</div>
                                                     </div>
                                                 </div>
                                                 <div className="col-md-4sy">
@@ -169,7 +169,7 @@ function NoticeWrite({checkPermission}){
                                               <div className="row">
                                                 <div className="col-md-2sy">
                                                     <div className="form-group mb-3">
-                                                      <div style={{textAlign: 'center;'}}>첨부파일
+                                                      <div style={{textAlign: 'center'}}>첨부파일
 
                                                       </div>
                                                     </div>

@@ -23,7 +23,7 @@ import { Link } from "react-router-dom";
 
 function MainUser({state}) {
 
-
+    
     SwiperCore.use([EffectCoverflow, Navigation, Pagination]);
 
     const[mainProjectList , setMainProjectList] = useState([]);
@@ -32,9 +32,9 @@ function MainUser({state}) {
     console.log(state);
     //const [ivedinspectionList,setIvedinspectionList] = useState([]);
     const [vo, setVo] = useState([]);
-    const [periodic, setPeriodic] = useState([]);
-    const [disability, setDisability] = useState([]);
-    const [maintenance, setMaintenance] = useState([]);
+    const [periodic, setPeriodic] = useState([0]);
+    const [disability, setDisability] = useState([0]);
+    const [maintenance, setMaintenance] = useState([0]);
 
     useEffect(()=>{
       axios.get(`/api/main/user/${state.cus_id}`).then((response)=>{
@@ -44,9 +44,9 @@ function MainUser({state}) {
         const receivedvo = data.vo|| [];
         const receivemainProjectList = data.mainProjectList|| [];
 
-        const receivedperiodic = data.periodic|| [];
-        const receiveddisability = data.disability|| [];
-        const receivedmaintenance = data.maintenance|| [];
+        const receivedperiodic = data.periodic;
+        const receiveddisability = data.disability;
+        const receivedmaintenance = data.maintenance;
 
         setVo(receivedvo);
         setMainProjectList(receivemainProjectList);
@@ -148,7 +148,7 @@ function MainUser({state}) {
       </Swiper>
       ): (
         <p>등록된 프로젝트가 없습니다<br/>
-          <Link to="/user/apply">포로젝트 등록하러가기</Link>
+          <Link to="/user/apply">프로젝트 등록하러가기</Link>
         </p>
         
       )}

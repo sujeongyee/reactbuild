@@ -375,35 +375,50 @@ html body .font-weight-medium {
   color: #5f78f3 !important;
 }
 
+/* 관리자 팀 배정창 */
 .ver-menu {
   width: 150px;
   text-align: center;
 }
 
-.ver-main {
+.ver-mid {
   line-height: 2;
   border: 1px solid #e9ecef;
   position: relative;
 }
 
-.ver-main .ver-sub {
+.ver-mid .ver-sub {
   position: absolute;
   width: 150px;
   left: 149px;
   border: 1px solid #e9ecef;
   background-color: white;
+
   top: -1px;
   display: none;
 }
 
-.ver-main:hover {
+.ver-mid:hover .ver-sub,
+.ver-mid.visible .ver-sub {
+  /* 수정: 메뉴가 열린 경우에만 표시되도록 변경 */
+  display: block;
+  color: #b9b9b9;
+}
+
+.ver-mid:hover {
   background-color: #4662ec;
   color: white;
 }
 
-.ver-main .ver-sub > li:hover {
+.ver-mid.visible {
   background-color: #4662ec;
   color: white;
+}
+
+.ver-mid .ver-sub > li:hover {
+  background-color: #4662ec;
+  color: white;
+  font: #b9b9b9;
 }
 
 /* .ver-menu {
@@ -460,7 +475,11 @@ html body .font-weight-medium {
 .pagination-admin > .pagination > .disabled > span:hover,
 .pagination-admin > .pagination > li > a {
   color: #ed7272;
-  cursor: not-allowed;
   background-color: #fff;
   border-color: #ddd;
+}
+
+
+.answerValue:hover{
+    color: rgb(248, 138, 138);
 }

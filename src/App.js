@@ -79,6 +79,8 @@ import EnLeaderInQurylist from "./engineerLeader/EnLeaderInQurylist";
 import EnLeaderInQuryWrite from "./engineerLeader/EnLeaderInQuryWrite";
 import EnLeaderInQuryDetail from "./engineerLeader/EnLeaderInQuryDetail";
 
+import EnglInsRequestList from "./engineerLeader/EnglInsRequestList";
+
 import AdminproModal from "./adminMain/AdminproModal";
 
 
@@ -111,6 +113,7 @@ function App() {
 
   const Info = async () => {
     if (checkPermission() == null) {
+        setInfo({})
       return;
     }
     if (checkPermission().role === "ROLE_USER") {
@@ -120,12 +123,13 @@ function App() {
     }
     if (checkPermission().role === "ROLE_ENGINEER") {
       const eng_id = checkPermission().sub;
-
-      const response2 = await axios.get(
-        `/api/main/getInfoEng?eng_id=${eng_id}`
-      );
-
+      const response2 = await axios.get(`/api/main/getInfoEng?eng_id=${eng_id}`);
       setInfo(response2.data);
+    }
+    if (checkPermission().role === "ROLE_ENGLEADER") {
+      const engL_id = checkPermission().sub;
+      //const response3 = await axios.get(`/api/main/getInfoEngL?engL_id=${engL_id}`);
+      //setInfo(response3.data);
     }
 
     return;
@@ -135,7 +139,7 @@ function App() {
     Info();
   }, []);
 
-
+  console.log(info)
   const token2 = localStorage.getItem("token");
   const [userId,setUserId] = useState('');
   useEffect(()=>{
@@ -239,13 +243,15 @@ function App() {
           <Route path='/engineerleader' element={<EngLeadMain userId={userId}/>} />
           <Route path='/engineerleader/requestDetail/:pro_id' element={<RequestDetail userId={userId}/>} />
           <Route path='/engineerleader/projectList' element={<EnglProjectList userId={userId}/>} />
-          <Route path='/engineerleader/projectDetail/:pro_id' element={<EnglProjectDetail userId={userId} />} />
+          <Route path='/engineerleader/projectDetail/:pro_id' checkPermission={checkPermission()} element={<EnglProjectDetail userId={userId} />} />
           <Route path='/engineerleader/workinfo/:server_id' element={<EnglWorkInfo userId={userId} />} />
           <Route path='/engineerleader/clientList' element={<EnglClientList userId={userId}/>} />
           <Route path='/engineerleader/engineerList' element={<EnglEngineerList userId={userId}/>} />
           <Route path='/engineerleader/clientDetail/:cus_id' element={<EnglClientDetail userId={userId}/>} />
           <Route path='/engineerleader/engDetail/:eng_enid' element={<EnglEngDetail/>}userId={userId} />
-          <Route path='/engineerleader/allSchedule' element={<EnglAllSchedule userId={userId}/>}/>         
+          <Route path='/engineerleader/allSchedule' element={<EnglAllSchedule userId={userId}/>}/>  
+          {/* 이예지 점검 요청 목록 추가 */}
+          <Route path='/engineerleader/insRequestList' element={<EnglInsRequestList userId={userId}/>} />       
           {/* 백승용 추가 사항~!~!!~! */}
           <Route path='/engineerleader/annoList' element={<EnLeaderAnnoList checkPermission={checkPermission()}/>} />
           <Route path='/engineerleader/annoDetail' element={<EnLeaderAnnoDetail checkPermission={checkPermission()}/>} />
@@ -260,7 +266,9 @@ function App() {
 
 
       <Route element={<PrivateRoute checkPermission={checkPermission()} />}>
-        <Route element={ <HeaderFooterUs checkPermission={checkPermission()} state={info} /> } >
+
+        <Route element={ <HeaderFooterUs checkPermission={checkPermission()} state={info}  userId={userId}/> } >
+
           <Route path="/user" element={<MainUser state={info} />} />
           <Route path="/user/list" element={<UserProList checkPermission={checkPermission()} state={info} />} />
           <Route path="/user/apply" element={<UserApply checkPermission={checkPermission()} state={info} />} />

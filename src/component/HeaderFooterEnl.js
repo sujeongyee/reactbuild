@@ -345,6 +345,15 @@ function HeaderFooterEnl(props) {
                         모든 고객사 정보
                       </NavLink>
                     </li>
+                    <li class="sidebar-item">
+                      <NavLink
+                        className="sidebar-link "
+                        to="/engineerleader/insRequestList"
+                        style={({ isActive }) => (isActive ? ms : undefined)}
+                      >
+                        점검 요청 목록
+                      </NavLink>
+                    </li>
                   </ul>
                 </li>
                 <li className="sidebar-item">

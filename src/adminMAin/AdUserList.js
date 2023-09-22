@@ -49,7 +49,9 @@ function AdUserList() {
       } else if (filter === "담당자") {
         return item.cus_managet_name.includes(searchWord);
       } else if (filter === "계약상태") {
-        return item.pro_status.includes(searchWord);
+        if(item.pro_status!==null){
+          return item.pro_status.includes(searchWord);
+        }     
       } else if (filter === "전체" && searchWord === "") {
         return item;
       } else if (filter === "전체") {
@@ -59,7 +61,7 @@ function AdUserList() {
           || item.pro_status.includes(searchWord)
         );
       }
-      return true;
+      // return true;
     });
 
     // 필터링된 데이터를 업데이트
@@ -174,7 +176,7 @@ function AdUserList() {
                             <td>{customer.cus_phone_number}</td>
                             <td>{customer.cus_email}</td>
                             <td>
-                              <button type="button" class="button-success">
+                              <button type="button" class="button-success_ad">
                               {customer.pro_status}
                               </button>
                             </td>
