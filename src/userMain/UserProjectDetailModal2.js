@@ -41,7 +41,7 @@ function UserProjectDetailModal2({ projectDetailList }) {
 
   return (
     <>
-      <button onClick={() => setModalIsOpen(true)}>정기점검</button>
+      <button onClick={() => setModalIsOpen(true)}>{projectDetailList.work_division}</button>
       <Modal
         /* className="modal-content"
         overlayClassName="modal-overlay" */

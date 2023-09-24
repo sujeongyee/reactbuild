@@ -88,6 +88,7 @@ import ProjectDetailChart from "./userMain/ProjectDetailChart";
 
 import AdEngineerList from "./adminMain/AdEngineerList";
 import InspectionList from "./enMain/InspectionList";
+import EnEngDetail from "./enMain/Calendar";
 
 function App() {
   const location = useLocation();
@@ -139,7 +140,6 @@ function App() {
     Info();
   }, []);
 
-  console.log(info)
   const token2 = localStorage.getItem("token");
   const [userId,setUserId] = useState('');
   useEffect(()=>{
@@ -179,9 +179,10 @@ function App() {
               <EnMain checkPermission={checkPermission()} state={info} />
             }
           />
+
           <Route
-            path="/engineer/calendar"
-            element={<EnCalendar checkPermission={checkPermission()} />}
+            path='/engineer/engDetail/:eng_enid'
+            element={<EnEngDetail checkPermission={checkPermission()} />}
           />
           <Route
             path="/engineer/engineerList"

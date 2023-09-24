@@ -24,7 +24,7 @@ function AdProjectList() {
 
   //search 버튼을 눌렀을때의 이벤트
   const handleSearch = (e) => { 
-
+    
     const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
     const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명(옵션값)
 

@@ -152,7 +152,7 @@ function EnLeaderInQuryDetail({ checkPermission }) {
                             <div className="card">
                                 <div className="card-body" style={{ padding: '30px 70px 0 100px', height: '100%', width: "100%" }} >
                                     <div className='row'>
-                                        <Link to="/engineer/inQuryList" className="inq-back" style={{ width: "50%" }}>
+                                        <Link to="/engineerleader/inQuryList" className="inq-back" style={{ width: "50%" }}>
                                             ← 문의 목록
                                         </Link>
                                        {checkPermission.sub==DetailData.cs_writer? 

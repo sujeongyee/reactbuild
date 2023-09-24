@@ -35,7 +35,7 @@ function EnMain({checkPermission}) {
 
             </b>
           </div>
-          {isToggled ? <Calendar /> : <DataTest id={checkPermission.sub}/>}
+          {isToggled ? <Calendar checkPermission={checkPermission} /> : <DataTest id={checkPermission.sub}/>}
         </div>
       </div>
 
