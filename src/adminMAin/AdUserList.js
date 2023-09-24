@@ -23,13 +23,11 @@ function AdUserList() {
     axios.get('/api/main/admin/customerList').then((res) => {
       setList(res.data);
       setFirst(res.data);
-      console.log(res.data);
     })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  console.log(list);
 
 
   const handlePageChange = (page) => { // 페이지 핸들링
@@ -144,7 +142,6 @@ function AdUserList() {
                             <th scope="col">담당자</th>
                             <th scope="col">연락처</th>
                             <th scope="col">이메일</th>
-                            <th scope="col">계약 상태</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -155,6 +152,7 @@ function AdUserList() {
                               <div className="d-flex no-block">
                                 <div className="me-3" style={{ width: '80%' }}>
                                   <AdUserMyPageModal 
+                                  cus_id={customer.cus_id}
                                   cusCompantName={customer.cus_company_name}
                                   cusBoss = {customer.cus_boss}
                                   cusBusinessId = {customer.cus_business_id}
@@ -164,9 +162,7 @@ function AdUserList() {
                                   cusManagetName = {customer.cus_managet_name}
                                   cusEmail = {customer.cus_email}
                                   cusPhoneNumber = {customer.cus_phone_number}
-                                  proStartdate = {customer.pro_startdate}
-                                  proEnddate = {customer.pro_enddate}
-                                  proStatus = {customer.pro_status}
+
                                   
                                   />
                                   </div>
@@ -175,11 +171,7 @@ function AdUserList() {
                             <td>{customer.cus_managet_name}</td>
                             <td>{customer.cus_phone_number}</td>
                             <td>{customer.cus_email}</td>
-                            <td>
-                              <button type="button" class="button-success_ad">
-                              {customer.pro_status}
-                              </button>
-                            </td>
+                           
                           </tr>
                           ))}
                         </tbody>

@@ -121,7 +121,7 @@ function EnLeaderInQurylist({ checkPermission }) {
                                 <div className="card-body" style={{ height: "630px" }}>
                                     <div className="table-responsive" style={{ height: "480px" }}>
                                         
-                                        <select style={{ display: 'inline-block', width: '100px' }} className="selectee">
+                                        <select style={{ display: 'inline-block', width: '100px',border:"1px solid rgb(44, 117, 70)" }} className="selectee">
                                             <option value="전체">전체</option>
                                             <option value="제목">제목</option>
                                             <option value="작성자">작성자</option>
@@ -162,7 +162,7 @@ function EnLeaderInQurylist({ checkPermission }) {
                                                 {currentPosts.map((item, index) => (
                                                     <tr key={index}>
                                                         <th scope="row">{index + 1}</th>
-                                                        <td><Link to={`/engineer/inQuryDetail`} state={{ item }} style={{ padding: "0" }} >{item.cs_title}</Link></td>
+                                                        <td><Link to={`/engineerleader/inQuryDetail`} state={{ item }} style={{ padding: "0" }} >{item.cs_title}</Link></td>
                                                         <td>{item.cs_writer}</td>
                                                         <td>{formatDateTime(item.cs_regdate)}</td>
                                                         <td>{item.cs_type}</td>

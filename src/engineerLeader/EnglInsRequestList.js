@@ -185,6 +185,7 @@ function EnglInsRequestList(props) {
                               <td style={{textAlign: 'center'}}>{list.eng_name}</td>
                               <td>
                               <EnglTeamassign
+                                leader_id={props.userId}
                                 pro_pi={list.pro_pi}
                                 pro_id={list.pro_id}
                                 server_id={list.server_id}

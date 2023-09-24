@@ -36,7 +36,7 @@ function EnglWorkInfo() {
               <p style={{marginTop:'100px'}}>아직 등록된 내역이 없습니다.</p>
             </>
           ) : (
-            <ul className="timeline">
+            <ul className="timeline2">
               {list.map((data, index) => {
                 if (index % 2 === 0) {
                   return (

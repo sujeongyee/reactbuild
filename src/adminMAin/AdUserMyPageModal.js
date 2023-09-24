@@ -3,6 +3,8 @@ import Modal from "react-modal";
 // import "../enMain/EnMain.css";
 import "../userMain/User.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import AdProDetailModal from "./AdProDetailModal";
 
 function AdUserMyPageModal(props) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -26,22 +28,23 @@ function AdUserMyPageModal(props) {
     },
   };
 
-
   useEffect(() => {
-    if (modalIsOpen) {
-      console.log('여기' + props.cusCompantName)
-      axios.post('/api/main/client/AdUserMyPage', { serverId: props.serverId })
-        .then(response => {
-          setAdUserMyPage(response.AdUserMyPage);
-          console.log(response.data);
+      if (modalIsOpen) {
+          getpro()
 
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+        }
+        
+    }, [modalIsOpen]);
+    const getpro=async()=>{
+  
+      const cus_id={"cus_id":props.cus_id}
+      console.log(1)
+      const response=await axios.post('/api/main/client/getPro', cus_id) // v프
+      console.log(response.data)
 
+      setAdUserMyPage(response.data)
+  
     }
-  }, [modalIsOpen]);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -182,24 +185,17 @@ function AdUserMyPageModal(props) {
                   <input type="text" value={props.cusPhoneNumber} readOnly />
                 </td>
               </tr>
-              <tr>
-                <th>계약상태</th>
-                <td>
-                  <input type="text" value={props.proStatus} readOnly />
-                </td>
-              </tr>
-              <tr>
-                <th>계약 시작일</th>
-                <td>
-                  <input type="text" value={props.proStartdate} readOnly />
-                </td>
-              </tr>
-              <tr>
-                <th>계약 만료일</th>
-                <td>
-                  <input type="text" value={props.proEnddate} readOnly />
-                </td>
-              </tr>
+              {AdUserMyPage.map((item,index)=>(
+                      <tr key={index}>
+                      <th>프로젝트 정보</th>
+                      <td>
+                      <AdProDetailModal 
+                               pro_id={item.pro_id}
+                               pro_name={item.pro_name}
+                               />
+                      </td>
+                    </tr>
+              ))}
             </table>
 
             <div className="detail_modal_button">
@@ -208,6 +204,7 @@ function AdUserMyPageModal(props) {
                 type="button"
                 value="목록"
                 className="detail_modal_button_close"
+                style={{background:"rgb(198, 73, 42)"}}
                 onClick={() => setModalIsOpen(false)}
               />
             </div>
