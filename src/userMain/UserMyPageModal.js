@@ -37,7 +37,7 @@ function UserMyPageModal() {
   }, []);
 
   const fileUpload = (file) => {
-    const url = "http://localhost:8888/api/client/imgupload";
+    const url = "http://13.124.230.133:8888/api/client/imgupload";
     const formData = new FormData();
     formData.append("file", file);
     const config = {
