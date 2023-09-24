@@ -8,6 +8,8 @@ import { Background } from "../loding/Styles";
 function UserProList({state}) {
 
   const[proList, setProList] = useState([]);
+  //현재 시간 불러오기
+  const [currentDate, setCurrentDate] = useState(new Date());
   
   //페이지 리스트
  // const [list, setList] = useState([]); // 
@@ -65,7 +67,16 @@ function UserProList({state}) {
       console.log(response.data);
       console.log('state: ',state);
       setFirst(response.data);
+
+    // 컴포넌트가 마운트되었을 때와 매 초마다 현재 날짜를 업데이트
+    const intervalId = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000); // 1초마다 업데이트
+
+    // 컴포넌트가 언마운트될 때 인터벌 정리
+    return () => clearInterval(intervalId);
     })
+
     .catch((error)=>{
       console.log(error);
     });
@@ -129,7 +140,7 @@ function UserProList({state}) {
                           <tr key={project.pro_id}>
                           <th scope="row">{(currentPage - 1) * itemsPerPage + index + 1}</th>
                           <td class="user-proname"><Link to={{pathname: `/user/prodetail/${project.pro_id}` }}>{project.pro_name}</Link></td>
-                          <td>{project.pro_status}</td>
+                          <td>{project.pro_status=='계약승인'&&project.pro_startdate==currentDate.toLocaleString()? project.pro_status : '프로젝트 진행중'}</td>
                           <td>{project.pro_startdate}</td>
                           <td>{project.pro_pi}</td>
                           </tr>

@@ -1,24 +1,14 @@
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 
-function AdProDetailInsModal(props) {
+function UserInsRequestCheckModal(props) {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [adServerInsList, setAdServerInsList] = useState([]);
-
-  // 날짜를 원하는 형식으로 변환하는 함수
-function formatDate(dateString) {
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit'};
-  const formattedDate = new Date(dateString).toLocaleDateString('ko-KR', options);
-
-  // 맨 뒤의 "." 제거
-  return formattedDate.replace(/\.$/, '');
-}
-  
-  console.log("여기있니?" + props.server_id);
 
   const customStyles = {
     content: {
@@ -39,10 +29,10 @@ function formatDate(dateString) {
 
   useEffect(() => {
     if(props.server_id!==null){
-      axios.get(`/api/main/admin/AdProDetailInsModal/${props.server_id}`)
+      axios.get(`/api/main/user/UserInsRequestCheckModal/${props.server_id}/${props.cus_id}`)
       .then(response => {
+        console.log("값?",response.data);
         setAdServerInsList(response.data);
-        console.log(response.data);
         
       })
       .catch((error)=>{
@@ -59,11 +49,11 @@ function formatDate(dateString) {
     setModalIsOpen(false);
   }
 
-  console.log(props);
+
 
   return(
    <> 
-    <button onClick={openModal} style={{backgroundColor: 'rgb(255 118 118)', fontSize: '10px', padding: '5px', color: '#fff'}}>작업내역</button>
+    <button onClick={openModal} style={{backgroundColor: 'rgb(118 180 255)', fontSize: '10px', padding: '5px', color: '#fff', marginLeft: '10px'}}>요청내역</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -73,15 +63,15 @@ function formatDate(dateString) {
     <div className="page-breadcrumb">
         <div className="row">
           <div className="col-7 align-self-center" style={{display: "flex"}}>
-            <h3 style={{color: '#dd7070', justifyContent: "left", flex: 1}}>
-              서버 정보
+            <h3 style={{color: 'rgb(127 104 235)', textAlign: 'center', flex: 1, marginBottom: '30px'}}>
+              점검 요청 내역
             </h3>
             <div className="detail_modal_button" style={{justifyContent: "right"}}>
               <input
                 type="button"
                 value="x"
                 className="detail_modal_button_close"
-                style={{backgroundColor: 'rgb(214 87 87)', width: '30px', height: '20px', lineHeight: '20px'}}
+                style={{backgroundColor: 'rgb(133 121 253)', width: '30px', height: '20px', lineHeight: '20px'}}
                 onClick={() => setModalIsOpen(false)}
               />
            </div>
@@ -103,32 +93,22 @@ function formatDate(dateString) {
                   <tr>
                     <th scope="col">No</th>
                     <th scope="col">서버이름</th>
-                    <th scope="col">작업일자</th>
-                    <th scope="col">작업분류</th>
-                    <th scope="col">작업시간</th>
-                    <th scope="col">CPU사용량</th>
-                    <th scope="col">RAM사용량</th>
-                    <th scope="col">HDD사용량</th>
-                    <th scope="col">현재상태</th>
-                    <th scope="col">배정 엔지니어</th>
+                    <th scope="col">점검요청유형</th>
+                    <th scope="col">점검요청시간</th>
+                    <th scope="col">점검요청내용</th>
                   </tr>
 
                 </thead>
                 <tbody style={{marginTop: "50px"}}>
 
-                  {adServerInsList.map((server,index) => (
+                  {adServerInsList.map((insRe,index) => (
 
-                    <tr key={server.server_id}>
+                    <tr key={insRe.server_id}>
                     <th scope="row">{index+1}</th>
-                    <td>{server.server_name}</td>
-                    <td>{server.work_date!==null ? formatDate(server.work_date) : null}</td>
-                    <td>{server.work_division}</td>
-                    <td>{server.work_time}</td>
-                    <td>{server.work_cpu}</td>
-                    <td>{server.work_ram}</td>
-                    <td>{server.work_hdd}</td>
-                    <td>{server.work_status}</td>
-                    <td>{server.eng_name}</td>
+                    <td>{insRe.server_name}</td>
+                    <td>{insRe.insRequest_type}</td>
+                    <td>{insRe.insRequest_regdate}</td>
+                    <td>{insRe.insRequest_content}</td>
                     </tr>
 
                     ) 
@@ -142,7 +122,7 @@ function formatDate(dateString) {
           </div>
         </div>
         </div>
-      </div> 
+      </div>
 
     </Modal>   
   </>
@@ -151,4 +131,4 @@ function formatDate(dateString) {
 
 }
 
-export default AdProDetailInsModal;
+export default UserInsRequestCheckModal;

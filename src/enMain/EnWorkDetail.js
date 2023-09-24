@@ -179,7 +179,10 @@ function EnWorkDetail({ checkPermission }) {
         formData.append("file_data", selectedFile);
       });
       formData.append("userId", eng_enid);
+      formData.append("pro_id", workInfoVO.pro_id);
 
+      console.log("pro_id -----------", workInfoVO.pro_id);
+      
       formData.forEach((value, key) => {
         console.log(key + " " + value);
       });

@@ -166,7 +166,6 @@ console.log("값"+ProjectDetailList)
                     <div className="customize-input right select-pro">
 
                     <select  style={{ display: 'inline-block', border: '1px solid #8971ea'}} className="selectee">
-
                         <option className="selecteeop">전체</option>
                         <option className="selecteeop">프로젝트</option>
                         <option className="selecteeop">서버이름</option>

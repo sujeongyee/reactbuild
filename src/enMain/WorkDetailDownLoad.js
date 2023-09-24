@@ -4,14 +4,10 @@ import "../enMain/EnMain.css";
 import "../enMain/EnCss.css";
 import "../userMain/User.css";
 import axios from "axios";
-import { Line } from "react-chartjs-2";
-import Loading from '../loding/Loding';
 
 function WorkDetailDownLoad(props) {
-  console.log(props);
   
-  const [loading, setLoading] = useState(true);
-
+  
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
@@ -39,38 +35,42 @@ function WorkDetailDownLoad(props) {
   };
 
 
-  const [WorkDetailData,setWorkDetailData]=useState('')
-  const [file, setFile] = useState({})
-  const [form, setForm] = useState({
-    work_num: WorkDetailData.work_num,
-    
-  })  
+  // const [WorkDetailData,setWorkDetailData]=useState('')
+  const [file, setFile] = useState([])
+ 
 
-
-  const getFile = async () => {
-    const file_num = WorkDetailData.work_num
-
-    const response = await axios.get(`/api/main/getPoto?user_id=${file_num}`)
+  
+  const getFiles = async () => {
+    const work_num = props.state.list[0].work_num;
+    console.log(work_num);
+  
+    const response = await axios.get(`/api/main/getFiles?work_num=${work_num}`)
     if (response.data === '파일 없음') {
-        return;
+      return;
     } else {
-        setFile(response.data)
-        return;
+      console.log(response.data);
+      setFile(response.data)
+      console.log(file);
+      return;
     }
-}
+  }
   useEffect(() => {
-    getFile();
+    // setWorkDetailData(props.state.list[0].work_num)
+    getFiles();
   }, []);
 
 
 
-  const down = async () => {
-
+  const down = async (index) => {
+    
     const link = document.createElement('a')
-    link.href = file.file_path
-    link.download = file.file_name
+    link.href = file[index].file_path
+    console.log(file);
+    link.download = file[index].file_name
+    console.log(file.file_name);
     link.click()
 }
+
 
   return (
     <>
@@ -93,22 +93,23 @@ function WorkDetailDownLoad(props) {
                   <th>No.</th>
                   <th>파일이름</th>
                   <th>등록일자</th>
-                  <th>등록인</th>
                   <th>다운로드받기</th>
                 </tr>
               </thead>
               <thead>
-                    <tr>
-                      <td>{1}</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                {file && file.map((file, index) => (
+
+                  <tr key={file.file_id}>
+                      <td>{file.file_name}</td>
+                      <td>{file.upload_date}</td>
+                      <td>{file.user_id}</td>
                       <td>
-                      {file.file_name != null ? <button onClick={down} className="fileDown" style={{ color: 'black' }}>{file.file_name}</button> : <button>파일이 없습니다</button>
+                      {file.file_name != null ? <button onClick={() => down(index)} className="fileDown" style={{ color: 'black' }}>{file.file_name}</button> : <button>파일이 없습니다</button>
 
 }
                       </td>
                     </tr>
+                    ))} 
             
               </thead>
             </table>
@@ -128,3 +129,4 @@ function WorkDetailDownLoad(props) {
   );
 }
 export default WorkDetailDownLoad;
+

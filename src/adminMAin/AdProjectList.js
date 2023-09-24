@@ -30,23 +30,20 @@ function AdProjectList() {
 
     // 데이터를 복사하여 필터링
     const filteredList = first.filter((item) => { //검색시작
-      
-      if (filter === "프로젝트명" && item.pro_name!=null) {
+
+      if (filter === "프로젝트명") {
         return item.pro_name.includes(searchWord);
-      } else if (filter === "회사명" && item.cus_company_name!=null) {
+      } else if (filter === "회사명") {
         return item.cus_company_name.includes(searchWord);
-      } else if (filter === "담당자" && item.pro_rep!=null) {
+      } else if (filter === "담당자") {
         return item.pro_rep.includes(searchWord);
-      } else if (filter === "계약시작일" && item.pro_startdate!=null) {
-        console.log('-------------------------------------------------')
+      } else if (filter === "계약시작일") {
         return item.pro_startdate.includes(searchWord);
-      } else if (filter === "계약종료일" && item.pro_enddate!=null) {
+      } else if (filter === "계약종료일") {
         return item.pro_enddate.includes(searchWord);
-
-      } else if (filter === "정기점검일" && item.pro_pi!=null) {
+      } else if (filter === "정기점검일") {
         return item.pro_pi.includes(searchWord);
-      } else if (filter === "계약상태" && item.pro_status!=null) {
-
+      } else if (filter === "계약상태") {
         return item.pro_status.includes(searchWord);
       } else if (filter === "전체" && searchWord === "") {
         return item;
@@ -58,7 +55,8 @@ function AdProjectList() {
           item.cus_phone_number.includes(searchWord) ||
           item.pro_startdate.includes(searchWord) ||
           item.pro_enddate.includes(searchWord) ||
-          item.pro_pi.includes(searchWord) 
+          item.pro_pi.includes(searchWord) ||
+          item.pro_status.includes(searchWord)
         );
       }
       //return true;
