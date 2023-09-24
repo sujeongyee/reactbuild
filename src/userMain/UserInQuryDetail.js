@@ -167,7 +167,7 @@ function UserInQuryDetail({ checkPermission }) {
                                     <h3 style={{position:'absolute', top:"70px",right:"100px"}}>{DetailData.cs_type}</h3>
                                     </h1>
                                     <div className="list-flex">
-                                        <div style={{ width: "10%" }}>
+                                        <div style={{ width: "17%" }}>
                                             <span className='inq-writer'>작성자</span>
                                             <span className='inq-writer2'>{DetailData.cs_writer}</span>
                                         </div>
