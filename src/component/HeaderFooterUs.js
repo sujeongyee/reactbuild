@@ -257,21 +257,7 @@ function HeaderFooterUs({ checkPermission, state }) {
                   </ul>
 
                 </li>
-                <li className="sidebar-item">
-                  <Link className='sidebar-link has-arrow' onClick={handleClick} aria-expanded="false">
-                    <BarChartIcon />
-                    <span className="hide-menu hide-list" >공지사항</span>
-                  </Link>
-                  <ul aria-expanded="false" className="collapse first-level base-level-line">
-                    <li className="sidebar-item">
-                      <NavLink className='sidebar-link ' to='/user/annoList' style={({ isActive }) => isActive ? ms : undefined} >
-                        공지사항 보기
-                      </NavLink>
-
-                    </li>
-                  </ul>
-
-                </li>
+            
 
                 <li className="sidebar-item">
                   <Link
@@ -300,7 +286,21 @@ function HeaderFooterUs({ checkPermission, state }) {
                   </ul>
                 </li>
 
+                <li className="sidebar-item">
+                  <Link className='sidebar-link has-arrow' onClick={handleClick} aria-expanded="false">
+                    <BarChartIcon />
+                    <span className="hide-menu hide-list" >공지사항</span>
+                  </Link>
+                  <ul aria-expanded="false" className="collapse first-level base-level-line">
+                    <li className="sidebar-item">
+                      <NavLink className='sidebar-link ' to='/user/annoList' style={({ isActive }) => isActive ? ms : undefined} >
+                        공지사항 보기
+                      </NavLink>
 
+                    </li>
+                  </ul>
+
+                </li>
 
                 <li className="sidebar-item">
                   <Link className='sidebar-link has-arrow'  onClick={handleClick} aria-expanded="false">

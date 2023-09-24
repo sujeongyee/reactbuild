@@ -24,10 +24,10 @@ function AdProjectList() {
 
   //search 버튼을 눌렀을때의 이벤트
   const handleSearch = (e) => { 
-
+    
     const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
     const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명(옵션값)
-    console.log(searchWord , filter,'-------------------------');
+
     // 데이터를 복사하여 필터링
     const filteredList = first.filter((item) => { //검색시작
       
@@ -42,9 +42,11 @@ function AdProjectList() {
         return item.pro_startdate.includes(searchWord);
       } else if (filter === "계약종료일" && item.pro_enddate!=null) {
         return item.pro_enddate.includes(searchWord);
+
       } else if (filter === "정기점검일" && item.pro_pi!=null) {
         return item.pro_pi.includes(searchWord);
       } else if (filter === "계약상태" && item.pro_status!=null) {
+
         return item.pro_status.includes(searchWord);
       } else if (filter === "전체" && searchWord === "") {
         return item;

@@ -84,6 +84,7 @@ function EnglTeamassign(props) {
 
         console.log(response);
         if (response.data === "ok") {
+            axios.get('/api/main/engleader/updatePro')
           setModalIsOpen(false);
           const classname = props.server_id;
           const btn_change = document.querySelector(

@@ -4,7 +4,6 @@ import "../enMain/EnMain.css";
 import "../enMain/EnTeam.css";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
-import EnglTeamassign from "../engineerLeader/EnglTeamassign";
 
 function EnL_newProjectDetail() {
   //쿼리파라미터 값
