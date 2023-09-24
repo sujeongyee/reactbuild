@@ -13,7 +13,7 @@ function EnglTeamassign(props) {
   const server_id = props.server_id;
   const leader_id = props.leader_id;
   console.log(pro_pi);
-
+  console.log(pro_id);
   console.log(leader_id);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function EnglTeamassign(props) {
 
       axios.get('/api/main/engleader/getTeamEngList',{
          params: {
-          leader_id: props.userId,
+          leader_id: props.leader_id,
           pro_pi: pro_pi
         }
       })

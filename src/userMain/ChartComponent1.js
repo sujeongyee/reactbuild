@@ -23,7 +23,7 @@ const ChartComponent1 = ({ periodic, disability, maintenance, mainProjectList })
           data: disability.length !== 0 ? disability : [0, 0, 0 ,0],
         },
         {
-          name: '기타등등',
+          name: '긴급점검',
           data: maintenance.length !== 0 ? maintenance : [0, 0, 0 ,0],
         },
       ],

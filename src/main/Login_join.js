@@ -560,7 +560,13 @@ function Login_join(props) {
         seachPw.style.transition = '.7s ease-in-out';
         
     }
-    
+    const handleEnterKeyPress = (event) => {
+        if (event.key === 'Enter') {
+          // Enter 키를 눌렀을 때 실행할 동작을 여기에 추가
+          // 예를 들어, 버튼 클릭 함수를 호출할 수 있습니다.
+          handleSingIn();
+        }
+      };
     return (
         <>
             <div id="container" className="container1">
@@ -692,7 +698,7 @@ function Login_join(props) {
                                 </div>
                                 <div className="lj_input-group">
                                     <i className='bx bxs-lock-alt'></i>
-                                    <input type="password" placeholder="비밀번호" name='password' style={{ color: 'black', fontWeight: '900' }} value={singIn.password} onChange={handleSingInChange} />
+                                    <input type="password" placeholder="비밀번호" name='password' style={{ color: 'black', fontWeight: '900' }}onKeyPress={handleEnterKeyPress} value={singIn.password} onChange={handleSingInChange} />
                                 </div>
 
                                 <button style={{ height: "48px", margin: 0, padding: 0 }} onClick={handleSingIn}>

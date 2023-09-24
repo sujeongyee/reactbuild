@@ -2,7 +2,7 @@
 
 /* ================ The Timeline ================ */
 
-.timeline {
+.timeline2 {
   position: relative;
   width: 660px;
   margin: 0 auto;
@@ -26,7 +26,7 @@
   overflow: auto; 
 }
 
-.timeline:before {
+.timeline2:before {
   position: absolute;
   left: 50%;
   top: 0;
@@ -46,11 +46,11 @@
   z-index: 5;
 }
 
-.timeline li {
+.timeline2 li {
   padding: 1em 0;
 }
 
-.timeline li:after {
+.timeline2 li:after {
   content: "";
   display: block;
   height: 0;
