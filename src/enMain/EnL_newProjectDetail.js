@@ -109,7 +109,8 @@ function EnL_newProjectDetail() {
                     <div className="row">
                       <div className="col-md-2">
                         <div className="form-group mb-3">
-                          <div className="infoUser">사업자 주소</div>
+                          <div className="infoUser">사업자 주소
+                          </div>
                         </div>
                       </div>
 
@@ -129,7 +130,8 @@ function EnL_newProjectDetail() {
                       </div>
                       <div className="col-md-2">
                         <div className="form-group mb-3">
-                          <div className="infoUser">계약기간</div>
+                          <div className="infoUser">계약기간
+                          </div>
                         </div>
                       </div>
                       <div className="col-sm-12 col-md-6 col-lg-4">
@@ -138,6 +140,20 @@ function EnL_newProjectDetail() {
                             <p className="infoUser-answer">
                               {location.state.project.pro_startdate} -{" "}
                               {location.state.project.pro_enddate}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-2">
+                          <div className="form-group mb-3">
+                            <div className="infoUser">정기점검일</div>
+                          </div>
+                        </div>
+                        <div className="col-md-4">
+                          <div className="form-group mb-3">
+                            <p className="infoUser-answer">
+                              {location.state.project.pro_pi}
                             </p>
                           </div>
                         </div>

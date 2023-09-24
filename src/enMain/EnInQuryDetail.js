@@ -42,6 +42,7 @@ function EnInQuryDetail({ checkPermission }) {
         const file_num = DetailData.cs_num
 
         const response = await axios.get(`/api/main/getPoto?cus_id=${file_num}`)
+        
         if (response.data === '파일 없음') {
             return;
         } else {

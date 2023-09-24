@@ -19,6 +19,7 @@ import BriefcaseIcon from "../img/BriefcaseIcon";
 import axios from "axios";
 
 function HeaderFooterEn(props) {
+  console.log(props);
   const [bellModal, setbellModalIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const ms = {
@@ -101,7 +102,7 @@ function HeaderFooterEn(props) {
           <nav className="navbar top-navbar navbar-expand-lg navbar-light">
             <div className="navbar-header">
               <div className="navbar-brand">
-                <a href="index.html"> 기술지원 A팀 </a>
+                <a href="index.html"> 엔지니어1팀 </a>
               </div>
 
 

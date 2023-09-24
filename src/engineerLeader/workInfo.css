@@ -1,5 +1,4 @@
 
-
 /* ================ The Timeline ================ */
 
 .timeline2 {
@@ -97,6 +96,7 @@
     overflow: auto; 
   }
   
+
   .timeline2:before {
     position: absolute;
     left: 50%;
@@ -375,3 +375,4 @@
   .workdetaill {
     color: #5b7e62;
   }
+

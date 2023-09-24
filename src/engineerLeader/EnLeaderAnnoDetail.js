@@ -7,7 +7,7 @@ import Comment from '../component/Comment';
 function EnLeaderAnnoDetail({ checkPermission }) {
     console.log(checkPermission)
     const location = useLocation();
-    const [DetailData,setDetailData]=useState(location.state.item)
+    const [DetailData,setDetailData]=useState(location.state?.item || {})
     const [update, setUpdte] = useState(false);
     const [form, setForm] = useState({
         notice_title: DetailData.notice_title,
