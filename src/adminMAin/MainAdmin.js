@@ -64,9 +64,9 @@ function MainAdmin() {
                   <div className="d-flex align-items-center">
                     <div>
                       <div className="d-inline-flex ">
-                        <h2 className=" mb-1 font-weight-medium change-color">
+                        <Link className=" mb-1 font-weight-medium change-color" to={'/admin/userList'}>
                           {vo.total_CUS_ID_COUNT}명
-                        </h2>
+                        </Link>
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -90,9 +90,9 @@ function MainAdmin() {
                   <div className="d-flex ">
                     <div>
                       <div className="d-inline-flex ">
-                        <h2 className=" mb-1 font-weight-medium change-color">
+                        <Link className=" mb-1 font-weight-medium change-color" to={'/admin/projectList'}>
                           {vo.total_PRO_NAME_COUNT}개
-                        </h2>
+                        </Link>
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -114,9 +114,9 @@ function MainAdmin() {
                   <div className="d-flex ">
                     <div>
                       <div className="d-inline-flex ">
-                        <h2 className=" mb-1 font-weight-medium change-color">
+                      <Link className=" mb-1 font-weight-medium change-color" to={'/admin/projectList'}>
                           {vo.pro_STATUS_WAITING_COUNT}개
-                        </h2>
+                        </Link>
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">
@@ -138,9 +138,9 @@ function MainAdmin() {
                   <div className="d-flex ">
                     <div>
                       <div className="d-inline-flex ">
-                        <h2 className=" mb-1 font-weight-medium change-color">
+                        <Link className=" mb-1 font-weight-medium change-color" to={'/admin/engineerList'}>
                           {vo.total_ENG_ENID_COUNT}명
-                        </h2>
+                        </Link>
                       </div>
 
                       <h6 className="text-muted font-weight-normal mb-0 w-100 text-truncate">

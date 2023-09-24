@@ -179,7 +179,8 @@ function App() {
               <EnMain checkPermission={checkPermission()} state={info} />
             }
           />
-           <Route
+
+          <Route
             path='/engineer/engDetail/:eng_enid'
             element={<EnEngDetail checkPermission={checkPermission()} />}
           />

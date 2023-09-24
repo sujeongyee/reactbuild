@@ -136,7 +136,7 @@ function UserInQuryWrite({ checkPermission }) {
                                             </div>
                                             <div className="col-md-4sy">
                                                 <div className="form-group mb-3">
-                                                    <input type="text" onChange={noticeChange} name="cs_title" value={form.cs_title} valusclassName="form-control" placeholder="제목을 입력하세요" />
+                                                    <input type="text" onChange={noticeChange} name="cs_title" value={form.cs_title} valusclassName="form-control" placeholder="제목을 입력하세요" style={{width:'460px'}} />
                                                 </div>
                                             </div>
                                         </div>

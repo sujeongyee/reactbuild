@@ -408,6 +408,11 @@ a {
   padding: 0;
   color: #2b2d30;
   font-weight: 400;
+  text-align: left;
+}
+
+.wid2{
+  width: 220px;
 }
 
 .search-btn {
