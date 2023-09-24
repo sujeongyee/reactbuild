@@ -9,6 +9,7 @@ import Modal from 'react-modal';
 import base64 from 'base-64';
 import axios from "axios";
 import "./Modal.css";
+import {SHA256} from 'crypto-js';
 function Login_join(props) {
 
     const [obj, setObj] = useSearchParams();
