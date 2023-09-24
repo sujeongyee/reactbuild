@@ -4,15 +4,9 @@ import "../enMain/EnMain.css";
 import "../enMain/EnCss.css";
 import "../userMain/User.css";
 import axios from "axios";
-import { Line } from "react-chartjs-2";
-import Loading from '../loding/Loding';
-import WorkDetailDownload from "./WorkDetailDownLoad";
 import WorkDetailDownLoad from "./WorkDetailDownLoad";
 
 function EnServerDetailModal(props, areaID) {
-
-  const [loading, setLoading] = useState(true);
-
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [data, setData] = useState([]);
@@ -23,15 +17,11 @@ function EnServerDetailModal(props, areaID) {
 
   useEffect(()=>{
     if(modalIsOpen){
-      console.log('여기'+props.serverName)
-      console.log('이건 가니'+ props.serverId )
       axios.post('/api/main/engineer/inspectionList2',{serverId:props.serverId})
       .then(response => {
         setData(response.data);
         console.log(response.data);
 
-        setLoading(false);
-        
       })
       .catch((error)=>{
         console.log(error)
@@ -159,7 +149,9 @@ function EnServerDetailModal(props, areaID) {
               </thead>
               <thead>
                 {data.list &&
-                  data.list.map((workInfo2, index) => (
+                  data.list
+                  .filter((workInfo2) => workInfo2.work_status === '점검완료')
+                  .map((workInfo2, index) => (
                     // let formattedDate = new Date(workInfo2.work_date).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' });
                     
                     <tr key={index}>
@@ -173,8 +165,7 @@ function EnServerDetailModal(props, areaID) {
                       <td>{workInfo2.work_status}</td>
                       <td>
                         <input type="button" style={{border:'none', backgroundColor:'white', color:'#4949b3'}}/>
-                        <WorkDetailDownLoad
-                        workNum = {workInfo2.work_num}/>
+                        <WorkDetailDownLoad state={data}/>
                       </td>
                     </tr>
                   ))}

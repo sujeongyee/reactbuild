@@ -23,7 +23,7 @@ function EnglTeamassign(props) {
 
       axios.get('/api/main/engleader/getTeamEngList',{
          params: {
-          leader_id: props.userId,
+          leader_id: props.leader_id,
           pro_pi: pro_pi
         }
       })

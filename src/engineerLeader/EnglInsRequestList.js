@@ -67,13 +67,12 @@ function EnglInsRequestList(props) {
         return item;
       } else if (filter === "전체") {
         return (
-          item.pro_name.includes(searchWord) ||
           item.cus_company_name.includes(searchWord) ||
+          item.pro_name.includes(searchWord) ||
           item.server_name.includes(searchWord) ||
           item.insRequest_type.includes(searchWord) ||
           item.insRequest_content.includes(searchWord) ||
           item.insRequest_regdate.includes(searchWord) ||
-          item.eng_name.includes(searchWord) ||
           item.eng_name.includes(searchWord)
         );
       }
@@ -185,6 +184,7 @@ function EnglInsRequestList(props) {
                               <td style={{textAlign: 'center'}}>{list.eng_name}</td>
                               <td>
                               <EnglTeamassign
+                                leader_id={props.userId}
                                 pro_pi={list.pro_pi}
                                 pro_id={list.pro_id}
                                 server_id={list.server_id}

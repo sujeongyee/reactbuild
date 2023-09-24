@@ -278,7 +278,7 @@ function App() {
           <Route path="/user/annoList" element={<UserAnnoList checkPermission={checkPermission()} />}/>
           <Route path="/user/annoDetail" element={<UserAnnoDetail checkPermission={checkPermission()} />}/>
           <Route path="/user/prodetail/:pro_id" element={<UserDetailPro checkPermission={checkPermission()} />}/>
-          <Route path="/user/projectDetailList" element={ <UserProjectDetailList checkPermission={checkPermission()} state={info} /> } />
+          <Route path="/user/projectDetailList" element={ <UserProjectDetailList checkPermission={checkPermission()} info={info} /> } />
           <Route path="/user/projectDetail"  element={ <UserProjectDetailModal checkPermission={checkPermission()} />}/>
           <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 checkPermission={checkPermission()} />}/>
         </Route>

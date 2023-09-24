@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from '../loding/Loding';
 import UserInsRequestModal from "./UserInsRequestModal";
+import UserInsRequestCheckModal from "./UserInsRequestCheckModal";
 
 
 function UserDetailPro() {
@@ -132,9 +133,10 @@ function UserDetailPro() {
                               server_id={project.server_id}
                               cus_id={project.cus_id}
                             />
-                            <button className="" style={{backgroundColor: 'rgb(118 180 255)', fontSize: '10px', padding: '5px', marginLeft: '10px'}}> 
-                              <Link to="/user/projectDetailList" className="linkto" style={{fontSize: "xx-small", padding: 0, color: '#fff'}}>점검내역</Link>
-                            </button>
+                            <UserInsRequestCheckModal
+                              server_id={project.server_id}
+                              cus_id={project.cus_id}
+                            />
                           </td>
                           </tr>
 

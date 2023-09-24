@@ -57,7 +57,6 @@ function HeaderFooterUs({ checkPermission, state }) {
     navigate("/");
     localStorage.removeItem("token");
     alert("로그아웃 되었습니다😎");
-    window.location.reload()
   };
   const getInfo = async () => {
 
