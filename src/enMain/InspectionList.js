@@ -29,6 +29,7 @@ function InspectionList({ checkPermission }) {
   useEffect(() => {
     axios.get(`/api/main/engineer/inspectionList/${eng_enid}`)
       .then((res) => {
+
         const data = res.data.inspectionList;
         // 중복을 제거할 필드를 배열에 저장
         const uniqueFields = ['server_name', 'work_division', 'pro_name', 'work_date', 'server_status', 'work_status'];
@@ -46,6 +47,7 @@ function InspectionList({ checkPermission }) {
         setFirst(uniqueList);
         setLoading(false);
         console.log(data);
+
       })
       .catch((error) => {
         console.log(error);
@@ -154,13 +156,18 @@ function InspectionList({ checkPermission }) {
               <div className="card">
                 <div className="card-body">
                   <div className="searchBox">
+
                     {/* 검색 필터 및 검색 기능 */}
                     <select onChange={selectee1} style={{ height: "30px", color: "#9cbba6", position: "absolute", top: '10px', left: "100px", border: "1px solid #9cbba6", borderRadius: "3px", color: "#c5c0c0", fontSize: "13px" }} >
+
                       <option value="전체보기">작업상태</option>
                       <option value="점검예정">점검예정</option>
                       <option value="점검시작">점검시작</option>
                       <option value="점검완료">점검완료</option>
+
                     </select>
+
+
                     <form className="search-engineer search-englg" style={{ position: 'absolute', top: '0px', right: '100px', margin: '0 5px' }}>
                       <div className="customize-input right select-proengl" >
                         <select style={{ display: 'inline-block' }} className="selectee">
@@ -217,7 +224,9 @@ function InspectionList({ checkPermission }) {
                             <td>
                               <button
                                 type="button"
+
                                 className={`btn waves-effect waves-light btn-rounded ${workInfo.server_status === '정상작동중' ? 'btn-success' : 'btn-warning'
+
                                   }`}
                                 style={{ width: '100px' }}
                               >
@@ -231,7 +240,9 @@ function InspectionList({ checkPermission }) {
                     </table>
                   </div>
 
+
                   {/* 페이지네이션 */}
+
                   <div className="pagedivengl pagination-engl">
                     <Pagination
                       activePage={currentPage}

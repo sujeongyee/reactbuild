@@ -168,9 +168,26 @@ function EnWorkDetail({ checkPermission }) {
   const history = useNavigate();
 
   const [file, setFile] = useState([]);
+  // const selectFile = (e) => {
+  //   setFile([...file, e.target.files[0]]);
+  // };
+
   const selectFile = (e) => {
+    const selectedFile = e.target.files[0];
+
+    if(file.length > 0) {
+      const newFileList = [...file];
+      const newFile = newFileList.splice(e, 1)
+      setFile([...newFile, selectedFile]);
+    } else {
+      setFile([...file, selectedFile]);
+    }
+
     setFile([...file, e.target.files[0]]);
   };
+
+
+
   const submit = async () => {
     try {
       console.log(file);

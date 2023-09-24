@@ -17,9 +17,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 function EnEngDetail({checkPermission}) {
   
 
-
-  const [serverList, setServerList] = useState({});
-
+  const [serverList, setServerList] = useState([]);
 
   const [scheList, setScheList] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -234,4 +232,6 @@ function EnEngDetail({checkPermission}) {
   );
 }
 
+
 export default EnEngDetail;
+

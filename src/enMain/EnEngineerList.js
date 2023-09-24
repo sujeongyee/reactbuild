@@ -16,7 +16,6 @@ function EnEngineerList({checkPermission}) {
   const [list, setList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 정보 저장
   const itemsPerPage = 10; // 페이지당 아이템 수
-  const [loading, setLoading] = useState(true);
 
 
 
@@ -25,7 +24,6 @@ function EnEngineerList({checkPermission}) {
      // const engineerList = res.data.engineerList || [];
       setList(res.data.engineerList) ;
       setFirst(res.data.engineerList);
-      setLoading(false);
       
     })
       .catch((error) => {
