@@ -104,10 +104,6 @@ function MainUser({state}) {
                       <td>{mainProjectList?.[index]?.pro_name}</td>
                     </tr>
                     <tr>
-                      <th>작업 분류</th>
-                      <td>{mainProjectList?.[index]?.work_division}</td>
-                    </tr>
-                    <tr>
                       <th>기간</th>
                       <td>{mainProjectList?.[index]?.pro_startdate}~{mainProjectList?.[index]?.pro_enddate}</td>
                     </tr>

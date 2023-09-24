@@ -16,7 +16,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function EnEngDetail({checkPermission}) {
   
+
   const [serverList, setServerList] = useState({});
+
   const [scheList, setScheList] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -150,7 +152,7 @@ function EnEngDetail({checkPermission}) {
           .then(response => {          
           setScheList(response.data.scheList);
           setModalIsOpen(false);
-       
+        
           });
         })
         .catch(error => {

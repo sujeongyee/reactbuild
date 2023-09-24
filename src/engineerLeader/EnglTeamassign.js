@@ -12,7 +12,9 @@ function EnglTeamassign(props) {
   const pro_id = props.pro_id;
   const server_id = props.server_id;
   const leader_id = props.leader_id;
+
  
+
 
   useEffect(() => {
     // props.leaderid가 null이 아닌 경우에만 axios.post 요청을 보냅니다.

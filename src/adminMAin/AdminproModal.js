@@ -71,7 +71,7 @@ function AdminproModal(props) {
     
     if (e.target.checked) {
      // formData.append("team_num", checkboxValue);
-      setInputData({pro_id: pro_id, team_num: checkboxValue, pro_status: '엔지니어 배정중'})
+      setInputData({pro_id: pro_id, team_num: checkboxValue, pro_status: '계약승인'})
       //console.log("체크된 값:", checkboxValue);
     } //else {
      // formData.delete("team_num");

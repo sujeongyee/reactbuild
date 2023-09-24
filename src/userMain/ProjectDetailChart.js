@@ -81,6 +81,7 @@ function ProjectDetailChart({ pro_id , server_id }) {
                 <time>{list.work_date}</time>
                 <UserProjectDetailModal2 projectDetailList={list} />
               </div>
+              <li></li>
             </li>
           ))}
         </ol>
