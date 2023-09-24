@@ -41,7 +41,7 @@ function EnglAllSchedule(props) {
 
   useEffect(() => {
     if (props.userId !== null) {
-    axios.get('/api/main/engleader/getAllSche',{
+    axios.get('http://13.124.230.133:8888/api/main/engleader/getAllSche',{
       params:{userId:props.userId}
     })
       .then(response => {

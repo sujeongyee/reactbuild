@@ -50,7 +50,7 @@ function HeaderFooterEn(props) {
 
   useEffect(() => {
     if (props.userId !== '') {
-      axios.get('/api/main/alarm/getAlarmList', {
+      axios.get('http://13.124.230.133:8888/api/main/alarm/getAlarmList', {
         params: { user_id: props.userId}
       })
         .then(response => {
@@ -65,7 +65,7 @@ function HeaderFooterEn(props) {
     const click = document.getElementById('allorsome');
     if (click.innerHTML === '모든 알람 보기') {
       if (user_id !== null) {
-        axios.get('/api/main/alarm/getAllAlarm', {
+        axios.get('http://13.124.230.133:8888/api/main/alarm/getAllAlarm', {
           params: {
             user_id: user_id
           }
@@ -87,7 +87,7 @@ function HeaderFooterEn(props) {
 
     if (event.currentTarget.innerHTML === '안읽음') {
       event.currentTarget.innerHTML = '읽음'
-      axios.post(('/api/main/alarm/changeAlarm'), { alarmNum: alarmNum })
+      axios.post(('http://13.124.230.133:8888/api/main/alarm/changeAlarm'), { alarmNum: alarmNum })
       alert('알람을 확인 했습니다.')
     }
   }

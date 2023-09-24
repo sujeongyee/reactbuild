@@ -24,7 +24,7 @@ function AdminInQurylist() {
 
         if (searchValue.length == 0) {
 
-            const response = await axios.get(`/api/main/csList?currentPage=${currentPage}&postsPerPage=${postsPerPage}`)
+            const response = await axios.get(`http://13.124.230.133:8888/api/main/csList?currentPage=${currentPage}&postsPerPage=${postsPerPage}`)
             setPageInfo(response.data);
 
             setLoading(false);
@@ -37,7 +37,7 @@ function AdminInQurylist() {
 
 
 
-        const response = await axios.get("/api/main/admin/csTotal")
+        const response = await axios.get("http://13.124.230.133:8888/api/main/admin/csTotal")
         setTotal(response.data);
         setLoading(false);
 

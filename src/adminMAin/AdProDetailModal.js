@@ -26,7 +26,7 @@ function AdProDetailModal(props) {
   useEffect(() => {
     if (modalIsOpen) {
       axios
-        .get(`/api/main/admin/AdProDetailModal/${props.pro_id}`)
+        .get(`http://13.124.230.133:8888/api/main/admin/AdProDetailModal/${props.pro_id}`)
         .then((response) => {
           setAdProInfoList(response.data);
           console.log(response.data);

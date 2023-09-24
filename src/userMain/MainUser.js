@@ -37,7 +37,7 @@ function MainUser({state}) {
     const [maintenance, setMaintenance] = useState([0]);
 
     useEffect(()=>{
-      axios.get(`/api/main/user/${state.cus_id}`).then((response)=>{
+      axios.get(`http://13.124.230.133:8888/api/main/user/${state.cus_id}`).then((response)=>{
         const data = response.data;
         console.log(data)
         // console.log(data2);

@@ -21,7 +21,7 @@ function MainAdmin() {
   const [complete, setComplete] = useState([0]);
 
   useEffect(() => {
-    axios.get("/api/main/admin").then((response) => {
+    axios.get("http://13.124.230.133:8888/api/main/admin").then((response) => {
       const data2 = response.data;
       const receivedvo = data2.vo;
       const receivednewPL = data2.newPL;

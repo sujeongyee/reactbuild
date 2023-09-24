@@ -22,7 +22,7 @@ function EnglClientList(props){
 
   useEffect(() => {
     if (props.userId !== null) {
-    axios.get('/api/main/engleader/getClient',{
+    axios.get('http://13.124.230.133:8888/api/main/engleader/getClient',{
       params:{userId:props.userId}
     })
       .then(response => {

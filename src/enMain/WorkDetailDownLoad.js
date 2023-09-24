@@ -49,7 +49,7 @@ function WorkDetailDownLoad(props) {
     const work_filenum = props.state.list[0].work_filenum;
     console.log(work_filenum);
   
-    const response = await axios.get(`/api/main/getFiles?work_filenum=${work_filenum}`)
+    const response = await axios.get(`http://13.124.230.133:8888/api/main/getFiles?work_filenum=${work_filenum}`)
 
     if (response.data === '파일 없음') {
       return;

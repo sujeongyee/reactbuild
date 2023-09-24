@@ -27,7 +27,7 @@ function InspectionList({ checkPermission }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`/api/main/engineer/inspectionList/${eng_enid}`)
+    axios.get(`http://13.124.230.133:8888/api/main/engineer/inspectionList/${eng_enid}`)
       .then((res) => {
 
         const data = res.data.inspectionList;

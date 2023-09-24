@@ -29,7 +29,7 @@ function UserMyPageModal() {
 
   useEffect(() => {
     axios
-      .get("/api/client/UserMyPage")
+      .get("http://13.124.230.133:8888/api/client/UserMyPage")
       .then((response) => setUserMyPage(response.data))
       .catch((error) => console.log(error));
 

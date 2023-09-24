@@ -62,7 +62,7 @@ function UserProList({state}) {
   var currentItems = proList.slice(indexOfFirstItem, indexOfLastItem); //list
  
  useEffect(()=>{
-    axios.get(`/api/main/user/list/${state.cus_id}`).then((response)=>{
+    axios.get(`http://13.124.230.133:8888/api/main/user/list/${state.cus_id}`).then((response)=>{
       setProList(response.data);
       console.log(response.data);
       console.log('state: ',state);

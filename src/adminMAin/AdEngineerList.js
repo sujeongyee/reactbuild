@@ -20,7 +20,7 @@ function AdEngineerList() {
 
 
   useEffect(() => {
-    axios.get('/api/main/admin/engineerList').then((res) => {
+    axios.get('http://13.124.230.133:8888/api/main/admin/engineerList').then((res) => {
       setList(res.data);
       setFirst(res.data);
       console.log(res.data);

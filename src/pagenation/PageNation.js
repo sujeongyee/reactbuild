@@ -32,7 +32,7 @@ const PageNation = ({ currentPage, totalPosts,postsPerPage, onPageChange ,style}
         }
 
         try {
-            const response = await axios.get(`/api/pagenation?bno=${e}&amount=${postsPerPage}&total=${totalPosts}`, config)
+            const response = await axios.get(`http://13.124.230.133:8888/api/pagenation?bno=${e}&amount=${postsPerPage}&total=${totalPosts}`, config)
 
             setPageNation(response.data)
 
