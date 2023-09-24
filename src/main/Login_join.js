@@ -179,7 +179,7 @@ function Login_join(props) {
             return;
         }
         const data = formData
-        const response = await axios.post("/api/main/sing-up", data)
+        const response = await axios.post("http://13.124.230.133:8888/api/main/sing-up", data)
         setErrForm({
             cus_id: response.data.cus_id,
             cus_pw: response.data.cus_pw,
@@ -213,7 +213,7 @@ function Login_join(props) {
             'cus_pw_check': cus_pw_check.value,
             'cus_pw': cus_pw.value
         };
-        const response = await axios.post('/api/main/pw_check', check);
+        const response = await axios.post('http://13.124.230.133:8888/api/main/pw_check', check);
         setPwCheck({ pw_check: response.data.pw_check })
     }
     const [check, setCheck] = useState({
