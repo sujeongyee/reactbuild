@@ -88,6 +88,7 @@ import ProjectDetailChart from "./userMain/ProjectDetailChart";
 
 import AdEngineerList from "./adminMain/AdEngineerList";
 import InspectionList from "./enMain/InspectionList";
+import EnEngDetail from "./enMain/EnCalendar";
 
 function App() {
   const location = useLocation();
@@ -180,8 +181,8 @@ function App() {
             }
           />
           <Route
-            path="/engineer/calendar"
-            element={<EnCalendar checkPermission={checkPermission()} />}
+            path='/engineer/engDetail/:eng_enid'
+            element={<EnEngDetail checkPermission={checkPermission()} />}
           />
           <Route
             path="/engineer/engineerList"
@@ -278,7 +279,7 @@ function App() {
           <Route path="/user/annoList" element={<UserAnnoList checkPermission={checkPermission()} />}/>
           <Route path="/user/annoDetail" element={<UserAnnoDetail checkPermission={checkPermission()} />}/>
           <Route path="/user/prodetail/:pro_id" element={<UserDetailPro checkPermission={checkPermission()} />}/>
-          <Route path="/user/projectDetailList" element={ <UserProjectDetailList checkPermission={checkPermission()} state={info} /> } />
+          <Route path="/user/projectDetailList" element={ <UserProjectDetailList checkPermission={checkPermission()} info={info} /> } />
           <Route path="/user/projectDetail"  element={ <UserProjectDetailModal checkPermission={checkPermission()} />}/>
           <Route path="/user/projectDetail2" element={<UserProjectDetailModal2 checkPermission={checkPermission()} />}/>
         </Route>
