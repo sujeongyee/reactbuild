@@ -27,30 +27,26 @@ function AdProjectList() {
     
     const searchWord = document.querySelector(".select-word-engl").value; //검색 단어
     const filter = document.querySelector(".selectee").value; // 회사명 프로젝트명(옵션값)
-console.log(first)
-console.log(searchWord)
+
     // 데이터를 복사하여 필터링
     const filteredList = first.filter((item) => { //검색시작
-
-      if (filter === "프로젝트명" || item.pro_name!=null) {
+      
+      if (filter === "프로젝트명" && item.pro_name!=null) {
         return item.pro_name.includes(searchWord);
-      } else if (filter === "회사명" || item.cus_company_name!=null) {
+      } else if (filter === "회사명" && item.cus_company_name!=null) {
         return item.cus_company_name.includes(searchWord);
-      } else if (filter === "담당자" || item.pro_rep!=null) {
+      } else if (filter === "담당자" && item.pro_rep!=null) {
         return item.pro_rep.includes(searchWord);
-      } else if (filter === "계약시작일" || item.pro_startdate!=null) {
+      } else if (filter === "계약시작일" && item.pro_startdate!=null) {
+        console.log('-------------------------------------------------')
         return item.pro_startdate.includes(searchWord);
-      } else if (filter === "계약종료일" || item.pro_enddate!=null) {
+      } else if (filter === "계약종료일" && item.pro_enddate!=null) {
         return item.pro_enddate.includes(searchWord);
-      } else if (filter === "정기점검일" || item.pro_pi!=null) {
-        const searchNumber = parseFloat(searchWord); // 검색어를 숫자로 변환
-        if (!isNaN(searchNumber)) {
-          const proPiNumber = parseFloat(item.pro_pi);
-          return proPiNumber === searchNumber;
-        } else {
-          return false; // 검색어가 유효한 숫자가 아닌 경우
-        }
-      } else if (filter === "계약상태" || item.pro_status!=null) {
+
+      } else if (filter === "정기점검일" && item.pro_pi!=null) {
+        return item.pro_pi.includes(searchWord);
+      } else if (filter === "계약상태" && item.pro_status!=null) {
+
         return item.pro_status.includes(searchWord);
       } else if (filter === "전체" && searchWord === "") {
         return item;
