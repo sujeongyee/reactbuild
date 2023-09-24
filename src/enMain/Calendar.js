@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import Calendar from '@toast-ui/react-calendar';
 import '@toast-ui/calendar/dist/toastui-calendar.min.css';
@@ -14,10 +14,8 @@ import { Link } from "react-router-dom";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function EnglEngDetail() {
-  const [loading, setLoading] = useState(true);
-
-
+function EnEngDetail({checkPermission}) {
+  
   const [serverList, setServerList] = useState([]);
   const [scheList, setScheList] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -43,7 +41,8 @@ function EnglEngDetail() {
   };
   const [customStyles, setCustomStyles] = useState(initialCustomStyles);
 
-  const eng_enid = 'eng_2';
+  const eng_enid = checkPermission.sub;
+ 
 
   useEffect(() => {
 
@@ -230,4 +229,4 @@ function EnglEngDetail() {
   );
 }
 
-export default EnglEngDetail;
+export default EnEngDetail;

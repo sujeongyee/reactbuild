@@ -8,6 +8,15 @@ function AdProDetailInsModal(props) {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [adServerInsList, setAdServerInsList] = useState([]);
+
+  // 날짜를 원하는 형식으로 변환하는 함수
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit'};
+  const formattedDate = new Date(dateString).toLocaleDateString('ko-KR', options);
+
+  // 맨 뒤의 "." 제거
+  return formattedDate.replace(/\.$/, '');
+}
   
   console.log("여기있니?" + props.server_id);
 
@@ -112,7 +121,7 @@ function AdProDetailInsModal(props) {
                     <tr key={server.server_id}>
                     <th scope="row">{index+1}</th>
                     <td>{server.server_name}</td>
-                    <td>{server.work_date}</td>
+                    <td>{server.work_date!==null ? formatDate(server.work_date) : null}</td>
                     <td>{server.work_division}</td>
                     <td>{server.work_time}</td>
                     <td>{server.work_cpu}</td>
