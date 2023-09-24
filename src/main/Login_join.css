@@ -334,7 +334,7 @@
         background-color: unset;
     }
 
-    */ .col {
+     .col {
         width: 100%;
         position: absolute;
         padding: 2rem;
