@@ -639,3 +639,7 @@
       opacity: 1;
   }
 }
+
+.englserverlIst td,.englserverlIst th{
+  overflow: hidden;
+}

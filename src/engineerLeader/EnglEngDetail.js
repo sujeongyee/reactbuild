@@ -115,7 +115,7 @@ function EnglEngDetail() {
           <h3 style={{ color: 'black',marginBottom:'30px',marginLeft:'120px',fontSize:'18px' }}>담당 서버 리스트</h3>
         </div>
         <div style={{width:'1000px'}}>
-        <table className="table englprolisttable englprolisttable2 englcuslist">
+        <table className="table englprolisttable englprolisttable2 englcuslist englserverlIst">
                 <thead>
                   <tr>
                     <th scope="col" style={{width:'8px'}}>NO</th>

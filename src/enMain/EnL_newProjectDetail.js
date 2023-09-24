@@ -4,7 +4,6 @@ import "../enMain/EnMain.css";
 import "../enMain/EnTeam.css";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
-import EnglTeamassign from "../engineerLeader/EnglTeamassign";
 
 function EnL_newProjectDetail() {
   //쿼리파라미터 값
@@ -115,7 +114,7 @@ function EnL_newProjectDetail() {
                         </div>
                       </div>
 
-                      <div className="col-md-2 col-md-2-1">
+                      <div className="col-md-2 col-md-2-1 wid2">
                         <div className="form-group mb-3">
                           <p className="infoUser-answer">
                             {location.state.project.cus_address1}

@@ -12,7 +12,6 @@ function EnWorkDetail({ checkPermission }) {
   useEffect(() => {
     axios.get(`/api/main/engineer/workDetail/${eng_enid}`).then((response) => {
       setProjectData(response.data);
-      console.log(response.data);
     });
   }, []);
 
@@ -197,7 +196,10 @@ function EnWorkDetail({ checkPermission }) {
         formData.append("file_data", selectedFile);
       });
       formData.append("userId", eng_enid);
+      formData.append("pro_id", workInfoVO.pro_id);
 
+      console.log("pro_id -----------", workInfoVO.pro_id);
+      
       formData.forEach((value, key) => {
         console.log(key + " " + value);
       });
@@ -240,28 +242,25 @@ function EnWorkDetail({ checkPermission }) {
       server_id: '',
   });
   
-  console.log(filteredServer);
   
-  
-  const handleWorkStatusChange = (server_id, workStatus) => {
+  const handleWorkStatusChange = (server_id, e) => {
      // 서버의 server_id를 추출
-        
+        const bsyBtn=document.querySelectorAll(`.bsyBtn${e.currentTarget.value}`);
+        console.log(bsyBtn)
+        bsyBtn.forEach(button => {
+            button.style.backgroundColor = "rgb(42,198,97)"; // 원하는 배경색 설정
+            button.style.color = "#FFFFFF"; // 원하는 텍스트 색상 설정
+            // 여기에 다른 스타일 속성도 설정 가능
+          });
     try {
-      console.log(server_id)
-      console.log(workStatus)
-      if (workStatus === '점검예정') {
-        setUpdateStatus({workStatus:'점검예정', server_id: server_id});
-        console.log(updateStatus);
-      } else if (workStatus === '점검시작') {
-        setUpdateStatus({workStatus:'점검시작', server_id: server_id});
-        console.log(updateStatus);
-      }
 
-
+    const copy={...updateStatus,"workStatus":e.currentTarget.innerHTML,"server_id":server_id}
+      console.log(copy)
       // 서버로 상태값을 보냅니다.
-      axios.post("/api/main/engineer/updateWorkStatus", updateStatus);
+      axios.post("/api/main/engineer/updateWorkStatus", copy);
       
-      alert(`작업상태가 ${workStatus}으로 변경되었습니다.`)
+      alert(`작업상태가 ${e.currentTarget.innerHTML}으로 변경되었습니다.`)
+      e.currentTarget.style. backgroundColor="rgb(255 81 81)"
     } catch (error) {
       // 오류 처리
       console.error("서버 연결중 " + error);
@@ -400,65 +399,64 @@ function EnWorkDetail({ checkPermission }) {
                       </div>
                     </div>
 
-                    <table className="tableWD">
-                      <thead>
-                        <tr>
-                          <th scope="col">NO</th>
-                          <th scope="col">서버명</th>
-                          <th scope="col">CPU 사용량(%)</th>
-                          <th scope="col">RAM 사용량(%)</th>
-                          <th scope="col">HDD/SSD 사용량(%)</th>
-                          <th scope="col">작업 분류</th>
-                          <th scope="col">작업 상태</th>
-                          <th scope="col">이상 유무</th>
+                    <table className="tableWD" style={{width:"100%"}}>
+                      <thead className="row">
+                        <tr style={{border:'1px solid #e7e7e7'}}>
+                          <th style={{width:"5%"}} scope="col">NO</th>
+                          <th style={{width:"13%"}} scope="col">서버명</th>
+                          <th style={{width:"16%"}} scope="col">CPU 사용량(%)</th>
+                          <th style={{width:"16%"}} scope="col">RAM 사용량(%)</th>
+                          <th style={{width:"18%"}} scope="col">HDD/SSD 사용량(%)</th>
+                          <th style={{width:"14%"}} scope="col">작업 분류</th>
+                          <th style={{width:"18px"}} scope="col">작업 상태</th>
                         </tr>
                       </thead>
 
-                      <tbody>
+                      <tbody className="row">
                         {filteredServer &&
                           filteredServer.map((server, index) => (
-                            <tr key={server.server_id} name="server_id">
+                            <tr style={{border:'1px solid #e7e7e7',padding:0,marginBottom:"10px"}} key={server.server_id} name="server_id">
                               <input
                                 type="hidden"
                                 name="server_id"
                                 value={server.server_id}
                               ></input>
-                              <td>{index + 1}</td>
-                              <td>{server.server_name}</td>
-                              <td className="usage">
+                              <th style={{width:"5%"}}>{index + 1}</th>
+                              <td style={{width:"14%"}}>{server.server_name}</td>
+                              <td style={{width:"16%"}} className="usage">
                                 <input
                                   type="text"
                                   name="work_cpu"
-                                  value={cpuInputValues[index] || ""}
+                                  value={cpuInputValues[index] || ""} style={{width:"120px"}}
                                   onChange={(e) =>
                                     handleInputChange(e, index, "cpu")
                                   }
                                   placeholder="정수를 입력하세요"
                                 ></input>
                               </td>
-                              <td className="usage">
+                              <td style={{width:"16%"}} className="usage">
                                 <input
                                   type="text"
                                   name="work_ram"
-                                  value={ramInputValues[index] || ""}
+                                  value={ramInputValues[index] || ""}style={{width:"120px"}}
                                   onChange={(e) =>
                                     handleInputChange(e, index, "ram")
                                   }
                                   placeholder="정수를 입력하세요"
                                 ></input>
                               </td>
-                              <td className="usage">
+                              <td style={{width:"18%"}} className="usage">
                                 <input
                                   type="text"
                                   name="work_hdd"
-                                  value={hddInputValues[index] || ""}
+                                  value={hddInputValues[index] || ""} style={{width:"120px"}}
                                   onChange={(e) =>
                                     handleInputChange(e, index, "hdd")
                                   }
                                   placeholder="정수를 입력하세요"
                                 ></input>
                               </td>
-                              <td>
+                              <td style={{width:"14%"}}>
                                 <label>
                                   <input
                                     type="radio"
@@ -511,23 +509,27 @@ function EnWorkDetail({ checkPermission }) {
                                   장애대응
                                 </label>
                               </td>
-                              <td>
+                              <td style={{width:"18%",padding:"10px"}}>
 
                               <button
                                     type="submit"
                                     name={`work_status-${server.server_id}`}
-                                    className="button-writer left"
+                                    className={`button-writer left bsyBtn${index}`}
+                                    value={index}
                                     data-server-id={server.server_id}
-                                    onClick={() => handleWorkStatusChange(server.server_id, '점검예정')}
+                                    style={{marginTop:"10px",padding:"15px",float:"left"}}
+                                    onClick={(e) => handleWorkStatusChange(server.server_id, e)}
                                     >
                                     점검예정
                               </button>
                               <button
                                     type="button"
                                     name={`work_status-${server.server_id}`}
-                                    className="button-writer left"
+                                    className={`button-writer left bsyBtn${index}`}
+                                    value={index}
                                     data-server-id={server.server_id}
-                                    onClick={() => handleWorkStatusChange(server.server_id, '점검시작')}
+                                    style={{marginTop:"10px",padding:"15px",float:"left"}}
+                                    onClick={(e) => handleWorkStatusChange(server.server_id,e)}
                                     >
                                     점검시작
                               </button>

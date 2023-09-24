@@ -41,41 +41,6 @@ function EnEngineerMyPage(props) {
     const selectedImage = e.target.files[0];
     const imageUrl = URL.createObjectURL(selectedImage);
     setTempImage(imageUrl);
-    // const selectedFile = e.target.files[0];
-    // if( selectedFile.size / 1000000 > 50) {
-    //     alert("파일은 최대 50MB이하만 허용됩니다");
-    //     return;
-    // }
-    // if (selectedFile) {
-    //     const fileName = selectedFile.name;
-    //     const validExtensions = ['jpg', 'jpeg', 'png'];
-    //     const fileExtension = fileName.split('.').pop().toLowerCase();
-    //     let payload = token.substring(token.indexOf('.') + 1, token.lastIndexOf('.'));
-    //     console.log("순서 2")
-    //     let dec = JSON.parse(base64.decode(payload));
-    //     // 파일 확장자가 유효한지 확인합니다.
-    //     if (validExtensions.includes(fileExtension)) {
-
-    //         const userId=dec.sub;
-    //         let formData=new FormData();
-    //         formData.append('file_data',selectedFile);
-    //         formData.append('userId', userId);
-    //         const config = {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`,
-    //             }
-    //         };
-    //         console.log(userId)
-    //        const response= axios.post('/api/cloudUpload',formData,config)
-    //         console.log(response.data)
-    //        setProfileImg(response.data)
-    //     } else {
-    //       // 유효하지 않은 파일 확장자인 경우 사용자에게 알립니다.
-    //       alert('jpg, jpeg, png 파일만 업로드 가능합니다.');
-    //       // 선택한 파일을 초기화합니다.
-    //       e.target.value = '';
-    //     }
-    //   }
   };
 
   return (
@@ -95,13 +60,13 @@ function EnEngineerMyPage(props) {
               <tr>
                 <th>
                   <div className="me-3 circle-image" onClick={changMyImg}>
-                    {tempImage && (
+                    
                       <img
-                        src={tempImage}
+                        src="https://project-buket.s3.amazonaws.com/profile.jpg"
                         alt="Temporary Preview"
                         className="rounded-circle profileImage"
                       />
-                    )}
+                    
                     <div class="cross-icon"></div>
                     <input
                       type="file"

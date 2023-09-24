@@ -56,7 +56,6 @@ function HeaderFooterEn(props) {
         .then(response => {
           setAlarmList(response.data)
           setFirstAlarm(response.data)
-          console.log(response.data)
         })
         .catch(err => { alert('에러') })
     }
@@ -209,7 +208,7 @@ function HeaderFooterEn(props) {
                     <span className="hide-menu hide-list ">팀원보기</span>
                   </a>
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink className='sidebar-link ' to='/engineer/engineerList' style={({ isActive }) => isActive ? ms : undefined} >
                         목록보기
                       </NavLink>
@@ -221,7 +220,7 @@ function HeaderFooterEn(props) {
                 <li className="sidebar-item">
                   <a
                     className="sidebar-link has-arrow"
-                    href="javascript:void(0)"
+                    
                     onClick={handleClick}
                     aria-expanded="false"
                   >
@@ -232,7 +231,7 @@ function HeaderFooterEn(props) {
                     aria-expanded="false"
                     className="collapse first-level base-level-line"
                   >
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink
                         className="sidebar-link "
                         to="/engineer/newList"
@@ -242,7 +241,7 @@ function HeaderFooterEn(props) {
                         내 프로젝트
                       </NavLink>
                     </li>
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink
                         className="sidebar-link "
                         to="/engineer/inspectionList"
@@ -250,7 +249,7 @@ function HeaderFooterEn(props) {
                         점검 목록
                       </NavLink>
                     </li>
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink
                         className="sidebar-link "
                         to="/engineer/workDetail"
@@ -263,12 +262,12 @@ function HeaderFooterEn(props) {
                   </ul>
                 </li>
                 <li className="sidebar-item">
-                  <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
+                  <a className='sidebar-link has-arrow' onClick={handleClick} aria-expanded="false">
                     <BarChartIcon />
                     <span className="hide-menu hide-list" >공지사항</span>
                   </a>
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink className='sidebar-link ' to='/engineer/annoList' style={({ isActive }) => isActive ? ms : undefined} >
                         공지사항 보기
                       </NavLink>
@@ -283,12 +282,12 @@ function HeaderFooterEn(props) {
 
 
                 <li className="sidebar-item">
-                  <a className='sidebar-link has-arrow' href="javascript:void(0)" onClick={handleClick} aria-expanded="false">
+                  <a className='sidebar-link has-arrow'  onClick={handleClick} aria-expanded="false">
                     <BoxIconEn />
                     <span className="hide-menu hide-list" >문의사항</span>
                   </a>
                   <ul aria-expanded="false" className="collapse first-level base-level-line">
-                    <li class="sidebar-item">
+                    <li className="sidebar-item">
                       <NavLink className='sidebar-link ' to='/engineer/inQurylist' style={({ isActive }) => isActive ? ms : undefined} >
                         문의사항 목록
                       </NavLink>

@@ -60,7 +60,7 @@ function EnLeaderInQuryWrite({ checkPermission }) {
                     const response = await axios.post('/api/main/cloudUploadCs', formData)
                     if (response.data === '성공') {
                         alert('작성 완료 했습니다.')
-                        history("/engineer/inQuryList")
+                        history("/engineerleader/inQuryList")
                     } else {
                         alert('잘못된 접근 입니다.')
                     }
@@ -73,7 +73,7 @@ function EnLeaderInQuryWrite({ checkPermission }) {
                 const response = await axios.post('/api/main/user/quryeWrite', form)
                 if (response.data === '성공') {
                     alert('작성 완료 했습니다.')
-                    history("/engineerleadear/inQuryList")
+                    history("/engineerleader/inQuryList")
                 } else {
                     
                     alert('잘못된 접근 입니다.')

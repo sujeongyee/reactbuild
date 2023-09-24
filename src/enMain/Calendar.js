@@ -16,7 +16,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function EnEngDetail({checkPermission}) {
   
+
   const [serverList, setServerList] = useState([]);
+
   const [scheList, setScheList] = useState([]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -48,7 +50,6 @@ function EnEngDetail({checkPermission}) {
 
     axios.get(`/api/main/engleader/getEngInfo/${eng_enid}`)
       .then(response => {
-        setServerList(response.data.serverList);
         setScheList(response.data.scheList);
         console.log(response.data)
       });
@@ -59,7 +60,7 @@ function EnEngDetail({checkPermission}) {
     const updatedEvents = scheList.map(item => {
       let color = "";
 
-      if (item.sche_name === "정기점검") {
+      if (item.sche_name === "정기 점검") {
         color = "red";
       } else if (item.sche_name === "장애대응") {
         color = "yellow";
@@ -69,29 +70,30 @@ function EnEngDetail({checkPermission}) {
 
       const startDate = moment(item.sche_startdate).format("YYYY-MM-DD");
       const endDate = moment(item.sche_enddate).format("YYYY-MM-DD");
-
       return {
         title: item.sche_name,
+        // time:'123123',
         start: item.sche_startdate,
         end: item.sche_enddate,
         color: color,
         pro_name: item.pro_name,
         server_name: item.server_name,
         pro_id: item.pro_id,
-        sche_num: item.sche_num
+        sche_num: item.sche_num,
       };
     });
-
+    console.log(updatedEvents)
     setEvents(updatedEvents);
   }, [scheList]);
 
   const [events, setEvents] = useState([]);
 
-  const handleEventClick = (event) => {
-
+  const handleEventClick = async(event) => {
     setSelectedEvent(event.event);
-    console.log(event.event)
-
+    const sche_num={"sche_num":event.event.extendedProps.sche_num}
+    const response=await axios.post("/api/main/engineer/getScheInfo",sche_num)
+    console.log(response)
+    setServerList(response.data)
     // 모달 스타일 업데이트
     if (event.event.borderColor) {
       const updatedStyles = {
@@ -150,7 +152,7 @@ function EnEngDetail({checkPermission}) {
           .then(response => {          
           setScheList(response.data.scheList);
           setModalIsOpen(false);
-       
+        
           });
         })
         .catch(error => {
@@ -178,10 +180,11 @@ function EnEngDetail({checkPermission}) {
         <h3 style={{ color: '#746a60' }}>일정 확인</h3>
         <div id="calendar" style={{ height: "800px" }}>
           <FullCalendar
+           displayEventTime={false}
             plugins={[dayGridPlugin]}
             initialView="dayGridMonth"
             events={events}
-            eventClick={(event) => handleEventClick(event)}
+            eventClick={(event) =>{ console.log(event);handleEventClick(event)}}
           />
           {selectedEvent && (
             <Modal
@@ -192,12 +195,12 @@ function EnEngDetail({checkPermission}) {
               <div className="sche_modal">
                 <input type="hidden" value={selectedEvent.extendedProps.sche_num}></input>
                 <p style={{ fontSize: '15px' }}>작업 종류 : {selectedEvent.title}</p>
-                <p style={{ fontSize: '15px' }}>프로젝트 이름 :
-                  <Link to={`/engineerleader/projectDetail/${selectedEvent.extendedProps.pro_id}`}>
-                    {selectedEvent.extendedProps.pro_name}
-                  </Link>
+                <p style={{ fontSize: '15px' }}>프로젝트 이름 :{serverList.pro_name}
+                  {/* <Link to={`/engineer/newProjectDetail/${serverList.pro_id}`}>
+                    {serverList.pro_name}
+                  </Link> */}
                 </p>
-                <p style={{ fontSize: '14px' }}>서버이름 : {selectedEvent.extendedProps.server_name} </p>
+                <p style={{ fontSize: '14px' }}>서버이름 : {serverList.server_name} </p>
                 <p>{moment(selectedEvent.start).format("YYYY-MM-DD")} {selectedEvent.end ? `~ ${moment(selectedEvent.end).format("YYYY-MM-DD")}` : ''}</p>
                 <button className="change-sche" onClick={handleChangeSche} style={{ background: '#ffced7' }}>일정수정하기</button>
                 <div className="editSchedule" style={{ display: 'none' }}>
@@ -229,4 +232,6 @@ function EnEngDetail({checkPermission}) {
   );
 }
 
+
 export default EnEngDetail;
+

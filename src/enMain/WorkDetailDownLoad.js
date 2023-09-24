@@ -7,8 +7,10 @@ import axios from "axios";
 
 function WorkDetailDownLoad(props) {
   
+
   console.log(props.state.list[0].work_filenum);
-  
+ 
+
   
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -48,6 +50,7 @@ function WorkDetailDownLoad(props) {
     console.log(work_filenum);
   
     const response = await axios.get(`/api/main/getFiles?work_filenum=${work_filenum}`)
+
     if (response.data === '파일 없음') {
       return;
     } else {
@@ -132,3 +135,4 @@ function WorkDetailDownLoad(props) {
   );
 }
 export default WorkDetailDownLoad;
+

@@ -12,14 +12,13 @@ function EnglTeamassign(props) {
   const pro_id = props.pro_id;
   const server_id = props.server_id;
   const leader_id = props.leader_id;
-  console.log(pro_pi);
 
-  console.log(leader_id);
+ 
+
 
   useEffect(() => {
     // props.leaderid가 null이 아닌 경우에만 axios.post 요청을 보냅니다.
-    if (pro_id !== null) {
-
+    if (props.userId !== null) {
 
       axios.get('/api/main/engleader/getTeamEngList',{
          params: {
@@ -87,6 +86,7 @@ function EnglTeamassign(props) {
 
         console.log(response);
         if (response.data === "ok") {
+            axios.get('/api/main/engleader/updatePro')
           setModalIsOpen(false);
           const classname = props.server_id;
           const btn_change = document.querySelector(

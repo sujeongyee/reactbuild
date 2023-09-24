@@ -6,7 +6,7 @@ import axios from "axios";
 
 function UserProjectDetailModal({ projectDetailList }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
+  console.log(projectDetailList)
   const printableAreaRef = useRef(null);
 
   const customStyles = {
@@ -41,7 +41,7 @@ function UserProjectDetailModal({ projectDetailList }) {
   return (
     <>
       <button onClick={() => setModalIsOpen(true)}>
-        {projectDetailList.server_name}
+        {projectDetailList.pro_name}
       </button>
 
       <Modal

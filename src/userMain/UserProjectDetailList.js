@@ -18,7 +18,7 @@ function UserProjectDetailList({info}) {
   const wrapperRef = useRef(null);
   const [selectedServer, setSelectedServer] = useState(null);
 
-
+console.log("값"+ProjectDetailList)
 
   const [list, setList] = useState([]);
   const [first,setFirst] = useState([]);
@@ -167,8 +167,8 @@ function UserProjectDetailList({info}) {
 
                     <select  style={{ display: 'inline-block', border: '1px solid #8971ea'}} className="selectee">
                         <option className="selecteeop">전체</option>
+                        <option className="selecteeop">프로젝트</option>
                         <option className="selecteeop">서버이름</option>
-                        <option className="selecteeop">서버종류</option>
                         <option className="selecteeop">작업상태</option>
                         <option className="selecteeop">담당엔지니어</option>
                       </select>
@@ -202,8 +202,8 @@ function UserProjectDetailList({info}) {
                         <thead>
                           <tr>
                             <th scope="col">NO</th>
-                            <th scope="col">서버 이름</th>
-                            <th scope="col">작업 분류</th>
+                            <th scope="col">프로젝트명</th>
+                            <th scope="col">서버명</th>
                             <th scope="col">최근 점검</th>
                             <th scope="col">작업 상태</th>
                             <th scope="col">담당 엔지니어</th>
@@ -218,9 +218,10 @@ function UserProjectDetailList({info}) {
                            
                               <th scope="row">  {(currentPage - 1) * itemsPerPage + index + 1}</th>
                               <td>
-                                <UserProjectDetailModal projectDetailList={list}/>
+                                {/* <UserProjectDetailModal projectDetailList={list}/> */}
+                                {list.pro_name}
                               </td>
-                              <td>{list.work_division}</td>
+                              <td>{list.server_name}</td>
                               <td>{list.work_date}</td>
                               <td>
                                 <button type="button" className="button-danger" style={ 
